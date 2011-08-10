@@ -25,9 +25,9 @@ namespace MemoryPatch
         /// <summary>
         /// snap shot of searches
         /// </summary>
-        //private List<AddressFound> _snapShot1;
-        //private List<AddressFound> _snapShot2;         
-        //private bool _snapShotToggle = true;
+        private List<AddressFound> _snapShot1;
+        private List<AddressFound> _snapShot2;         
+        private bool _snapShotToggle = true;
         private AddressCollection _addressCollection;
         public SearchContext SearchContext
         {
@@ -49,8 +49,8 @@ namespace MemoryPatch
             _access = access;
             _parent = parent;
             _addressCollection = new AddressCollection();
-            //_snapShot1 = new List<AddressFound>(25000);
-            //_snapShot2 = new List<AddressFound>(25000);
+            _snapShot1 = new List<AddressFound>(25000);
+            _snapShot2 = new List<AddressFound>(25000);
         }
 
         public void CancelSearch()
@@ -106,8 +106,8 @@ namespace MemoryPatch
 
                 //reset how the next search will work
                 _addressCollection.ResetSearch(data);
-                //_snapShot1.Clear();
-                //_snapShotToggle = true;
+                _snapShot1.Clear();
+                _snapShotToggle = true;
 
                 for (int Address = start; Address < end; Address++)
                 {                    
