@@ -798,7 +798,7 @@ namespace MemoryPatch.Editing_Memory
         {            
             string fullName = baseName;
             bool found = true;
-            int i = 1;
+            int i = 2;
             SavedAddress savedAddress;
 
             //get a new name for the saved address
@@ -921,6 +921,14 @@ namespace MemoryPatch.Editing_Memory
         private void MemoryPatchControl_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnPoke_Click(object sender, EventArgs e)
+        {
+            if (ActiveAddress != null)
+            {
+                AcceptNewValue();
+            }
         }             
     }
 }

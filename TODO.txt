@@ -1,0 +1,12 @@
+TODO 
+
+9:01 PM 8/11/2011
+-Add String search
+-(Done)Add Snap shot search
+-Allow for more than one address to be added
+-when a message box shows an address show it in hex
+-(Done)add a poke button
+-delete a group
+-add drag and drop to reorder address in a group
+-add an option for selecting a data type when adding many addresses
+-reduce the amount of addresses found in the dislay grid (causes lag)

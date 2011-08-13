@@ -17,7 +17,7 @@ namespace MemoryPatch
         /// search thread
         /// </summary>
         private Thread _searchThread;
-        public int AddressDisplayCount = 400;
+        public int AddressDisplayCount = 200;
 
         private MemoryAccess _access;
         private Control _parent;
@@ -35,8 +35,7 @@ namespace MemoryPatch
             {
                 return _addressCollection.SearchContext;
             }
-        }
-        //private SearchContext _context;
+        }        
 
         /// <summary>
         /// event handlers
@@ -93,7 +92,7 @@ namespace MemoryPatch
         {
             try
             {
-                SearchContext data = (SearchContext)obj;
+                SearchContext context = (SearchContext)obj;
 
                 IntPtr baseAddress = _access.Module.BaseAddress;
                 int start = baseAddress.ToInt32();
@@ -101,26 +100,49 @@ namespace MemoryPatch
                 int end = start + len;               
                 float lastPrecentDone = 0;
 
-                byte[] value1 = data.Value;
+                byte[] value1 = context.Value;
                 byte[] buffer;
 
                 //reset how the next search will work
-                _addressCollection.ResetSearch(data);
-                _snapShot1.Clear();
-                _snapShotToggle = true;
+                _addressCollection.ResetSearch(context);                
+
+                //clear snapshots if needed
+                if (context.SearchType == SearchType.StoreSnapShot1)
+                    _snapShot1.Clear();
+
+                if (context.SearchType == SearchType.StoreSnapShot2)
+                    _snapShot2.Clear();
 
                 for (int Address = start; Address < end; Address++)
                 {                    
-                    buffer = _access.ReadMemoryAsBytes(Address, data.DataLength);
-                    
-                    if (data.DataType == DataType.Float)
+                    buffer = _access.ReadMemoryAsBytes(Address, context.DataLength);
+
+                    lastPrecentDone = UpdateProgress(start, end, lastPrecentDone, Address, _addressCollection.CurrentList.Count);
+
+                    //store addresses
+                    if (context.SearchType == SearchType.StoreSnapShot1)
+                    {
+                        _snapShot1.Add(new AddressFound(
+                                    Address, buffer,
+                                    context.DataType));
+                        continue;
+                    }
+                    else if (context.SearchType == SearchType.StoreSnapShot2)
+                    {
+                        _snapShot2.Add(new AddressFound(
+                                    Address, buffer,
+                                    context.DataType));
+                        continue;
+                    }
+
+                    if (context.DataType == DataType.Float)
                     {
                         float v1 = BitConverter.ToSingle(buffer, 0);
                         if (float.IsNaN(v1) || float.IsNegativeInfinity(v1))
                             continue;
                     }
 
-                    if (data.DataType == DataType.Double)
+                    if (context.DataType == DataType.Double)
                     {
                         double v1 = BitConverter.ToDouble(buffer, 0);
                         if (double.IsNaN(v1) || double.IsNegativeInfinity(v1))
@@ -130,49 +152,32 @@ namespace MemoryPatch
                     //check it the values match
                     bool match = true;
                     double difference;
-                    switch (data.SearchType)
+                    switch (context.SearchType)
                     {
                         case SearchType.Excat:
-                            match = (Compare(buffer, value1, data.DataType, out difference) == CompareType.EqualTo);
+                            match = (Compare(buffer, value1, context.DataType, out difference) == CompareType.EqualTo);
                             break;
                         case SearchType.UnKnown:
                             match = true;
                             break;
                         default:
-                            throw new Exception("Unknown DataType " + data.SearchType);
+                            throw new Exception("Unknown DataType " + context.SearchType);
                     }
 
                     //test if this is want we are looking for
                     if (match)
                     {
                         AddressFound addressFound = new AddressFound(Address, buffer,
-                                                             data.DataType);
+                                                             context.DataType);
 
                         _addressCollection.CurrentList.Add(addressFound); 
-                      
-                        //FoundAddress(data, _snapShot1, false);                        
-                        FoundAddress(data,  false);                        
-
-                        //_snapShot1.Add(addressFound);
-                        //int count = _snapShot1.Count;
-
-                        //if (count < 200)
-                        //{
-                        //    _parent.Invoke(new ThreadStart(delegate()
-                        //        {
-                        //            if (OnValueFound != null)
-                        //            {
-                        //                OnValueFound(this, new AddressFoundEventArgs(addressFound));
-                        //            }
-                        //        }));
-                        //}
-                    }
-
-                    lastPrecentDone = UpdateProgress(start, end, lastPrecentDone, Address, _addressCollection.CurrentList.Count);
+                                                        
+                        FoundAddress(context,  false);                                               
+                    }                    
                 }
 
                 //final update
-                FoundAddress(data, true);
+                FoundAddress(context, true);
                 UpdateProgress(start, end, lastPrecentDone, end, _addressCollection.CurrentList.Count);
             }
             catch (ThreadAbortException)
@@ -190,41 +195,67 @@ namespace MemoryPatch
         {
             try
             {
-                SearchContext data = (SearchContext)obj;
+                SearchContext context = (SearchContext)obj;
 
                 IntPtr baseAddress = _access.Module.BaseAddress;
                 int start = baseAddress.ToInt32();
                 int len = _access.Module.ModuleMemorySize;
-                int end = start + len;                
+                int end = start + len;
                 float lastPrecentDone = 0;
 
-                byte[] value1 = data.Value;                
+                byte[] value1 = context.Value;
                 byte[] buffer;
-                
+
                 //this handles consective searches
                 List<AddressFound> srcList = _addressCollection.CurrentList;
                 List<AddressFound> destList = _addressCollection.LastList;
                 _addressCollection.StartNextSearch();
-                //if (_snapShotToggle)
-                //{
-                //    srcList = _snapShot1;
-                //    destList = _snapShot2;
-                //}
-                //else
-                //{
-                //    srcList = _snapShot2;
-                //    destList = _snapShot1;
-                //}
 
-                //destList.Clear();
-                //_snapShotToggle = !_snapShotToggle;
-                
+                //clear snapshots if needed
+                if (context.SearchType == SearchType.StoreSnapShot1)
+                    _snapShot1.Clear();
+
+                if (context.SearchType == SearchType.StoreSnapShot2)
+                    _snapShot2.Clear();
+
+                //set up snapshots for compare
+                if (context.SearchType == SearchType.CompareToSnapShot1)
+                {
+                    srcList.Clear();
+                    srcList = _snapShot1;
+                }
+
+                if (context.SearchType == SearchType.CompareToSnapShot2)
+                {
+                    srcList.Clear();
+                    srcList = _snapShot2;                                 
+                }            
+
                 for (int i = 0; i < srcList.Count; i++)
                 {
                     AddressFound currentAddress = srcList[i];
-                    buffer = _access.ReadMemoryAsBytes(currentAddress.Address, data.DataLength);                    
+                    buffer = _access.ReadMemoryAsBytes(currentAddress.Address, context.DataLength);
 
-                    if (data.DataType == DataType.Float)
+                    lastPrecentDone = UpdateProgress(start, end, lastPrecentDone,
+                       currentAddress.Address, destList.Count);
+
+                    //store addresses
+                    if (context.SearchType == SearchType.StoreSnapShot1)
+                    {
+                        _snapShot1.Add(new AddressFound(
+                                    currentAddress.Address, buffer,
+                                    context.DataType));
+                        continue;
+                    }
+                    else if (context.SearchType == SearchType.StoreSnapShot2)
+                    {
+                        _snapShot2.Add(new AddressFound(
+                                    currentAddress.Address, buffer,
+                                    context.DataType));
+                        continue;
+                    }
+
+                    if (context.DataType == DataType.Float)
                     {
                         float v1 = BitConverter.ToSingle(buffer, 0);
                         if (float.IsNaN(v1) || float.IsNegativeInfinity(v1))
@@ -235,7 +266,7 @@ namespace MemoryPatch
                         }
                     }
 
-                    if (data.DataType == DataType.Double)
+                    if (context.DataType == DataType.Double)
                     {
                         double v1 = BitConverter.ToDouble(buffer, 0);
                         if (double.IsNaN(v1) || double.IsNegativeInfinity(v1))
@@ -249,95 +280,96 @@ namespace MemoryPatch
                     try
                     {
                         double diff;
-                        bool match = true;                      
-                        switch (data.SearchType)
-                        {
+                        bool match = true;
+                        switch (context.SearchType)
+                        {                            
+                            case SearchType.CompareToSnapShot1:
+                            case SearchType.CompareToSnapShot2:
+                                match = (Compare(buffer, currentAddress.CurrentValue, context.DataType, out diff) == CompareType.EqualTo);
+                                break;
                             case SearchType.Excat:
-                                match = (Compare(buffer, value1, data.DataType, out diff) == CompareType.EqualTo);
+                                match = (Compare(buffer, value1, context.DataType, out diff) == CompareType.EqualTo);
                                 break;
                             case SearchType.HasIncreased:
-                                match = (Compare(buffer, currentAddress.CurrentValue, data.DataType, out diff) == CompareType.GreaterThen);
+                                match = (Compare(buffer, currentAddress.CurrentValue, context.DataType, out diff) == CompareType.GreaterThen);
                                 break;
                             case SearchType.HasDecreased:
-                                match = (Compare(buffer, currentAddress.CurrentValue, data.DataType, out diff) == CompareType.LessThen);
+                                match = (Compare(buffer, currentAddress.CurrentValue, context.DataType, out diff) == CompareType.LessThen);
                                 break;
                             case SearchType.HasNotChanged:
-                                match = (Compare(buffer, currentAddress.CurrentValue, data.DataType, out diff) == CompareType.EqualTo);
+                                match = (Compare(buffer, currentAddress.CurrentValue, context.DataType, out diff) == CompareType.EqualTo);
                                 break;
                             case SearchType.HasChanged:
-                                match = (Compare(buffer, currentAddress.CurrentValue, data.DataType, out diff) != CompareType.EqualTo);
+                                match = (Compare(buffer, currentAddress.CurrentValue, context.DataType, out diff) != CompareType.EqualTo);
                                 break;
                             case SearchType.HasIncreasedBy:
-                                match = (Compare(buffer, currentAddress.CurrentValue, data.DataType, out diff) != CompareType.GreaterThen);
-                                switch (data.DataType)
+                                match = (Compare(buffer, currentAddress.CurrentValue, context.DataType, out diff) != CompareType.GreaterThen);
+                                switch (context.DataType)
                                 {
                                     case DataType.UByte:
                                     case DataType.UInt16:
                                     case DataType.UInt32:
-                                        match = ((uint)diff == (uint)data.Difference);
+                                        match = ((uint)diff == (uint)context.Difference);
                                         break;
                                     case DataType.Byte:
                                     case DataType.Int16:
                                     case DataType.Int32:
-                                        match = ((int)diff == (int)data.Difference);
+                                        match = ((int)diff == (int)context.Difference);
                                         break;
                                     case DataType.String:
                                         break;
                                     case DataType.Float:
                                     case DataType.Double:
-                                        match = (diff == data.Difference);
+                                        match = (diff == context.Difference);
                                         break;
                                 }
                                 break;
                             case SearchType.HasDecreasedBy:
-                                match = (Compare(buffer, currentAddress.CurrentValue, data.DataType, out diff) != CompareType.LessThen);
-                                switch (data.DataType)
+                                match = (Compare(buffer, currentAddress.CurrentValue, context.DataType, out diff) != CompareType.LessThen);
+                                switch (context.DataType)
                                 {
-                                    case DataType.UByte:                                        
-                                    case DataType.UInt16:                                        
+                                    case DataType.UByte:
+                                    case DataType.UInt16:
                                     case DataType.UInt32:
-                                        match = ((uint)diff == (uint)data.Difference);
+                                        match = ((uint)diff == (uint)context.Difference);
                                         break;
-                                    case DataType.Byte:                                        
-                                    case DataType.Int16:                                        
+                                    case DataType.Byte:
+                                    case DataType.Int16:
                                     case DataType.Int32:
-                                        match = ((int)diff == (int)data.Difference);
+                                        match = ((int)diff == (int)context.Difference);
                                         break;
                                     case DataType.String:
                                         break;
-                                    case DataType.Float:                                
+                                    case DataType.Float:
                                     case DataType.Double:
-                                        match = (diff == data.Difference);
-                                        break;                                 
+                                        match = (diff == context.Difference);
+                                        break;
                                 }
-                                
-                                break;                            
+
+                                break;                         
                             default:
-                                throw new Exception("Unknown DataType " + data.SearchType);
+                                throw new Exception("Unknown DataType " + context.SearchType);
                         }
 
                         //test if this is want we are looking for
                         if (match)
                         {
                             AddressFound foundAddress = new AddressFound(currentAddress.Address, buffer,
-                                                 data.DataType);
+                                                 context.DataType);
 
                             destList.Add(foundAddress);
 
-                            FoundAddress(data, false);
+                            FoundAddress(context, false);
                         }
                     }
                     catch (Exception ex)
                     {
                         throw;
-                    }
-
-                    lastPrecentDone = UpdateProgress(start, end, lastPrecentDone, 
-                        currentAddress.Address, destList.Count);
+                    }                   
                 }
-                            
+
                 //final update
-                FoundAddress(data,  true);
+                FoundAddress(context, true);
                 UpdateProgress(start, end, lastPrecentDone, end, destList.Count);
             }
             catch (ThreadAbortException)

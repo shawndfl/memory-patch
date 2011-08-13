@@ -79,8 +79,7 @@ namespace MemoryPatch
         public static SearchContext CreateSearchData(SearchType searchType,
             DataType dataType, string value1)
         {
-            SearchContext data = new SearchContext();
-            //data.SnapShot = snapShot;
+            SearchContext data = new SearchContext();            
             data.FirstSearch = true;
             data.SearchType = searchType;
             data.DataType = dataType;
@@ -195,8 +194,10 @@ namespace MemoryPatch
         HasChanged,
         HasDecreasedBy,
         HasIncreasedBy,
-        //SearchForAValue,
-        //SearchForBValue,
+        StoreSnapShot1,
+        StoreSnapShot2,
+        CompareToSnapShot1,
+        CompareToSnapShot2,
     }
 
     public enum CompareType

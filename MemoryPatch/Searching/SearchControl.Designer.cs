@@ -55,6 +55,7 @@
             this.pgSearching = new System.Windows.Forms.ProgressBar();
             this.btnCancle = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnClear = new System.Windows.Forms.Button();
             this.groupFound.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataResults)).BeginInit();
             this.groupNextSearch.SuspendLayout();
@@ -66,9 +67,10 @@
             // 
             this.groupFound.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupFound.Controls.Add(this.btnClear);
+            this.groupFound.Controls.Add(this.dataResults);
             this.groupFound.Controls.Add(this.label7);
             this.groupFound.Controls.Add(this.lbFoundCount);
-            this.groupFound.Controls.Add(this.dataResults);
             this.groupFound.Enabled = false;
             this.groupFound.Location = new System.Drawing.Point(1, 209);
             this.groupFound.Name = "groupFound";
@@ -105,7 +107,7 @@
             this.colAddress,
             this.colValue,
             this.colType});
-            this.dataResults.Location = new System.Drawing.Point(6, 40);
+            this.dataResults.Location = new System.Drawing.Point(2, 32);
             this.dataResults.Name = "dataResults";
             this.dataResults.Size = new System.Drawing.Size(406, 371);
             this.dataResults.TabIndex = 9;
@@ -317,6 +319,16 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(313, 3);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(95, 23);
+            this.btnClear.TabIndex = 2;
+            this.btnClear.Text = "Clear Addresses";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // SearchControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -367,5 +379,6 @@
         private System.Windows.Forms.Button btnCancle;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnClear;
     }
 }

@@ -41,13 +41,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupAddressEdit = new System.Windows.Forms.GroupBox();
-            this.cboAddressOptionGroup = new System.Windows.Forms.ComboBox();
-            this.cboValue = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtCurrentValue = new System.Windows.Forms.TextBox();
             this.groupEdit = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -80,6 +73,13 @@
             this.label12 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.txtNotes = new System.Windows.Forms.RichTextBox();
+            this.groupAddressEdit = new System.Windows.Forms.GroupBox();
+            this.cboAddressOptionGroup = new System.Windows.Forms.ComboBox();
+            this.cboValue = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtCurrentValue = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnIncValue = new System.Windows.Forms.Button();
             this.lstOptions = new System.Windows.Forms.ListBox();
@@ -91,12 +91,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnPoke = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.groupAddressEdit.SuspendLayout();
             this.groupEdit.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -108,6 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCreateCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPadding)).BeginInit();
             this.tabPage7.SuspendLayout();
+            this.groupAddressEdit.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -246,96 +247,10 @@
             this.tabPage2.Text = "Selected Nodes";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // groupAddressEdit
-            // 
-            this.groupAddressEdit.Controls.Add(this.txtAddress);
-            this.groupAddressEdit.Controls.Add(this.cboDataType);
-            this.groupAddressEdit.Controls.Add(this.label1);
-            this.groupAddressEdit.Controls.Add(this.cboAddressOptionGroup);
-            this.groupAddressEdit.Controls.Add(this.chkLocked);
-            this.groupAddressEdit.Controls.Add(this.cboValue);
-            this.groupAddressEdit.Controls.Add(this.label15);
-            this.groupAddressEdit.Controls.Add(this.label10);
-            this.groupAddressEdit.Controls.Add(this.label4);
-            this.groupAddressEdit.Controls.Add(this.label7);
-            this.groupAddressEdit.Controls.Add(this.txtDescription);
-            this.groupAddressEdit.Controls.Add(this.txtValue);
-            this.groupAddressEdit.Controls.Add(this.label14);
-            this.groupAddressEdit.Controls.Add(this.txtCurrentValue);
-            this.groupAddressEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupAddressEdit.Location = new System.Drawing.Point(3, 3);
-            this.groupAddressEdit.Name = "groupAddressEdit";
-            this.groupAddressEdit.Size = new System.Drawing.Size(641, 320);
-            this.groupAddressEdit.TabIndex = 7;
-            this.groupAddressEdit.TabStop = false;
-            this.groupAddressEdit.Text = "Address Edit";
-            this.groupAddressEdit.Visible = false;
-            // 
-            // cboAddressOptionGroup
-            // 
-            this.cboAddressOptionGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboAddressOptionGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboAddressOptionGroup.FormattingEnabled = true;
-            this.cboAddressOptionGroup.Location = new System.Drawing.Point(93, 176);
-            this.cboAddressOptionGroup.Name = "cboAddressOptionGroup";
-            this.cboAddressOptionGroup.Size = new System.Drawing.Size(542, 21);
-            this.cboAddressOptionGroup.TabIndex = 6;
-            this.cboAddressOptionGroup.SelectedIndexChanged += new System.EventHandler(this.cboGroup_SelectedIndexChanged);
-            // 
-            // cboValue
-            // 
-            this.cboValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboValue.FormattingEnabled = true;
-            this.cboValue.Location = new System.Drawing.Point(193, 139);
-            this.cboValue.Name = "cboValue";
-            this.cboValue.Size = new System.Drawing.Size(442, 21);
-            this.cboValue.TabIndex = 5;
-            this.cboValue.SelectedIndexChanged += new System.EventHandler(this.cboValue_SelectedIndexChanged);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(16, 113);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(71, 13);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "Current Value";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 142);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Poked Value";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 176);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "List Options";
-            // 
-            // txtCurrentValue
-            // 
-            this.txtCurrentValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCurrentValue.Location = new System.Drawing.Point(93, 110);
-            this.txtCurrentValue.Name = "txtCurrentValue";
-            this.txtCurrentValue.ReadOnly = true;
-            this.txtCurrentValue.Size = new System.Drawing.Size(542, 20);
-            this.txtCurrentValue.TabIndex = 3;
-            // 
             // groupEdit
             // 
-            this.groupEdit.Controls.Add(this.tabPage4);
             this.groupEdit.Controls.Add(this.tabPage7);
+            this.groupEdit.Controls.Add(this.tabPage4);
             this.groupEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupEdit.Location = new System.Drawing.Point(3, 3);
             this.groupEdit.Name = "groupEdit";
@@ -687,6 +602,93 @@
             this.txtNotes.Text = "";
             this.txtNotes.TextChanged += new System.EventHandler(this.txtNotes_TextChanged);
             // 
+            // groupAddressEdit
+            // 
+            this.groupAddressEdit.Controls.Add(this.btnPoke);
+            this.groupAddressEdit.Controls.Add(this.txtAddress);
+            this.groupAddressEdit.Controls.Add(this.cboDataType);
+            this.groupAddressEdit.Controls.Add(this.label1);
+            this.groupAddressEdit.Controls.Add(this.cboAddressOptionGroup);
+            this.groupAddressEdit.Controls.Add(this.chkLocked);
+            this.groupAddressEdit.Controls.Add(this.cboValue);
+            this.groupAddressEdit.Controls.Add(this.label15);
+            this.groupAddressEdit.Controls.Add(this.label10);
+            this.groupAddressEdit.Controls.Add(this.label4);
+            this.groupAddressEdit.Controls.Add(this.label7);
+            this.groupAddressEdit.Controls.Add(this.txtDescription);
+            this.groupAddressEdit.Controls.Add(this.txtValue);
+            this.groupAddressEdit.Controls.Add(this.label14);
+            this.groupAddressEdit.Controls.Add(this.txtCurrentValue);
+            this.groupAddressEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupAddressEdit.Location = new System.Drawing.Point(3, 3);
+            this.groupAddressEdit.Name = "groupAddressEdit";
+            this.groupAddressEdit.Size = new System.Drawing.Size(641, 320);
+            this.groupAddressEdit.TabIndex = 7;
+            this.groupAddressEdit.TabStop = false;
+            this.groupAddressEdit.Text = "Address Edit";
+            this.groupAddressEdit.Visible = false;
+            // 
+            // cboAddressOptionGroup
+            // 
+            this.cboAddressOptionGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboAddressOptionGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboAddressOptionGroup.FormattingEnabled = true;
+            this.cboAddressOptionGroup.Location = new System.Drawing.Point(93, 176);
+            this.cboAddressOptionGroup.Name = "cboAddressOptionGroup";
+            this.cboAddressOptionGroup.Size = new System.Drawing.Size(542, 21);
+            this.cboAddressOptionGroup.TabIndex = 6;
+            this.cboAddressOptionGroup.SelectedIndexChanged += new System.EventHandler(this.cboGroup_SelectedIndexChanged);
+            // 
+            // cboValue
+            // 
+            this.cboValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboValue.FormattingEnabled = true;
+            this.cboValue.Location = new System.Drawing.Point(252, 139);
+            this.cboValue.Name = "cboValue";
+            this.cboValue.Size = new System.Drawing.Size(383, 21);
+            this.cboValue.TabIndex = 5;
+            this.cboValue.SelectedIndexChanged += new System.EventHandler(this.cboValue_SelectedIndexChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(16, 113);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(71, 13);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Current Value";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(16, 142);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Poked Value";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 176);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(62, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "List Options";
+            // 
+            // txtCurrentValue
+            // 
+            this.txtCurrentValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCurrentValue.Location = new System.Drawing.Point(93, 110);
+            this.txtCurrentValue.Name = "txtCurrentValue";
+            this.txtCurrentValue.ReadOnly = true;
+            this.txtCurrentValue.Size = new System.Drawing.Size(94, 20);
+            this.txtCurrentValue.TabIndex = 3;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.btnIncValue);
@@ -796,6 +798,16 @@
             this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnPoke
+            // 
+            this.btnPoke.Location = new System.Drawing.Point(193, 139);
+            this.btnPoke.Name = "btnPoke";
+            this.btnPoke.Size = new System.Drawing.Size(53, 23);
+            this.btnPoke.TabIndex = 7;
+            this.btnPoke.Text = "Poke";
+            this.btnPoke.UseVisualStyleBackColor = true;
+            this.btnPoke.Click += new System.EventHandler(this.btnPoke_Click);
+            // 
             // MemoryPatchControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -809,8 +821,6 @@
             this.splitContainer1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.groupAddressEdit.ResumeLayout(false);
-            this.groupAddressEdit.PerformLayout();
             this.groupEdit.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -826,6 +836,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCreateCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPadding)).EndInit();
             this.tabPage7.ResumeLayout(false);
+            this.groupAddressEdit.ResumeLayout(false);
+            this.groupAddressEdit.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
@@ -896,5 +908,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtInitPokeValue;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button btnPoke;
     }
 }

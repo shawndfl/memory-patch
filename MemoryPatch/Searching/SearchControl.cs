@@ -26,6 +26,8 @@ namespace MemoryPatch
 
             cboSearch.Items.Add(SearchType.Excat.ToString());
             cboSearch.Items.Add(SearchType.UnKnown.ToString());
+            cboSearch.Items.Add(SearchType.StoreSnapShot1.ToString());
+            cboSearch.Items.Add(SearchType.StoreSnapShot2.ToString());
 
             cboNextSearch.Items.Add(SearchType.Excat.ToString());
             cboNextSearch.Items.Add(SearchType.HasChanged.ToString());
@@ -34,6 +36,10 @@ namespace MemoryPatch
             cboNextSearch.Items.Add(SearchType.HasDecreased.ToString());
             cboNextSearch.Items.Add(SearchType.HasDecreasedBy.ToString());
             cboNextSearch.Items.Add(SearchType.HasIncreasedBy.ToString());
+            cboNextSearch.Items.Add(SearchType.StoreSnapShot1.ToString());
+            cboNextSearch.Items.Add(SearchType.StoreSnapShot2.ToString());
+            cboNextSearch.Items.Add(SearchType.CompareToSnapShot1.ToString());
+            cboNextSearch.Items.Add(SearchType.CompareToSnapShot2.ToString());
 
             string[] datatypes = Enum.GetNames(typeof(DataType));
             foreach (string type in datatypes)
@@ -96,7 +102,10 @@ namespace MemoryPatch
             {
                 //get search type
                 SearchType searchType = (SearchType)Enum.Parse(typeof(SearchType), cboNextSearch.Text);
-                if (searchType == SearchType.Excat && txtNextVal1.Text == "")
+                if ((searchType == SearchType.Excat ||
+                    searchType == SearchType.HasDecreasedBy ||
+                    searchType == SearchType.HasIncreasedBy)
+                    && txtNextVal1.Text == "")
                 {
                     MessageBox.Show("Invalid input");
                     return;
@@ -176,8 +185,11 @@ namespace MemoryPatch
 
         private void dataResults_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (OnAddressSelected != null && dataResults.Rows[e.RowIndex].Tag != null)
-                OnAddressSelected(this, dataResults.Rows[e.RowIndex].Tag as AddressFoundEventArgs);
+            if (e.RowIndex > -1)
+            {
+                if (OnAddressSelected != null && dataResults.Rows[e.RowIndex].Tag != null)
+                    OnAddressSelected(this, dataResults.Rows[e.RowIndex].Tag as AddressFoundEventArgs);
+            }
 
             //string address = dataResults.Rows[e.RowIndex].Cells[0].Value as string;
             //int addressInt = Int32.Parse(address, NumberStyles.AllowHexSpecifier);
@@ -224,5 +236,10 @@ namespace MemoryPatch
                     ags.AddressFound.DataType, ags.AddressFound.DataLengthInBytes);
             }
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            dataResults.Rows.Clear();
+        }       
     }
 }
