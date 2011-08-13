@@ -22,7 +22,7 @@ namespace MemoryPatch
         #region Fields
         private int _address;        
         private byte[] _currentValue;
-        private DataType _dataType;
+        private DataType _dataType;        
         #endregion
 
         #region Properties
@@ -92,8 +92,9 @@ namespace MemoryPatch
                         return sizeof(UInt16);
                     case DataType.UByte:
                         return sizeof(byte);
-                    case DataType.String:
-                        throw new NotImplementedException("String");
+                    case DataType.StringByte:
+                    case DataType.StringChar:
+                        return CurrentValue.Length;
                     case DataType.Float:
                         return sizeof(float);
                     case DataType.Double:
@@ -109,7 +110,7 @@ namespace MemoryPatch
         {
             _currentValue = (byte[])currentValue.Clone();                  
             _address = address;
-            _dataType = data;
+            _dataType = data;            
         }
 
         public string GetStringValue()
@@ -127,10 +128,22 @@ namespace MemoryPatch
                 case DataType.UInt16:
                     return BitConverter.ToUInt16(_currentValue, 0).ToString();                    
                 case DataType.UByte:
-                    return ((byte)_currentValue[0]).ToString();                    
-                case DataType.String:
-                    ASCIIEncoding encoding = new ASCIIEncoding();
-                    return encoding.GetString(_currentValue);
+                    return ((byte)_currentValue[0]).ToString();
+                case DataType.StringChar:
+                    {
+                        ASCIIEncoding encoding = new ASCIIEncoding();
+                        return encoding.GetString(_currentValue);
+                    }
+                case DataType.StringByte:
+                    {
+                        char[] chars = new char[_currentValue.Length];
+                        for (int i = 0; i < _currentValue.Length; i++)
+                        {
+                            chars[i] = (char)_currentValue[i];
+                        }
+                        string temp = new string(chars);
+                        return temp;            
+                    }
                 case DataType.Float:
                     return BitConverter.ToSingle(_currentValue, 0).ToString();
                 case DataType.Double:

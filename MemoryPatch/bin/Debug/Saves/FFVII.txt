@@ -1,0 +1,1 @@
+False;After battleEXP;9E97F8;500;UInt16;

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Groups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Groups>
+    <SaveGroupData name="Default">
+      <Notes>Inv Value = 224</Notes>
+      <Addresses>
+        <SavedAddress name="Bonus Timer" locked="true" dataType="Float" address="72C3A8" pokedValue="0" />
+      </Addresses>
+    </SaveGroupData>
+    <SaveGroupData name="Inv">
+      <Notes />
+      <Addresses>
+        <SavedAddress name="Inv" locked="false" dataType="UByte" address="72C3C2" pokedValue="224" />
+        <SavedAddress name="Inv Timer" locked="false" dataType="Float" address="72CB55" pokedValue="10" />
+      </Addresses>
+    </SaveGroupData>
+  </Groups>
+  <Options />
+</Groups>

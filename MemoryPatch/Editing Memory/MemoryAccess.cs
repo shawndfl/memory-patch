@@ -107,9 +107,21 @@ namespace MemoryPatch
                     return BitConverter.ToUInt16(buffer, 0).ToString();
                 case DataType.UByte:
                     return ((byte)buffer[0]).ToString();
-                case DataType.String:
-                    ASCIIEncoding encoding = new ASCIIEncoding();
-                    return encoding.GetString(buffer);
+                case DataType.StringChar:
+                    {
+                        ASCIIEncoding encoding = new ASCIIEncoding();
+                        return encoding.GetString(buffer);
+                    }
+                case DataType.StringByte:
+                    {                        
+                        char[] chars = new char[lenInBytes];                        
+                        for (int i = 0; i < lenInBytes; i++)
+                        {
+                            chars[i] = (char)buffer[i];                                                    
+                        }
+                        string temp = new string(chars);
+                        return temp;
+                    }
                 case DataType.Float:
                     return BitConverter.ToSingle(buffer, 0).ToString();
                 case DataType.Double:

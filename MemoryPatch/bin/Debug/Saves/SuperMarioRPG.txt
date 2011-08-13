@@ -1,0 +1,81 @@
+False;Exp;73AE6A;48;UInt16;Main
+False;Flowers;74AD1A;99;UByte;Main
+False;Frog Coins;74AD1B;14;UInt16;Main
+False;Coins;74AD17;779;UInt16;Main
+False;Current HP;73AEF9;129;UInt16;Mario
+False;Max HP;73AEFB;129;UInt16;Mario
+False;Speed;73AEFD;20;UByte;Mario
+False;Attack;73AEFE;107;UByte;Mario
+False;Defense;73AEFF;69;UByte;Mario
+False;Mg. Attack;73AF00;60;UByte;Mario
+False;Mg. Defense;73AF01;65;UByte;Mario
+False;Max Speed;73AF58;20;UInt16;Mario
+False;Max Attack;73AF5A;157;UInt16;Mario
+False;Max Defense;73AF5C;96;UInt16;Mario
+False;Max Mg. Attack;73AF5E;60;UInt16;Mario
+False;Max Mg. Defense;73AF60;80;UInt16;Mario
+False;Current HP;73AF79;102;UInt16;Mallow
+False;Max HP;73AF7B;102;UInt16;Mallow
+False;Speed;73AF7D;25;UByte;Mallow
+False;Attack;73AF7E;68;UByte;Mallow
+False;Defense;73AF7F;45;UByte;Mallow
+False;Mg. Attack;73AF80;87;UByte;Mallow
+False;Mg. Defense;73AF81;60;UByte;Mallow
+False;Max Speed;73AFD8;30;UInt16;Mallow
+False;Max Attack;73AFDA;118;UInt16;Mallow
+False;Max Defense;73AFDC;64;UInt16;Mallow
+False;Max Mg. Attack;73AFDE;97;UInt16;Mallow
+False;Max Mg. Defense;73AFE0;69;UInt16;Mallow
+False;Current HP;73AFF9;112;UInt16;Bowser
+False;Max HP;73AFFB;112;UInt16;Bowser
+False;Speed;73AFFD;15;UByte;Bowser
+False;Attack;73AFFE;105;UByte;Bowser
+False;Defense;73AFFF;68;UByte;Bowser
+False;Mg. Attack;73B000;36;UByte;Bowser
+False;Mg. Defense;73B001;38;UByte;Bowser
+False;Max Speed;73B058;10;UInt16;Bowser
+False;Max Attack;73B05A;122;UInt16;Bowser
+False;Max Defense;73B05C;81;UInt16;Bowser
+False;Max Mg. Attack;73B05E;43;UInt16;Bowser
+False;Max Mg. Defense;73B060;48;UInt16;Bowser
+False;Current HP;73B079;113;UInt16;Geno
+False;Max HP;73B07B;113;UInt16;Geno
+False;Speed;73B07D;20;UByte;Geno
+False;Attack;73B07E;122;UByte;Geno
+False;Defense;73B07F;50;UByte;Geno
+False;Mg. Attack;73B080;59;UByte;Geno
+False;Mg. Defense;73B081;47;UByte;Geno
+False;Max Speed;73B0D8;20;UInt16;Geno
+False;Max Attack;73B0DA;146;UInt16;Geno
+False;Max Defense;73B0DC;65;UInt16;Geno
+False;Max Mg. Attack;73B0DE;59;UInt16;Geno
+False;Max Mg. Defense;73B0D0;0;UInt16;Geno
+False;Item1;74ACEA;96;UByte;Item
+False;Item2;74ACEB;96;UByte;Item
+False;Item3;74ACEC;96;UByte;Item
+False;Item4;74ACED;96;UByte;Item
+False;Item5;74ACEE;99;UByte;Item
+False;Item6;74ACEF;99;UByte;Item
+False;Item7;74ACF0;99;UByte;Item
+False;Item8;74ACF1;100;UByte;Item
+False;Item9;74ACF2;100;UByte;Item
+False;Item10;74ACF3;102;UByte;Item
+False;Item11;74ACF4;102;UByte;Item
+False;Item12;74ACF5;102;UByte;Item
+False;Item13;74ACF6;103;UByte;Item
+False;Item14;74ACF7;103;UByte;Item
+False;Item15;74ACF8;103;UByte;Item
+False;Item16;74ACF9;108;UByte;Item
+False;Item17;74ACFA;108;UByte;Item
+False;Item18;74ACFB;113;UByte;Item
+False;Item19;74ACFC;114;UByte;Item
+False;Item20;74ACFD;114;UByte;Item
+False;Item21;74ACFE;138;UByte;Item
+False;Item22;74ACFF;148;UByte;Item
+True;Item23;74AB00;114;UByte;Item
+False;Item24;74AB01;255;UByte;Item
+False;Item25;74AB02;255;UByte;Item
+False;Item26;74AB03;255;UByte;Item
+False;Item27;74AB04;255;UByte;Item
+False;Item28;74AB05;255;UByte;Item
+False;Item29;74AB06;255;UByte;Item

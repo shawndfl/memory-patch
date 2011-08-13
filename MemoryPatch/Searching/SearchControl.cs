@@ -161,7 +161,7 @@ namespace MemoryPatch
             if (e.PrecentDone == 100)
             {
                 groupNextSearch.Enabled = true;
-                lbDataType.Text = "Data Type " + _currentSearchData.DataType.ToString();
+                lbDataType.Text = _currentSearchData.DataType.ToString();
                 pgSearching.Value = 0;
 
                 //start timer to refesh addresses

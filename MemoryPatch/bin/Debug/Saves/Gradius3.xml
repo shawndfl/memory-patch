@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<Groups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Groups>
+    <SaveGroupData name="Default">
+      <Addresses>
+        <SavedAddress name="Power Ups" locked="true" dataType="UByte" optionList="" address="72B518" pokedValue="6" />
+        <SavedAddress name="Main Gun" locked="true" dataType="UByte" optionList="Main Gun" address="72B51E" pokedValue="6" />
+        <SavedAddress name="Speed" locked="true" dataType="UByte" optionList="" address="72B51A" pokedValue="2" />
+        <SavedAddress name="Laser" locked="false" dataType="UByte" optionList="" address="72B520" pokedValue="2" />
+        <SavedAddress name="Lives" locked="true" dataType="UByte" address="72B4E4" pokedValue="5" />
+        <SavedAddress name="Missiles" locked="true" dataType="UByte" optionList="Missiles" address="72B51C" pokedValue="11" />
+      </Addresses>
+    </SaveGroupData>
+  </Groups>
+  <Options>
+    <SaveGroupOptions name="Missiles">
+      <Options>
+        <Option item="2 Hav Missile" value="13" />
+        <Option item="Spread Bomb" value="14" />
+        <Option item="Photon Tropedo" value="15" />
+        <Option item="Missile" value="11" />
+        <Option item="Ground" value="12" />
+        <Option item="Double Tail Missiles" value="16" />
+      </Options>
+    </SaveGroupOptions>
+    <SaveGroupOptions name="Main Gun">
+      <Options>
+        <Option item="Double" value="2" />
+        <Option item="BackDouble" value="3" />
+        <Option item="Laser" value="8" />
+        <Option item="Double Laser" value="9" />
+        <Option item="Double Tail" value="4" />
+        <Option item="Verticle" value="5" />
+        <Option item="Many Lasers" value="6" />
+      </Options>
+    </SaveGroupOptions>
+  </Options>
+</Groups>

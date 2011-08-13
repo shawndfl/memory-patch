@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Groups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Groups>
+    <SaveGroupData name="Default">
+      <Addresses>
+        <SavedAddress name="Health" locked="true" dataType="UByte" address="72B998" pokedValue="100" />
+        <SavedAddress name="Display Health" locked="false" dataType="UByte" address="72BA9E" pokedValue="100" />
+      </Addresses>
+    </SaveGroupData>
+  </Groups>
+  <Options />
+</Groups>

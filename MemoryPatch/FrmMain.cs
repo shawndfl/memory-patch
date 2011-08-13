@@ -262,7 +262,7 @@ namespace MemoryPatch
         private void searchControl1_OnAddressSelected(object sender, AddressFoundEventArgs e)
         {
             SavedAddress savedAddress = new SavedAddress(false, "Default",
-                e.AddressFound.Address, e.AddressFound.DataType);
+                e.AddressFound.Address, e.AddressFound.DataType, e.AddressFound.DataLengthInBytes);
 
             memoryPatchControl1.AddAddress(savedAddress);
 

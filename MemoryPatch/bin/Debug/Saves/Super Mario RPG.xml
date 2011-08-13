@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<Groups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Groups>
+    <SaveGroupData name="Default">
+      <Notes />
+      <Addresses>
+        <SavedAddress name="Exp" locked="false" dataType="UInt16" address="73AE6A" pokedValue="48" />
+        <SavedAddress name="Flowers" locked="false" dataType="UByte" address="74AD1A" pokedValue="99" />
+        <SavedAddress name="Frog Coins" locked="false" dataType="UInt16" address="74AD1B" pokedValue="14" />
+        <SavedAddress name="Coins" locked="false" dataType="UInt16" address="74AD17" pokedValue="779" />
+        <SavedAddress name="Current HP" locked="false" dataType="UInt16" address="73AEF9" pokedValue="129" />
+        <SavedAddress name="Max HP" locked="false" dataType="UInt16" address="73AEFB" pokedValue="129" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" address="73AEFD" pokedValue="20" />
+        <SavedAddress name="Attack" locked="false" dataType="UByte" address="73AEFE" pokedValue="107" />
+        <SavedAddress name="Defense" locked="false" dataType="UByte" address="73AEFF" pokedValue="69" />
+        <SavedAddress name="Mg. Attack" locked="false" dataType="UByte" address="73AF00" pokedValue="60" />
+        <SavedAddress name="Mg. Defense" locked="false" dataType="UByte" address="73AF01" pokedValue="65" />
+        <SavedAddress name="Max Speed" locked="false" dataType="UInt16" address="73AF58" pokedValue="20" />
+        <SavedAddress name="Max Attack" locked="false" dataType="UInt16" address="73AF5A" pokedValue="157" />
+        <SavedAddress name="Max Defense" locked="false" dataType="UInt16" address="73AF5C" pokedValue="96" />
+        <SavedAddress name="Max Mg. Attack" locked="false" dataType="UInt16" address="73AF5E" pokedValue="60" />
+        <SavedAddress name="Max Mg. Defense" locked="false" dataType="UInt16" address="73AF60" pokedValue="80" />
+        <SavedAddress name="Current HP" locked="false" dataType="UInt16" address="73AF79" pokedValue="102" />
+        <SavedAddress name="Max HP" locked="false" dataType="UInt16" address="73AF7B" pokedValue="102" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" address="73AF7D" pokedValue="25" />
+        <SavedAddress name="Attack" locked="false" dataType="UByte" address="73AF7E" pokedValue="68" />
+        <SavedAddress name="Defense" locked="false" dataType="UByte" address="73AF7F" pokedValue="45" />
+        <SavedAddress name="Mg. Attack" locked="false" dataType="UByte" address="73AF80" pokedValue="87" />
+        <SavedAddress name="Mg. Defense" locked="false" dataType="UByte" address="73AF81" pokedValue="60" />
+        <SavedAddress name="Max Speed" locked="false" dataType="UInt16" address="73AFD8" pokedValue="30" />
+        <SavedAddress name="Max Attack" locked="false" dataType="UInt16" address="73AFDA" pokedValue="118" />
+        <SavedAddress name="Max Defense" locked="false" dataType="UInt16" address="73AFDC" pokedValue="64" />
+        <SavedAddress name="Max Mg. Attack" locked="false" dataType="UInt16" address="73AFDE" pokedValue="97" />
+        <SavedAddress name="Max Mg. Defense" locked="false" dataType="UInt16" address="73AFE0" pokedValue="69" />
+        <SavedAddress name="Current HP" locked="false" dataType="UInt16" address="73AFF9" pokedValue="112" />
+        <SavedAddress name="Max HP" locked="false" dataType="UInt16" address="73AFFB" pokedValue="112" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" address="73AFFD" pokedValue="15" />
+        <SavedAddress name="Attack" locked="false" dataType="UByte" address="73AFFE" pokedValue="105" />
+        <SavedAddress name="Defense" locked="false" dataType="UByte" address="73AFFF" pokedValue="68" />
+        <SavedAddress name="Mg. Attack" locked="false" dataType="UByte" address="73B000" pokedValue="36" />
+        <SavedAddress name="Mg. Defense" locked="false" dataType="UByte" address="73B001" pokedValue="38" />
+        <SavedAddress name="Max Speed" locked="false" dataType="UInt16" address="73B058" pokedValue="10" />
+        <SavedAddress name="Max Attack" locked="false" dataType="UInt16" address="73B05A" pokedValue="122" />
+        <SavedAddress name="Max Defense" locked="false" dataType="UInt16" address="73B05C" pokedValue="81" />
+        <SavedAddress name="Max Mg. Attack" locked="false" dataType="UInt16" address="73B05E" pokedValue="43" />
+        <SavedAddress name="Max Mg. Defense" locked="false" dataType="UInt16" address="73B060" pokedValue="48" />
+        <SavedAddress name="Current HP" locked="false" dataType="UInt16" address="73B079" pokedValue="113" />
+        <SavedAddress name="Max HP" locked="false" dataType="UInt16" address="73B07B" pokedValue="113" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" address="73B07D" pokedValue="20" />
+        <SavedAddress name="Attack" locked="false" dataType="UByte" address="73B07E" pokedValue="122" />
+        <SavedAddress name="Defense" locked="false" dataType="UByte" address="73B07F" pokedValue="50" />
+        <SavedAddress name="Mg. Attack" locked="false" dataType="UByte" address="73B080" pokedValue="59" />
+        <SavedAddress name="Mg. Defense" locked="false" dataType="UByte" address="73B081" pokedValue="47" />
+        <SavedAddress name="Max Speed" locked="false" dataType="UInt16" address="73B0D8" pokedValue="20" />
+        <SavedAddress name="Max Attack" locked="false" dataType="UInt16" address="73B0DA" pokedValue="146" />
+        <SavedAddress name="Max Defense" locked="false" dataType="UInt16" address="73B0DC" pokedValue="65" />
+        <SavedAddress name="Max Mg. Attack" locked="false" dataType="UInt16" address="73B0DE" pokedValue="59" />
+        <SavedAddress name="Max Mg. Defense" locked="false" dataType="UInt16" address="73B0D0" pokedValue="0" />
+        <SavedAddress name="Item1" locked="false" dataType="UByte" optionList="Items" address="74ACEA" pokedValue="75" />
+        <SavedAddress name="Item2" locked="false" dataType="UByte" address="74ACEB" pokedValue="96" />
+        <SavedAddress name="Item3" locked="false" dataType="UByte" address="74ACEC" pokedValue="96" />
+        <SavedAddress name="Item4" locked="false" dataType="UByte" address="74ACED" pokedValue="96" />
+        <SavedAddress name="Item5" locked="false" dataType="UByte" address="74ACEE" pokedValue="99" />
+        <SavedAddress name="Item6" locked="false" dataType="UByte" address="74ACEF" pokedValue="99" />
+        <SavedAddress name="Item7" locked="false" dataType="UByte" address="74ACF0" pokedValue="99" />
+        <SavedAddress name="Item8" locked="false" dataType="UByte" address="74ACF1" pokedValue="100" />
+        <SavedAddress name="Item9" locked="false" dataType="UByte" optionList="" address="74ACF2" pokedValue="100" />
+        <SavedAddress name="Item10" locked="false" dataType="UByte" address="74ACF3" pokedValue="102" />
+        <SavedAddress name="Item11" locked="false" dataType="UByte" address="74ACF4" pokedValue="102" />
+        <SavedAddress name="Item12" locked="false" dataType="UByte" address="74ACF5" pokedValue="102" />
+        <SavedAddress name="Item13" locked="false" dataType="UByte" address="74ACF6" pokedValue="103" />
+        <SavedAddress name="Item14" locked="false" dataType="UByte" address="74ACF7" pokedValue="103" />
+        <SavedAddress name="Item15" locked="false" dataType="UByte" address="74ACF8" pokedValue="103" />
+        <SavedAddress name="Item16" locked="false" dataType="UByte" address="74ACF9" pokedValue="108" />
+        <SavedAddress name="Item17" locked="false" dataType="UByte" address="74ACFA" pokedValue="108" />
+        <SavedAddress name="Item18" locked="false" dataType="UByte" address="74ACFB" pokedValue="113" />
+        <SavedAddress name="Item19" locked="false" dataType="UByte" address="74ACFC" pokedValue="114" />
+        <SavedAddress name="Item20" locked="false" dataType="UByte" address="74ACFD" pokedValue="114" />
+        <SavedAddress name="Item21" locked="false" dataType="UByte" address="74ACFE" pokedValue="138" />
+        <SavedAddress name="Item22" locked="false" dataType="UByte" optionList="" address="74ACFF" pokedValue="148" />
+        <SavedAddress name="Item23" locked="false" dataType="UByte" address="74AB00" pokedValue="114" />
+        <SavedAddress name="Item24" locked="false" dataType="UByte" address="74AB01" pokedValue="255" />
+        <SavedAddress name="Item25" locked="false" dataType="UByte" address="74AB02" pokedValue="255" />
+        <SavedAddress name="Item26" locked="false" dataType="UByte" address="74AB03" pokedValue="255" />
+        <SavedAddress name="Item27" locked="false" dataType="UByte" address="74AB04" pokedValue="255" />
+        <SavedAddress name="Item28" locked="false" dataType="UByte" address="74AB05" pokedValue="255" />
+        <SavedAddress name="Item29" locked="false" dataType="UByte" address="74AB06" pokedValue="255" />
+      </Addresses>
+    </SaveGroupData>
+  </Groups>
+  <Options>
+    <SaveGroupOptions name="Items">
+      <Options>
+        <Option item="Maple Syrup" value="114" />
+        <Option item="Maple Syrup" value="100" />
+        <Option item="Royal Syrup" value="101" />
+        <Option item="Pick Me Up" value="102" />
+        <Option item="Able Juice" value="103" />
+        <Option item="Weapon" value="0" />
+        <Option item="Armor" value="1" />
+        <Option item="Accessory" value="2" />
+        <Option item="Space" value="3" />
+        <Option item="Hammer" value="5" />
+        <Option item="FroggieStick" value="6" />
+        <Option item="NokNok Shell" value="7" />
+        <Option item="Punch Glove" value="8" />
+        <Option item="Finger Shot" value="9" />
+        <Option item="Cymbals" value="10" />
+        <Option item="Chomp" value="11" />
+        <Option item="Masher" value="12" />
+        <Option item="Chomp Shell" value="13" />
+        <Option item="Super Hammer" value="14" />
+        <Option item="Hand Gun" value="15" />
+        <Option item="Whomp Glove" value="16" />
+        <Option item="Slap Glove" value="17" />
+        <Option item="Troopa Shell" value="18" />
+        <Option item="Parasol" value="19" />
+        <Option item="Hurly Gloves" value="20" />
+        <Option item="Double Punch" value="21" />
+        <Option item="Ribbit Stick" value="22" />
+        <Option item="Spiked Link" value="23" />
+        <Option item="Mega Glove" value="24" />
+        <Option item="War Fan" value="25" />
+        <Option item="Hand Cannon" value="26" />
+        <Option item="Sticky Gloves" value="27" />
+        <Option item="Ultra Hammer" value="28" />
+        <Option item="Super Slap" value="29" />
+        <Option item="Drill Claw" value="30" />
+        <Option item="Star Gun" value="31" />
+        <Option item="Sonic Cymbal" value="32" />
+        <Option item="Lazy Shell" value="33" />
+        <Option item="Frying Pan" value="34" />
+        <Option item="Shirt" value="37" />
+        <Option item="Pants" value="38" />
+        <Option item="Thick Shirt" value="39" />
+        <Option item="Thick Pants" value="40" />
+        <Option item="Maga Shirt" value="41" />
+        <Option item="Maga Pants" value="42" />
+        <Option item="Work Pants" value="43" />
+        <Option item="Maga Cape" value="44" />
+        <Option item="Happy Shirt" value="45" />
+        <Option item="Happy Pants" value="46" />
+        <Option item="Happy Cape" value="47" />
+        <Option item="Happy Shell" value="48" />
+        <Option item="Polka Dress" value="49" />
+        <Option item="Sailor Shirt" value="50" />
+        <Option item="Sailor Pants" value="51" />
+        <Option item="Sailor Cape" value="52" />
+        <Option item="NauticaDress" value="53" />
+        <Option item="CourageShell" value="54" />
+        <Option item="Fuzzy Shirt" value="55" />
+        <Option item="Fuzzy Pants" value="56" />
+        <Option item="Fuzzy Cape" value="57" />
+        <Option item="Fuzzy Dress" value="58" />
+        <Option item="Fire Shirt" value="59" />
+        <Option item="Fire Pants" value="60" />
+        <Option item="Fire Cape" value="61" />
+        <Option item="Fire Shell" value="62" />
+        <Option item="Fire Dress" value="63" />
+        <Option item="Hero Shirt" value="64" />
+        <Option item="Prince Pants" value="65" />
+        <Option item="Star Cape" value="66" />
+        <Option item="Heal Shell" value="67" />
+        <Option item="Royal Dress" value="68" />
+        <Option item="Super Suit" value="69" />
+        <Option item="Safety Badge" value="75" />
+        <Option item="Jump Shoes" value="76" />
+        <Option item="Safety Ring" value="77" />
+      </Options>
+    </SaveGroupOptions>
+  </Options>
+</Groups>

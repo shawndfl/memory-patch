@@ -1,0 +1,14 @@
+False;PL1 MaxHP;734E40;759;UInt16
+False;PL1 MaxPP;734E42;402;UInt16
+False;PL1 Status;734E44;5;UByte
+False;PL1 Offence;734E4B;129;UByte
+False;PL1 Defense;734E4C;145;UByte
+False;PL1  Speed;734E4D;58;UByte
+False;PL1 Guts;734E4E;255;UByte
+False;PL1 Luck;734E4F;50;UByte
+False;PL1 Vitality;734E50;23;UByte
+False;PL1 IQ;734E51;22;UByte
+False;PL1 Item1;734E59;159;UByte
+False;In battle HP;734E7D;737;UInt16
+False;In battle PP;734E83;382;UInt16
+False;In battle Status;735431;5;UByte

@@ -1,0 +1,31 @@
+False;PL1 in battle HP;72E2E0;17732;UInt16;In Battle
+False;End Battle EX;72E39D;65535;UInt16;In Battle
+False;GP;72CCC8;5645;UInt16;Main
+False;1 Count;72CDD1;96;UByte;Items
+False;E2 HP;72F068;0;UInt16;Enemy
+False;E1 HP;72F064;0;UInt16;Enemy
+False;PL1 Max Hp;72CB07;2112;UInt16;Player1
+False;PL1 Vigor;72CB16;39;UByte;Player1
+False;PL1 Statmina;72CB18;34;UByte;Player1
+False;PL1 Speed;72CB17;70;UByte;Player1
+False;PL1 Mag Pwr;72CB19;29;UByte;Player1
+False;PL2 Max HP;72CA98;2111;UInt16;Player2
+False;PL2 Vigor;72CAA7;37;UByte;Player2
+False;PL2 Speed;72CAA8;37;UByte;Player2
+False;PL2 Stamina;72CAA9;37;UByte;Player2
+False;PL2 Mag Pwr;72CAAA;31;UByte;Player2
+False;PL3 Max Hp;72CA73;55;UInt16;Player3
+False;PL3 Vigor;72CA82;55;UByte;Player3
+False;PL3 Speed;72CA83;55;UByte;Player3
+False;PL3 Stamina;72CA84;55;UByte;Player3
+False;PL3 Mag Pwr;72CA85;55;UByte;Player3
+False;Item 2 Count;72CDD2;9;UByte;Items
+False;Item 3 Count;72CDD3;96;UByte;Items
+False;4 Count;72CDD4;99;UByte;Items
+False;New;72CDD5;2;UByte;Items
+False;New;72CDD6;2;UByte;Items
+False;New;72CDD7;1;UByte;Items
+False;New;72CDD8;1;UByte;Items
+False;New;72CDD9;1;UByte;Items
+False;New;72CDDA;1;UByte;Items
+False;New;72CDDB;1;UByte;Items

@@ -1,0 +1,6 @@
+False;PL1 in battle HP;72E2E0;65535;UInt16;Main
+False;GP;72CCC8;4680;UInt16;Main
+False;Item 1 Count;72CDD1;98;UByte;Main
+False;E2 HP;72F068;0;UInt16;Main
+False;E1 HP;72F064;0;UInt16;Main
+True;Have Animal buddy;72B9C5;9;UByte;

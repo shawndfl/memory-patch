@@ -1,1 +1,5 @@
-Debug
+*.exe
+*.pdb
+*.manifest
+*.Cache
+*.resources

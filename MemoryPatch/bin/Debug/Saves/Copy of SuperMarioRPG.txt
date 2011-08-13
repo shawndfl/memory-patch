@@ -1,0 +1,52 @@
+False;Exp;73AE6A;48;UInt16;Main
+False;Flowers;74AD1A;99;UByte;Main
+False;Frog Coins;74AD1B;7;UInt16;Main
+False;Coins;74AD17;999;UInt16;Main
+False;Current HP;73AEF9;111;UInt16;Mario
+False;Max HP;73AEFB;111;UInt16;Mario
+False;Speed;73AEFD;20;UByte;Mario
+False;Attack;73AEFE;86;UByte;Mario
+False;Defense;73AEFF;27;UByte;Mario
+False;Mg. Attack;73AF00;29;UByte;Mario
+False;Mg. Defense;73AF01;30;UByte;Mario
+False;Max Speed;73AF58;20;UInt16;Mario
+False;Max Attack;73AF5A;98;UInt16;Mario
+False;Max Defense;73AF5C;36;UInt16;Mario
+False;Max Mg. Attack;73AF5E;29;UInt16;Mario
+False;Max Mg. Defense;73AF60;36;UInt16;Mario
+False;Current HP;73AF79;111;UInt16;Mallow
+False;Max HP;73AF7B;111;UInt16;Mallow
+False;Speed;73AF7D;25;UByte;Mallow
+False;Attack;73AF7E;50;UByte;Mallow
+False;Defense;73AF7F;33;UByte;Mallow
+False;Mg. Attack;73AF80;62;UByte;Mallow
+False;Mg. Defense;73AF81;44;UByte;Mallow
+False;Max Speed;73AFD8;25;UInt16;Mallow
+False;Max Attack;73AFDA;70;UInt16;Mallow
+False;Max Defense;73AFDC;49;UInt16;Mallow
+False;Max Mg. Attack;73AFDE;62;UInt16;Mallow
+False;Max Mg. Defense;73AFE0;54;UInt16;Mallow
+False;Current HP;73AFF9;111;UInt16;Bowser
+False;Max HP;73AFFB;111;UInt16;Bowser
+False;Speed;73AFFD;20;UByte;Bowser
+False;Attack;73AFFE;86;UByte;Bowser
+False;Defense;73AFFF;27;UByte;Bowser
+False;Mg. Attack;73B000;29;UByte;Bowser
+False;Mg. Defense;73B001;30;UByte;Bowser
+False;Max Speed;73B058;20;UInt16;Bowser
+False;Max Attack;73B05A;98;UInt16;Bowser
+False;Max Defense;73B05C;36;UInt16;Bowser
+False;Max Mg. Attack;73B05E;29;UInt16;Bowser
+False;Max Mg. Defense;73B060;200;UInt16;Bowser
+False;Current HP;73B079;111;UInt16;Geno
+False;Max HP;73B07B;111;UInt16;Geno
+False;Speed;73B07D;20;UByte;Geno
+False;Attack;73B07E;86;UByte;Geno
+False;Defense;73B07F;27;UByte;Geno
+False;Mg. Attack;73B080;29;UByte;Geno
+False;Mg. Defense;73B081;30;UByte;Geno
+False;Max Speed;73B0D8;20;UInt16;Geno
+False;Max Attack;73B0DA;98;UInt16;Geno
+False;Max Defense;73B0DC;36;UInt16;Geno
+False;Max Mg. Attack;73B0DE;29;UInt16;Geno
+False;Max Mg. Defense;73B0D0;200;UInt16;Geno

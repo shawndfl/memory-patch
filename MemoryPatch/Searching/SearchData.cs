@@ -135,26 +135,40 @@ namespace MemoryPatch
 
                     DataLength = sizeof(byte);
                     break;
-                case DataType.String:
-                    //ASCIIEncoding encoding = new ASCIIEncoding();
-                    //if (oneVal)
-                    //    Value1 = encoding.GetBytes(Value1);
-
-                    if (oneVal)
+                case DataType.StringChar:
                     {
-                        Value = new byte[value.Length * sizeof(char)];
-                        int x = 0;
-                        for (int i = 0; i < value.Length; i++)
-                        {
-                            byte[] bytes = BitConverter.GetBytes(value[i]);
-                            Value[x++] = bytes[0];
-                            Value[x++] = bytes[1];
-                        }
-                        DataLength = Value.Length;
-                    }
-                    else
-                        throw new Exception("Can't search for an unkown string");
+                        ASCIIEncoding encoding = new ASCIIEncoding();
 
+                        if (oneVal)
+                        {
+                            Value = new byte[value.Length * sizeof(char)];
+                            int x = 0;
+                            for (int i = 0; i < value.Length; i++)
+                            {
+                                byte[] bytes = BitConverter.GetBytes(value[i]);
+                                Value[x++] = bytes[0];
+                                Value[x++] = bytes[1];
+                            }
+                            DataLength = Value.Length;
+                        }
+                        else
+                            throw new Exception("Can't search for an unkown string");
+                    }
+                    break;
+                case DataType.StringByte:
+                    {
+                        if (oneVal)
+                        {
+                            Value = new byte[value.Length];
+                            for (int i = 0; i < value.Length; i++)
+                            {
+                                Value[i] = (byte)value[i];
+                            }
+                            DataLength = value.Length;
+                        }
+                        else
+                            throw new Exception("Can't search for an unkown string");
+                    }
                     break;
                 case DataType.Float:
                     if (oneVal)
@@ -179,7 +193,8 @@ namespace MemoryPatch
         Byte,          
         Int16,
         Int32,     
-        String,
+        StringByte,
+        StringChar,
         Float,
         Double,
     }

@@ -73,6 +73,8 @@ namespace MemoryPatch
         public string OptionList;
 
         [XmlIgnore]
+        private int _stringLength = 1;
+        [XmlIgnore]
         public int Address;
         [XmlIgnore]
         public byte[] Value;
@@ -130,8 +132,9 @@ namespace MemoryPatch
                         return sizeof(UInt16);
                     case DataType.UByte:
                         return sizeof(byte);
-                    case DataType.String:
-                        throw new NotImplementedException("String");
+                    case DataType.StringChar:
+                    case DataType.StringByte:
+                        return _stringLength;
                     case DataType.Float:
                         return sizeof(float);
                     case DataType.Double:
@@ -153,6 +156,18 @@ namespace MemoryPatch
             Name = name;
             Locked = locked;
             OptionList = null;
+            StringValue = "0";
+        }
+
+        public SavedAddress(bool locked, string name, int address, DataType dataType, int stringLength)
+        {
+            DataType = dataType;
+            Address = address;
+            Value = null;
+            Name = name;
+            Locked = locked;
+            OptionList = null;
+            _stringLength = stringLength;
             StringValue = "0";
         }
 
@@ -178,21 +193,11 @@ namespace MemoryPatch
             StringValue = value;
             StringAddress = address;
         }
-
-        public SavedAddress(bool locked, string name, int address, byte[] value, DataType dataType)
-        {
-            DataType = dataType;
-            Value = value;
-            Address = address;
-            Name = name;
-            Locked = locked;
-            OptionList = null;
-        }
         #endregion
 
         public SavedAddress CloneAddress()
         {
-            SavedAddress newAddress = new SavedAddress(Locked, Name, Address, DataType);
+            SavedAddress newAddress = new SavedAddress(Locked, Name, Address, DataType, _stringLength);
             newAddress.OptionList = OptionList;
             newAddress.StringValue = StringValue;
             return newAddress;
@@ -266,8 +271,21 @@ namespace MemoryPatch
                         return string.Format("{0:X000000}", (byte)value[0]);
                     else
                         return ((byte)value[0]).ToString();
-                case DataType.String:
-                    throw new NotImplementedException();
+                case DataType.StringChar:
+                    {
+                        ASCIIEncoding encoding = new ASCIIEncoding();
+                        return encoding.GetString(value);
+                    }
+                case DataType.StringByte:
+                    {
+                        char[] chars = new char[value.Length];
+                        for (int i = 0; i < value.Length; i++)
+                        {
+                            chars[i] = (char)value[i];
+                        }
+                        string temp = new string(chars);
+                        return temp;
+                    }
                 case DataType.Float:
                     if (value.Length != 4)
                         Array.Resize<Byte>(ref value, 4);
@@ -382,9 +400,16 @@ namespace MemoryPatch
                         byteValue = new byte[] { 0 };
                     }
                     break;
-                case DataType.String:
+                case DataType.StringChar:
                     ASCIIEncoding encoding = new ASCIIEncoding();
                     byteValue = encoding.GetBytes(value);
+                    break;
+                case DataType.StringByte:
+                    byteValue = new byte[value.Length];
+                    for (int i = 0; i < value.Length; i++)
+                    {
+                        byteValue[i] = (byte)(int)value[i];
+                    }
                     break;
                 case DataType.Float:
                     try

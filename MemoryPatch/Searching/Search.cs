@@ -316,7 +316,8 @@ namespace MemoryPatch
                                     case DataType.Int32:
                                         match = ((int)diff == (int)context.Difference);
                                         break;
-                                    case DataType.String:
+                                    case DataType.StringByte:
+                                    case DataType.StringChar:
                                         break;
                                     case DataType.Float:
                                     case DataType.Double:
@@ -338,7 +339,8 @@ namespace MemoryPatch
                                     case DataType.Int32:
                                         match = ((int)diff == (int)context.Difference);
                                         break;
-                                    case DataType.String:
+                                    case DataType.StringByte:
+                                    case DataType.StringChar:
                                         break;
                                     case DataType.Float:
                                     case DataType.Double:
@@ -522,7 +524,7 @@ namespace MemoryPatch
                         else
                             return CompareType.EqualTo;
                     }     
-                case DataType.String:
+                case DataType.StringChar:
                     {
                         ASCIIEncoding encoding = new ASCIIEncoding();
                         string v1 = encoding.GetString(value1);
@@ -532,6 +534,16 @@ namespace MemoryPatch
                             return CompareType.EqualTo;
                         else
                             return CompareType.LessThen;
+                    }
+                case DataType.StringByte:
+                    {
+                        amoutOfChange = 0;
+                        for (int i = 0; i < value1.Length; i++)
+                        {
+                            if (value1[i] != value2[i])
+                                return CompareType.LessThen;
+                        }
+                        return CompareType.EqualTo;
                     }     
                 case DataType.Float:
                     {
@@ -560,34 +572,7 @@ namespace MemoryPatch
                 default:
                     throw new Exception("Unknown DataType");
             }
-        }        
-
-        private int DataTypeByteCount(DataType dataType)
-        {            
-            switch (dataType)
-            {
-                case DataType.Int32:
-                   return sizeof(Int32);                   
-                case DataType.Int16:
-                   return sizeof(Int16);
-                case DataType.Byte:
-                   return sizeof(sbyte);
-                case DataType.UInt32:
-                   return sizeof(UInt32);
-                case DataType.UInt16:
-                   return sizeof(UInt16);
-                case DataType.UByte:
-                   return sizeof(byte);
-                case DataType.String:
-                    throw new NotImplementedException();                    
-                case DataType.Float:
-                    return sizeof(float);
-                case DataType.Double:
-                    return sizeof(double);
-                default:
-                    throw new Exception("Unknown DataType");
-            }          
-        }
+        }                
 
         private float UpdateProgress(int start, int end, float lastPrecentDone, int currentAddress, int addressFoundCount)
         {
