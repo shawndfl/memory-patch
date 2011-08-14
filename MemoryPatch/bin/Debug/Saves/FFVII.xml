@@ -4,7 +4,8 @@
     <SaveGroupData name="Default">
       <Notes />
       <Addresses>
-        <SavedAddress name="Default" locked="false" dataType="UByte" address="9E890A" pokedValue="7" />
+        <SavedAddress name="Default" locked="false" dataType="StringByte" optionList="" address="A61F7D" pokedValue="0" />
+        <SavedAddress name="PointerToTextCache" locked="false" dataType="StringByte" address="A30A6B" pokedValue="0" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="In Battle Character 1">
@@ -181,6 +182,7 @@
         <SavedAddress name="Current Hp(19)" locked="false" dataType="UByte" optionList="" address="9E988E" pokedValue="0" />
         <SavedAddress name="Current Hp(20)" locked="false" dataType="UByte" optionList="" address="9E988F" pokedValue="0" />
         <SavedAddress name="Current Hp(21)" locked="false" dataType="UByte" optionList="" address="9E9890" pokedValue="0" />
+        <SavedAddress name="Name" locked="false" dataType="StringByte" address="9E8768" pokedValue="HIMAN" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Menu">
