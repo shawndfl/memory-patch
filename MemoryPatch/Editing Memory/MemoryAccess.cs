@@ -117,7 +117,10 @@ namespace MemoryPatch
                         char[] chars = new char[lenInBytes];                        
                         for (int i = 0; i < lenInBytes; i++)
                         {
-                            chars[i] = (char)buffer[i];                                                    
+                            if (buffer[i] == '\0')
+                                chars[i] = ' ';
+                            else
+                                chars[i] = (char)buffer[i];                                                    
                         }
                         string temp = new string(chars);
                         return temp;

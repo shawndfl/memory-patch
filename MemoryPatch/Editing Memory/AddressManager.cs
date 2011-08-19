@@ -101,6 +101,15 @@ namespace MemoryPatch
             return group;
         }
 
+        /// <summary>
+        /// Removes a group from address manager
+        /// </summary>
+        /// <param name="name"></param>
+        public void RemoveGroup(string name)
+        {
+            _groups.Remove(name);
+        }
+
         #endregion
 
         #region Address Functions
@@ -292,8 +301,8 @@ namespace MemoryPatch
     {
         public string Name { get; set; }
         public string Notes { get; set; }
-        private Dictionary<int, SavedAddress> _addresses = 
-            new Dictionary<int, SavedAddress>();
+        private List<SavedAddress> _addresses =
+            new List<SavedAddress>();
 
         #region Constructors
         public GroupAddress(SaveGroupData saved)
@@ -310,7 +319,7 @@ namespace MemoryPatch
         internal List<SavedAddress> GetListOfAddresses()
         {
             List<SavedAddress> addresses = new List<SavedAddress>();
-            foreach (SavedAddress address in _addresses.Values)
+            foreach (SavedAddress address in _addresses)
             {
                 addresses.Add(address);
             }
@@ -319,15 +328,20 @@ namespace MemoryPatch
 
         public void AddAddress(SavedAddress address)
         {
-            if (_addresses.ContainsKey(address.Address))
-                throw new Exception("Address already added " + address.Address);
+            //if (_addresses.ContainsKey(address.Address))
+            //    throw new Exception("Address already added " + address.Address);
 
-            _addresses.Add(address.Address, address);
+            _addresses.Add(address);
         }
 
         public void RemoveAddress(SavedAddress address)
         {           
-            _addresses.Remove(address.Address);
+            _addresses.Remove(address);            
+        }
+
+        public void ClearAddress()
+        {
+            _addresses.Clear();
         }
 
         public GroupAddress(string name)

@@ -134,6 +134,31 @@ namespace MemoryPatch.Editing_Memory
             return addressNode;
         }
 
+        /// <summary>
+        /// Removes the whole group
+        /// </summary>
+        /// <param name="addressNode"></param>
+        public void RemoveGroup(TreeNode groupNode)
+        {
+            GroupAddress group = groupNode.Tag as GroupAddress;
+            if (groupNode != null)
+            {
+                for (int i = 0; i < groupNode.Nodes.Count; i++)
+                {
+                    TreeNode  node = groupNode.Nodes[i];
+                    RemoveAddress(node);
+                    i--;
+                }                
+            }
+            
+            _addressManager.RemoveGroup(group.Name);
+            groupNode.Remove();
+        }
+
+        /// <summary>
+        /// Removes an address
+        /// </summary>
+        /// <param name="addressNode"></param>
         public void RemoveAddress(TreeNode addressNode)
         {
             SavedAddress address = addressNode.Tag as SavedAddress;
@@ -141,6 +166,10 @@ namespace MemoryPatch.Editing_Memory
             {
                 TreeNode parent = addressNode.Parent;
                 GroupAddress group = parent.Tag as GroupAddress;
+
+                //remove from freeze list
+                _access.UnfreezeMemory(address.Address);
+
                 group.RemoveAddress(address);
                 parent.Nodes.Remove(addressNode);
             }
@@ -243,10 +272,17 @@ namespace MemoryPatch.Editing_Memory
         }
 
         private void tv_KeyDown(object sender, KeyEventArgs e)
-        {            
-            if (e.KeyCode == Keys.Delete && ActiveAddress != null)
+        {
+            if (e.KeyCode == Keys.Delete)
             {
-                RemoveAddress(tv.SelectedNode);                
+                if (ActiveAddress != null)
+                {
+                    RemoveAddress(tv.SelectedNode);
+                }
+                else if (ActiveGroup != null)
+                {
+                    RemoveGroup(tv.SelectedNode);
+                }
             }
         }
         #endregion
@@ -402,7 +438,7 @@ namespace MemoryPatch.Editing_Memory
 
         private void AcceptNewValue()
         {
-            ActiveAddress.StringValue = txtValue.Text;
+            ActiveAddress.StringValue = txtValue.Text;            
             _access.WriteValue(ActiveAddress.Address, ActiveAddress.Value);
 
             //in case there was an error in the text get the latest value
