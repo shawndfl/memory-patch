@@ -846,11 +846,11 @@ namespace MemoryPatch.Editing_Memory
                     savedAddress = node.Tag as SavedAddress;
 
                     //check for the same address
-                    if (savedAddress.Address == address)
-                    {
-                        MessageBox.Show("Address already added to group " + groupNode.Text);
-                        return null;
-                    }
+                    //if (savedAddress.Address == address)
+                    //{
+                    //    MessageBox.Show("Address already added to group " + groupNode.Text);
+                    //    return null;
+                    //}
 
                     //check for the same name
                     if (savedAddress.Name == fullName)
