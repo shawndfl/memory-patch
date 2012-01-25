@@ -156,7 +156,7 @@ namespace MemoryPatch
             Name = name;
             Locked = locked;
             OptionList = null;
-            StringValue = "0";
+            StringValue = null;
         }
 
         public SavedAddress(bool locked, string name, int address, DataType dataType, int stringLength)
@@ -168,7 +168,7 @@ namespace MemoryPatch
             Locked = locked;
             OptionList = null;
             _stringLength = stringLength;
-            StringValue = "0";
+            StringValue = null;
         }
 
         public SavedAddress(bool locked, string name, int address, string value, DataType dataType)
@@ -212,6 +212,11 @@ namespace MemoryPatch
         {
             //return "(" + Locked + ") " + Name + " " + StringAddress + " = " + StringValue + " {" + DataType + "}";
             return BuildString(StringValue);
+        }
+
+        public void OrIn(string value)
+        {
+
         }
 
 
@@ -310,9 +315,9 @@ namespace MemoryPatch
         public byte[] GetByteValue(string value)
         {
             byte[] byteValue = null;
-            bool isHex = value.ToLower().StartsWith("0x");
             if (string.IsNullOrEmpty(value))
                 value = "0";
+            bool isHex = value.ToLower().StartsWith("0x");            
 
             switch (DataType)
             {

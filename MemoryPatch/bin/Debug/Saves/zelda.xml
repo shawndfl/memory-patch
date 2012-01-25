@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<Groups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Groups>
+    <SaveGroupData name="Default">
+      <Notes>Health one heart = 8</Notes>
+      <Addresses>
+        <SavedAddress name="Bombs" locked="true" dataType="UByte" optionList="" address="73A7AB" pokedValue="10" />
+        <SavedAddress name="Arrows" locked="false" dataType="UByte" optionList="" address="73A7DF" pokedValue="99" />
+        <SavedAddress name="Rubes" locked="false" dataType="UInt16" optionList="" address="73A7C8" pokedValue="100" />
+        <SavedAddress name="Health" locked="false" dataType="UByte" optionList="" address="73A7D5" pokedValue="40" />
+        <SavedAddress name="Green Stuff" locked="false" dataType="UByte" optionList="" address="73A7D6" pokedValue="128" />
+        <SavedAddress name="Small Keys" locked="false" dataType="UByte" optionList="" address="73A7D7" pokedValue="3" />
+        <SavedAddress name="Heart Pieces" locked="false" dataType="UByte" optionList="" address="73A7D3" pokedValue="3" />
+      </Addresses>
+    </SaveGroupData>
+    <SaveGroupData name="New Group">
+      <Notes />
+      <Addresses>
+        <SavedAddress name="Bottle" locked="true" dataType="UByte" optionList="BottleItems" address="73A7C4" pokedValue="6" />
+        <SavedAddress name="Bottle(2)" locked="true" dataType="UByte" optionList="BottleItems" address="73A7C5" pokedValue="5" />
+        <SavedAddress name="Bottle(3)" locked="false" dataType="UByte" optionList="BottleItems" address="73A7C6" pokedValue="2" />
+        <SavedAddress name="Bottle(4)" locked="false" dataType="UByte" optionList="BottleItems" address="73A7C7" pokedValue="2" />
+      </Addresses>
+    </SaveGroupData>
+  </Groups>
+  <Options>
+    <SaveGroupOptions name="BottleItems">
+      <Options>
+        <Option item="Empty" value="2" />
+        <Option item="Red" value="3" />
+        <Option item="Green" value="4" />
+        <Option item="Blue" value="5" />
+        <Option item="Faerie" value="6" />
+        <Option item="Bee" value="7" />
+        <Option item="Good Bee" value="8" />
+        <Option item="Magic Power" value="9" />
+        <Option item="Flute" value="10" />
+        <Option item="none" value="11" />
+        <Option item="MagicMirror" value="12" />
+        <Option item="Bow &amp; Arrows" value="13" />
+      </Options>
+    </SaveGroupOptions>
+  </Options>
+</Groups>

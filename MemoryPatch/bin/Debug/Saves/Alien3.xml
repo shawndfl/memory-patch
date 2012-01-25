@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Groups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Groups>
+    <SaveGroupData name="Default">
+      <Addresses>
+        <SavedAddress name="Amno" locked="false" dataType="UByte" address="72CA3A" pokedValue="99" />
+        <SavedAddress name="Amno rounds" locked="false" dataType="UByte" address="72CA3C" pokedValue="99" />
+        <SavedAddress name="Rocket" locked="false" dataType="UByte" optionList="" address="72CA42" pokedValue="99" />
+        <SavedAddress name="Rocket Rounds" locked="false" dataType="UByte" optionList="" address="72CA44" pokedValue="99" />
+        <SavedAddress name="Flame" locked="false" dataType="UByte" optionList="" address="72CA4A" pokedValue="99" />
+        <SavedAddress name="Flame Rounds" locked="false" dataType="UByte" optionList="" address="72CA4C" pokedValue="0" />
+        <SavedAddress name="Health" locked="false" dataType="UByte" address="72C6AA" pokedValue="100" />
+      </Addresses>
+    </SaveGroupData>
+  </Groups>
+  <Options />
+</Groups>

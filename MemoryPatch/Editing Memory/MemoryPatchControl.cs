@@ -61,6 +61,12 @@ namespace MemoryPatch.Editing_Memory
             {
                 cboDataType.Items.Add(type);
             }
+
+            cboAssign.Items.Add("Equal");
+            cboAssign.Items.Add("Or In");
+            cboAssign.Items.Add("Or Out");
+            cboAssign.SelectedIndex = 0;
+
         }
 
         public void EnableMemoryAccess(MemoryAccess access)
@@ -313,6 +319,9 @@ namespace MemoryPatch.Editing_Memory
                 groupAddressEdit.Visible = true;
                 groupEdit.Visible = false;
 
+                if (address.StringValue == null)
+                    address.StringValue = GetValue(address);
+
                 txtDescription.Text = address.Name;
                 txtAddress.Text = address.StringAddress;
                 txtValue.Text = address.StringValue;
@@ -463,9 +472,23 @@ namespace MemoryPatch.Editing_Memory
             if (_updating || i ==-1)
                 return;
 
-            _updating = true;            
+            _updating = true;       
+     
             txtValue.Text = ((Option)cboValue.Items[i]).Value;
-            ActiveAddress.StringValue = txtValue.Text;
+            if (cboAssign.Text == "Equal")
+            {
+                ActiveAddress.StringValue = txtValue.Text;
+            }
+            else if (cboAssign.Text == "Or In")
+            {
+                ActiveAddress.OrIn(txtValue.Text);
+            }
+            else if (cboAssign.Text == "Or Out")
+            {
+
+            }
+                //ActiveAddress.Value |= txtValue.Text;
+
             _access.WriteValue(ActiveAddress.Address, ActiveAddress.Value);
             _updating = false;
         }
@@ -575,8 +598,10 @@ namespace MemoryPatch.Editing_Memory
         private void RefeshOptionGroups()
         {
             cboOptionGroup.Items.Clear();
+            cboOptionGroup.Items.Add("");
             cboOptionGroup.Items.AddRange(_addressManager.GetOptionGroups());
             cboAddressOptionGroup.Items.Clear();
+            cboAddressOptionGroup.Items.Add("");
             cboAddressOptionGroup.Items.AddRange(_addressManager.GetOptionGroups());
             cboListOption.Items.Clear();
             cboListOption.Items.Add("");

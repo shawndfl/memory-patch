@@ -4,19 +4,21 @@
     <SaveGroupData name="Default">
       <Notes />
       <Addresses>
-        <SavedAddress name="PointerToTextCache" locked="true" dataType="UByte" optionList="" address="A30A64" pokedValue="233" />
-        <SavedAddress name="POINTER TO NEXT LINE OF TEXT" locked="false" dataType="UInt32" address="A30254" pokedValue="2148621772" />
-        <SavedAddress name="Default" locked="false" dataType="StringByte" address="9B4875" pokedValue="0" />
-        <SavedAddress name="Default" locked="false" dataType="StringByte" address="9B4880" pokedValue="0" />
+        <SavedAddress name="PointerToTextCache" locked="false" dataType="UByte" optionList="" address="A30A64" pokedValue="255" />
+        <SavedAddress name="Battle Limit Count 3" locked="false" dataType="UByte" optionList="" address="A41EEC" pokedValue="0" />
+        <SavedAddress name="PointerToTextCache(2)" locked="false" dataType="UByte" optionList="" address="A30B64" pokedValue="255" />
+        <SavedAddress name="Hide Messages" locked="false" dataType="UByte" optionList="" address="9BDE4C" pokedValue="0" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="In Battle Character 1">
       <Notes>104 bytes for each character.</Notes>
       <Addresses>
-        <SavedAddress name="MP" locked="false" dataType="UInt16" address="A44428" pokedValue="999" />
+        <SavedAddress name="MP" locked="false" dataType="UInt16" optionList="" address="A44428" pokedValue="999" />
         <SavedAddress name="Max Hp" locked="false" dataType="UInt16" optionList="" address="A44430" pokedValue="0" />
         <SavedAddress name="Max Mp" locked="false" dataType="UInt16" optionList="" address="A4442A" pokedValue="999" />
-        <SavedAddress name="Current HP" locked="false" dataType="UInt16" address="A4442C" pokedValue="999" />
+        <SavedAddress name="Current HP" locked="false" dataType="UInt16" optionList="" address="A4442C" pokedValue="9999" />
+        <SavedAddress name="Status" locked="false" dataType="UByte" optionList="" address="A44400" pokedValue="8" />
+        <SavedAddress name="Time" locked="true" dataType="UByte" optionList="" address="A41BDD" pokedValue="255" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="In Battle Character 2">
@@ -24,8 +26,9 @@
       <Addresses>
         <SavedAddress name="MP" locked="false" dataType="UInt16" address="A44490" pokedValue="999" />
         <SavedAddress name="Max Mp" locked="false" dataType="UInt16" optionList="" address="A44492" pokedValue="999" />
-        <SavedAddress name="Current HP" locked="false" dataType="UInt16" address="A44494" pokedValue="999" />
+        <SavedAddress name="Current HP" locked="false" dataType="UInt16" optionList="" address="A44494" pokedValue="9999" />
         <SavedAddress name="Max Hp" locked="false" dataType="UInt16" optionList="" address="A44498" pokedValue="0" />
+        <SavedAddress name="Time" locked="false" dataType="UByte" optionList="" address="A41C21" pokedValue="255" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="In Battle Character 3">
@@ -33,14 +36,14 @@
       <Addresses>
         <SavedAddress name="MP" locked="false" dataType="UInt16" address="A444F8" pokedValue="999" />
         <SavedAddress name="Max Mp" locked="false" dataType="UInt16" optionList="" address="A444FA" pokedValue="999" />
-        <SavedAddress name="Current HP" locked="false" dataType="UInt16" address="A444FC" pokedValue="999" />
+        <SavedAddress name="Current HP" locked="false" dataType="UInt16" optionList="" address="A444FC" pokedValue="9999" />
         <SavedAddress name="Max Hp" locked="false" dataType="UInt16" optionList="" address="A44500" pokedValue="0" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Items Count">
       <Notes />
       <Addresses>
-        <SavedAddress name="Item" locked="false" dataType="UByte" address="9E8C01" pokedValue="198" />
+        <SavedAddress name="Item(1)" locked="false" dataType="UByte" optionList="" address="9E8C01" pokedValue="196" />
         <SavedAddress name="Item(2)" locked="false" dataType="UByte" optionList="" address="9E8C03" pokedValue="198" />
         <SavedAddress name="Item(3)" locked="false" dataType="UByte" optionList="" address="9E8C05" pokedValue="198" />
         <SavedAddress name="Item(4)" locked="false" dataType="UByte" optionList="" address="9E8C07" pokedValue="198" />
@@ -55,10 +58,10 @@
         <SavedAddress name="Item(13)" locked="false" dataType="UByte" optionList="" address="9E8C19" pokedValue="198" />
         <SavedAddress name="Item(14)" locked="false" dataType="UByte" optionList="" address="9E8C1B" pokedValue="198" />
         <SavedAddress name="Item(15)" locked="false" dataType="UByte" optionList="" address="9E8C1D" pokedValue="198" />
-        <SavedAddress name="Item(16)" locked="false" dataType="UByte" optionList="" address="9E8C1F" pokedValue="199" />
+        <SavedAddress name="Item(16)" locked="false" dataType="UByte" optionList="" address="9E8C1F" pokedValue="1" />
         <SavedAddress name="Item(17)" locked="false" dataType="UByte" optionList="" address="9E8C21" pokedValue="198" />
-        <SavedAddress name="Item(18)" locked="false" dataType="UByte" optionList="" address="9E8C23" pokedValue="198" />
-        <SavedAddress name="Item(19)" locked="false" dataType="UByte" optionList="" address="9E8C25" pokedValue="198" />
+        <SavedAddress name="Item(18)" locked="false" dataType="UByte" optionList="" address="9E8C23" pokedValue="2" />
+        <SavedAddress name="Item(19)" locked="false" dataType="UByte" optionList="" address="9E8C25" pokedValue="2" />
         <SavedAddress name="Item(20)" locked="false" dataType="UByte" optionList="" address="9E8C27" pokedValue="198" />
         <SavedAddress name="Item(21)" locked="false" dataType="UByte" optionList="" address="9E8C29" pokedValue="198" />
         <SavedAddress name="Item(22)" locked="false" dataType="UByte" optionList="" address="9E8C2B" pokedValue="198" />
@@ -144,14 +147,115 @@
     <SaveGroupData name="Item Type">
       <Notes />
       <Addresses>
-        <SavedAddress name="Item(0)" locked="false" dataType="UByte" optionList="Items" address="9E8C00" pokedValue="3" />
+        <SavedAddress name="Item(1)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C00" pokedValue="0" />
+        <SavedAddress name="Item(2)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C02" pokedValue="0" />
+        <SavedAddress name="Item(3)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C04" pokedValue="0" />
+        <SavedAddress name="Item(4)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C06" pokedValue="0" />
+        <SavedAddress name="Item(5)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C08" pokedValue="0" />
+        <SavedAddress name="Item(6)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C0A" pokedValue="143" />
+        <SavedAddress name="Item(7)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C0C" pokedValue="159" />
+        <SavedAddress name="Item(8)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C0E" pokedValue="0" />
+        <SavedAddress name="Item(9)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C10" pokedValue="0" />
+        <SavedAddress name="Item(10)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C12" pokedValue="0" />
+        <SavedAddress name="Item(11)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C14" pokedValue="0" />
+        <SavedAddress name="Item(12)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C16" pokedValue="0" />
+        <SavedAddress name="Item(13)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C18" pokedValue="0" />
+        <SavedAddress name="Item(14)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C1A" pokedValue="0" />
+        <SavedAddress name="Item(15)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C1C" pokedValue="0" />
+        <SavedAddress name="Item(16)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C1E" pokedValue="0" />
+        <SavedAddress name="Item(17)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C20" pokedValue="0" />
+        <SavedAddress name="Item(18)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C22" pokedValue="189" />
+        <SavedAddress name="Item(19)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C24" pokedValue="175" />
+        <SavedAddress name="Item(20)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C26" pokedValue="0" />
+        <SavedAddress name="Item(21)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C28" pokedValue="0" />
+        <SavedAddress name="Item(22)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C2A" pokedValue="0" />
+        <SavedAddress name="Item(23)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C2C" pokedValue="0" />
+        <SavedAddress name="Item(24)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C2E" pokedValue="0" />
+        <SavedAddress name="Item(25)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C30" pokedValue="0" />
+        <SavedAddress name="Item(26)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C32" pokedValue="0" />
+        <SavedAddress name="Item(27)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C34" pokedValue="0" />
+        <SavedAddress name="Item(28)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C36" pokedValue="0" />
+        <SavedAddress name="Item(29)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C38" pokedValue="0" />
+        <SavedAddress name="Item(30)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C3A" pokedValue="0" />
+        <SavedAddress name="Item(31)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C3C" pokedValue="0" />
+        <SavedAddress name="Item(32)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C3E" pokedValue="0" />
+        <SavedAddress name="Item(33)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C40" pokedValue="0" />
+        <SavedAddress name="Item(34)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C42" pokedValue="0" />
+        <SavedAddress name="Item(35)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C44" pokedValue="0" />
+        <SavedAddress name="Item(36)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C46" pokedValue="0" />
+        <SavedAddress name="Item(37)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C48" pokedValue="0" />
+        <SavedAddress name="Item(38)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C4A" pokedValue="0" />
+        <SavedAddress name="Item(39)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C4C" pokedValue="0" />
+        <SavedAddress name="Item(40)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C4E" pokedValue="0" />
+        <SavedAddress name="Item(41)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C50" pokedValue="0" />
+        <SavedAddress name="Item(42)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C52" pokedValue="0" />
+        <SavedAddress name="Item(43)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C54" pokedValue="0" />
+        <SavedAddress name="Item(44)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C56" pokedValue="0" />
+        <SavedAddress name="Item(45)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C58" pokedValue="0" />
+        <SavedAddress name="Item(46)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C5A" pokedValue="0" />
+        <SavedAddress name="Item(47)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C5C" pokedValue="0" />
+        <SavedAddress name="Item(48)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C5E" pokedValue="0" />
+        <SavedAddress name="Item(49)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C60" pokedValue="0" />
+        <SavedAddress name="Item(50)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C62" pokedValue="0" />
+        <SavedAddress name="Item(51)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C64" pokedValue="0" />
+        <SavedAddress name="Item(52)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C66" pokedValue="0" />
+        <SavedAddress name="Item(53)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C68" pokedValue="0" />
+        <SavedAddress name="Item(54)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C6A" pokedValue="0" />
+        <SavedAddress name="Item(55)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C6C" pokedValue="0" />
+        <SavedAddress name="Item(56)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C6E" pokedValue="0" />
+        <SavedAddress name="Item(57)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C70" pokedValue="0" />
+        <SavedAddress name="Item(58)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C72" pokedValue="0" />
+        <SavedAddress name="Item(59)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C74" pokedValue="0" />
+        <SavedAddress name="Item(60)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C76" pokedValue="0" />
+        <SavedAddress name="Item(61)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C78" pokedValue="0" />
+        <SavedAddress name="Item(62)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C7A" pokedValue="0" />
+        <SavedAddress name="Item(63)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C7C" pokedValue="0" />
+        <SavedAddress name="Item(64)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C7E" pokedValue="0" />
+        <SavedAddress name="Item(65)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C80" pokedValue="0" />
+        <SavedAddress name="Item(66)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C82" pokedValue="0" />
+        <SavedAddress name="Item(67)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C84" pokedValue="0" />
+        <SavedAddress name="Item(68)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C86" pokedValue="0" />
+        <SavedAddress name="Item(69)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C88" pokedValue="0" />
+        <SavedAddress name="Item(70)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C8A" pokedValue="0" />
+        <SavedAddress name="Item(71)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C8C" pokedValue="0" />
+        <SavedAddress name="Item(72)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C8E" pokedValue="0" />
+        <SavedAddress name="Item(73)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C90" pokedValue="0" />
+        <SavedAddress name="Item(74)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C92" pokedValue="0" />
+        <SavedAddress name="Item(75)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C94" pokedValue="0" />
+        <SavedAddress name="Item(76)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C96" pokedValue="0" />
+        <SavedAddress name="Item(77)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C98" pokedValue="0" />
+        <SavedAddress name="Item(78)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C9A" pokedValue="0" />
+        <SavedAddress name="Item(79)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C9C" pokedValue="0" />
+        <SavedAddress name="Item(80)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C9E" pokedValue="0" />
+        <SavedAddress name="Item(81)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CA0" pokedValue="0" />
+        <SavedAddress name="Item(82)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CA2" pokedValue="0" />
+        <SavedAddress name="Item(83)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CA4" pokedValue="0" />
+        <SavedAddress name="Item(84)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CA6" pokedValue="0" />
+        <SavedAddress name="Item(85)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CA8" pokedValue="0" />
+        <SavedAddress name="Item(86)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CAA" pokedValue="0" />
+        <SavedAddress name="Item(87)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CAC" pokedValue="0" />
+        <SavedAddress name="Item(88)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CAE" pokedValue="0" />
+        <SavedAddress name="Item(89)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CB0" pokedValue="0" />
+        <SavedAddress name="Item(90)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CB2" pokedValue="0" />
+        <SavedAddress name="Item(91)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CB4" pokedValue="0" />
+        <SavedAddress name="Item(92)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CB6" pokedValue="0" />
+        <SavedAddress name="Item(93)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CB8" pokedValue="0" />
+        <SavedAddress name="Item(94)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CBA" pokedValue="0" />
+        <SavedAddress name="Item(95)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CBC" pokedValue="0" />
+        <SavedAddress name="Item(96)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CBE" pokedValue="0" />
+        <SavedAddress name="Item(97)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CC0" pokedValue="0" />
+        <SavedAddress name="Item(98)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CC2" pokedValue="0" />
+        <SavedAddress name="Item(99)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8CC4" pokedValue="0" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="After Battle">
       <Notes />
       <Addresses>
-        <SavedAddress name="After battle EXP" locked="false" dataType="UInt16" address="9E97F8" pokedValue="500" />
-        <SavedAddress name="After battle AP" locked="false" dataType="UByte" optionList="" address="9E97FC" pokedValue="99" />
+        <SavedAddress name="After battle EXP" locked="false" dataType="UInt32" optionList="" address="9E97F8" pokedValue="50000" />
+        <SavedAddress name="After battle AP" locked="false" dataType="UInt16" optionList="" address="9E97FC" pokedValue="5000" />
+        <SavedAddress name="Item" locked="false" dataType="UByte" optionList="EvenItems" address="9E9828" pokedValue="6" />
+        <SavedAddress name="Item Count" locked="false" dataType="UByte" optionList="" address="9E982A" pokedValue="99" />
+        <SavedAddress name="Even Or Odd (0 or 1)" locked="false" dataType="UByte" optionList="" address="9E9829" pokedValue="1" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Character1">
@@ -188,6 +292,7 @@
         <SavedAddress name="Material(14)" locked="false" dataType="UByte" optionList="Materia" address="9E87CC" pokedValue="255" />
         <SavedAddress name="Material(15)" locked="false" dataType="UByte" optionList="Materia" address="9E87D0" pokedValue="255" />
         <SavedAddress name="Material(16)" locked="false" dataType="UByte" optionList="Materia" address="9E87D4" pokedValue="255" />
+        <SavedAddress name="Limit" locked="false" dataType="UByte" address="9E8767" pokedValue="240" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Menu">
@@ -212,7 +317,11 @@
         <SavedAddress name="Buttons(4)" locked="false" dataType="UByte" optionList="" address="9E97E4" pokedValue="0" />
         <SavedAddress name="Buttons(3)" locked="false" dataType="UByte" optionList="" address="9E97E3" pokedValue="0" />
         <SavedAddress name="Buttons(2)" locked="false" dataType="UByte" optionList="" address="9E97E2" pokedValue="0" />
-        <SavedAddress name="EnemyAway" locked="true" dataType="UByte" optionList="" address="9AEF39" pokedValue="0" />
+        <SavedAddress name="EnemyAway" locked="false" dataType="UByte" optionList="" address="9AEF39" pokedValue="0" />
+        <SavedAddress name="Key Items For Walmart" locked="false" dataType="UInt16" address="9E92E8" pokedValue="65535" />
+        <SavedAddress name="Key Items For Midgar" locked="false" dataType="UByte" optionList="" address="9E92EC" pokedValue="255" />
+        <SavedAddress name="Y Pos World" locked="false" dataType="UInt16" optionList="" address="A56589" pokedValue="580" />
+        <SavedAddress name="X Pos World" locked="false" dataType="UByte" optionList="" address="A56581" pokedValue="70" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Material">
@@ -220,17 +329,17 @@
       <Addresses>
         <SavedAddress name="Slot" locked="false" dataType="UByte" optionList="Materia" address="9E8E80" pokedValue="8" />
         <SavedAddress name="Slot(2)" locked="false" dataType="UByte" optionList="Materia" address="9E8E84" pokedValue="5" />
-        <SavedAddress name="Slot(3)" locked="false" dataType="UByte" optionList="Materia" address="9E8E88" pokedValue="7" />
-        <SavedAddress name="Slot(4)" locked="false" dataType="UByte" optionList="Materia" address="9E8E8C" pokedValue="50" />
+        <SavedAddress name="Slot(3)" locked="false" dataType="UByte" optionList="Materia" address="9E8E88" pokedValue="91" />
+        <SavedAddress name="Slot(4)" locked="false" dataType="UByte" optionList="Materia" address="9E8E8C" pokedValue="255" />
         <SavedAddress name="Slot(5)" locked="false" dataType="UByte" optionList="Materia" address="9E8E90" pokedValue="255" />
         <SavedAddress name="Slot(6)" locked="false" dataType="UByte" optionList="Materia" address="9E8E94" pokedValue="255" />
-        <SavedAddress name="Slot(7)" locked="false" dataType="UByte" optionList="Materia" address="9E8E98" pokedValue="8" />
-        <SavedAddress name="Slot(8)" locked="false" dataType="UByte" optionList="Materia" address="9E8E9C" pokedValue="8" />
+        <SavedAddress name="Slot(7)" locked="false" dataType="UByte" optionList="Materia" address="9E8E98" pokedValue="255" />
+        <SavedAddress name="Slot(8)" locked="false" dataType="UByte" optionList="Materia" address="9E8E9C" pokedValue="255" />
         <SavedAddress name="Slot(9)" locked="false" dataType="UByte" optionList="Materia" address="9E8EA0" pokedValue="255" />
         <SavedAddress name="Slot(10)" locked="false" dataType="UByte" optionList="Materia" address="9E8EA4" pokedValue="255" />
-        <SavedAddress name="Slot(11)" locked="false" dataType="UByte" optionList="Materia" address="9E8EA8" pokedValue="7" />
+        <SavedAddress name="Slot(11)" locked="false" dataType="UByte" optionList="Materia" address="9E8EA8" pokedValue="74" />
         <SavedAddress name="Slot(12)" locked="false" dataType="UByte" optionList="Materia" address="9E8EAC" pokedValue="7" />
-        <SavedAddress name="Slot(13)" locked="false" dataType="UByte" optionList="Materia" address="9E8EB0" pokedValue="255" />
+        <SavedAddress name="Slot(13)" locked="false" dataType="UByte" optionList="Materia" address="9E8EB0" pokedValue="9" />
         <SavedAddress name="Slot(14)" locked="false" dataType="UByte" optionList="Materia" address="9E8EB4" pokedValue="255" />
         <SavedAddress name="Slot(15)" locked="false" dataType="UByte" optionList="Materia" address="9E8EB8" pokedValue="255" />
         <SavedAddress name="Slot(16)" locked="false" dataType="UByte" optionList="Materia" address="9E8EBC" pokedValue="255" />
@@ -280,42 +389,45 @@
     <SaveGroupData name="Limits">
       <Notes />
       <Addresses>
-        <SavedAddress name="Limit1" locked="true" dataType="UByte" optionList="" address="A41E8A" pokedValue="255" />
-        <SavedAddress name="Limit2" locked="true" dataType="UByte" optionList="" address="A41EBC" pokedValue="255" />
+        <SavedAddress name="Limit1" locked="false" dataType="UByte" optionList="" address="A41E8A" pokedValue="255" />
+        <SavedAddress name="Limit2" locked="false" dataType="UByte" optionList="" address="A41EBC" pokedValue="255" />
         <SavedAddress name="How many Limits3" locked="false" dataType="UByte" address="A41EEC" pokedValue="9" />
-        <SavedAddress name="Limit3" locked="true" dataType="UByte" optionList="" address="A41EF0" pokedValue="255" />
+        <SavedAddress name="Limit3" locked="false" dataType="UByte" optionList="" address="A41EF0" pokedValue="255" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Enemy1">
       <Notes />
       <Addresses>
-        <SavedAddress name="Current Hp" locked="false" dataType="UInt16" optionList="" address="A445CC" pokedValue="10" />
+        <SavedAddress name="Current Hp" locked="false" dataType="UInt16" optionList="" address="A445CC" pokedValue="999" />
+        <SavedAddress name="Max Hp" locked="false" dataType="UInt16" optionList="" address="A445D0" pokedValue="9999" />
+        <SavedAddress name="Time" locked="true" dataType="UByte" optionList="" address="A41CED" pokedValue="0" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Enemy2">
       <Notes />
       <Addresses>
-        <SavedAddress name="Current Hp" locked="false" dataType="UInt16" address="A44634" pokedValue="10" />
+        <SavedAddress name="Current Hp" locked="false" dataType="UInt16" optionList="" address="A44634" pokedValue="2000" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Enemy3">
       <Notes />
       <Addresses>
-        <SavedAddress name="Current Hp" locked="false" dataType="UInt16" address="A4469C" pokedValue="10" />
+        <SavedAddress name="Current Hp" locked="false" dataType="UInt16" optionList="" address="A4469C" pokedValue="999" />
+        <SavedAddress name="Time" locked="true" dataType="UByte" optionList="" address="A41D75" pokedValue="0" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Enemy4">
       <Notes />
       <Addresses>
-        <SavedAddress name="Current Hp" locked="false" dataType="UInt16" address="A44704" pokedValue="10" />
+        <SavedAddress name="Current Hp" locked="false" dataType="UInt16" optionList="" address="A44704" pokedValue="10" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Characters">
       <Notes />
       <Addresses>
         <SavedAddress name="Pos2" locked="false" dataType="UByte" optionList="Characters" address="9E8BFD" pokedValue="255" />
-        <SavedAddress name="Pos1" locked="false" dataType="UByte" optionList="Characters" address="9E8BFC" pokedValue="0" />
-        <SavedAddress name="Pos3" locked="false" dataType="UByte" optionList="Characters" address="9E8BFE" pokedValue="255" />
+        <SavedAddress name="Pos1" locked="false" dataType="UByte" optionList="Characters" address="9E8BFC" pokedValue="4" />
+        <SavedAddress name="Pos3" locked="false" dataType="UByte" optionList="Characters" address="9E8BFE" pokedValue="3" />
         <SavedAddress name="PHS1" locked="false" dataType="UByte" optionList="Characters" address="B1F444" pokedValue="1" />
         <SavedAddress name="PHS2" locked="false" dataType="UByte" optionList="Characters" address="B1F445" pokedValue="2" />
         <SavedAddress name="PHS2" locked="false" dataType="UByte" optionList="Characters" address="B1F446" pokedValue="8" />
@@ -327,9 +439,15 @@
         <SavedAddress name="PHS9" locked="false" dataType="UByte" optionList="Characters" address="B1F44C" pokedValue="255" />
       </Addresses>
     </SaveGroupData>
+    <SaveGroupData name="Enemy5">
+      <Notes />
+      <Addresses>
+        <SavedAddress name="Current Hp" locked="false" dataType="UInt16" address="A4476C" pokedValue="10" />
+      </Addresses>
+    </SaveGroupData>
   </Groups>
   <Options>
-    <SaveGroupOptions name="Items">
+    <SaveGroupOptions name="EvenItems">
       <Options>
         <Option item="Potion" value="0" />
         <Option item="Hi-Potion" value="1" />
@@ -361,6 +479,198 @@
         <Option item="Mute Mask" value="27" />
         <Option item="War Gong" value="28" />
         <Option item="Loco weed" value="29" />
+        <Option item="Fire Fang" value="30" />
+        <Option item="Fire Vaeil" value="31" />
+        <Option item="Antarctic Wind" value="32" />
+        <Option item="Ice Crystal" value="33" />
+        <Option item="Bolt Plume" value="34" />
+        <Option item="Swift Bolt" value="35" />
+        <Option item="Earth Drum" value="36" />
+        <Option item="Earth Mallet" value="37" />
+        <Option item="Deadly Waste" value="38" />
+        <Option item="M-Tentacles" value="39" />
+        <Option item="Sratedust" value="40" />
+        <Option item="Vampire Fang" value="41" />
+        <Option item="Ghost Hand" value="42" />
+        <Option item="Vagyrisk Claw" value="43" />
+        <Option item="Light Curtain" value="44" />
+        <Option item="Lunar Curtain" value="45" />
+        <Option item="Mirror" value="46" />
+        <Option item="Holy Torch" value="47" />
+        <Option item="Bird Wing" value="48" />
+        <Option item="Dragon Scales" value="49" />
+        <Option item="Impaler" value="50" />
+        <Option item="Shrivel" value="51" />
+        <Option item="Eye drop" value="52" />
+        <Option item="Molotov" value="53" />
+        <Option item="S0mine" value="54" />
+        <Option item="S-mine" value="55" />
+        <Option item="Graviball" value="56" />
+        <Option item="T/S Bomb" value="57" />
+        <Option item="Ink" value="58" />
+        <Option item="Dazers" value="59" />
+        <Option item="Dragon Fang" value="60" />
+        <Option item="Cauldron" value="61" />
+        <Option item="Sylkis Greens" value="62" />
+        <Option item="Regan Greens" value="63" />
+        <Option item="Mimett Greens" value="64" />
+        <Option item="Curiel Greens" value="65" />
+        <Option item="Pahsana Greens" value="66" />
+        <Option item="Tantal Greens" value="67" />
+        <Option item="Kraka Greens" value="68" />
+        <Option item="Gysahl Greens" value="69" />
+        <Option item="Tent" value="70" />
+        <Option item="Power Source" value="71" />
+        <Option item="Guard Source" value="72" />
+        <Option item="Magic Source" value="73" />
+        <Option item="Mind Source" value="74" />
+        <Option item="Speed Source" value="75" />
+        <Option item="Luck Source" value="76" />
+        <Option item="Zeio Nut" value="77" />
+        <Option item="Carbon Nut" value="78" />
+        <Option item="Porov Nut" value="79" />
+        <Option item="Pram Nut" value="80" />
+        <Option item="Lasan Nut" value="81" />
+        <Option item="Saraha Nut" value="82" />
+        <Option item="Luchile Nut" value="83" />
+        <Option item="Pepio Nut" value="84" />
+        <Option item="Battery" value="85" />
+        <Option item="Tissue" value="86" />
+        <Option item="Omnislash" value="87" />
+        <Option item="Catastrophe" value="88" />
+        <Option item="Final Heaven" value="89" />
+        <Option item="Great Gospel" value="90" />
+        <Option item="Cosmo Memory" value="91" />
+        <Option item="All Creation" value="92" />
+        <Option item="Chaos" value="93" />
+        <Option item="Highwind" value="94" />
+        <Option item="1/35 soldier" value="95" />
+        <Option item="Super Sweeper" value="96" />
+        <Option item="Masamune Blade" value="97" />
+        <Option item="Save Crystal" value="98" />
+        <Option item="Combat Diary" value="99" />
+        <Option item="Autograph" value="100" />
+        <Option item="Grambler" value="101" />
+        <Option item="Desert Rost" value="102" />
+        <Option item="Earth Harp" value="103" />
+        <Option item="Guide Book" value="104" />
+        <Option item="Buster sword" value="128" />
+        <Option item="Mythril saber" value="129" />
+        <Option item="Hardedge" value="130" />
+        <Option item="Butterfly edge" value="131" />
+        <Option item="enhance sward" value="132" />
+        <Option item="organics" value="133" />
+        <Option item="crystal sward" value="134" />
+        <Option item="force stealer" value="135" />
+        <Option item="rune blade" value="136" />
+        <Option item="murasame" value="137" />
+        <Option item="nail bat" value="138" />
+        <Option item="yoshiyuki" value="139" />
+        <Option item="apocalypse" value="140" />
+        <Option item="heaven's cloud" value="141" />
+        <Option item="ragnarok" value="142" />
+        <Option item="ultima weapon" value="143" />
+        <Option item="leather glove" value="144" />
+        <Option item="metal knuckle" value="145" />
+        <Option item="mythril claw" value="146" />
+        <Option item="grand glove" value="147" />
+        <Option item="tiger fang" value="148" />
+        <Option item="diamond knuckle" value="149" />
+        <Option item="dragon claw" value="150" />
+        <Option item="crystal glove" value="151" />
+        <Option item="motor drive" value="152" />
+        <Option item="Platinum fist" value="153" />
+        <Option item="kaiser knuckle" value="154" />
+        <Option item="work glove" value="155" />
+        <Option item="powersoul" value="156" />
+        <Option item="master fist" value="157" />
+        <Option item="a hand" value="158" />
+        <Option item="premium heart" value="159" />
+        <Option item="gatling gun" value="160" />
+        <Option item="assault gun" value="161" />
+        <Option item="cannon ball" value="162" />
+        <Option item="atomic scissors" value="163" />
+        <Option item="heavy vlcan" value="164" />
+        <Option item="chain saw" value="165" />
+        <Option item="microlaser" value="166" />
+        <Option item="a-m cannon" value="167" />
+        <Option item="w machin gun" value="168" />
+        <Option item="drill arm" value="169" />
+        <Option item="solid bazooka" value="170" />
+        <Option item="rocket pounch" value="171" />
+        <Option item="enemy launcher" value="172" />
+        <Option item="pile banger" value="173" />
+        <Option item="max ray" value="174" />
+        <Option item="missing score" value="175" />
+        <Option item="mythril clip" value="176" />
+        <Option item="diamond pin" value="177" />
+        <Option item="silver barrette" value="178" />
+        <Option item="gold barrette" value="179" />
+        <Option item="adaman clip" value="180" />
+        <Option item="crystal comb" value="181" />
+        <Option item="magic comb" value="182" />
+        <Option item="plus barrette" value="183" />
+        <Option item="centclip" value="184" />
+        <Option item="hair pin" value="185" />
+        <Option item="sraph comb" value="186" />
+        <Option item="behemoth horn" value="187" />
+        <Option item="spring gun clip" value="188" />
+        <Option item="limited moon" value="189" />
+        <Option item="guard stick" value="190" />
+        <Option item="mythril rod" value="191" />
+        <Option item="fullmetal staff" value="192" />
+        <Option item="striking staff" value="193" />
+        <Option item="prism staff" value="194" />
+        <Option item="aurora rod" value="195" />
+        <Option item="wizard staff" value="196" />
+        <Option item="wizer staff" value="197" />
+        <Option item="fairy tale" value="198" />
+        <Option item="umbella" value="199" />
+        <Option item="princess guard" value="200" />
+        <Option item="spear" value="201" />
+        <Option item="slach lance" value="202" />
+        <Option item="trident " value="203" />
+        <Option item="mast ax" value="204" />
+        <Option item="partisan" value="205" />
+        <Option item="viper halberd" value="206" />
+        <Option item="javelin" value="207" />
+        <Option item="grow lance" value="208" />
+        <Option item="mop" value="209" />
+        <Option item="dragoon lance" value="210" />
+        <Option item="dcimitar" value="211" />
+        <Option item="flayer" value="212" />
+        <Option item="spirit lance" value="213" />
+        <Option item="venus gospel" value="214" />
+        <Option item="4-point " value="215" />
+        <Option item="boomerang" value="216" />
+        <Option item="pinwheel" value="217" />
+        <Option item="razor rign" value="218" />
+        <Option item="hawkeye" value="219" />
+        <Option item="crystal cross" value="220" />
+        <Option item="wind slash" value="221" />
+        <Option item="twin viper" value="222" />
+        <Option item="sprial" value="223" />
+        <Option item="super ball" value="224" />
+        <Option item="magic shuriken" value="225" />
+        <Option item="rising sun" value="226" />
+        <Option item="oritsuru" value="227" />
+        <Option item="conformer" value="228" />
+        <Option item="yellow m-phone" value="229" />
+        <Option item="green" value="230" />
+        <Option item="blue" value="231" />
+        <Option item="red" value="232" />
+        <Option item="crystal m-phone" value="233" />
+        <Option item="white m-phone" value="234" />
+        <Option item="black m-phone" value="235" />
+        <Option item="silver m-phone" value="236" />
+        <Option item="trumpet shell" value="237" />
+        <Option item="gold m-phone" value="238" />
+        <Option item="battle trumpet" value="239" />
+        <Option item="start light phone" value="240" />
+        <Option item="hp shout" value="241" />
+        <Option item="quick silver" value="242" />
+        <Option item="shotgun" value="243" />
+        <Option item="Masamune" value="255" />
       </Options>
     </SaveGroupOptions>
     <SaveGroupOptions name="Materia">
@@ -475,6 +785,86 @@
         <Option item="None" value="11" />
         <Option item="None" value="12" />
         <Option item="None" value="255" />
+      </Options>
+    </SaveGroupOptions>
+    <SaveGroupOptions name="KeyItems">
+      <Options>
+        <Option item="Cotton Dress" value="1" />
+      </Options>
+    </SaveGroupOptions>
+    <SaveGroupOptions name="OddItems">
+      <Options>
+        <Option item="Bronze Bangle" value="0" />
+        <Option item="Iron Bangle" value="1" />
+        <Option item="Titan Bangle" value="2" />
+        <Option item="Mythril Armlet" value="3" />
+        <Option item="Carbone Bangle" value="4" />
+        <Option item="Silver Armlet" value="5" />
+        <Option item="Gold Armlet" value="6" />
+        <Option item="Diamond Bangle" value="7" />
+        <Option item="Crystal Bangle" value="8" />
+        <Option item="Platinum Bangle" value="9" />
+        <Option item="Rune Armlet" value="10" />
+        <Option item="Edincoat" value="11" />
+        <Option item="Wizard Bracelet" value="12" />
+        <Option item="Adaman Bangle" value="13" />
+        <Option item="Gigas Armlet" value="14" />
+        <Option item="Imperial Guard" value="15" />
+        <Option item="Aegis Armlet" value="16" />
+        <Option item="Fourth Bracelet" value="17" />
+        <Option item="Warrior Bangle" value="18" />
+        <Option item="Shinra Beta" value="19" />
+        <Option item="Shinra Alpha" value="20" />
+        <Option item="Four Slots" value="21" />
+        <Option item="Fire Armlet" value="22" />
+        <Option item="Aurora Armlet" value="23" />
+        <Option item="Bolt Armlet" value="24" />
+        <Option item="Dragon Armlet" value="25" />
+        <Option item="Minerva Band" value="26" />
+        <Option item="Escort Guard" value="27" />
+        <Option item="Mystile" value="28" />
+        <Option item="Ziedrich" value="29" />
+        <Option item="Precious Watch" value="30" />
+        <Option item="Chocobracelet" value="31" />
+        <Option item="Power Wrist" value="32" />
+        <Option item="Protect Vest" value="33" />
+        <Option item="Earring" value="34" />
+        <Option item="Talisman" value="35" />
+        <Option item="Choco Feather" value="36" />
+        <Option item="Amulet" value="37" />
+        <Option item="Champion Belt" value="38" />
+        <Option item="Poison Ring" value="39" />
+        <Option item="Touph Ring" value="40" />
+        <Option item="Circlet" value="41" />
+        <Option item="Star Pendant" value="42" />
+        <Option item="Silver Glasses" value="43" />
+        <Option item="Headband" value="44" />
+        <Option item="Fairy ring" value="45" />
+        <Option item="jem ring" value="46" />
+        <Option item="white cape" value="47" />
+        <Option item="sprint shoes" value="48" />
+        <Option item="peace ring" value="49" />
+        <Option item="ribbon" value="50" />
+        <Option item="fire ring" value="51" />
+        <Option item="ice ring" value="52" />
+        <Option item="bolt ring" value="53" />
+        <Option item="tetra elemental" value="54" />
+        <Option item="safety bit" value="55" />
+        <Option item="fury ring" value="56" />
+        <Option item="curse ring" value="57" />
+        <Option item="protect ring" value="58" />
+        <Option item="cat's bell" value="59" />
+        <Option item="reflect ring" value="60" />
+        <Option item="water ring" value="61" />
+        <Option item="sneak glove" value="62" />
+        <Option item="hypnocrown" value="63" />
+      </Options>
+    </SaveGroupOptions>
+    <SaveGroupOptions name="Status">
+      <Options>
+        <Option item="Poison" value="8" />
+        <Option item="Dead" value="1" />
+        <Option item="None" value="2" />
       </Options>
     </SaveGroupOptions>
   </Options>

@@ -1,2 +1,6 @@
 <?xml version="1.0"?>
-<Config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" x="-1478" y="61" width="1215" height="835" saveFilePath="C:\Users\Shawn\Projects\MemoryPatch\MemoryPatch\bin\Debug\Saves" />
+<Config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+        x="-1447" y="109" width="1215" height="835" 
+        lastRunDir="C:\Users\Shawn\Downloads\Consoles\snes" 
+        saveFilePath="C:\Users\Shawn\Projects\MemoryPatch\MemoryPatch\bin\Debug\Saves" />

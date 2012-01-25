@@ -300,6 +300,7 @@ namespace MemoryPatch
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "*.xml|*.xml";
+            dlg.InitialDirectory = _config.SavedFilesPath;
             if (!string.IsNullOrEmpty(_lastLoaded))
             {
                 dlg.InitialDirectory = Path.GetDirectoryName(_lastLoaded);

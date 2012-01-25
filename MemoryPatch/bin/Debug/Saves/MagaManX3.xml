@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Groups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Groups>
+    <SaveGroupData name="Default">
+      <Notes />
+      <Addresses>
+        <SavedAddress name="Health" locked="false" dataType="UByte" address="72BE67" pokedValue="16" />
+        <SavedAddress name="Enemy Health" locked="false" dataType="UByte" address="72C1A7" pokedValue="10" />
+        <SavedAddress name="Max Health" locked="false" dataType="UByte" address="72D43A" pokedValue="28" />
+        <SavedAddress name="zero in menu = 0" locked="false" dataType="UByte" address="72D379" pokedValue="0" />
+      </Addresses>
+    </SaveGroupData>
+  </Groups>
+  <Options />
+</Groups>

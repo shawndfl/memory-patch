@@ -42,6 +42,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupAddressEdit = new System.Windows.Forms.GroupBox();
+            this.cboAssign = new System.Windows.Forms.ComboBox();
             this.btnPoke = new System.Windows.Forms.Button();
             this.cboAddressOptionGroup = new System.Windows.Forms.ComboBox();
             this.cboValue = new System.Windows.Forms.ComboBox();
@@ -249,6 +250,7 @@
             // 
             // groupAddressEdit
             // 
+            this.groupAddressEdit.Controls.Add(this.cboAssign);
             this.groupAddressEdit.Controls.Add(this.btnPoke);
             this.groupAddressEdit.Controls.Add(this.txtAddress);
             this.groupAddressEdit.Controls.Add(this.cboDataType);
@@ -272,6 +274,16 @@
             this.groupAddressEdit.TabStop = false;
             this.groupAddressEdit.Text = "Address Edit";
             this.groupAddressEdit.Visible = false;
+            // 
+            // cboAssign
+            // 
+            this.cboAssign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboAssign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboAssign.FormattingEnabled = true;
+            this.cboAssign.Location = new System.Drawing.Point(578, 139);
+            this.cboAssign.Name = "cboAssign";
+            this.cboAssign.Size = new System.Drawing.Size(57, 21);
+            this.cboAssign.TabIndex = 8;
             // 
             // btnPoke
             // 
@@ -303,7 +315,7 @@
             this.cboValue.FormattingEnabled = true;
             this.cboValue.Location = new System.Drawing.Point(338, 139);
             this.cboValue.Name = "cboValue";
-            this.cboValue.Size = new System.Drawing.Size(297, 21);
+            this.cboValue.Size = new System.Drawing.Size(236, 21);
             this.cboValue.TabIndex = 5;
             this.cboValue.SelectedIndexChanged += new System.EventHandler(this.cboValue_SelectedIndexChanged);
             // 
@@ -909,5 +921,6 @@
         private System.Windows.Forms.TextBox txtInitPokeValue;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button btnPoke;
+        private System.Windows.Forms.ComboBox cboAssign;
     }
 }
