@@ -131,7 +131,11 @@ namespace MemoryPatch
                     break;
                 case DataType.UByte:
                     if (oneVal)
-                        Value = BitConverter.GetBytes(Byte.Parse(value));
+                    {
+                        byte num;
+                        Byte.TryParse(value, out num);
+                        Value = BitConverter.GetBytes(num);
+                    }
 
                     DataLength = sizeof(byte);
                     break;

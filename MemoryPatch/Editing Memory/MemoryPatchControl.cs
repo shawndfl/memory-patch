@@ -990,6 +990,23 @@ namespace MemoryPatch.Editing_Memory
             {
                 AcceptNewValue();
             }
+        }
+
+        private void tv_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                tv.LabelEdit = true;
+                if(tv.SelectedNode != null)
+                    tv.SelectedNode.BeginEdit();
+            }
+        }
+
+        private void tv_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            e.Node.Text = e.Label;
+            tv.LabelEdit = false;
+            ActiveAddress.Name = e.Label;
         }             
     }
 }

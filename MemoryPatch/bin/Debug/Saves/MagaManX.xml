@@ -1,13 +1,30 @@
 <?xml version="1.0"?>
 <Groups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Groups>
-    <SaveGroupData name="Default">
+    <SaveGroupData name="Main">
       <Notes />
       <Addresses>
-        <SavedAddress name="Health" locked="false" dataType="UByte" address="72C037" pokedValue="35" />
-        <SavedAddress name="Default" locked="false" dataType="UByte" address="72C0EE" pokedValue="3" />
-        <SavedAddress name="Default" locked="false" dataType="UByte" address="72C0E1" pokedValue="3" />
+        <SavedAddress name="Health" locked="false" dataType="UByte" optionList="" address="72C037" pokedValue="32" />
+        <SavedAddress name="Boss Health" locked="false" dataType="UByte" optionList="" address="72C2F7" pokedValue="2" />
+        <SavedAddress name="Lives" locked="false" dataType="UByte" optionList="" address="72D3E8" pokedValue="0" />
+        <SavedAddress name="S.Ice" locked="true" dataType="UByte" optionList="" address="72D3FE" pokedValue="92" />
+        <SavedAddress name="Health Pack 1" locked="false" dataType="UByte" optionList="" address="72D3EB" pokedValue="157" />
+        <SavedAddress name="Health Pack 2" locked="true" dataType="UByte" optionList="" address="72D3EC" pokedValue="157" />
+        <SavedAddress name="Health Pack 3" locked="true" dataType="UByte" optionList="" address="72D3ED" pokedValue="157" />
+        <SavedAddress name="Health Pack 4" locked="false" dataType="UByte" optionList="" address="72D3EE" pokedValue="157" />
+        <SavedAddress name="Max Health" locked="false" dataType="UByte" optionList="" address="72D402" pokedValue="32" />
+        <SavedAddress name="Fire.W" locked="true" dataType="UByte" optionList="" address="72D3F6" pokedValue="92" />
+        <SavedAddress name="R.Shild" locked="true" dataType="UByte" optionList="" address="72D3F4" pokedValue="92" />
+        <SavedAddress name="Storm.T" locked="true" dataType="UByte" optionList="" address="72D3F8" pokedValue="92" />
+        <SavedAddress name="B. Cutter" locked="true" dataType="UByte" optionList="" address="72D3FC" pokedValue="92" />
+        <SavedAddress name="C. Sting" locked="true" dataType="UByte" optionList="" address="72D3F2" pokedValue="92" />
+        <SavedAddress name="Homing t" locked="true" dataType="UByte" optionList="" address="72D3F0" pokedValue="92" />
+        <SavedAddress name="E. Spark" locked="true" dataType="UByte" optionList="" address="72D3FA" pokedValue="92" />
       </Addresses>
+    </SaveGroupData>
+    <SaveGroupData name="Default">
+      <Notes />
+      <Addresses />
     </SaveGroupData>
   </Groups>
   <Options />
