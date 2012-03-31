@@ -777,7 +777,7 @@ namespace MemoryPatch.Editing_Memory
 
                 for (int i = 0; i < numCreateCount.Value; i++)
                 {
-                    TreeNode groupNode = tv.SelectedNode;
+                    TreeNode groupNode = tv.SelectedNode; 
                     TreeNode addressNode = CreateNewAddress(groupNode, txtBaseName.Text, address);
                     if ( addressNode == null)
                         break;

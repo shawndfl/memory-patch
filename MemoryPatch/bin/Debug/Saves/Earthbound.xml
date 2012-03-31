@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+<Groups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Groups>
+    <SaveGroupData name="Main">
+      <Notes />
+      <Addresses>
+        <SavedAddress name="Money" locked="false" dataType="UInt16" optionList="" address="734C99" pokedValue="50000" />
+      </Addresses>
+    </SaveGroupData>
+    <SaveGroupData name="Default">
+      <Notes />
+      <Addresses>
+        <SavedAddress name="Default" locked="false" dataType="UByte" address="6E9568" pokedValue="0" />
+        <SavedAddress name="Default" locked="false" dataType="UByte" address="72C980" pokedValue="126" />
+        <SavedAddress name="Default" locked="false" dataType="UByte" address="72C982" pokedValue="126" />
+        <SavedAddress name="Default" locked="false" dataType="UByte" address="72C984" pokedValue="126" />
+        <SavedAddress name="Default" locked="false" dataType="UByte" address="77CCA6" pokedValue="0" />
+      </Addresses>
+    </SaveGroupData>
+    <SaveGroupData name="Ness">
+      <Notes />
+      <Addresses>
+        <SavedAddress name="MaxHP" locked="false" dataType="UInt16" optionList="" address="734E40" pokedValue="40" />
+        <SavedAddress name="MaxPP" locked="false" dataType="UInt16" optionList="" address="734E42" pokedValue="20" />
+        <SavedAddress name="Status" locked="false" dataType="UInt32" optionList="" address="734E44" pokedValue="0" />
+        <SavedAddress name="Offence" locked="false" dataType="UByte" optionList="" address="734E4B" pokedValue="131" />
+        <SavedAddress name="Defense" locked="false" dataType="UByte" optionList="" address="734E4C" pokedValue="145" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" address="734E4D" pokedValue="58" />
+        <SavedAddress name="Guts" locked="false" dataType="UByte" optionList="" address="734E4E" pokedValue="255" />
+        <SavedAddress name="Luck" locked="false" dataType="UByte" address="734E4F" pokedValue="58" />
+        <SavedAddress name="Vitality" locked="false" dataType="UByte" optionList="" address="734E50" pokedValue="23" />
+        <SavedAddress name="IQ" locked="false" dataType="UByte" optionList="" address="734E51" pokedValue="20" />
+        <SavedAddress name="In battle HP" locked="true" dataType="UInt16" optionList="" address="734E7D" pokedValue="761" />
+        <SavedAddress name="In battle PP" locked="true" dataType="UInt16" optionList="" address="734E83" pokedValue="100" />
+        <SavedAddress name="Item" locked="false" dataType="UByte" optionList="Items" address="734E59" pokedValue="26" />
+        <SavedAddress name="Item(2)" locked="false" dataType="UByte" optionList="Items" address="734E5A" pokedValue="103" />
+        <SavedAddress name="Item(3)" locked="false" dataType="UByte" optionList="Items" address="734E5B" pokedValue="103" />
+        <SavedAddress name="Item(4)" locked="false" dataType="UByte" optionList="Items" address="734E5C" pokedValue="196" />
+        <SavedAddress name="Item(5)" locked="false" dataType="UByte" optionList="Items" address="734E5D" pokedValue="177" />
+        <SavedAddress name="Item(6)" locked="false" dataType="UByte" optionList="Items" address="734E5E" pokedValue="228" />
+        <SavedAddress name="Item(7)" locked="false" dataType="UByte" optionList="Items" address="734E5F" pokedValue="0" />
+        <SavedAddress name="Item(8)" locked="false" dataType="UByte" optionList="Items" address="734E60" pokedValue="0" />
+        <SavedAddress name="Item(9)" locked="false" dataType="UByte" optionList="Items" address="734E61" pokedValue="228" />
+        <SavedAddress name="Item(10)" locked="false" dataType="UByte" optionList="Items" address="734E62" pokedValue="0" />
+        <SavedAddress name="Item(11)" locked="false" dataType="UByte" optionList="Items" address="734E63" pokedValue="0" />
+        <SavedAddress name="Item(12)" locked="false" dataType="UByte" optionList="Items" address="734E64" pokedValue="184" />
+        <SavedAddress name="Item(13)" locked="false" dataType="UByte" optionList="Items" address="734E65" pokedValue="171" />
+        <SavedAddress name="Item(14)" locked="false" dataType="UByte" optionList="Items" address="734E66" pokedValue="0" />
+        <SavedAddress name="Exp points" locked="false" dataType="UInt32" optionList="" address="734E3C" pokedValue="10937" />
+        <SavedAddress name="Level" locked="false" dataType="UByte" optionList="" address="734E3B" pokedValue="16" />
+        <SavedAddress name="In Battle Status" locked="false" dataType="UByte" optionList="" address="735433" pokedValue="4" />
+        <SavedAddress name="PL1In battle Status" locked="false" dataType="UInt32" optionList="" address="735431" pokedValue="0" />
+      </Addresses>
+    </SaveGroupData>
+    <SaveGroupData name="Enemy">
+      <Notes />
+      <Addresses>
+        <SavedAddress name="HP" locked="false" dataType="UInt16" optionList="" address="735697" pokedValue="0" />
+        <SavedAddress name="PP" locked="false" dataType="UByte" address="73569B" pokedValue="60" />
+        <SavedAddress name="Status" locked="false" dataType="UByte" optionList="" address="7356A1" pokedValue="0" />
+        <SavedAddress name="Offence" locked="false" dataType="UByte" address="7356AA" pokedValue="71" />
+        <SavedAddress name="Defence" locked="false" dataType="UByte" optionList="" address="7356AC" pokedValue="180" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" optionList="" address="7356AE" pokedValue="19" />
+        <SavedAddress name="Exp Points after battle" locked="false" dataType="UInt16" optionList="" address="7356C3" pokedValue="50000" />
+        <SavedAddress name="Max HP" locked="false" dataType="UInt16" optionList="" address="735699" pokedValue="1" />
+      </Addresses>
+    </SaveGroupData>
+    <SaveGroupData name="Enemy 2">
+      <Notes />
+      <Addresses>
+        <SavedAddress name="HP" locked="false" dataType="UInt16" optionList="" address="7356E3" pokedValue="1" />
+        <SavedAddress name="PP" locked="false" dataType="UByte" address="7356E9" pokedValue="60" />
+        <SavedAddress name="Status" locked="false" dataType="UByte" address="7356EF" pokedValue="5" />
+        <SavedAddress name="Offence" locked="false" dataType="UByte" address="7356F8" pokedValue="71" />
+        <SavedAddress name="Defence" locked="false" dataType="UByte" address="7356FA" pokedValue="180" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" address="7356FC" pokedValue="19" />
+        <SavedAddress name="Exp Points after battle" locked="false" dataType="UInt16" optionList="" address="735711" pokedValue="10000" />
+      </Addresses>
+    </SaveGroupData>
+    <SaveGroupData name="Enemy 3">
+      <Notes />
+      <Addresses>
+        <SavedAddress name="HP" locked="false" dataType="UInt16" address="735731" pokedValue="1" />
+        <SavedAddress name="PP" locked="false" dataType="UByte" address="735737" pokedValue="60" />
+        <SavedAddress name="Status" locked="false" dataType="UByte" optionList="" address="73573D" pokedValue="5" />
+        <SavedAddress name="Offence" locked="false" dataType="UByte" address="735746" pokedValue="71" />
+        <SavedAddress name="Defence" locked="false" dataType="UByte" address="735748" pokedValue="180" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" address="73574A" pokedValue="19" />
+        <SavedAddress name="Exp Points after battle" locked="false" dataType="UInt16" optionList="" address="73575F" pokedValue="1000" />
+      </Addresses>
+    </SaveGroupData>
+    <SaveGroupData name="Enemy 4">
+      <Notes />
+      <Addresses>
+        <SavedAddress name="HP" locked="false" dataType="UInt16" address="73577F" pokedValue="1" />
+        <SavedAddress name="PP" locked="false" dataType="UByte" address="735785" pokedValue="60" />
+        <SavedAddress name="Status" locked="false" dataType="UByte" address="73578B" pokedValue="5" />
+        <SavedAddress name="Offence" locked="false" dataType="UByte" address="735794" pokedValue="71" />
+        <SavedAddress name="Defence" locked="false" dataType="UByte" address="735796" pokedValue="180" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" address="735798" pokedValue="19" />
+        <SavedAddress name="Exp Points after battle" locked="false" dataType="UInt16" optionList="" address="7357AD" pokedValue="1000" />
+      </Addresses>
+    </SaveGroupData>
+    <SaveGroupData name="Paula">
+      <Notes />
+      <Addresses>
+        <SavedAddress name="Level" locked="false" dataType="UByte" optionList="" address="734E9A" pokedValue="16" />
+        <SavedAddress name="Exp points" locked="false" dataType="UInt32" optionList="" address="734E9B" pokedValue="10937" />
+        <SavedAddress name="MaxHP" locked="false" dataType="UInt16" optionList="" address="734E9F" pokedValue="40" />
+        <SavedAddress name="MaxPP" locked="false" dataType="UInt16" optionList="" address="734EA1" pokedValue="20" />
+        <SavedAddress name="Status" locked="false" dataType="UInt32" optionList="" address="734EA3" pokedValue="0" />
+        <SavedAddress name="Offence" locked="false" dataType="UByte" optionList="" address="734EAA" pokedValue="131" />
+        <SavedAddress name="Defense" locked="false" dataType="UByte" optionList="" address="734EAB" pokedValue="145" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" optionList="" address="734EAC" pokedValue="58" />
+        <SavedAddress name="Guts" locked="false" dataType="UByte" optionList="" address="734EAD" pokedValue="255" />
+        <SavedAddress name="Luck" locked="false" dataType="UByte" address="734EAE" pokedValue="58" />
+        <SavedAddress name="Vitality" locked="false" dataType="UByte" address="734EAF" pokedValue="23" />
+        <SavedAddress name="IQ" locked="false" dataType="UByte" address="734EB0" pokedValue="20" />
+        <SavedAddress name="Item" locked="false" dataType="UByte" optionList="Items" address="734EB8" pokedValue="0" />
+        <SavedAddress name="Item(2)" locked="false" dataType="UByte" optionList="Items" address="734EB9" pokedValue="103" />
+        <SavedAddress name="Item(3)" locked="false" dataType="UByte" optionList="Items" address="734EBA" pokedValue="103" />
+        <SavedAddress name="Item(4)" locked="false" dataType="UByte" optionList="Items" address="734EBB" pokedValue="196" />
+        <SavedAddress name="Item(5)" locked="false" dataType="UByte" optionList="Items" address="734EBC" pokedValue="177" />
+        <SavedAddress name="Item(6)" locked="false" dataType="UByte" optionList="Items" address="734EBD" pokedValue="228" />
+        <SavedAddress name="Item(7)" locked="false" dataType="UByte" optionList="Items" address="734EBE" pokedValue="0" />
+        <SavedAddress name="Item(8)" locked="false" dataType="UByte" optionList="Items" address="734EBF" pokedValue="0" />
+        <SavedAddress name="Item(9)" locked="false" dataType="UByte" optionList="Items" address="734EC0" pokedValue="228" />
+        <SavedAddress name="Item(10)" locked="false" dataType="UByte" optionList="Items" address="734EC1" pokedValue="0" />
+        <SavedAddress name="Item(11)" locked="false" dataType="UByte" optionList="Items" address="734EC2" pokedValue="0" />
+        <SavedAddress name="Item(12)" locked="false" dataType="UByte" optionList="Items" address="734EC3" pokedValue="184" />
+        <SavedAddress name="Item(13)" locked="false" dataType="UByte" optionList="Items" address="734EC4" pokedValue="171" />
+        <SavedAddress name="Item(14)" locked="false" dataType="UByte" optionList="Items" address="734EC5" pokedValue="0" />
+        <SavedAddress name="In battle HP" locked="true" dataType="UInt16" optionList="" address="734EDC" pokedValue="761" />
+        <SavedAddress name="In battle PP" locked="true" dataType="UInt16" optionList="" address="734EE2" pokedValue="200" />
+      </Addresses>
+    </SaveGroupData>
+    <SaveGroupData name="Jeff">
+      <Notes />
+      <Addresses>
+        <SavedAddress name="Level" locked="false" dataType="UByte" optionList="" address="734EF9" pokedValue="16" />
+        <SavedAddress name="Exp points" locked="false" dataType="UInt32" optionList="" address="734EFA" pokedValue="10937" />
+        <SavedAddress name="MaxHP" locked="false" dataType="UInt16" optionList="" address="734EFE" pokedValue="999" />
+        <SavedAddress name="MaxPP" locked="false" dataType="UInt16" optionList="" address="734F00" pokedValue="20" />
+        <SavedAddress name="Status" locked="false" dataType="UInt32" optionList="" address="734F02" pokedValue="0" />
+        <SavedAddress name="Offence" locked="false" dataType="UByte" optionList="" address="734F09" pokedValue="131" />
+        <SavedAddress name="Defense" locked="false" dataType="UByte" optionList="" address="734F0A" pokedValue="145" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" optionList="" address="734F0B" pokedValue="58" />
+        <SavedAddress name="Guts" locked="false" dataType="UByte" optionList="" address="734F0C" pokedValue="255" />
+        <SavedAddress name="Luck" locked="false" dataType="UByte" address="734F0D" pokedValue="58" />
+        <SavedAddress name="Vitality" locked="false" dataType="UByte" address="734F0E" pokedValue="23" />
+        <SavedAddress name="IQ" locked="false" dataType="UByte" address="734F0F" pokedValue="20" />
+        <SavedAddress name="Item" locked="false" dataType="UByte" optionList="Items" address="734F17" pokedValue="0" />
+        <SavedAddress name="Item(2)" locked="false" dataType="UByte" optionList="Items" address="734F18" pokedValue="146" />
+        <SavedAddress name="Item(3)" locked="false" dataType="UByte" optionList="Items" address="734F19" pokedValue="140" />
+        <SavedAddress name="Item(4)" locked="false" dataType="UByte" optionList="Items" address="734F1A" pokedValue="143" />
+        <SavedAddress name="Item(5)" locked="false" dataType="UByte" optionList="Items" address="734F1B" pokedValue="148" />
+        <SavedAddress name="Item(6)" locked="false" dataType="UByte" optionList="Items" address="734F1C" pokedValue="148" />
+        <SavedAddress name="Item(7)" locked="false" dataType="UByte" optionList="Items" address="734F1D" pokedValue="0" />
+        <SavedAddress name="Item(8)" locked="false" dataType="UByte" optionList="Items" address="734F1E" pokedValue="0" />
+        <SavedAddress name="Item(9)" locked="false" dataType="UByte" optionList="Items" address="734F1F" pokedValue="228" />
+        <SavedAddress name="Item(10)" locked="false" dataType="UByte" optionList="Items" address="734F20" pokedValue="0" />
+        <SavedAddress name="Item(11)" locked="false" dataType="UByte" optionList="Items" address="734F21" pokedValue="0" />
+        <SavedAddress name="Item(12)" locked="false" dataType="UByte" optionList="Items" address="734F22" pokedValue="36" />
+        <SavedAddress name="Item(13)" locked="false" dataType="UByte" optionList="Items" address="734F23" pokedValue="134" />
+        <SavedAddress name="Item(14)" locked="false" dataType="UByte" optionList="Items" address="734F24" pokedValue="0" />
+        <SavedAddress name="In battle HP" locked="true" dataType="UInt16" optionList="" address="734F3B" pokedValue="761" />
+        <SavedAddress name="In battle PP" locked="false" dataType="UInt16" optionList="" address="734F41" pokedValue="45" />
+      </Addresses>
+    </SaveGroupData>
+  </Groups>
+  <Options>
+    <SaveGroupOptions name="Items">
+      <Options>
+        <Option item="Cracked bat" value="17" />
+        <Option item="Tee ball bat" value="18" />
+        <Option item="Sand lot bat" value="19" />
+        <Option item="Minor league bat" value="20" />
+        <Option item="Mr. Base ball bat" value="21" />
+        <Option item="Big league bat" value="22" />
+        <Option item="Hall of fame bat" value="23" />
+        <Option item="Magicant bat" value="24" />
+        <Option item="Legendary bat" value="25" />
+        <Option item="Gutsy bat" value="26" />
+        <Option item="Casey bat" value="27" />
+        <Option item="Fry pan" value="28" />
+        <Option item="Thick fry pan" value="29" />
+        <Option item="Deluxe fry pan" value="30" />
+        <Option item="Teddy bear" value="1" />
+        <Option item="Super plush bear" value="3" />
+        <Option item="Broken machine" value="4" />
+        <Option item="Broken gadget" value="5" />
+        <Option item="Broken air gun" value="6" />
+        <Option item="Broken spray car" value="7" />
+        <Option item="Broken laser" value="8" />
+        <Option item="Broken iron" value="9" />
+        <Option item="Broken pipe" value="10" />
+        <Option item="Broken cannon" value="11" />
+        <Option item="Broken tube" value="12" />
+        <Option item="Broken bazooka" value="13" />
+        <Option item="Broken trumpet" value="14" />
+        <Option item="Broken harmonic" value="15" />
+        <Option item="Broken antenna" value="16" />
+        <Option item="Chef's fry pan" value="31" />
+        <Option item="French fry pan" value="32" />
+        <Option item="Magic fry pan" value="33" />
+        <Option item="holy fry pan" value="34" />
+        <Option item="Sword of kings" value="35" />
+        <Option item="Pop gun" value="36" />
+        <Option item="Stun gun" value="37" />
+        <Option item="toy air gun" value="38" />
+        <Option item="Magnum air gun" value="39" />
+        <Option item="Zip gun" value="40" />
+        <Option item="Laser gun" value="41" />
+        <Option item="Hyper beam" value="42" />
+        <Option item="Crusher beam" value="43" />
+        <Option item="Spectrum beam" value="44" />
+        <Option item="Death ray" value="45" />
+        <Option item="baddest beam" value="46" />
+        <Option item="moon beam gun" value="47" />
+        <Option item="Gaia beam" value="48" />
+        <Option item="yo-yo" value="49" />
+        <Option item="Slingshot" value="50" />
+        <Option item="bionic slingshot" value="51" />
+        <Option item="Trick yo-yo" value="52" />
+        <Option item="Combat yo-yo" value="53" />
+        <Option item="travel charm" value="54" />
+        <Option item="great charm" value="55" />
+        <Option item="Crystal charm" value="56" />
+        <Option item="Rabbit's foot" value="57" />
+        <Option item="Flame pendant" value="58" />
+        <Option item="Rain pendant" value="59" />
+        <Option item="Night pendant" value="60" />
+        <Option item="Sea pendant" value="61" />
+        <Option item="star pendant" value="62" />
+        <Option item="Cloak of kings" value="63" />
+        <Option item="Cheap bracelet" value="64" />
+        <Option item="Copper breacelet" value="65" />
+        <Option item="Silver bracelet" value="66" />
+        <Option item="Gold bracelet" value="67" />
+        <Option item="Platinum band" value="68" />
+        <Option item="diamond band" value="69" />
+        <Option item="Pixie's bracelet" value="70" />
+        <Option item="Cherub's band" value="71" />
+        <Option item="goodess band" value="72" />
+        <Option item="Bracer of kings" value="73" />
+        <Option item="Baseball cap" value="74" />
+        <Option item="Holmes hat" value="75" />
+        <Option item="Mr. baseball cap" value="76" />
+        <Option item="hard hat" value="77" />
+        <Option item="Ribbon" value="78" />
+        <Option item="Red ribbon" value="79" />
+        <Option item="Goddess ribbon" value="80" />
+        <Option item="coin of slumber" value="81" />
+        <Option item="coin of defense" value="82" />
+        <Option item="Lucky coin" value="83" />
+        <Option item="Talisman coin" value="84" />
+        <Option item="Shiny coin" value="85" />
+        <Option item="souvenir coin" value="86" />
+        <Option item="Diadem of kings" value="87" />
+        <Option item="Cookie" value="88" />
+        <Option item="bag of fries" value="89" />
+        <Option item="Hamburger" value="90" />
+        <Option item="Boiled egg" value="91" />
+        <Option item="Fresh egg" value="92" />
+        <Option item="Picnic lunch" value="93" />
+        <Option item="Pasta di summer" value="94" />
+        <Option item="Pizza" value="95" />
+        <Option item="Chef's special" value="96" />
+        <Option item="Large pizza" value="97" />
+        <Option item="PSI caramel" value="98" />
+        <Option item="Magic truffel" value="99" />
+        <Option item="Brain food lunch" value="100" />
+        <Option item="rock candy" value="101" />
+        <Option item="croissant" value="102" />
+        <Option item="bread roll" value="103" />
+        <Option item="Pack of bubble gum" value="104" />
+        <Option item="Jar of fly honey" value="105" />
+        <Option item="Can of fruit juice" value="106" />
+        <Option item="royyal iced tea" value="107" />
+        <Option item="Protein drink" value="108" />
+        <Option item="Kraken soup" value="109" />
+        <Option item="Bottle of water" value="110" />
+        <Option item="Cold remedy" value="111" />
+        <Option item="Sound Stone" value="196" />
+        <Option item="ATM card" value="177" />
+        <Option item="Lucky  Sandwich" value="228" />
+        <Option item="Key to the shack" value="170" />
+        <Option item="Teddy bear" value="2" />
+        <Option item="Receiver phone" value="181" />
+        <Option item="Suporma" value="204" />
+        <Option item="Pencil eraser" value="184" />
+        <Option item="Key to the cabin" value="171" />
+        <Option item="Protractor" value="112" />
+        <Option item="IQ capsule" value="113" />
+        <Option item="Guts capsule" value="114" />
+        <Option item="Speed capsule" value="115" />
+        <Option item="Vital capsule" value="116" />
+        <Option item="Luck capsule" value="117" />
+        <Option item="Ketchup packet" value="118" />
+        <Option item="Sugar packet" value="119" />
+        <Option item="Tin of cocoa" value="120" />
+        <Option item="Carton of cream" value="121" />
+        <Option item="Sprig of parsley" value="122" />
+        <Option item="Jar of hot sauce" value="123" />
+        <Option item="Salt packet" value="124" />
+        <Option item="Backstage pass" value="125" />
+        <Option item="Jar of delisauce" value="126" />
+        <Option item="Wet Towel" value="127" />
+        <Option item="Refeshing herb" value="128" />
+        <Option item="Secret herb" value="129" />
+        <Option item="horn of life" value="130" />
+        <Option item="counter-PSI unit" value="131" />
+        <Option item="shield killer" value="132" />
+        <Option item="Bazooka" value="133" />
+        <Option item="Heavy bozooka" value="134" />
+        <Option item="Hp-sucker" value="135" />
+        <Option item="Hungry Hp-sucker" value="136" />
+        <Option item="Xterminator spray" value="137" />
+        <Option item="Slime generator" value="138" />
+        <Option item="Yogurt dispenser" value="139" />
+        <Option item="Ruler" value="140" />
+        <Option item="snake bag" value="141" />
+        <Option item="Mummy wrap" value="142" />
+        <Option item="Protactor" value="143" />
+        <Option item="bottle rocket" value="144" />
+        <Option item="Big bottle rocket" value="145" />
+        <Option item="Multi bottle rocket" value="146" />
+        <Option item="Bomb" value="147" />
+        <Option item="Super bomb" value="148" />
+        <Option item="Insecticide spray" value="149" />
+        <Option item="Rust promoter" value="150" />
+        <Option item="Rust promoter DX" value="151" />
+        <Option item="Pair of dirty socks" value="152" />
+      </Options>
+    </SaveGroupOptions>
+    <SaveGroupOptions name="Status">
+      <Options>
+        <Option item="Sleep" value="1" />
+        <Option item="Cry" value="2" />
+        <Option item="Cant Move" value="3" />
+      </Options>
+    </SaveGroupOptions>
+  </Options>
+</Groups>
