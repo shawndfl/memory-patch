@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MemoryPatch
+namespace MemoryManager
 {
     /// <summary>
     /// Data used to keep an address at a value

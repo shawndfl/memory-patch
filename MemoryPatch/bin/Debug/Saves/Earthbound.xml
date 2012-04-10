@@ -35,7 +35,7 @@
         <SavedAddress name="Item" locked="false" dataType="UByte" optionList="Items" address="734E59" pokedValue="26" />
         <SavedAddress name="Item(2)" locked="false" dataType="UByte" optionList="Items" address="734E5A" pokedValue="103" />
         <SavedAddress name="Item(3)" locked="false" dataType="UByte" optionList="Items" address="734E5B" pokedValue="103" />
-        <SavedAddress name="Item(4)" locked="false" dataType="UByte" optionList="Items" address="734E5C" pokedValue="196" />
+        <SavedAddress name="Item(4)" locked="false" dataType="UByte" optionList="Items" address="734E5C" pokedValue="1" />
         <SavedAddress name="Item(5)" locked="false" dataType="UByte" optionList="Items" address="734E5D" pokedValue="177" />
         <SavedAddress name="Item(6)" locked="false" dataType="UByte" optionList="Items" address="734E5E" pokedValue="228" />
         <SavedAddress name="Item(7)" locked="false" dataType="UByte" optionList="Items" address="734E5F" pokedValue="0" />
@@ -44,8 +44,8 @@
         <SavedAddress name="Item(10)" locked="false" dataType="UByte" optionList="Items" address="734E62" pokedValue="0" />
         <SavedAddress name="Item(11)" locked="false" dataType="UByte" optionList="Items" address="734E63" pokedValue="0" />
         <SavedAddress name="Item(12)" locked="false" dataType="UByte" optionList="Items" address="734E64" pokedValue="184" />
-        <SavedAddress name="Item(13)" locked="false" dataType="UByte" optionList="Items" address="734E65" pokedValue="171" />
-        <SavedAddress name="Item(14)" locked="false" dataType="UByte" optionList="Items" address="734E66" pokedValue="0" />
+        <SavedAddress name="Item(13)" locked="false" dataType="UByte" optionList="Items" address="734E65" pokedValue="92" />
+        <SavedAddress name="Item(14)" locked="false" dataType="UByte" optionList="Items" address="734E66" pokedValue="108" />
         <SavedAddress name="Exp points" locked="false" dataType="UInt32" optionList="" address="734E3C" pokedValue="10937" />
         <SavedAddress name="Level" locked="false" dataType="UByte" optionList="" address="734E3B" pokedValue="16" />
         <SavedAddress name="In Battle Status" locked="false" dataType="UByte" optionList="" address="735433" pokedValue="4" />
@@ -80,7 +80,7 @@
     <SaveGroupData name="Enemy 3">
       <Notes />
       <Addresses>
-        <SavedAddress name="HP" locked="false" dataType="UInt16" address="735731" pokedValue="1" />
+        <SavedAddress name="HP" locked="false" dataType="UInt16" optionList="" address="735731" pokedValue="1" />
         <SavedAddress name="PP" locked="false" dataType="UByte" address="735737" pokedValue="60" />
         <SavedAddress name="Status" locked="false" dataType="UByte" optionList="" address="73573D" pokedValue="5" />
         <SavedAddress name="Offence" locked="false" dataType="UByte" address="735746" pokedValue="71" />
@@ -147,7 +147,7 @@
         <SavedAddress name="Speed" locked="false" dataType="UByte" optionList="" address="734F0B" pokedValue="58" />
         <SavedAddress name="Guts" locked="false" dataType="UByte" optionList="" address="734F0C" pokedValue="255" />
         <SavedAddress name="Luck" locked="false" dataType="UByte" address="734F0D" pokedValue="58" />
-        <SavedAddress name="Vitality" locked="false" dataType="UByte" address="734F0E" pokedValue="23" />
+        <SavedAddress name="Vitality" locked="false" dataType="UByte" optionList="" address="734F0E" pokedValue="23" />
         <SavedAddress name="IQ" locked="false" dataType="UByte" address="734F0F" pokedValue="20" />
         <SavedAddress name="Item" locked="false" dataType="UByte" optionList="Items" address="734F17" pokedValue="0" />
         <SavedAddress name="Item(2)" locked="false" dataType="UByte" optionList="Items" address="734F18" pokedValue="146" />
@@ -160,9 +160,9 @@
         <SavedAddress name="Item(9)" locked="false" dataType="UByte" optionList="Items" address="734F1F" pokedValue="228" />
         <SavedAddress name="Item(10)" locked="false" dataType="UByte" optionList="Items" address="734F20" pokedValue="0" />
         <SavedAddress name="Item(11)" locked="false" dataType="UByte" optionList="Items" address="734F21" pokedValue="0" />
-        <SavedAddress name="Item(12)" locked="false" dataType="UByte" optionList="Items" address="734F22" pokedValue="36" />
-        <SavedAddress name="Item(13)" locked="false" dataType="UByte" optionList="Items" address="734F23" pokedValue="134" />
-        <SavedAddress name="Item(14)" locked="false" dataType="UByte" optionList="Items" address="734F24" pokedValue="0" />
+        <SavedAddress name="Item(12)" locked="false" dataType="UByte" optionList="Items" address="734F22" pokedValue="129" />
+        <SavedAddress name="Item(13)" locked="false" dataType="UByte" optionList="Items" address="734F23" pokedValue="129" />
+        <SavedAddress name="Item(14)" locked="false" dataType="UByte" optionList="Items" address="734F24" pokedValue="90" />
         <SavedAddress name="In battle HP" locked="true" dataType="UInt16" optionList="" address="734F3B" pokedValue="761" />
         <SavedAddress name="In battle PP" locked="false" dataType="UInt16" optionList="" address="734F41" pokedValue="45" />
       </Addresses>
@@ -331,6 +331,51 @@
         <Option item="Rust promoter" value="150" />
         <Option item="Rust promoter DX" value="151" />
         <Option item="Pair of dirty socks" value="152" />
+        <Option item="Stag bettle" value="153" />
+        <Option item="Toothbrush" value="154" />
+        <Option item="Handbag strap" value="155" />
+        <Option item="Pharaoh's curse" value="156" />
+        <Option item="Defense shower" value="157" />
+        <Option item="Letter from mom" value="158" />
+        <Option item="Sudden guts pill" value="159" />
+        <Option item="Bag of dragonite" value="160" />
+        <Option item="Defense spray" value="161" />
+        <Option item="piggy nose" value="162" />
+        <Option item="For Sale sign" value="163" />
+        <Option item="Shyness book" value="164" />
+        <Option item="Picture postcard" value="165" />
+        <Option item="King bannana" value="166" />
+        <Option item="Letter from tony" value="167" />
+        <Option item="Chick" value="168" />
+        <Option item="Chicken" value="169" />
+        <Option item="Bad Key machine" value="172" />
+        <Option item="Temporary goods" value="173" />
+        <Option item="Zombie paper" value="174" />
+        <Option item="Hawk eye" value="175" />
+        <Option item="Bicycle" value="176" />
+        <Option item="Show ticket" value="178" />
+        <Option item="Letter from kids" value="179" />
+        <Option item="Wad of bills" value="180" />
+        <Option item="Diamond" value="182" />
+        <Option item="Signed banana" value="183" />
+        <Option item="Hieroglyph copy" value="185" />
+        <Option item="Meteotite" value="186" />
+        <Option item="Contact lends" value="187" />
+        <Option item="Hand-Aid" value="188" />
+        <Option item="trout yogurt" value="189" />
+        <Option item="Banana" value="190" />
+        <Option item="Calorie stick" value="191" />
+        <Option item="Key to the tower" value="192" />
+        <Option item="Meteorite pice" value="193" />
+        <Option item="Earth pendant" value="194" />
+        <Option item="Neutralizer" value="195" />
+        <Option item="Exit mouse" value="197" />
+        <Option item="Gelato de resort" value="198" />
+        <Option item="Snake" value="199" />
+        <Option item="Viper" value="200" />
+        <Option item="Brain stone" value="201" />
+        <Option item="Town Map" value="202" />
+        <Option item="Skip sandwich" value="224" />
       </Options>
     </SaveGroupOptions>
     <SaveGroupOptions name="Status">

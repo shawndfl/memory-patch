@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml.Serialization;
 using System.Globalization;
 
-namespace MemoryPatch
+namespace MemoryManager
 {
     [XmlRoot("Groups")]
     public class AddressData

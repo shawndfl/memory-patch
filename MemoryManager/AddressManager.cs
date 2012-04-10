@@ -5,10 +5,13 @@ using System.Text;
 using System.Xml.Serialization;
 using System.Globalization;
 using System.IO;
-using System.Windows.Forms;
 
-namespace MemoryPatch
+namespace MemoryManager
 {
+    /// <summary>
+    /// This class manages all the groups with their addresses.
+    /// It also holds all the option values.
+    /// </summary>
     public class AddressManager
     {
         #region Fields
@@ -236,44 +239,44 @@ namespace MemoryPatch
         #endregion       
     
         #region GUI Helpers
-        public void FillInTree(TreeNode root)
-        {
-            root.Nodes.Clear();
-            foreach (GroupAddress group in _groups.Values)
-            {
-                //create the group node
-                TreeNode groupNode = new TreeNode(group.Name);
-                groupNode.Tag = group;
-                root.Nodes.Add(groupNode);
+        //public void FillInTree(TreeNode root)
+        //{
+        //    root.Nodes.Clear();
+        //    foreach (GroupAddress group in _groups.Values)
+        //    {
+        //        //create the group node
+        //        TreeNode groupNode = new TreeNode(group.Name);
+        //        groupNode.Tag = group;
+        //        root.Nodes.Add(groupNode);
 
-                //create all the addresses
-                List<SavedAddress> lst = group.GetListOfAddresses();
-                foreach (SavedAddress address in lst)
-                {
-                    TreeNode addressNode = new TreeNode(address.ToString());
-                    addressNode.Tag = address;
+        //        //create all the addresses
+        //        List<SavedAddress> lst = group.GetListOfAddresses();
+        //        foreach (SavedAddress address in lst)
+        //        {
+        //            TreeNode addressNode = new TreeNode(address.ToString());
+        //            addressNode.Tag = address;
 
-                    //find index for add
-                    int index = 0;
-                    foreach (TreeNode childAddress in groupNode.Nodes)
-                    {
-                        SavedAddress addressChild = childAddress.Tag as SavedAddress;
-                        if (address.Address < addressChild.Address)
-                        {
-                            break;
-                        }
-                        index++;
-                    }
+        //            //find index for add
+        //            int index = 0;
+        //            foreach (TreeNode childAddress in groupNode.Nodes)
+        //            {
+        //                SavedAddress addressChild = childAddress.Tag as SavedAddress;
+        //                if (address.Address < addressChild.Address)
+        //                {
+        //                    break;
+        //                }
+        //                index++;
+        //            }
 
-                    //add the address node to the group
-                    if (groupNode.Nodes.Count == 0)
-                        groupNode.Nodes.Add(addressNode);
-                    else
-                        groupNode.Nodes.Insert(index, addressNode);                                     
-                }
-            }
-            root.Expand();
-        }
+        //            //add the address node to the group
+        //            if (groupNode.Nodes.Count == 0)
+        //                groupNode.Nodes.Add(addressNode);
+        //            else
+        //                groupNode.Nodes.Insert(index, addressNode);                                     
+        //        }
+        //    }
+        //    root.Expand();
+        //}
         #endregion
 
         public void Save(string file)
@@ -282,6 +285,8 @@ namespace MemoryPatch
             AddressData data = new AddressData();
             //data.Process = access.ProcessName;
             //data.Module = access.ModuleName;
+
+            //doing things this way protect encapulation
             foreach (GroupAddress group in _groups.Values)
             {
                 SaveGroupData saveGroup = new SaveGroupData();
@@ -313,6 +318,7 @@ namespace MemoryPatch
             }
             catch (Exception ex)
             {
+                throw new Exception("Error saving.\n" + ex.Message);
             }
             finally
             {
@@ -320,144 +326,5 @@ namespace MemoryPatch
                     stream.Close();
             }
         }
-    }
-    /// <summary>
-    /// These are groups of addresses that have something in common
-    /// </summary>
-    public class GroupAddress
-    {
-        /// <summary>
-        /// The name of the group
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Notes for the group
-        /// </summary>
-        public string Notes { get; set; }
-
-        /// <summary>
-        /// List of addresses
-        /// </summary>
-        private List<SavedAddress> _addresses =
-            new List<SavedAddress>();
-
-        #region Constructors
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="saved"></param>
-        public GroupAddress(SaveGroupData saved)
-        {
-            Name = saved.Name;
-            Notes = saved.Notes;
-            foreach (SavedAddress address in saved.Addresses)
-            {
-                AddAddress(address);                
-            }
-        }
-        #endregion        
-
-        internal List<SavedAddress> GetListOfAddresses()
-        {
-            List<SavedAddress> addresses = new List<SavedAddress>();
-            foreach (SavedAddress address in _addresses)
-            {
-                addresses.Add(address);
-            }
-            return addresses;
-        }
-
-        public void AddAddress(SavedAddress address)
-        {
-            //if (_addresses.ContainsKey(address.Address))
-            //    throw new Exception("Address already added " + address.Address);
-
-            _addresses.Add(address);
-        }
-
-        public void RemoveAddress(SavedAddress address)
-        {           
-            _addresses.Remove(address);            
-        }
-
-        public void ClearAddress()
-        {
-            _addresses.Clear();
-        }
-
-        public GroupAddress(string name)
-        {
-            Name = name;
-        }
-    }
-
-    public class GroupOptions
-    {        
-        public string Name { get; set; }
-
-        private Dictionary<string, Option> Options =
-            new Dictionary<string, Option>();
-
-        #region Constructors
-        public GroupOptions()
-        {
-        }
-        public GroupOptions(SaveGroupOptions data)
-        {
-            Name = data.Name;
-            foreach (Option option in data.Options)
-            {
-                Options.Add(option.Value, option);
-            }
-        }
-        #endregion
-
-        #region Public Functions
-        public Option GetOption(string value)
-        {
-            Option option;
-            Options.TryGetValue(value, out option);
-            return option;
-        }
-
-        public Option[] GetOptions()
-        {
-            Option[] options = new Option[Options.Count];
-            int i = 0;
-            foreach (Option option in Options.Values)
-            {
-                options[i++] = option;
-            }
-            return options;
-        }
-
-        public bool AddOption(string itemName, string value, out Option option)
-        {
-            bool added = false;
-            if (!Options.TryGetValue(value, out option))
-            {
-                option = new Option();
-                option.Item = itemName;
-                option.Value = value;
-
-                Options.Add(value, option);
-                added = true;
-            }
-
-            option.Item = itemName;            
-            return added;
-        }
-
-        public void RemoveOption(string value)
-        {
-            Options.Remove(value);
-        }
-
-        public override string ToString()
-        {
-            return Name;
-        }
-        #endregion
-    }
+    }     
 }

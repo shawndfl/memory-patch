@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryPatch", "MemoryPatch\MemoryPatch.csproj", "{DCE46179-14F1-4C99-8842-2E65FD086BEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryManager", "MemoryManager\MemoryManager.csproj", "{B1DDB6FF-AE00-4ABD-8DBC-988EC732DC53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{DCE46179-14F1-4C99-8842-2E65FD086BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCE46179-14F1-4C99-8842-2E65FD086BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCE46179-14F1-4C99-8842-2E65FD086BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1DDB6FF-AE00-4ABD-8DBC-988EC732DC53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1DDB6FF-AE00-4ABD-8DBC-988EC732DC53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1DDB6FF-AE00-4ABD-8DBC-988EC732DC53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1DDB6FF-AE00-4ABD-8DBC-988EC732DC53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -478,15 +478,7 @@ namespace MemoryPatch.Editing_Memory
             if (cboAssign.Text == "Equal")
             {
                 ActiveAddress.StringValue = txtValue.Text;
-            }
-            else if (cboAssign.Text == "Or In")
-            {
-                ActiveAddress.OrIn(txtValue.Text);
-            }
-            else if (cboAssign.Text == "Or Out")
-            {
-
-            }
+            }            
                 //ActiveAddress.Value |= txtValue.Text;
 
             _access.WriteValue(ActiveAddress.Address, ActiveAddress.Value);
