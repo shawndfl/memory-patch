@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml.Serialization;
 using System.Globalization;
 using System.IO;
+using System.Windows.Forms;
 
 namespace MemoryManager
 {
@@ -24,8 +25,15 @@ namespace MemoryManager
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public AddressManager() { }
 
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="file">saved file information</param>
         public AddressManager(string file)
         {
             Stream stream = null;
@@ -98,7 +106,7 @@ namespace MemoryManager
         {
             GroupAddress data;
             _groups.TryGetValue(groupName, out data);
-            return data;        
+            return data;
         }
 
         /// <summary>
@@ -151,7 +159,10 @@ namespace MemoryManager
         #endregion
 
         #region Option Functions
-
+        /// <summary>
+        /// Gets an array of group options
+        /// </summary>
+        /// <returns></returns>
         public GroupOptions[] GetOptionGroups()
         {
             if (_options.Count > 0)
@@ -185,7 +196,12 @@ namespace MemoryManager
                 return null;            
         }
 
-        public Option[] GetOptions(string groupName)
+        /// <summary>
+        /// Gets an option from a group
+        /// </summary>
+        /// <param name="groupName">name of the group</param>
+        /// <returns></returns>
+        public List<Option> GetOptions(string groupName)
         {
             GroupOptions data;
             if (_options.TryGetValue(groupName, out data))
@@ -194,10 +210,15 @@ namespace MemoryManager
             }
             else
             {
-                return new Option[0];
+                return new List<Option>();
             }
         }
 
+        /// <summary>
+        /// Adds a group
+        /// </summary>
+        /// <param name="groupName">the group</param>
+        /// <returns></returns>
         public bool AddOptionGroup(string groupName)
         {
             GroupOptions data;
@@ -214,6 +235,14 @@ namespace MemoryManager
             }            
         }
 
+        /// <summary>
+        /// Adds an option to a group
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <param name="optionName"></param>
+        /// <param name="value"></param>
+        /// <param name="option"></param>
+        /// <returns></returns>
         public bool AddOption(string groupName, string optionName, string value, out Option option)
         {
             GroupOptions data;
@@ -227,6 +256,11 @@ namespace MemoryManager
             return data.AddOption(optionName, value, out option);            
         }
 
+        /// <summary>
+        /// Removes an option from a group
+        /// </summary>
+        /// <param name="groupName">group name</param>
+        /// <param name="optionValue">option to remove</param>
         public void RemoveOption(string groupName, string optionValue)
         {
             GroupOptions data;
@@ -236,49 +270,53 @@ namespace MemoryManager
             }
         }
 
-        #endregion       
-    
+        #endregion      
+
         #region GUI Helpers
-        //public void FillInTree(TreeNode root)
-        //{
-        //    root.Nodes.Clear();
-        //    foreach (GroupAddress group in _groups.Values)
-        //    {
-        //        //create the group node
-        //        TreeNode groupNode = new TreeNode(group.Name);
-        //        groupNode.Tag = group;
-        //        root.Nodes.Add(groupNode);
+        public void FillInTree(TreeNode root)
+        {
+            root.Nodes.Clear();
+            foreach (GroupAddress group in _groups.Values)
+            {
+                //create the group node
+                TreeNode groupNode = new TreeNode(group.Name);
+                groupNode.Tag = group;
+                root.Nodes.Add(groupNode);
 
-        //        //create all the addresses
-        //        List<SavedAddress> lst = group.GetListOfAddresses();
-        //        foreach (SavedAddress address in lst)
-        //        {
-        //            TreeNode addressNode = new TreeNode(address.ToString());
-        //            addressNode.Tag = address;
+                //create all the addresses
+                List<SavedAddress> lst = group.GetListOfAddresses();
+                foreach (SavedAddress address in lst)
+                {
+                    TreeNode addressNode = new TreeNode(address.ToString());
+                    addressNode.Tag = address;
 
-        //            //find index for add
-        //            int index = 0;
-        //            foreach (TreeNode childAddress in groupNode.Nodes)
-        //            {
-        //                SavedAddress addressChild = childAddress.Tag as SavedAddress;
-        //                if (address.Address < addressChild.Address)
-        //                {
-        //                    break;
-        //                }
-        //                index++;
-        //            }
+                    //find index for add
+                    int index = 0;
+                    foreach (TreeNode childAddress in groupNode.Nodes)
+                    {
+                        SavedAddress addressChild = childAddress.Tag as SavedAddress;
+                        if (address.Address < addressChild.Address)
+                        {
+                            break;
+                        }
+                        index++;
+                    }
 
-        //            //add the address node to the group
-        //            if (groupNode.Nodes.Count == 0)
-        //                groupNode.Nodes.Add(addressNode);
-        //            else
-        //                groupNode.Nodes.Insert(index, addressNode);                                     
-        //        }
-        //    }
-        //    root.Expand();
-        //}
+                    //add the address node to the group
+                    if (groupNode.Nodes.Count == 0)
+                        groupNode.Nodes.Add(addressNode);
+                    else
+                        groupNode.Nodes.Insert(index, addressNode);
+                }
+            }
+            root.Expand();
+        }
         #endregion
 
+        /// <summary>
+        /// Saves the manager to a file
+        /// </summary>
+        /// <param name="file">name of the file</param>
         public void Save(string file)
         {
 

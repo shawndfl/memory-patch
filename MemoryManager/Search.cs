@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace MemoryPatch
+namespace MemoryManager
 {
     public class SearchMemory
     {     
@@ -20,7 +19,7 @@ namespace MemoryPatch
         public int AddressDisplayCount = 200;
 
         private MemoryAccess _access;
-        private Control _parent;
+        private IInvoke _control;
 
         /// <summary>
         /// snap shot of searches
@@ -43,10 +42,10 @@ namespace MemoryPatch
         public event EventHandler<AddressFoundEventArgs> OnValueFound;        
         public event EventHandler<SearchUpdateEventArgs> OnProgressChange;
 
-        public SearchMemory(MemoryAccess access, Control parent)
+        public SearchMemory(MemoryAccess access, IInvoke control)
         {            
             _access = access;
-            _parent = parent;
+            _control = control;
             _addressCollection = new AddressCollection();
             _snapShot1 = new List<AddressFound>(25000);
             _snapShot2 = new List<AddressFound>(25000);
@@ -406,7 +405,7 @@ namespace MemoryPatch
                 }
 
                 //invoke parent
-                _parent.Invoke(new ThreadStart(delegate()
+                _control.InvokeMethod(new ThreadStart(delegate()
                 {
                     if (OnValueFound != null)
                     {
@@ -433,7 +432,7 @@ namespace MemoryPatch
                     }
 
                     //invoke parent
-                    _parent.Invoke(new ThreadStart(delegate()
+                    _control.InvokeMethod(new ThreadStart(delegate()
                     {
                         if (OnValueFound != null)
                         {
@@ -583,7 +582,7 @@ namespace MemoryPatch
             //this must change by at least one precent or equal 100%
             if (precentDone - lastPrecentDone > .1f || end == currentAddress)
             {
-                _parent.Invoke(new ThreadStart(delegate()
+                _control.InvokeMethod(new ThreadStart(delegate()
                 {
                     if (OnProgressChange != null)
                     {
@@ -609,7 +608,7 @@ namespace MemoryPatch
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error Saving. " + ex.Message);
+                _control.ShowMessage("Error Saving. " + ex.Message);
             }
             finally
             {
@@ -629,7 +628,7 @@ namespace MemoryPatch
                 _addressCollection = (AddressCollection)ser.Deserialize(stream);                
 
                 //display the first few addresses
-                _parent.Invoke(new ThreadStart(delegate()                
+                _control.InvokeMethod(new ThreadStart(delegate()                
                 {
                     //show how many address are found
                     if (OnProgressChange != null)
@@ -651,7 +650,7 @@ namespace MemoryPatch
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error Opening file " + file + "\n" + ex.Message);
+                _control.ShowMessage("Error Opening file " + file + "\n" + ex.Message);
             }
             finally
             {

@@ -10,6 +10,7 @@ namespace MemoryManager
 {
     public class MemoryAccess
     {
+        #region Dll Imports
         [DllImport("kernel32.dll", EntryPoint = "ReadProcessMemory")]
         public static extern Int32 ReadProcessMemory(IntPtr hProcess, int lpBaseAddress,
             byte[] buffer, int size, out int lpNumberOfBytesRead);
@@ -20,15 +21,21 @@ namespace MemoryManager
 
         [DllImport("kernel32.dll", EntryPoint = "OpenProcess")]
         public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dbProcessId);
+        #endregion
 
+        #region Consts
         public const int PROCESS_VM_READ = 0x0010;
         public const int PROCESS_VM_WRITE = 0x0020;
+        #endregion
 
+        #region Fields
         private static object _freezeLock = new object();
         private Dictionary<int, AddressLock> _frezonAddresses =
             new Dictionary<int, AddressLock>();
 
         private Thread _frezzeThread;
+        #endregion
+
         /// <summary>
         /// the process we are accessing
         /// </summary>

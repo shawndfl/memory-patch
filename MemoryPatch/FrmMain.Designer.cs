@@ -45,6 +45,8 @@
             this.btnRun = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.openAddressesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAddressesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
@@ -52,10 +54,9 @@
             this.saveSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.selectProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchControl1 = new MemoryPatch.SearchControl();
             this.memoryPatchControl1 = new MemoryPatch.Editing_Memory.MemoryPatchControl();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.testControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,7 +82,7 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 700;            
+            this.timer1.Interval = 700;
             // 
             // btnRun
             // 
@@ -114,10 +115,24 @@
             this.openSearchToolStripMenuItem,
             this.saveSearchToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.importToolStripMenuItem});
+            this.importToolStripMenuItem,
+            this.testControlToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // selectProcessToolStripMenuItem
+            // 
+            this.selectProcessToolStripMenuItem.Name = "selectProcessToolStripMenuItem";
+            this.selectProcessToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.selectProcessToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.selectProcessToolStripMenuItem.Text = "Select Process";
+            this.selectProcessToolStripMenuItem.Click += new System.EventHandler(this.selectProcessToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(213, 6);
             // 
             // openAddressesToolStripMenuItem
             // 
@@ -170,14 +185,6 @@
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
-            // selectProcessToolStripMenuItem
-            // 
-            this.selectProcessToolStripMenuItem.Name = "selectProcessToolStripMenuItem";
-            this.selectProcessToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.selectProcessToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.selectProcessToolStripMenuItem.Text = "Select Process";
-            this.selectProcessToolStripMenuItem.Click += new System.EventHandler(this.selectProcessToolStripMenuItem_Click);
-            // 
             // searchControl1
             // 
             this.searchControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -186,7 +193,7 @@
             this.searchControl1.Name = "searchControl1";
             this.searchControl1.Size = new System.Drawing.Size(421, 657);
             this.searchControl1.TabIndex = 16;
-            this.searchControl1.OnAddressSelected += new System.EventHandler<MemoryPatch.AddressFoundEventArgs>(this.searchControl1_OnAddressSelected);
+            this.searchControl1.OnAddressSelected += new System.EventHandler<MemoryManager.AddressFoundEventArgs>(this.searchControl1_OnAddressSelected);
             // 
             // memoryPatchControl1
             // 
@@ -196,12 +203,14 @@
             this.memoryPatchControl1.Location = new System.Drawing.Point(427, 50);
             this.memoryPatchControl1.Name = "memoryPatchControl1";
             this.memoryPatchControl1.Size = new System.Drawing.Size(332, 657);
-            this.memoryPatchControl1.TabIndex = 15;            
+            this.memoryPatchControl1.TabIndex = 15;
             // 
-            // toolStripMenuItem3
+            // testControlToolStripMenuItem
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(213, 6);
+            this.testControlToolStripMenuItem.Name = "testControlToolStripMenuItem";
+            this.testControlToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.testControlToolStripMenuItem.Text = "TestControl";
+            this.testControlToolStripMenuItem.Click += new System.EventHandler(this.testControlToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -245,6 +254,7 @@
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectProcessToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem testControlToolStripMenuItem;
     }
 }
 

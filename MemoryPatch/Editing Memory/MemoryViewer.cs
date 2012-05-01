@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using HexViewer;
+using MemoryManager;
 
 namespace MemoryPatch
 {

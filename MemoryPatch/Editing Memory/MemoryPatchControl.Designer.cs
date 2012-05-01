@@ -29,26 +29,30 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tv = new System.Windows.Forms.TreeView();
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.txtValue = new System.Windows.Forms.TextBox();
-            this.cboDataType = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.chkLocked = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tv = new System.Windows.Forms.TreeView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupAddressEdit = new System.Windows.Forms.GroupBox();
             this.cboAssign = new System.Windows.Forms.ComboBox();
             this.btnPoke = new System.Windows.Forms.Button();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.cboDataType = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.cboAddressOptionGroup = new System.Windows.Forms.ComboBox();
+            this.chkLocked = new System.Windows.Forms.CheckBox();
             this.cboValue = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.txtValue = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.txtCurrentValue = new System.Windows.Forms.TextBox();
             this.groupEdit = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
@@ -92,7 +96,8 @@
             this.cboOptionGroup = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tabControl2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -113,103 +118,48 @@
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tv
+            // timer1
             // 
-            this.tv.AllowDrop = true;
-            this.tv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tv.Enabled = false;
-            this.tv.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tv.Location = new System.Drawing.Point(0, 0);
-            this.tv.Name = "tv";
-            this.tv.Size = new System.Drawing.Size(655, 412);
-            this.tv.TabIndex = 0;
-            this.tv.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tv_AfterLabelEdit);
-            this.tv.DragDrop += new System.Windows.Forms.DragEventHandler(this.tv_DragDrop);
-            this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_AfterSelect);
-            this.tv.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tv_MouseDown);
-            this.tv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tv_KeyUp);
-            this.tv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tv_KeyDown);
-            this.tv.DragOver += new System.Windows.Forms.DragEventHandler(this.tv_DragOver);
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // txtDescription
+            // tabControl2
             // 
-            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescription.Location = new System.Drawing.Point(93, 22);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(542, 20);
-            this.txtDescription.TabIndex = 0;
-            this.txtDescription.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescription_KeyDown);
+            this.tabControl2.Controls.Add(this.tabPage1);
+            this.tabControl2.Controls.Add(this.tabPage5);
+            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl2.Location = new System.Drawing.Point(0, 0);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(655, 768);
+            this.tabControl2.TabIndex = 1;
             // 
-            // txtAddress
+            // tabPage1
             // 
-            this.txtAddress.Location = new System.Drawing.Point(93, 48);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(94, 20);
-            this.txtAddress.TabIndex = 1;
-            this.txtAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAddress_KeyDown);
+            this.tabPage1.Controls.Add(this.splitContainer1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(647, 742);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Addresses";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // txtValue
+            // tabPage5
             // 
-            this.txtValue.Location = new System.Drawing.Point(93, 139);
-            this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(180, 20);
-            this.txtValue.TabIndex = 4;
-            this.txtValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValue_KeyDown);
-            this.txtValue.Enter += new System.EventHandler(this.txtValue_Enter);
-            // 
-            // cboDataType
-            // 
-            this.cboDataType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDataType.FormattingEnabled = true;
-            this.cboDataType.Location = new System.Drawing.Point(93, 81);
-            this.cboDataType.Name = "cboDataType";
-            this.cboDataType.Size = new System.Drawing.Size(94, 21);
-            this.cboDataType.TabIndex = 2;
-            this.cboDataType.SelectedIndexChanged += new System.EventHandler(this.cboDataType_SelectedIndexChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(16, 84);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(57, 13);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Data Type";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(16, 51);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(45, 13);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "Address";
-            // 
-            // chkLocked
-            // 
-            this.chkLocked.AutoSize = true;
-            this.chkLocked.Location = new System.Drawing.Point(193, 87);
-            this.chkLocked.Name = "chkLocked";
-            this.chkLocked.Size = new System.Drawing.Size(80, 17);
-            this.chkLocked.TabIndex = 3;
-            this.chkLocked.Text = "Lock Value";
-            this.chkLocked.UseVisualStyleBackColor = true;
-            this.chkLocked.CheckedChanged += new System.EventHandler(this.chkLocked_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Description";
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(647, 742);
+            this.tabPage5.TabIndex = 1;
+            this.tabPage5.Text = "Plugin";
+            this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -220,22 +170,31 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(655, 768);
-            this.splitContainer1.SplitterDistance = 412;
-            this.splitContainer1.TabIndex = 3;
+            this.splitContainer1.Size = new System.Drawing.Size(641, 736);
+            this.splitContainer1.SplitterDistance = 394;
+            this.splitContainer1.TabIndex = 4;
+            // 
+            // tv
+            // 
+            this.tv.AllowDrop = true;
+            this.tv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tv.Enabled = false;
+            this.tv.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tv.Location = new System.Drawing.Point(0, 0);
+            this.tv.Name = "tv";
+            this.tv.Size = new System.Drawing.Size(641, 394);
+            this.tv.TabIndex = 0;
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Enabled = false;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(655, 352);
+            this.tabControl1.Size = new System.Drawing.Size(641, 338);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage2
@@ -245,7 +204,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(647, 326);
+            this.tabPage2.Size = new System.Drawing.Size(633, 312);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Selected Nodes";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -271,7 +230,7 @@
             this.groupAddressEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupAddressEdit.Location = new System.Drawing.Point(3, 3);
             this.groupAddressEdit.Name = "groupAddressEdit";
-            this.groupAddressEdit.Size = new System.Drawing.Size(641, 320);
+            this.groupAddressEdit.Size = new System.Drawing.Size(627, 306);
             this.groupAddressEdit.TabIndex = 7;
             this.groupAddressEdit.TabStop = false;
             this.groupAddressEdit.Text = "Address Edit";
@@ -282,7 +241,7 @@
             this.cboAssign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboAssign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboAssign.FormattingEnabled = true;
-            this.cboAssign.Location = new System.Drawing.Point(578, 139);
+            this.cboAssign.Location = new System.Drawing.Point(564, 139);
             this.cboAssign.Name = "cboAssign";
             this.cboAssign.Size = new System.Drawing.Size(57, 21);
             this.cboAssign.TabIndex = 8;
@@ -295,7 +254,31 @@
             this.btnPoke.TabIndex = 7;
             this.btnPoke.Text = "Poke";
             this.btnPoke.UseVisualStyleBackColor = true;
-            this.btnPoke.Click += new System.EventHandler(this.btnPoke_Click);
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Location = new System.Drawing.Point(93, 48);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(94, 20);
+            this.txtAddress.TabIndex = 1;
+            // 
+            // cboDataType
+            // 
+            this.cboDataType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDataType.FormattingEnabled = true;
+            this.cboDataType.Location = new System.Drawing.Point(93, 81);
+            this.cboDataType.Name = "cboDataType";
+            this.cboDataType.Size = new System.Drawing.Size(94, 21);
+            this.cboDataType.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Description";
             // 
             // cboAddressOptionGroup
             // 
@@ -305,9 +288,18 @@
             this.cboAddressOptionGroup.FormattingEnabled = true;
             this.cboAddressOptionGroup.Location = new System.Drawing.Point(93, 176);
             this.cboAddressOptionGroup.Name = "cboAddressOptionGroup";
-            this.cboAddressOptionGroup.Size = new System.Drawing.Size(542, 21);
+            this.cboAddressOptionGroup.Size = new System.Drawing.Size(528, 21);
             this.cboAddressOptionGroup.TabIndex = 6;
-            this.cboAddressOptionGroup.SelectedIndexChanged += new System.EventHandler(this.cboGroup_SelectedIndexChanged);
+            // 
+            // chkLocked
+            // 
+            this.chkLocked.AutoSize = true;
+            this.chkLocked.Location = new System.Drawing.Point(193, 87);
+            this.chkLocked.Name = "chkLocked";
+            this.chkLocked.Size = new System.Drawing.Size(80, 17);
+            this.chkLocked.TabIndex = 3;
+            this.chkLocked.Text = "Lock Value";
+            this.chkLocked.UseVisualStyleBackColor = true;
             // 
             // cboValue
             // 
@@ -317,9 +309,8 @@
             this.cboValue.FormattingEnabled = true;
             this.cboValue.Location = new System.Drawing.Point(338, 139);
             this.cboValue.Name = "cboValue";
-            this.cboValue.Size = new System.Drawing.Size(236, 21);
+            this.cboValue.Size = new System.Drawing.Size(222, 21);
             this.cboValue.TabIndex = 5;
-            this.cboValue.SelectedIndexChanged += new System.EventHandler(this.cboValue_SelectedIndexChanged);
             // 
             // label15
             // 
@@ -329,6 +320,15 @@
             this.label15.Size = new System.Drawing.Size(71, 13);
             this.label15.TabIndex = 0;
             this.label15.Text = "Current Value";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 84);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(57, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Data Type";
             // 
             // label4
             // 
@@ -348,6 +348,31 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "List Options";
             // 
+            // txtDescription
+            // 
+            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescription.Location = new System.Drawing.Point(93, 22);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(528, 20);
+            this.txtDescription.TabIndex = 0;
+            // 
+            // txtValue
+            // 
+            this.txtValue.Location = new System.Drawing.Point(93, 139);
+            this.txtValue.Name = "txtValue";
+            this.txtValue.Size = new System.Drawing.Size(180, 20);
+            this.txtValue.TabIndex = 4;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(16, 51);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(45, 13);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Address";
+            // 
             // txtCurrentValue
             // 
             this.txtCurrentValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -355,7 +380,7 @@
             this.txtCurrentValue.Location = new System.Drawing.Point(93, 110);
             this.txtCurrentValue.Name = "txtCurrentValue";
             this.txtCurrentValue.ReadOnly = true;
-            this.txtCurrentValue.Size = new System.Drawing.Size(94, 20);
+            this.txtCurrentValue.Size = new System.Drawing.Size(80, 20);
             this.txtCurrentValue.TabIndex = 3;
             // 
             // groupEdit
@@ -366,7 +391,7 @@
             this.groupEdit.Location = new System.Drawing.Point(3, 3);
             this.groupEdit.Name = "groupEdit";
             this.groupEdit.SelectedIndex = 0;
-            this.groupEdit.Size = new System.Drawing.Size(641, 320);
+            this.groupEdit.Size = new System.Drawing.Size(627, 306);
             this.groupEdit.TabIndex = 10;
             this.groupEdit.Visible = false;
             // 
@@ -376,7 +401,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(633, 294);
+            this.tabPage7.Size = new System.Drawing.Size(619, 280);
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "Notes";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -386,10 +411,9 @@
             this.txtNotes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtNotes.Location = new System.Drawing.Point(3, 3);
             this.txtNotes.Name = "txtNotes";
-            this.txtNotes.Size = new System.Drawing.Size(627, 288);
+            this.txtNotes.Size = new System.Drawing.Size(613, 274);
             this.txtNotes.TabIndex = 7;
             this.txtNotes.Text = "";
-            this.txtNotes.TextChanged += new System.EventHandler(this.txtNotes_TextChanged);
             // 
             // tabPage4
             // 
@@ -426,7 +450,6 @@
             this.btnPokeAll.TabIndex = 2;
             this.btnPokeAll.Text = "Poke All";
             this.btnPokeAll.UseVisualStyleBackColor = true;
-            this.btnPokeAll.Click += new System.EventHandler(this.btnPokeAll_Click);
             // 
             // btnCreateNewGroup
             // 
@@ -436,7 +459,6 @@
             this.btnCreateNewGroup.TabIndex = 2;
             this.btnCreateNewGroup.Text = "Create New Group";
             this.btnCreateNewGroup.UseVisualStyleBackColor = true;
-            this.btnCreateNewGroup.Click += new System.EventHandler(this.btnCreateNewGroup_Click);
             // 
             // txtGroupName
             // 
@@ -444,7 +466,6 @@
             this.txtGroupName.Name = "txtGroupName";
             this.txtGroupName.Size = new System.Drawing.Size(230, 20);
             this.txtGroupName.TabIndex = 0;
-            this.txtGroupName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGroupName_KeyDown);
             // 
             // label18
             // 
@@ -475,7 +496,6 @@
             this.btnClone.TabIndex = 1;
             this.btnClone.Text = "Clone Addresses";
             this.btnClone.UseVisualStyleBackColor = true;
-            this.btnClone.Click += new System.EventHandler(this.btnClone_Click);
             // 
             // label6
             // 
@@ -549,7 +569,6 @@
             this.btnStartTest.TabIndex = 1;
             this.btnStartTest.Text = "Start Test";
             this.btnStartTest.UseVisualStyleBackColor = true;
-            this.btnStartTest.Click += new System.EventHandler(this.btnStartTest_Click);
             // 
             // groupAddAddresses
             // 
@@ -592,7 +611,6 @@
             this.btnCreate.TabIndex = 2;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // txtBaseName
             // 
@@ -740,7 +758,6 @@
             this.btnIncValue.TabIndex = 3;
             this.btnIncValue.Text = "Increment Value";
             this.btnIncValue.UseVisualStyleBackColor = true;
-            this.btnIncValue.Click += new System.EventHandler(this.btnIncValue_Click);
             // 
             // lstOptions
             // 
@@ -751,7 +768,6 @@
             this.lstOptions.Name = "lstOptions";
             this.lstOptions.Size = new System.Drawing.Size(278, 173);
             this.lstOptions.TabIndex = 4;
-            this.lstOptions.SelectedIndexChanged += new System.EventHandler(this.lstOptions_SelectedIndexChanged);
             // 
             // txtOption
             // 
@@ -759,8 +775,6 @@
             this.txtOption.Name = "txtOption";
             this.txtOption.Size = new System.Drawing.Size(238, 20);
             this.txtOption.TabIndex = 1;
-            this.txtOption.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOption_KeyDown);
-            this.txtOption.MouseUp += new System.Windows.Forms.MouseEventHandler(this.txtOption_MouseUp);
             // 
             // txtOptValue
             // 
@@ -768,7 +782,6 @@
             this.txtOptValue.Name = "txtOptValue";
             this.txtOptValue.Size = new System.Drawing.Size(126, 20);
             this.txtOptValue.TabIndex = 2;
-            this.txtOptValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOption_KeyDown);
             // 
             // label11
             // 
@@ -795,8 +808,6 @@
             this.cboOptionGroup.Name = "cboOptionGroup";
             this.cboOptionGroup.Size = new System.Drawing.Size(238, 21);
             this.cboOptionGroup.TabIndex = 0;
-            this.cboOptionGroup.SelectedIndexChanged += new System.EventHandler(this.cboOptionGroup_SelectedIndexChanged);
-            this.cboOptionGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboOptionGroup_KeyDown);
             // 
             // label5
             // 
@@ -816,20 +827,16 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Group";
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 500;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // MemoryPatchControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.tabControl2);
             this.Name = "MemoryPatchControl";
             this.Size = new System.Drawing.Size(655, 768);
             this.Load += new System.EventHandler(this.MemoryPatchControl_Load);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
@@ -860,38 +867,39 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView tv;
-        private System.Windows.Forms.TextBox txtDescription;
-        private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.TextBox txtValue;
-        private System.Windows.Forms.ComboBox cboDataType;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.CheckBox chkLocked;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TreeView tv;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cboAddressOptionGroup;
-        private System.Windows.Forms.ComboBox cboValue;
-        private System.Windows.Forms.Button btnIncValue;
-        private System.Windows.Forms.ListBox lstOptions;
-        private System.Windows.Forms.TextBox txtOption;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cboOptionGroup;
-        private System.Windows.Forms.TextBox txtOptValue;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtCurrentValue;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.GroupBox groupAddressEdit;
+        private System.Windows.Forms.ComboBox cboAssign;
+        private System.Windows.Forms.Button btnPoke;
+        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.ComboBox cboDataType;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboAddressOptionGroup;
+        private System.Windows.Forms.CheckBox chkLocked;
+        private System.Windows.Forms.ComboBox cboValue;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.TextBox txtValue;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtCurrentValue;
         private System.Windows.Forms.TabControl groupEdit;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.RichTextBox txtNotes;
         private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnPokeAll;
+        private System.Windows.Forms.Button btnCreateNewGroup;
+        private System.Windows.Forms.TextBox txtGroupName;
+        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.GroupBox groupClone;
         private System.Windows.Forms.Button btnClone;
         private System.Windows.Forms.Label label6;
@@ -902,27 +910,29 @@
         private System.Windows.Forms.NumericUpDown numDelay;
         private System.Windows.Forms.Button btnStartTest;
         private System.Windows.Forms.GroupBox groupAddAddresses;
+        private System.Windows.Forms.ComboBox cboListOption;
         private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.TextBox txtBaseName;
+        private System.Windows.Forms.TextBox txtInitPokeValue;
         private System.Windows.Forms.TextBox txtAddAddress;
         private System.Windows.Forms.NumericUpDown numCreateCount;
         private System.Windows.Forms.NumericUpDown numPadding;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.RichTextBox txtNotes;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnCreateNewGroup;
-        private System.Windows.Forms.TextBox txtGroupName;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox txtBaseName;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button btnPokeAll;
-        private System.Windows.Forms.ComboBox cboListOption;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox txtInitPokeValue;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button btnPoke;
-        private System.Windows.Forms.ComboBox cboAssign;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button btnIncValue;
+        private System.Windows.Forms.ListBox lstOptions;
+        private System.Windows.Forms.TextBox txtOption;
+        private System.Windows.Forms.TextBox txtOptValue;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cboOptionGroup;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TabPage tabPage5;
     }
 }

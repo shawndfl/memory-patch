@@ -4,18 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace MemoryPatch
+namespace MemoryManager
 {
-
+    /// <summary>
+    /// Used to pass address found information back to the client
+    /// </summary>
     public class AddressFoundEventArgs : EventArgs
     {
+        /// <summary>
+        /// The address that was found
+        /// </summary>
         public AddressFound AddressFound { get; private set; }
+
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="addressFound">the address found</param>
         public AddressFoundEventArgs(AddressFound addressFound)
         {
             AddressFound = addressFound;
         }
     }
 
+    /// <summary>
+    /// A structor defining a memory address
+    /// </summary>
     [Serializable]
     public struct AddressFound
     {
@@ -26,6 +39,9 @@ namespace MemoryPatch
         #endregion
 
         #region Properties
+        /// <summary>
+        /// The address
+        /// </summary>
         [XmlAttribute("address")]
         public int Address
         {
@@ -33,6 +49,9 @@ namespace MemoryPatch
             set { _address = value; }
         }
 
+        /// <summary>
+        /// The value as a long
+        /// </summary>
         [XmlAttribute("value")]
         public long LongValue
         {
@@ -58,11 +77,17 @@ namespace MemoryPatch
             }
         }
         
+        /// <summary>
+        /// The value as a byte array
+        /// </summary>
         public byte[] CurrentValue
         {
             get { return _currentValue; }           
         }
 
+        /// <summary>
+        /// The data type of this address
+        /// </summary>
         [XmlAttribute("dataType")]
         public DataType DataType
         {
@@ -106,6 +131,12 @@ namespace MemoryPatch
         }
         #endregion       
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="currentValue"></param>
+        /// <param name="data"></param>
         public AddressFound(int address, byte[] currentValue, DataType data)
         {
             _currentValue = (byte[])currentValue.Clone();                  
@@ -113,6 +144,10 @@ namespace MemoryPatch
             _dataType = data;            
         }
 
+        /// <summary>
+        /// The string value of this address
+        /// </summary>
+        /// <returns></returns>
         public string GetStringValue()
         {
             switch (DataType)
@@ -153,19 +188,13 @@ namespace MemoryPatch
             }
         }
 
+        /// <summary>
+        /// to string
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("{0:X00000000} = ", _address) + GetStringValue();
         }
-    }
-
-    public class UpdateCountEventArgs : EventArgs
-    {
-        public int Count { get; private set; }
-
-        public UpdateCountEventArgs(int count)
-        {
-            Count = count;
-        }
-    }
+    }    
 }

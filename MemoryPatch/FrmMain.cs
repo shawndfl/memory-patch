@@ -4,9 +4,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using MemoryManager;
 
 namespace MemoryPatch
-{   
+{
     public partial class FrmMain : Form
     {
         #region Fields
@@ -247,7 +248,7 @@ namespace MemoryPatch
             else if (res == DialogResult.Cancel)
             {
                 e.Cancel = true;
-            }
+            }            
         }
 
         private void searchControl1_OnAddressSelected(object sender, AddressFoundEventArgs e)
@@ -340,7 +341,13 @@ namespace MemoryPatch
         private void selectProcessToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SelectProcess();
-        }       
+        }
+
+        private void testControlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmTest test = new FrmTest();
+            test.ShowDialog();
+        }        
     }
 
     [XmlRoot("Config")]

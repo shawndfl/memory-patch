@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Globalization;
 using System.IO;
+using MemoryManager;
 
 namespace MemoryPatch.Editing_Memory
 {
@@ -603,7 +604,9 @@ namespace MemoryPatch.Editing_Memory
 
         private void RefeshOptionList()
         {
-            Option[] options = _addressManager.GetOptions(cboOptionGroup.Text);            
+            List<Option> options = _addressManager.GetOptions(cboOptionGroup.Text);
+
+            options.Sort();
             lstOptions.Items.Clear();           
             foreach (Option option in options)
             {
@@ -613,7 +616,9 @@ namespace MemoryPatch.Editing_Memory
 
         private void RefeshAddressOptionList()
         {
-            Option[] options = _addressManager.GetOptions(cboAddressOptionGroup.Text);
+            List<Option> options = _addressManager.GetOptions(cboAddressOptionGroup.Text);
+
+            options.Sort();
             cboValue.Items.Clear();                        
             foreach (Option option in options)
             {

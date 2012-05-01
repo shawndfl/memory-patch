@@ -32,7 +32,7 @@ namespace MemoryManager
         }
     }
 
-    public class Option
+    public class Option: IComparable
     {
         [XmlAttribute("item")]
         public string Item;
@@ -43,6 +43,24 @@ namespace MemoryManager
         {
             return Item + " = " + Value;
         }
+
+        #region IComparable Members
+
+        /// <summary>
+        /// Sorts by Item name
+        /// </summary>
+        /// <param name="obj">another Option</param>
+        /// <returns></returns>
+        public int CompareTo(object obj)
+        {
+            Option other = obj as Option;
+            if (other != null)
+                return Item.CompareTo(other.Item);
+            else
+                return 0;
+        }
+
+        #endregion
     }
 
     public class SaveGroupData

@@ -52,11 +52,12 @@ namespace MemoryManager
             return addresses;
         }
 
-        public void AddAddress(SavedAddress address)
-        {
-            //if (_addresses.ContainsKey(address.Address))
-            //    throw new Exception("Address already added " + address.Address);
-
+        /// <summary>
+        /// Adds an address to a group
+        /// </summary>
+        /// <param name="address"></param>
+        internal void AddAddress(SavedAddress address)
+        {           
             _addresses.Add(address);
         }
 

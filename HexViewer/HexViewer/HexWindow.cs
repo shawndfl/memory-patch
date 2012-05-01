@@ -64,15 +64,15 @@ namespace HexViewer
             }
         }
 
-        public long BaseOffset
-        {
-            get { return _baseOffset; }           
-        }
+        //public long BaseOffset
+        //{
+        //    get { return _baseOffset; }           
+        //}
 
-        public int LocalOffset
-        {
-            get { return _localOffset; }            
-        }
+        //public int LocalOffset
+        //{
+        //    get { return _localOffset; }            
+        //}
      
         public long Offset
         {
@@ -173,8 +173,9 @@ namespace HexViewer
             _edit = new TextBox();
             _edit.Visible = false;
             _edit.KeyUp += new KeyEventHandler(Edit_KeyUp);
+            _edit.LostFocus += new EventHandler(Edit_LostFocus);
             Controls.Add(_edit);           
-        }
+        }        
         
         #endregion
 
@@ -391,8 +392,8 @@ namespace HexViewer
 
         private void SelectOffset()
         {
-            RefeshDisplay(true);           
-            EditOffset(Offset, _bytesLb[_localOffset]);            
+            RefeshDisplay(true);
+            //EditOffset(Offset, _bytesLb[_localOffset]);            
         }
 
         private void RefeshDisplay(bool moveScrollBar)
@@ -447,8 +448,7 @@ namespace HexViewer
                         lb = new Label();
                         lb.Name = "Value" + index;
                         lb.Tag = index;                        
-                        lb.Click += new EventHandler(lb_Click);                        
-    
+                        lb.Click += new EventHandler(lb_Click);                       
                         _bytesLb.Add(lb);
                         Controls.Add(lb);
                     }
@@ -478,9 +478,14 @@ namespace HexViewer
                         lb.Visible = true;
 
                     if (index == _localOffset)
-                        lb.ForeColor = Color.Blue;
+                    {
+                        lb.ForeColor = Color.Red;
+                        _edit.Text = lb.Text;
+                    }
                     else
+                    {
                         lb.ForeColor = Color.Black;
+                    }
 
                     lb.Text = ReadNextElement(_viewFormat);                                        
                 }
@@ -509,7 +514,7 @@ namespace HexViewer
                 //    lb.Visible = false;
                 //}
             }
-        }           
+        }        
 
         private void EditOffset(long offset, Label lb)
         {
@@ -525,10 +530,11 @@ namespace HexViewer
             _edit.Text = lb.Text;            
             _edit.Tag = offset;
 
-            _edit.Visible = true;
-            _edit.Focus();
+            _edit.Visible = true;            
 
             _edit.SelectAll();
+
+            _edit.Focus();
         }        
 
         private string ReadNextElement(DisplayFormat displayFormat)
@@ -655,7 +661,8 @@ namespace HexViewer
         #region Edit and label events
         private void lb_Click(object sender, EventArgs e)
         {
-            WriteValue(Offset, _edit.Text, _viewFormat);
+            //WriteValue(Offset, _edit.Text, _viewFormat);
+            Edit_LostFocus(sender, e);
 
             Label lb = (Label)sender;
             int index = (int)lb.Tag;
@@ -663,6 +670,16 @@ namespace HexViewer
 
             RefeshDisplay(false);
             EditOffset(Offset, lb);            
+        }        
+
+        private void Edit_LostFocus(object sender, EventArgs e)
+        {
+            if (_edit.Visible)
+            {
+                //edit file
+                WriteValue(Offset, _edit.Text, _viewFormat);
+                _edit.Visible = false;
+            }
         }
 
         private void Edit_KeyUp(object sender, KeyEventArgs e)
@@ -699,6 +716,7 @@ namespace HexViewer
             else if (e.KeyCode == Keys.Down)
             {
                 WriteValue(Offset, _edit.Text, _viewFormat);
+                //EditOffset(Offset, lb);
                 Offset += 16;                
             }
             //cancel edit

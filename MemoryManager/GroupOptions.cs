@@ -38,15 +38,15 @@ namespace MemoryManager
             return option;
         }
 
-        public Option[] GetOptions()
+        public List<Option> GetOptions()
         {
-            Option[] options = new Option[Options.Count];
-            int i = 0;
-            foreach (Option option in Options.Values)
-            {
-                options[i++] = option;
-            }
-            return options;
+            //Option[] options = new Option[Options.Count];
+            //int i = 0;
+            //foreach (Option option in Options.Values)
+            //{
+            //    options[i++] = option;
+            //}
+            return Options.Values.ToList<Option>();
         }
 
         public bool AddOption(string itemName, string value, out Option option)

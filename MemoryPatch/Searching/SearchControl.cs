@@ -8,11 +8,12 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Globalization;
+using MemoryManager;
 
 namespace MemoryPatch
 {
     [DefaultEvent("OnAddressSelected")]
-    public partial class SearchControl : UserControl
+    public partial class SearchControl : UserControl, IInvoke
     {
         private MemoryAccess _access;
         private SearchMemory _seracher;
@@ -240,6 +241,20 @@ namespace MemoryPatch
         private void btnClear_Click(object sender, EventArgs e)
         {
             dataResults.Rows.Clear();
-        }       
+        }
+
+        #region IInvoke Members
+
+        public void InvokeMethod(Delegate method)
+        {
+            this.Invoke(method);
+        }
+
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
+
+        #endregion
     }
 }
