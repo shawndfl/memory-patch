@@ -17,6 +17,8 @@ namespace MemoryManager
 
         public List<SaveGroupData> Groups = new List<SaveGroupData>();
         public List<SaveGroupOptions> Options = new List<SaveGroupOptions>();
+        public string PluginPath;
+        public string PluginType;
     }
 
     public class SaveGroupOptions
@@ -124,7 +126,7 @@ namespace MemoryManager
             }
             set
             {
-                Value = GetByteValue(value);
+                Value = GetByteValue(value, DataType);
             }
         }
         
@@ -213,6 +215,10 @@ namespace MemoryManager
         }
         #endregion
 
+        /// <summary>
+        /// Clones the address.
+        /// </summary>
+        /// <returns></returns>
         public SavedAddress CloneAddress()
         {
             SavedAddress newAddress = new SavedAddress(Locked, Name, Address, DataType, _stringLength);
@@ -220,12 +226,24 @@ namespace MemoryManager
             newAddress.StringValue = StringValue;
             return newAddress;
         }
+
+        /// <summary>
+        /// Trees the node text.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public string TreeNodeText(string value)
         {
             //return "(" + Locked + ") " + Name + " " + StringAddress + " = " + value + " {" + DataType + "}";
             return BuildString(value);
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String"/> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             //return "(" + Locked + ") " + Name + " " + StringAddress + " = " + StringValue + " {" + DataType + "}";
@@ -325,14 +343,30 @@ namespace MemoryManager
             }
         }
 
+        /// <summary>
+        /// Gets the byte value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public byte[] GetByteValue(string value)
+        {
+            return GetByteValue(value, DataType);
+        }
+
+        /// <summary>
+        /// Gets the byte value of a string.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="dataType">The data type to convert the string to</param>
+        /// <returns></returns>
+        public static byte[] GetByteValue(string value, DataType dataType)
         {
             byte[] byteValue = null;
             if (string.IsNullOrEmpty(value))
                 value = "0";
-            bool isHex = value.ToLower().StartsWith("0x");            
+            bool isHex = value.ToLower().StartsWith("0x");
 
-            switch (DataType)
+            switch (dataType)
             {
                 case DataType.Int32:
                     try

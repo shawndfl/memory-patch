@@ -277,21 +277,6 @@ namespace MemoryPatch.Editing_Memory
 
             SelectNode(e.Node);        
         }
-
-        private void tv_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
-            {
-                if (ActiveAddress != null)
-                {
-                    RemoveAddress(tv.SelectedNode);
-                }
-                else if (ActiveGroup != null)
-                {
-                    RemoveGroup(tv.SelectedNode);
-                }
-            }
-        }
         #endregion
 
         #region Refesh GUI
@@ -930,11 +915,7 @@ namespace MemoryPatch.Editing_Memory
 
             }
         }
-
-        private void testTimer_Tick(object sender, EventArgs e)
-        {
-
-        }
+        
         #endregion                     
 
         public void Import(string file)
@@ -989,6 +970,11 @@ namespace MemoryPatch.Editing_Memory
             }
         }
 
+        /// <summary>
+        /// Handles the KeyUp event of the tv control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.KeyEventArgs"/> instance containing the event data.</param>
         private void tv_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F2)
@@ -1004,6 +990,6 @@ namespace MemoryPatch.Editing_Memory
             e.Node.Text = e.Label;
             tv.LabelEdit = false;
             ActiveAddress.Name = e.Label;
-        }             
+        }            
     }
 }

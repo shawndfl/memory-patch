@@ -22,6 +22,8 @@ namespace MemoryManager
 
         private Dictionary<string, GroupOptions> _options =
             new Dictionary<string, GroupOptions>();
+
+        private MemoryAccess _access;
         #endregion
 
         #region Constructors
@@ -95,6 +97,27 @@ namespace MemoryManager
             GroupAddress group = new GroupAddress(name);
             _groups.Add(name, group);
             return group;
+        }
+
+        /// <summary>
+        /// finds the first address that matches the address name and group name
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <param name="addressName"></param>
+        /// <returns></returns>
+        public SavedAddress FindAddress(string groupName, string addressName)
+        {
+            GroupAddress group = GetGroup(groupName);
+            if (group != null)
+            {
+                List<SavedAddress> list = group.GetListOfAddresses();
+                foreach (SavedAddress address in list)
+                {
+                    if (address.Name == addressName)
+                        return address;
+                }
+            }
+            return null;
         }
 
         /// <summary>

@@ -1,5 +1,2 @@
-*.exe
-*.pdb
-*.manifest
-*.Cache
-*.resources
+bin/
+obj/

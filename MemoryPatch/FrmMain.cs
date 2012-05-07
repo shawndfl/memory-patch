@@ -347,6 +347,17 @@ namespace MemoryPatch
         {
             FrmTest test = new FrmTest();
             test.ShowDialog();
+        }
+
+        private void loadPluginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.InitialDirectory = _config.LastRunDir;
+            dlg.Filter = "*.dll";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+
+            }
         }        
     }
 

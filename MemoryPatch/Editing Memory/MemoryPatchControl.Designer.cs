@@ -32,7 +32,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tv = new System.Windows.Forms.TreeView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -96,6 +95,7 @@
             this.cboOptionGroup = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabControl2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -146,16 +146,6 @@
             this.tabPage1.Text = "Addresses";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage5
-            // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(647, 742);
-            this.tabPage5.TabIndex = 1;
-            this.tabPage5.Text = "Plugin";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -184,6 +174,12 @@
             this.tv.Name = "tv";
             this.tv.Size = new System.Drawing.Size(641, 394);
             this.tv.TabIndex = 0;
+            this.tv.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tv_AfterLabelEdit);
+            this.tv.DragDrop += new System.Windows.Forms.DragEventHandler(this.tv_DragDrop);
+            this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_AfterSelect);
+            this.tv.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tv_MouseDown);
+            this.tv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tv_KeyUp);
+            this.tv.DragOver += new System.Windows.Forms.DragEventHandler(this.tv_DragOver);
             // 
             // tabControl1
             // 
@@ -254,6 +250,7 @@
             this.btnPoke.TabIndex = 7;
             this.btnPoke.Text = "Poke";
             this.btnPoke.UseVisualStyleBackColor = true;
+            this.btnPoke.Click += new System.EventHandler(this.btnPoke_Click);
             // 
             // txtAddress
             // 
@@ -261,6 +258,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(94, 20);
             this.txtAddress.TabIndex = 1;
+            this.txtAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAddress_KeyDown);
             // 
             // cboDataType
             // 
@@ -270,6 +268,7 @@
             this.cboDataType.Name = "cboDataType";
             this.cboDataType.Size = new System.Drawing.Size(94, 21);
             this.cboDataType.TabIndex = 2;
+            this.cboDataType.SelectedIndexChanged += new System.EventHandler(this.cboDataType_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -290,6 +289,7 @@
             this.cboAddressOptionGroup.Name = "cboAddressOptionGroup";
             this.cboAddressOptionGroup.Size = new System.Drawing.Size(528, 21);
             this.cboAddressOptionGroup.TabIndex = 6;
+            this.cboAddressOptionGroup.SelectedIndexChanged += new System.EventHandler(this.cboGroup_SelectedIndexChanged);
             // 
             // chkLocked
             // 
@@ -311,6 +311,7 @@
             this.cboValue.Name = "cboValue";
             this.cboValue.Size = new System.Drawing.Size(222, 21);
             this.cboValue.TabIndex = 5;
+            this.cboValue.SelectedIndexChanged += new System.EventHandler(this.cboValue_SelectedIndexChanged);
             // 
             // label15
             // 
@@ -356,6 +357,7 @@
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(528, 20);
             this.txtDescription.TabIndex = 0;
+            this.txtDescription.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescription_KeyDown);
             // 
             // txtValue
             // 
@@ -363,6 +365,8 @@
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(180, 20);
             this.txtValue.TabIndex = 4;
+            this.txtValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValue_KeyDown);
+            this.txtValue.Enter += new System.EventHandler(this.txtValue_Enter);
             // 
             // label14
             // 
@@ -414,6 +418,8 @@
             this.txtNotes.Size = new System.Drawing.Size(613, 274);
             this.txtNotes.TabIndex = 7;
             this.txtNotes.Text = "";
+            this.txtNotes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNotes_KeyDown);
+            this.txtNotes.TextChanged += new System.EventHandler(this.txtNotes_TextChanged);
             // 
             // tabPage4
             // 
@@ -424,7 +430,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(633, 294);
+            this.tabPage4.Size = new System.Drawing.Size(619, 280);
             this.tabPage4.TabIndex = 0;
             this.tabPage4.Text = "Create";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -450,6 +456,7 @@
             this.btnPokeAll.TabIndex = 2;
             this.btnPokeAll.Text = "Poke All";
             this.btnPokeAll.UseVisualStyleBackColor = true;
+            this.btnPokeAll.Click += new System.EventHandler(this.btnPokeAll_Click);
             // 
             // btnCreateNewGroup
             // 
@@ -459,6 +466,7 @@
             this.btnCreateNewGroup.TabIndex = 2;
             this.btnCreateNewGroup.Text = "Create New Group";
             this.btnCreateNewGroup.UseVisualStyleBackColor = true;
+            this.btnCreateNewGroup.Click += new System.EventHandler(this.btnCreateNewGroup_Click);
             // 
             // txtGroupName
             // 
@@ -466,6 +474,7 @@
             this.txtGroupName.Name = "txtGroupName";
             this.txtGroupName.Size = new System.Drawing.Size(230, 20);
             this.txtGroupName.TabIndex = 0;
+            this.txtGroupName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGroupName_KeyDown);
             // 
             // label18
             // 
@@ -496,6 +505,7 @@
             this.btnClone.TabIndex = 1;
             this.btnClone.Text = "Clone Addresses";
             this.btnClone.UseVisualStyleBackColor = true;
+            this.btnClone.Click += new System.EventHandler(this.btnClone_Click);
             // 
             // label6
             // 
@@ -569,6 +579,7 @@
             this.btnStartTest.TabIndex = 1;
             this.btnStartTest.Text = "Start Test";
             this.btnStartTest.UseVisualStyleBackColor = true;
+            this.btnStartTest.Click += new System.EventHandler(this.btnStartTest_Click);
             // 
             // groupAddAddresses
             // 
@@ -611,6 +622,7 @@
             this.btnCreate.TabIndex = 2;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // txtBaseName
             // 
@@ -745,7 +757,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(647, 326);
+            this.tabPage3.Size = new System.Drawing.Size(633, 312);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Options";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -758,6 +770,7 @@
             this.btnIncValue.TabIndex = 3;
             this.btnIncValue.Text = "Increment Value";
             this.btnIncValue.UseVisualStyleBackColor = true;
+            this.btnIncValue.Click += new System.EventHandler(this.btnIncValue_Click);
             // 
             // lstOptions
             // 
@@ -766,8 +779,9 @@
             this.lstOptions.FormattingEnabled = true;
             this.lstOptions.Location = new System.Drawing.Point(15, 109);
             this.lstOptions.Name = "lstOptions";
-            this.lstOptions.Size = new System.Drawing.Size(278, 173);
+            this.lstOptions.Size = new System.Drawing.Size(278, 147);
             this.lstOptions.TabIndex = 4;
+            this.lstOptions.SelectedIndexChanged += new System.EventHandler(this.lstOptions_SelectedIndexChanged);
             // 
             // txtOption
             // 
@@ -775,6 +789,8 @@
             this.txtOption.Name = "txtOption";
             this.txtOption.Size = new System.Drawing.Size(238, 20);
             this.txtOption.TabIndex = 1;
+            this.txtOption.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOption_KeyDown);
+            this.txtOption.MouseUp += new System.Windows.Forms.MouseEventHandler(this.txtOption_MouseUp);
             // 
             // txtOptValue
             // 
@@ -808,6 +824,8 @@
             this.cboOptionGroup.Name = "cboOptionGroup";
             this.cboOptionGroup.Size = new System.Drawing.Size(238, 21);
             this.cboOptionGroup.TabIndex = 0;
+            this.cboOptionGroup.SelectedIndexChanged += new System.EventHandler(this.cboOptionGroup_SelectedIndexChanged);
+            this.cboOptionGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboOptionGroup_KeyDown);
             // 
             // label5
             // 
@@ -826,6 +844,16 @@
             this.label3.Size = new System.Drawing.Size(36, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "Group";
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(647, 742);
+            this.tabPage5.TabIndex = 1;
+            this.tabPage5.Text = "Plugin";
+            this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // MemoryPatchControl
             // 
