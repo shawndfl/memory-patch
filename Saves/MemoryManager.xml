@@ -1,0 +1,673 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MemoryManager</name>
+    </assembly>
+    <members>
+        <member name="F:MemoryManager.SearchMemory._searchThread">
+            <summary>
+            search thread
+            </summary>
+        </member>
+        <member name="F:MemoryManager.SearchMemory._snapShot1">
+            <summary>
+            snap shot of searches
+            </summary>
+        </member>
+        <member name="E:MemoryManager.SearchMemory.OnValueFound">
+            <summary>
+            event handlers
+            </summary>        
+        </member>
+        <member name="T:MemoryManager.IPlugin">
+            <summary>
+            The interface a plugin will use
+            </summary>
+        </member>
+        <member name="M:MemoryManager.PluginManager.ReadValue(System.String,System.String)">
+            <summary>
+            Reads the value.
+            </summary>
+            <param name="groupName">Name of the group.</param>
+            <param name="addressName">Name of the address.</param>
+        </member>
+        <member name="T:MemoryManager.LockData">
+            <summary>
+            Data used to keep an address at a value
+            </summary>
+        </member>
+        <member name="M:MemoryManager.SearchContext.CreateSearchData(MemoryManager.SearchType,MemoryManager.DataType,System.String)">
+            <summary>
+            Used to create a new or next search
+            </summary>
+            <param name="firstSearch"> is this a new search</param>
+            <param name="searchType"> type of search</param>
+            <param name="dataType"> data type to search for</param>
+            <param name="value1">the value in the form of a string</param>
+            <param name="saveResultIndex">should the results be saved any where</param>
+            <returns></returns>
+        </member>
+        <member name="P:MemoryManager.SearchContext.FirstSearch">
+            <summary>
+            Is this the first search
+            </summary>
+        </member>
+        <member name="P:MemoryManager.SearchContext.SearchType">
+            <summary>
+            The type of search we are using
+            </summary>
+        </member>
+        <member name="P:MemoryManager.SearchContext.Value">
+            <summary>
+            Value in a byte array. In this form we can change it to
+            any other data type by using BitConverter
+            </summary>
+        </member>
+        <member name="P:MemoryManager.SearchContext.Difference">
+            <summary>
+            Used when searching with decreased by and increased by
+            </summary>
+        </member>
+        <member name="P:MemoryManager.SearchContext.DataType">
+            <summary>
+            Data type used in this search
+            </summary>
+        </member>
+        <member name="P:MemoryManager.SearchContext.DataLength">
+            <summary>
+            The byte length of the data type
+            </summary>
+        </member>
+        <member name="T:MemoryManager.ByteConverter">
+            <summary>
+            A byte converter class
+            </summary>
+        </member>
+        <member name="F:MemoryManager.ByteConverter.IsLittleEndian">
+            <summary>
+            If the byte is little endian
+            </summary>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.DoubleToInt64Bits(System.Double)">
+            <summary>
+            Doubles to int64 bits.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.GetBytes(System.Boolean)">
+            <summary>
+            Gets the bytes.
+            </summary>
+            <param name="value">if set to <c>true</c> [value].</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.GetBytes(System.Char)">
+            <summary>
+            Gets the bytes.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.GetBytes(System.Double)">
+            <summary>
+            Gets the bytes.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.GetBytes(System.Int16)">
+            <summary>
+            Gets the bytes.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.GetBytes(System.Int32)">
+            <summary>
+            Gets the bytes.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.GetBytes(System.Int64)">
+            <summary>
+            Gets the bytes.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.GetBytes(System.Single)">
+            <summary>
+            Gets the bytes.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.GetBytes(System.UInt16)">
+            <summary>
+            Gets the bytes.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.GetBytes(System.UInt32)">
+            <summary>
+            Gets the bytes.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.GetBytes(System.UInt64)">
+            <summary>
+            Gets the bytes.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.GetHexValue(System.Int32)">
+            <summary>
+            Gets the hex value.
+            </summary>
+            <param name="i">The i.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.Int64BitsToDouble(System.Int64)">
+            <summary>
+            Int64s the bits to double.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.ToBoolean(System.Byte[],System.Int32)">
+            <summary>
+            Toes the boolean.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="startIndex">The start index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.ToChar(System.Byte[],System.Int32)">
+            <summary>
+            Toes the char.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="startIndex">The start index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.ToDouble(System.Byte[],System.Int32)">
+            <summary>
+            Toes the double.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="startIndex">The start index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.ToInt16(System.Byte[],System.Int32)">
+            <summary>
+            Toes the int16.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="startIndex">The start index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.ToInt32(System.Byte[],System.Int32)">
+            <summary>
+            Toes the int32.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="startIndex">The start index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.ToInt64(System.Byte[],System.Int32)">
+            <summary>
+            Toes the int64.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="startIndex">The start index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.ToSingle(System.Byte[],System.Int32)">
+            <summary>
+            Toes the single.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="startIndex">The start index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.ToString(System.Byte[])">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.ToString(System.Byte[],System.Int32)">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="startIndex">The start index.</param>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.ToString(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="startIndex">The start index.</param>
+            <param name="length">The length.</param>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.ToUInt16(System.Byte[],System.Int32)">
+            <summary>
+            Toes the U int16.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="startIndex">The start index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.ToUInt32(System.Byte[],System.Int32)">
+            <summary>
+            Toes the U int32.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="startIndex">The start index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.ByteConverter.ToUInt64(System.Byte[],System.Int32)">
+            <summary>
+            Toes the U int64.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="startIndex">The start index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.Option.CompareTo(System.Object)">
+            <summary>
+            Sorts by Item name
+            </summary>
+            <param name="obj">another Option</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.SavedAddress.CloneAddress">
+            <summary>
+            Clones the address.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.SavedAddress.TreeNodeText(System.String)">
+            <summary>
+            Trees the node text.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.SavedAddress.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:MemoryManager.SavedAddress.GetStringValue(System.Byte[],System.Boolean)">
+            <summary>
+            Gets a string version of the byte value using 
+            the current data type for this saved address.
+            </summary>
+            <param name="value">The value</param>
+            <param name="inHex">Do you want it in hex form</param>        
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.SavedAddress.GetByteValue(System.String)">
+            <summary>
+            Gets the byte value.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.SavedAddress.GetByteValue(System.String,MemoryManager.DataType)">
+            <summary>
+            Gets the byte value of a string.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="dataType">The data type to convert the string to</param>
+            <returns></returns>
+        </member>
+        <member name="P:MemoryManager.SavedAddress.DataLengthInBytes">
+            <summary>
+            Gets the length of the data in bytes
+            </summary>
+        </member>
+        <member name="T:MemoryManager.GroupAddress">
+            <summary>
+            These are groups of addresses that have something in common
+            </summary>
+        </member>
+        <member name="F:MemoryManager.GroupAddress._addresses">
+            <summary>
+            List of addresses
+            </summary>
+        </member>
+        <member name="M:MemoryManager.GroupAddress.#ctor(MemoryManager.SaveGroupData)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="saved"></param>
+        </member>
+        <member name="M:MemoryManager.GroupAddress.AddAddress(MemoryManager.SavedAddress)">
+            <summary>
+            Adds an address to a group
+            </summary>
+            <param name="address"></param>
+        </member>
+        <member name="P:MemoryManager.GroupAddress.Name">
+            <summary>
+            The name of the group
+            </summary>
+        </member>
+        <member name="P:MemoryManager.GroupAddress.Notes">
+            <summary>
+            Notes for the group
+            </summary>
+        </member>
+        <member name="P:MemoryManager.MemoryAccess.Process">
+            <summary>
+            the process we are accessing
+            </summary>
+        </member>
+        <member name="P:MemoryManager.MemoryAccess.Module">
+            <summary>
+            the module in the process to access
+            </summary>
+        </member>
+        <member name="T:MemoryManager.IInvoke">
+            <summary>
+            Interface into the main thead while searching
+            </summary>
+        </member>
+        <member name="M:MemoryManager.IInvoke.InvokeMethod(System.Delegate)">
+            <summary>
+            Used to call a delegate
+            </summary>
+            <param name="method"></param>
+        </member>
+        <member name="M:MemoryManager.IInvoke.ShowMessage(System.String)">
+            <summary>
+            Show a message to the user
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:MemoryManager.AddressFoundEventArgs">
+            <summary>
+            Used to pass address found information back to the client
+            </summary>
+        </member>
+        <member name="M:MemoryManager.AddressFoundEventArgs.#ctor(MemoryManager.AddressFound)">
+            <summary>
+            constructor
+            </summary>
+            <param name="addressFound">the address found</param>
+        </member>
+        <member name="P:MemoryManager.AddressFoundEventArgs.AddressFound">
+            <summary>
+            The address that was found
+            </summary>
+        </member>
+        <member name="T:MemoryManager.AddressFound">
+            <summary>
+            A structor defining a memory address
+            </summary>
+        </member>
+        <member name="M:MemoryManager.AddressFound.#ctor(System.Int32,System.Byte[],MemoryManager.DataType)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="currentValue"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:MemoryManager.AddressFound.GetStringValue">
+            <summary>
+            The string value of this address
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.AddressFound.ToString">
+            <summary>
+            to string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:MemoryManager.AddressFound.Address">
+            <summary>
+            The address
+            </summary>
+        </member>
+        <member name="P:MemoryManager.AddressFound.LongValue">
+            <summary>
+            The value as a long
+            </summary>
+        </member>
+        <member name="P:MemoryManager.AddressFound.CurrentValue">
+            <summary>
+            The value as a byte array
+            </summary>
+        </member>
+        <member name="P:MemoryManager.AddressFound.DataType">
+            <summary>
+            The data type of this address
+            </summary>
+        </member>
+        <member name="P:MemoryManager.AddressFound.DataLengthInBytes">
+            <summary>
+            Gets the length of the data in bytes
+            </summary>
+        </member>
+        <member name="T:MemoryManager.GroupOptions">
+            <summary>
+            These are options list that help define numerical values in memory.
+            The user will have the ability to create and edit them.
+            </summary>
+        </member>
+        <member name="T:MemoryManager.AddressManager">
+            <summary>
+            This class manages all the groups with their addresses.
+            It also holds all the option values.
+            </summary>
+        </member>
+        <member name="M:MemoryManager.AddressManager.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:MemoryManager.AddressManager.#ctor(System.String)">
+            <summary>
+            constructor
+            </summary>
+            <param name="file">saved file information</param>
+        </member>
+        <member name="M:MemoryManager.AddressManager.AddNewGroup(System.String)">
+            <summary>
+            Adds a new group
+            </summary>
+            <param name="name">name of group</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.AddressManager.FindAddress(System.String,System.String)">
+            <summary>
+            finds the first address that matches the address name and group name
+            </summary>
+            <param name="groupName"></param>
+            <param name="addressName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.AddressManager.GetGroup(System.String)">
+            <summary>
+            Gets a group from a name
+            </summary>
+            <param name="groupName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.AddressManager.RenameGroup(System.String,System.String)">
+            <summary>
+            Renames a group
+            </summary>
+            <param name="currentName">old name</param>
+            <param name="newName">new name</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.AddressManager.RemoveGroup(System.String)">
+            <summary>
+            Removes a group from address manager
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:MemoryManager.AddressManager.AddAddress(System.String,MemoryManager.SavedAddress)">
+            <summary>
+            Adds a new address
+            </summary>
+            <param name="groupName"></param>
+            <param name="address"></param>
+        </member>
+        <member name="M:MemoryManager.AddressManager.GetOptionGroups">
+            <summary>
+            Gets an array of group options
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.AddressManager.GetOptionByValue(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="groupName"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.AddressManager.GetOptions(System.String)">
+            <summary>
+            Gets an option from a group
+            </summary>
+            <param name="groupName">name of the group</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.AddressManager.AddOptionGroup(System.String)">
+            <summary>
+            Adds a group
+            </summary>
+            <param name="groupName">the group</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.AddressManager.AddOption(System.String,System.String,System.String,MemoryManager.Option@)">
+            <summary>
+            Adds an option to a group
+            </summary>
+            <param name="groupName"></param>
+            <param name="optionName"></param>
+            <param name="value"></param>
+            <param name="option"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.AddressManager.RemoveOption(System.String,System.String)">
+            <summary>
+            Removes an option from a group
+            </summary>
+            <param name="groupName">group name</param>
+            <param name="optionValue">option to remove</param>
+        </member>
+        <member name="M:MemoryManager.AddressManager.Save(System.String)">
+            <summary>
+            Saves the manager to a file
+            </summary>
+            <param name="file">name of the file</param>
+        </member>
+        <member name="T:MemoryManager.SearchUpdateEventArgs">
+            <summary>
+            This is used to give an update to the main thread.
+            </summary>
+        </member>
+        <member name="M:MemoryManager.SearchUpdateEventArgs.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            constructor
+            </summary>
+            <param name="startAddress">first address</param>
+            <param name="endAddress">last address</param>
+            <param name="currentAddress">the current address being processed</param>
+            <param name="addressFoundCount">how many are found</param>
+        </member>
+        <member name="P:MemoryManager.SearchUpdateEventArgs.PrecentDone">
+            <summary>
+            The precentage of addresses searched
+            </summary>
+        </member>
+        <member name="P:MemoryManager.SearchUpdateEventArgs.AddressFoundCount">
+            <summary>
+            How many addresses found
+            </summary>
+        </member>
+        <member name="T:MemoryManager.PortableExe">
+            <summary>
+            A portable exe class
+            </summary>
+        </member>
+        <member name="M:MemoryManager.PortableExe.OpenFile(System.String,System.Boolean)">
+            <summary>
+            Opens the file
+            </summary>
+            <param name="file"></param>
+        </member>
+        <member name="M:MemoryManager.PortableExe.Read">
+            <summary>
+            Reads some stuff
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.PortableExe.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="P:MemoryManager.PortableExe.DosHeader">
+            <summary>
+            Gets the dos header.
+            </summary>
+        </member>
+        <member name="P:MemoryManager.PortableExe.FileName">
+            <summary>
+            The name of the file
+            </summary>
+        </member>
+        <member name="T:MemoryManager._IMAGE_OPTIONAL_HEADER32">
+            <summary>
+            This is the 32 bit optional header
+            </summary>
+        </member>
+        <member name="T:MemoryManager.IMAGE_OPTIONAL">
+            <summary>
+            This will tell us what type of optional data we need to read in     
+            </summary>
+        </member>
+        <member name="T:MemoryManager.IMAGE_FILE_Characteristics">
+            <summary>
+            This is the characteristics of the exe file
+            </summary>
+        </member>
+        <member name="T:MemoryManager.DirectoryEntries">
+            <summary>
+            Directory Entries
+            </summary>
+        </member>
+        <member name="T:MemoryManager.MachineName">
+            <summary>
+            What machine is this exe to run on.
+            </summary>
+        </member>
+    </members>
+</doc>
