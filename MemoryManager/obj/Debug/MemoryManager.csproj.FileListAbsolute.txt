@@ -3,4 +3,3 @@ C:\Users\Shawn\Projects\MemoryPatch\MemoryManager\bin\Debug\MemoryManager.dll
 C:\Users\Shawn\Projects\MemoryPatch\MemoryManager\bin\Debug\MemoryManager.pdb
 C:\Users\Shawn\Projects\MemoryPatch\MemoryManager\obj\Debug\MemoryManager.dll
 C:\Users\Shawn\Projects\MemoryPatch\MemoryManager\obj\Debug\MemoryManager.pdb
-C:\Users\Shawn\Projects\MemoryPatch\MemoryManager\bin\Debug\MemoryManager.XML

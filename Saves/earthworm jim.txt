@@ -1,9 +1,0 @@
-True;Amo 1000;731A88;57;UByte;
-False;amo 100;731A89;50;UByte;
-False;amo 10;731A8A;48;UByte;
-False;amo;731A8B;50;UByte;
-True;Helth 100;731A8F;56;UByte;
-False;Helth 10;731A90;51;UByte;
-False;Health 1;731A91;54;UByte;
-True;New;731E08;9;UByte;
-False;New;731D97;48;UByte;

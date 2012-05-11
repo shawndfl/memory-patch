@@ -1,5 +1,0 @@
-False;En1 HP;735695;0;UInt16
-False;En1 PP;73569B;0;UByte
-False;En1 Offence;7356AA;84;UByte
-False;En1 Defence;7356AC;33;UByte
-False;En1 Speed;7356AE;77;UByte

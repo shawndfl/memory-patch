@@ -96,6 +96,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.pluginLoader1 = new MemoryPatch.Editing_Memory.PluginLoader();
             this.tabControl2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -116,6 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCreateCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPadding)).BeginInit();
             this.tabPage3.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -847,6 +849,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.pluginLoader1);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -854,6 +857,14 @@
             this.tabPage5.TabIndex = 1;
             this.tabPage5.Text = "Plugin";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // pluginLoader1
+            // 
+            this.pluginLoader1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pluginLoader1.Location = new System.Drawing.Point(3, 3);
+            this.pluginLoader1.Name = "pluginLoader1";
+            this.pluginLoader1.Size = new System.Drawing.Size(641, 736);
+            this.pluginLoader1.TabIndex = 0;
             // 
             // MemoryPatchControl
             // 
@@ -889,6 +900,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPadding)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -962,5 +974,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage tabPage5;
+        private PluginLoader pluginLoader1;
     }
 }

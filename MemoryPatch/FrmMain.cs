@@ -22,8 +22,11 @@ namespace MemoryPatch
             new Dictionary<string, List<DataGridViewRow>>();        
         private ContextMenu _dataTypeMenu = new ContextMenu();
         private string _lastLoaded;
-        
-        private ConfigData _config;
+
+        /// <summary>
+        /// Access to config data
+        /// </summary>
+        public static ConfigData Config { get; private set; }
 
         public AddressData _saveData = new AddressData();
         public AddressManager _runTimeData;
@@ -55,29 +58,9 @@ namespace MemoryPatch
         #region Load
         public FrmMain()
         {
-            InitializeComponent();  
-            //ProcessStartInfo info = new ProcessStartInfo(@"C:\Documents and Settings\Shawn200\My Documents\My Downloads\snes\zsnesw.exe");
-            //_process = Process.Start(info);
-            
+            LoadConfig();
 
-            //_lockUpdate = new Thread(new ThreadStart(delegate()
-            //    {
-            //        while (true)
-            //        {
-            //            lock (_lock)
-            //            {
-            //                foreach (LockData locked in _lockList.Values)
-            //                {
-            //                    if(_seracher != null)
-            //                        _processAccess.WriteValue(locked.Address, locked.Data);
-            //                }
-            //            }
-            //            Thread.Sleep(50);
-            //        }
-            //    }));
-            //_lockUpdate.IsBackground = true;
-            //_lockUpdate.Name = "Lock Memory";
-            //_lockUpdate.Start();                       
+            InitializeComponent();             
         }
 
         private void LoadConfig()
@@ -88,23 +71,31 @@ namespace MemoryPatch
                 XmlSerializer objXmlSer = new XmlSerializer(typeof(ConfigData));
                 string path = Path.GetDirectoryName(Application.ExecutablePath);
                 stream = File.Open(path + "\\config.xml", FileMode.Open);
-                _config = (ConfigData)objXmlSer.Deserialize(stream);
+                Config = (ConfigData)objXmlSer.Deserialize(stream);
                 stream.Close();
 
-                Left = _config.X;
-                Top = _config.Y;
-                Width = _config.Width;
-                Height = _config.Height;
+                Left = Config.X;
+                Top = Config.Y;
+                Width = Config.Width;
+                Height = Config.Height;
             }
             catch (Exception ex)
             {
-                _config = new ConfigData();
+                Config = new ConfigData();
             }
             finally
             {
                 if (stream != null)
                     stream.Close();
             }
+        }
+
+        private void SetWindowState()
+        {
+            Left = Config.X;
+            Top = Config.Y;
+            Width = Config.Width;
+            Height = Config.Height;
         }
 
         private void SaveConfig()
@@ -122,17 +113,17 @@ namespace MemoryPatch
                 stream = File.Open(file, FileMode.OpenOrCreate);
                 if (WindowState == FormWindowState.Normal)
                 {
-                    _config.X = Left;
-                    _config.Y = Top;
-                    _config.Width = Width;
-                    _config.Height = Height;
+                    Config.X = Left;
+                    Config.Y = Top;
+                    Config.Width = Width;
+                    Config.Height = Height;
                 }
-                objXmlSer.Serialize(stream, _config);
+                objXmlSer.Serialize(stream, Config);
                 stream.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _config = new ConfigData();
+                Config = new ConfigData();
             }
             finally
             {
@@ -142,30 +133,9 @@ namespace MemoryPatch
         }     
 
         private void Form1_Load(object sender, EventArgs e)
-        {
-            //cboSearch.Items.Add(SearchType.Excat.ToString());            
-            //cboSearch.Items.Add(SearchType.UnKnown.ToString());
-
-            //cboNextSearch.Items.Add(SearchType.Excat.ToString());
-            //cboNextSearch.Items.Add(SearchType.HasChanged.ToString());
-            //cboNextSearch.Items.Add(SearchType.HasNotChanged.ToString());
-            //cboNextSearch.Items.Add(SearchType.HasIncreased.ToString());
-            //cboNextSearch.Items.Add(SearchType.HasDecreased.ToString());
-            //cboNextSearch.Items.Add(SearchType.HasDecreasedBy.ToString());
-            //cboNextSearch.Items.Add(SearchType.HasIncreasedBy.ToString());
-
-            //string[] datatypes = Enum.GetNames(typeof(DataType));
-            //foreach (string type in datatypes)
-            //{
-            //    cboDataType.Items.Add(type);
-            //    _dataTypeMenu.MenuItems.Add(type);
-            //}
-
-            //cboDataType.SelectedIndex = 0;
-            //cboSearch.SelectedIndex = 0;
-            //cboNextSearch.SelectedIndex = 0;
-
-            LoadConfig();
+        {           
+            //LoadConfig();
+            SetWindowState();
         }
         #endregion  
 
@@ -214,13 +184,13 @@ namespace MemoryPatch
         private void btnRun_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
-            open.InitialDirectory = _config.LastRunDir;
+            open.InitialDirectory = Config.LastRunDir;
             open.Filter = "*.exe|*.exe";
             if (open.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    _config.LastRunDir = Path.GetDirectoryName(open.FileName);
+                    Config.LastRunDir = Path.GetDirectoryName(open.FileName);
                     ProcessStartInfo info = new ProcessStartInfo(open.FileName);                    
                     SetNewProcess(Process.Start(info));                    
                 }
@@ -279,7 +249,7 @@ namespace MemoryPatch
             {
                 _lastLoaded = dlg.FileName;
                 memoryPatchControl1.Save(dlg.FileName);
-                _config.SavedFilesPath = Path.GetDirectoryName(dlg.FileName);
+                Config.SavedFilesPath = Path.GetDirectoryName(dlg.FileName);
                 return true;
             }
             else
@@ -292,7 +262,7 @@ namespace MemoryPatch
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "*.xml|*.xml";
-            dlg.InitialDirectory = _config.SavedFilesPath;
+            dlg.InitialDirectory = Config.SavedFilesPath;
             if (!string.IsNullOrEmpty(_lastLoaded))
             {
                 dlg.InitialDirectory = Path.GetDirectoryName(_lastLoaded);
@@ -302,6 +272,7 @@ namespace MemoryPatch
             if (dlg.ShowDialog() == DialogResult.OK)
             {                
                 _lastLoaded = dlg.FileName;
+                Config.SavedFilesPath = Path.GetDirectoryName(_lastLoaded);
                 memoryPatchControl1.Open(dlg.FileName);
             }
         }
@@ -314,7 +285,7 @@ namespace MemoryPatch
             if (dlg.ShowDialog() == DialogResult.OK)
             {               
                 searchControl1.Save(dlg.FileName);
-                _config.SavedFilesPath = Path.GetDirectoryName(dlg.FileName);
+                Config.SavedFilesPath = Path.GetDirectoryName(dlg.FileName);
             }
         }
 
@@ -341,24 +312,7 @@ namespace MemoryPatch
         private void selectProcessToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SelectProcess();
-        }
-
-        private void testControlToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmTest test = new FrmTest();
-            test.ShowDialog();
-        }
-
-        private void loadPluginToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.InitialDirectory = _config.LastRunDir;
-            dlg.Filter = "*.dll";
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-
-            }
-        }        
+        }            
     }
 
     [XmlRoot("Config")]

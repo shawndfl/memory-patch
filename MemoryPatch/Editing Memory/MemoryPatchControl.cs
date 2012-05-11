@@ -70,6 +70,10 @@ namespace MemoryPatch.Editing_Memory
 
         }
 
+        /// <summary>
+        /// Enables the memory access.
+        /// </summary>
+        /// <param name="access">The access.</param>
         public void EnableMemoryAccess(MemoryAccess access)
         {
             if (access == null)

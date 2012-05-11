@@ -54,11 +54,8 @@
             this.saveSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchControl1 = new MemoryPatch.SearchControl();
             this.memoryPatchControl1 = new MemoryPatch.Editing_Memory.MemoryPatchControl();
-            this.pluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadPluginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,8 +96,7 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.pluginsToolStripMenuItem});
+            this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(771, 24);
@@ -118,8 +114,7 @@
             this.openSearchToolStripMenuItem,
             this.saveSearchToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.importToolStripMenuItem,
-            this.testControlToolStripMenuItem});
+            this.importToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -188,13 +183,6 @@
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
-            // testControlToolStripMenuItem
-            // 
-            this.testControlToolStripMenuItem.Name = "testControlToolStripMenuItem";
-            this.testControlToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.testControlToolStripMenuItem.Text = "TestControl";
-            this.testControlToolStripMenuItem.Click += new System.EventHandler(this.testControlToolStripMenuItem_Click);
-            // 
             // searchControl1
             // 
             this.searchControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -214,21 +202,6 @@
             this.memoryPatchControl1.Name = "memoryPatchControl1";
             this.memoryPatchControl1.Size = new System.Drawing.Size(332, 657);
             this.memoryPatchControl1.TabIndex = 15;
-            // 
-            // pluginsToolStripMenuItem
-            // 
-            this.pluginsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadPluginToolStripMenuItem});
-            this.pluginsToolStripMenuItem.Name = "pluginsToolStripMenuItem";
-            this.pluginsToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.pluginsToolStripMenuItem.Text = "Plugins";
-            // 
-            // loadPluginToolStripMenuItem
-            // 
-            this.loadPluginToolStripMenuItem.Name = "loadPluginToolStripMenuItem";
-            this.loadPluginToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.loadPluginToolStripMenuItem.Text = "LoadPlugin";
-            this.loadPluginToolStripMenuItem.Click += new System.EventHandler(this.loadPluginToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -272,9 +245,6 @@
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectProcessToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem testControlToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pluginsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loadPluginToolStripMenuItem;
     }
 }
 

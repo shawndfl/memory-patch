@@ -1,3 +1,0 @@
-True;Normal Clips;72CA3C;74;UByte;
-True;Rocket Clips;72CA44;68;UByte;
-True;Health;72C6B0;100;UByte;
