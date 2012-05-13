@@ -19,7 +19,11 @@ namespace MemoryManager
 
     public class PluginManager
     {
-        private AddressManager _addressManager;
+        /// <summary>
+        /// Gets the address manager. This is needed for plugin loader and the plugins themselves.
+        /// </summary>
+        private AddressManager _addressManager; 
+
         private MemoryAccess _access;
 
         public bool PokeValue(string groupName, string addressName, string value)
@@ -27,7 +31,8 @@ namespace MemoryManager
             SavedAddress address = _addressManager.FindAddress(groupName, addressName);
             if (address != null)
             {
-                _access.WriteValue(address.Address, address.Value);
+                byte[] byteValue = SavedAddress.GetByteValue(value, address.DataType);
+                _access.WriteValue(address.Address, byteValue);
                 return true;
             }
             else 
@@ -44,7 +49,7 @@ namespace MemoryManager
             SavedAddress address = _addressManager.FindAddress(groupName, addressName);
             if (address != null)
             {
-                return address.StringValue;
+                return _access.ReadMemoryAsString(address.Address, address.DataType, address.DataLengthInBytes);
             }
             
             return string.Empty;

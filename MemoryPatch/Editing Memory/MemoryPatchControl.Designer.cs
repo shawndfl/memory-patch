@@ -181,6 +181,7 @@
             this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_AfterSelect);
             this.tv.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tv_MouseDown);
             this.tv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tv_KeyUp);
+            this.tv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tv_KeyDown);
             this.tv.DragOver += new System.Windows.Forms.DragEventHandler(this.tv_DragOver);
             // 
             // tabControl1
@@ -974,6 +975,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage tabPage5;
-        private PluginLoader pluginLoader1;
+        private PluginLoader pluginLoader1;                
     }
 }

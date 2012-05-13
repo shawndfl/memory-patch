@@ -27,8 +27,7 @@ namespace MemoryPatch
         /// Access to config data
         /// </summary>
         public static ConfigData Config { get; private set; }
-
-        public AddressData _saveData = new AddressData();
+        
         public AddressManager _runTimeData;
         #endregion       
 
@@ -58,8 +57,7 @@ namespace MemoryPatch
         #region Load
         public FrmMain()
         {
-            LoadConfig();
-
+            LoadConfig();            
             InitializeComponent();             
         }
 

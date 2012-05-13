@@ -80,14 +80,27 @@ namespace MemoryPatch.Editing_Memory
                 throw new ArgumentNullException("access");
 
             _access = access;
+
+            SetupPluginLoader();
+
             tabControl1.Enabled = true;
             tv.Enabled = true;
+        }
+
+        private void SetupPluginLoader()
+        {
+            //setup plugin loader
+            PluginManager plugin = new PluginManager(_addressManager, _access);
+            pluginLoader1.Init(plugin, _addressManager);
         }       
 
         #region Save and Open
         public void Open(string file)
         {            
             _addressManager = new AddressManager(file);
+
+            SetupPluginLoader();
+
             RefeshTree();
         }
       
@@ -715,6 +728,11 @@ namespace MemoryPatch.Editing_Memory
             tv.SelectedNode = CreateNewGroup();
         }
 
+        /// <summary>
+        /// Handles the KeyDown event of the txtGroupName control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.KeyEventArgs"/> instance containing the event data.</param>
         private void txtGroupName_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return && ActiveGroup != null)
@@ -922,6 +940,10 @@ namespace MemoryPatch.Editing_Memory
         
         #endregion                     
 
+        /// <summary>
+        /// Imports the specified file.
+        /// </summary>
+        /// <param name="file">The file.</param>
         public void Import(string file)
         {
 
@@ -986,6 +1008,21 @@ namespace MemoryPatch.Editing_Memory
                 tv.LabelEdit = true;
                 if(tv.SelectedNode != null)
                     tv.SelectedNode.BeginEdit();
+            }
+        }
+
+        private void tv_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (ActiveAddress != null)
+                {
+                    RemoveAddress(tv.SelectedNode);
+                }
+                else if (ActiveGroup != null)
+                {
+                    RemoveGroup(tv.SelectedNode);
+                }
             }
         }
 

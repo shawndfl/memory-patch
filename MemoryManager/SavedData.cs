@@ -499,6 +499,9 @@ namespace MemoryManager
         private string BuildString(string value)
         {
             _builder.Remove(0, _builder.Length);
+            if (Name == null)
+                Name = "";
+
             _builder.Append(Locked ? "(X)" : "   ");
             _builder.Append(Name.PadRight(30));
             _builder.Append(' ');
@@ -506,6 +509,7 @@ namespace MemoryManager
             _builder.Append(" = ");
             _builder.Append(value.PadRight(15));
             _builder.Append(DataType.ToString());
+
             return _builder.ToString();
         }
     }   

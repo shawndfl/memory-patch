@@ -24,6 +24,11 @@
             The interface a plugin will use
             </summary>
         </member>
+        <member name="F:MemoryManager.PluginManager._addressManager">
+            <summary>
+            Gets the address manager. This is needed for plugin loader and the plugins themselves.
+            </summary>
+        </member>
         <member name="M:MemoryManager.PluginManager.ReadValue(System.String,System.String)">
             <summary>
             Reads the value.
@@ -587,6 +592,19 @@
             Saves the manager to a file
             </summary>
             <param name="file">name of the file</param>
+        </member>
+        <member name="P:MemoryManager.AddressManager.PluginPath">
+            <summary>
+            Gets the plugin path.
+            </summary>
+        </member>
+        <member name="P:MemoryManager.AddressManager.PluginType">
+            <summary>
+            Gets the type of the plugin.
+            </summary>
+            <value>
+            The type of the plugin.
+            </value>
         </member>
         <member name="T:MemoryManager.SearchUpdateEventArgs">
             <summary>

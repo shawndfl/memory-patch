@@ -24,6 +24,20 @@ namespace MemoryManager
             new Dictionary<string, GroupOptions>();
 
         private MemoryAccess _access;
+
+        /// <summary>
+        /// Gets the plugin path.
+        /// </summary>
+        public string PluginPath { get; set; }
+
+        /// <summary>
+        /// Gets the type of the plugin.
+        /// </summary>
+        /// <value>
+        /// The type of the plugin.
+        /// </value>
+        public string PluginType { get; set; }
+        
         #endregion
 
         #region Constructors
@@ -62,7 +76,10 @@ namespace MemoryManager
 
         #region Private Methods
         private void LoadData(AddressData data)
-        {            
+        {
+            PluginPath = data.PluginPath;
+            PluginType = data.PluginType;
+
             _groups.Clear();
             foreach (SaveGroupData group in data.Groups)
             {
@@ -347,6 +364,8 @@ namespace MemoryManager
             //data.Process = access.ProcessName;
             //data.Module = access.ModuleName;
 
+            data.PluginPath =  PluginPath;
+            data.PluginType =  PluginType;
             //doing things this way protect encapulation
             foreach (GroupAddress group in _groups.Values)
             {
