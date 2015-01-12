@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<Groups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<Groups xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Groups>
     <SaveGroupData name="Default">
       <Notes />
       <Addresses>
         <SavedAddress name="Exp" locked="false" dataType="UInt16" address="73AE6A" pokedValue="48" />
         <SavedAddress name="Flowers" locked="false" dataType="UByte" address="74AD1A" pokedValue="99" />
-        <SavedAddress name="Frog Coins" locked="false" dataType="UInt16" address="74AD1B" pokedValue="14" />
+        <SavedAddress name="Frog Coins" locked="false" dataType="UInt16" optionList="" address="74AD1B" pokedValue="99" />
         <SavedAddress name="Coins" locked="false" dataType="UInt16" address="74AD17" pokedValue="779" />
         <SavedAddress name="Current HP" locked="false" dataType="UInt16" address="73AEF9" pokedValue="129" />
         <SavedAddress name="Max HP" locked="false" dataType="UInt16" address="73AEFB" pokedValue="129" />
@@ -56,8 +56,7 @@
         <SavedAddress name="Max Defense" locked="false" dataType="UInt16" address="73B0DC" pokedValue="65" />
         <SavedAddress name="Max Mg. Attack" locked="false" dataType="UInt16" address="73B0DE" pokedValue="59" />
         <SavedAddress name="Max Mg. Defense" locked="false" dataType="UInt16" address="73B0D0" pokedValue="0" />
-        <SavedAddress name="Item1" locked="false" dataType="UByte" optionList="Items" address="74ACEA" pokedValue="75" />
-        <SavedAddress name="Item2" locked="false" dataType="UByte" address="74ACEB" pokedValue="96" />
+        <SavedAddress name="Item2" locked="false" dataType="UByte" optionList="" address="74ACEB" pokedValue="96" />
         <SavedAddress name="Item3" locked="false" dataType="UByte" address="74ACEC" pokedValue="96" />
         <SavedAddress name="Item4" locked="false" dataType="UByte" address="74ACED" pokedValue="96" />
         <SavedAddress name="Item5" locked="false" dataType="UByte" address="74ACEE" pokedValue="99" />
@@ -65,10 +64,10 @@
         <SavedAddress name="Item7" locked="false" dataType="UByte" address="74ACF0" pokedValue="99" />
         <SavedAddress name="Item8" locked="false" dataType="UByte" address="74ACF1" pokedValue="100" />
         <SavedAddress name="Item9" locked="false" dataType="UByte" optionList="" address="74ACF2" pokedValue="100" />
-        <SavedAddress name="Item10" locked="false" dataType="UByte" address="74ACF3" pokedValue="102" />
-        <SavedAddress name="Item11" locked="false" dataType="UByte" address="74ACF4" pokedValue="102" />
+        <SavedAddress name="Item10" locked="false" dataType="UByte" optionList="Items" address="74ACF3" pokedValue="102" />
+        <SavedAddress name="Item11" locked="false" dataType="UByte" optionList="Items" address="74ACF4" pokedValue="102" />
         <SavedAddress name="Item12" locked="false" dataType="UByte" address="74ACF5" pokedValue="102" />
-        <SavedAddress name="Item13" locked="false" dataType="UByte" address="74ACF6" pokedValue="103" />
+        <SavedAddress name="Item13" locked="false" dataType="UByte" optionList="Items" address="74ACF6" pokedValue="103" />
         <SavedAddress name="Item14" locked="false" dataType="UByte" address="74ACF7" pokedValue="103" />
         <SavedAddress name="Item15" locked="false" dataType="UByte" address="74ACF8" pokedValue="103" />
         <SavedAddress name="Item16" locked="false" dataType="UByte" address="74ACF9" pokedValue="108" />
@@ -78,13 +77,67 @@
         <SavedAddress name="Item20" locked="false" dataType="UByte" address="74ACFD" pokedValue="114" />
         <SavedAddress name="Item21" locked="false" dataType="UByte" address="74ACFE" pokedValue="138" />
         <SavedAddress name="Item22" locked="false" dataType="UByte" optionList="" address="74ACFF" pokedValue="148" />
-        <SavedAddress name="Item23" locked="false" dataType="UByte" address="74AB00" pokedValue="114" />
-        <SavedAddress name="Item24" locked="false" dataType="UByte" address="74AB01" pokedValue="255" />
-        <SavedAddress name="Item25" locked="false" dataType="UByte" address="74AB02" pokedValue="255" />
+        <SavedAddress name="Item23" locked="false" dataType="UByte" optionList="Items" address="74AB00" pokedValue="114" />
+        <SavedAddress name="Item24" locked="false" dataType="UByte" optionList="Items" address="74AB01" pokedValue="255" />
+        <SavedAddress name="Item25" locked="false" dataType="UByte" optionList="" address="74AB02" pokedValue="255" />
         <SavedAddress name="Item26" locked="false" dataType="UByte" address="74AB03" pokedValue="255" />
         <SavedAddress name="Item27" locked="false" dataType="UByte" address="74AB04" pokedValue="255" />
         <SavedAddress name="Item28" locked="false" dataType="UByte" address="74AB05" pokedValue="255" />
         <SavedAddress name="Item29" locked="false" dataType="UByte" address="74AB06" pokedValue="255" />
+      </Addresses>
+    </SaveGroupData>
+    <SaveGroupData name="Equip">
+      <Addresses>
+        <SavedAddress name="Slot" locked="false" dataType="UByte" optionList="" address="74ACCC" pokedValue="0" />
+        <SavedAddress name="Slot(2)" locked="false" dataType="UByte" optionList="Items" address="74ACCD" pokedValue="69" />
+        <SavedAddress name="Slot(3)" locked="false" dataType="UByte" optionList="Items" address="74ACCE" pokedValue="69" />
+        <SavedAddress name="Slot(4)" locked="false" dataType="UByte" optionList="Items" address="74ACCF" pokedValue="33" />
+        <SavedAddress name="Slot(5)" locked="false" dataType="UByte" optionList="Items" address="74ACD0" pokedValue="32" />
+        <SavedAddress name="Slot(6)" locked="false" dataType="UByte" optionList="Items" address="74ACD1" pokedValue="0" />
+        <SavedAddress name="Slot(7)" locked="false" dataType="UByte" optionList="Items" address="74ACD2" pokedValue="0" />
+        <SavedAddress name="Slot(8)" locked="false" dataType="UByte" optionList="Items" address="74ACD3" pokedValue="0" />
+        <SavedAddress name="Slot(9)" locked="false" dataType="UByte" optionList="Items" address="74ACD4" pokedValue="0" />
+        <SavedAddress name="Slot(10)" locked="false" dataType="UByte" optionList="Items" address="74ACD5" pokedValue="0" />
+        <SavedAddress name="Slot(11)" locked="false" dataType="UByte" optionList="Items" address="74ACD6" pokedValue="0" />
+        <SavedAddress name="Slot(12)" locked="false" dataType="UByte" optionList="Items" address="74ACD7" pokedValue="0" />
+        <SavedAddress name="Slot(13)" locked="false" dataType="UByte" optionList="Items" address="74ACD8" pokedValue="0" />
+        <SavedAddress name="Slot(14)" locked="false" dataType="UByte" optionList="Items" address="74ACD9" pokedValue="0" />
+        <SavedAddress name="Slot(15)" locked="false" dataType="UByte" optionList="Items" address="74ACDA" pokedValue="0" />
+        <SavedAddress name="Slot(16)" locked="false" dataType="UByte" optionList="Items" address="74ACDB" pokedValue="0" />
+        <SavedAddress name="Slot(17)" locked="false" dataType="UByte" optionList="Items" address="74ACDC" pokedValue="0" />
+        <SavedAddress name="Slot(18)" locked="false" dataType="UByte" optionList="Items" address="74ACDD" pokedValue="0" />
+        <SavedAddress name="Slot(19)" locked="false" dataType="UByte" optionList="Items" address="74ACDE" pokedValue="0" />
+        <SavedAddress name="Slot(20)" locked="false" dataType="UByte" optionList="Items" address="74ACDF" pokedValue="0" />
+        <SavedAddress name="Slot(21)" locked="false" dataType="UByte" optionList="Items" address="74ACE0" pokedValue="0" />
+        <SavedAddress name="Slot(22)" locked="false" dataType="UByte" optionList="Items" address="74ACE1" pokedValue="0" />
+        <SavedAddress name="Slot(23)" locked="false" dataType="UByte" optionList="Items" address="74ACE2" pokedValue="0" />
+      </Addresses>
+    </SaveGroupData>
+    <SaveGroupData name="Items">
+      <Addresses>
+        <SavedAddress name="Item" locked="false" dataType="UByte" optionList="Items" address="74ACEA" pokedValue="75" />
+        <SavedAddress name="Item(2)" locked="false" dataType="UByte" optionList="Items" address="74ACEB" pokedValue="255" />
+        <SavedAddress name="Item(3)" locked="false" dataType="UByte" optionList="Items" address="74ACEC" pokedValue="255" />
+        <SavedAddress name="Item(4)" locked="false" dataType="UByte" optionList="Items" address="74ACED" pokedValue="255" />
+        <SavedAddress name="Item(5)" locked="false" dataType="UByte" optionList="Items" address="74ACEE" pokedValue="255" />
+        <SavedAddress name="Item(6)" locked="false" dataType="UByte" optionList="Items" address="74ACEF" pokedValue="255" />
+        <SavedAddress name="Item(7)" locked="false" dataType="UByte" optionList="Items" address="74ACF0" pokedValue="255" />
+        <SavedAddress name="Item(8)" locked="false" dataType="UByte" optionList="Items" address="74ACF1" pokedValue="255" />
+        <SavedAddress name="Item(9)" locked="false" dataType="UByte" optionList="Items" address="74ACF2" pokedValue="255" />
+        <SavedAddress name="Item(10)" locked="false" dataType="UByte" optionList="Items" address="74ACF3" pokedValue="255" />
+        <SavedAddress name="Item(11)" locked="false" dataType="UByte" optionList="Items" address="74ACF4" pokedValue="255" />
+        <SavedAddress name="Item(12)" locked="false" dataType="UByte" optionList="Items" address="74ACF5" pokedValue="255" />
+        <SavedAddress name="Item(13)" locked="false" dataType="UByte" optionList="Items" address="74ACF6" pokedValue="255" />
+        <SavedAddress name="Item(14)" locked="false" dataType="UByte" optionList="Items" address="74ACF7" pokedValue="255" />
+        <SavedAddress name="Item(15)" locked="false" dataType="UByte" optionList="Items" address="74ACF8" pokedValue="255" />
+        <SavedAddress name="Item(16)" locked="false" dataType="UByte" optionList="Items" address="74ACF9" pokedValue="255" />
+        <SavedAddress name="Item(17)" locked="false" dataType="UByte" optionList="Items" address="74ACFA" pokedValue="255" />
+        <SavedAddress name="Item(18)" locked="false" dataType="UByte" optionList="Items" address="74ACFB" pokedValue="255" />
+        <SavedAddress name="Item(19)" locked="false" dataType="UByte" optionList="Items" address="74ACFC" pokedValue="255" />
+        <SavedAddress name="Item(20)" locked="false" dataType="UByte" optionList="Items" address="74ACFD" pokedValue="255" />
+        <SavedAddress name="Item(21)" locked="false" dataType="UByte" optionList="Items" address="74ACFE" pokedValue="255" />
+        <SavedAddress name="Item(22)" locked="false" dataType="UByte" optionList="Items" address="74ACFF" pokedValue="255" />
+        <SavedAddress name="Item(23)" locked="false" dataType="UByte" optionList="Items" address="74AD00" pokedValue="255" />
       </Addresses>
     </SaveGroupData>
   </Groups>
@@ -166,6 +219,9 @@
         <Option item="Safety Badge" value="75" />
         <Option item="Jump Shoes" value="76" />
         <Option item="Safety Ring" value="77" />
+        <Option item="Mushroom" value="97" />
+        <Option item="Max Mushroom" value="98" />
+        <Option item="Mushroom" value="96" />
       </Options>
     </SaveGroupOptions>
   </Options>

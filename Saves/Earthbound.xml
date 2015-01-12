@@ -19,7 +19,7 @@
         <SavedAddress name="Status" locked="false" dataType="UInt32" optionList="" address="734E44" pokedValue="0" />
         <SavedAddress name="Offence" locked="false" dataType="UByte" optionList="" address="734E4B" pokedValue="131" />
         <SavedAddress name="Defense" locked="false" dataType="UByte" optionList="" address="734E4C" pokedValue="145" />
-        <SavedAddress name="Speed" locked="false" dataType="UByte" address="734E4D" pokedValue="58" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" optionList="" address="734E4D" pokedValue="255" />
         <SavedAddress name="Guts" locked="false" dataType="UByte" optionList="" address="734E4E" pokedValue="255" />
         <SavedAddress name="Luck" locked="false" dataType="UByte" address="734E4F" pokedValue="58" />
         <SavedAddress name="Vitality" locked="false" dataType="UByte" optionList="" address="734E50" pokedValue="23" />
@@ -39,7 +39,7 @@
         <SavedAddress name="Item(11)" locked="false" dataType="UByte" optionList="Items" address="734E63" pokedValue="100" />
         <SavedAddress name="Item(12)" locked="false" dataType="UByte" optionList="Items" address="734E64" pokedValue="69" />
         <SavedAddress name="Item(13)" locked="false" dataType="UByte" optionList="Items" address="734E65" pokedValue="83" />
-        <SavedAddress name="Item(14)" locked="false" dataType="UByte" optionList="Items" address="734E66" pokedValue="100" />
+        <SavedAddress name="Item(14)" locked="false" dataType="UByte" optionList="Items" address="734E66" pokedValue="69" />
         <SavedAddress name="Exp points" locked="false" dataType="UInt32" optionList="" address="734E3C" pokedValue="10937" />
         <SavedAddress name="Level" locked="false" dataType="UByte" optionList="" address="734E3B" pokedValue="16" />
         <SavedAddress name="In battle Status" locked="false" dataType="UInt32" optionList="" address="735431" pokedValue="0" />
@@ -50,14 +50,14 @@
     <SaveGroupData name="Enemy">
       <Notes />
       <Addresses>
-        <SavedAddress name="HP" locked="false" dataType="UInt16" optionList="" address="735697" pokedValue="0" />
+        <SavedAddress name="HP" locked="false" dataType="UInt16" optionList="" address="735697" pokedValue="9000" />
         <SavedAddress name="PP" locked="false" dataType="UByte" address="73569B" pokedValue="60" />
         <SavedAddress name="Status" locked="false" dataType="UInt32" optionList="" address="7356A1" pokedValue="5" />
         <SavedAddress name="Offence" locked="false" dataType="UByte" optionList="" address="7356AA" pokedValue="0" />
         <SavedAddress name="Defence" locked="false" dataType="UByte" optionList="" address="7356AC" pokedValue="0" />
         <SavedAddress name="Speed" locked="false" dataType="UByte" optionList="" address="7356AE" pokedValue="19" />
-        <SavedAddress name="Exp Points after battle" locked="false" dataType="UInt32" optionList="" address="7356C3" pokedValue="100000" />
-        <SavedAddress name="Max HP" locked="false" dataType="UInt16" optionList="" address="735699" pokedValue="1" />
+        <SavedAddress name="Exp Points after battle" locked="false" dataType="UInt32" optionList="" address="7356C3" pokedValue="0" />
+        <SavedAddress name="Max HP" locked="false" dataType="UInt16" optionList="" address="735699" pokedValue="9999" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Enemy 2">
@@ -69,25 +69,25 @@
         <SavedAddress name="Offence" locked="false" dataType="UByte" address="7356F8" pokedValue="71" />
         <SavedAddress name="Defence" locked="false" dataType="UByte" address="7356FA" pokedValue="180" />
         <SavedAddress name="Speed" locked="false" dataType="UByte" address="7356FC" pokedValue="19" />
-        <SavedAddress name="Exp Points after battle" locked="false" dataType="UInt32" optionList="" address="735711" pokedValue="100000" />
+        <SavedAddress name="Exp Points after battle" locked="false" dataType="UInt32" optionList="" address="735711" pokedValue="0" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Enemy 3">
       <Notes />
       <Addresses>
-        <SavedAddress name="HP" locked="false" dataType="UInt16" optionList="" address="735731" pokedValue="1" />
+        <SavedAddress name="HP" locked="false" dataType="UInt16" optionList="" address="735733" pokedValue="1" />
         <SavedAddress name="PP" locked="false" dataType="UByte" address="735737" pokedValue="60" />
         <SavedAddress name="Status" locked="false" dataType="UByte" optionList="" address="73573D" pokedValue="5" />
         <SavedAddress name="Offence" locked="false" dataType="UByte" address="735746" pokedValue="71" />
         <SavedAddress name="Defence" locked="false" dataType="UByte" address="735748" pokedValue="180" />
         <SavedAddress name="Speed" locked="false" dataType="UByte" address="73574A" pokedValue="19" />
-        <SavedAddress name="Exp Points after battle" locked="false" dataType="UInt16" optionList="" address="73575F" pokedValue="1000" />
+        <SavedAddress name="Exp Points after battle" locked="false" dataType="UInt16" optionList="" address="73575F" pokedValue="0" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Enemy 4">
       <Notes />
       <Addresses>
-        <SavedAddress name="HP" locked="false" dataType="UInt16" address="73577F" pokedValue="1" />
+        <SavedAddress name="HP" locked="false" dataType="UInt16" optionList="" address="735781" pokedValue="1" />
         <SavedAddress name="PP" locked="false" dataType="UByte" address="735785" pokedValue="60" />
         <SavedAddress name="Status" locked="false" dataType="UByte" address="73578B" pokedValue="5" />
         <SavedAddress name="Offence" locked="false" dataType="UByte" address="735794" pokedValue="71" />
@@ -106,17 +106,17 @@
         <SavedAddress name="Status" locked="false" dataType="UInt32" optionList="" address="734EA3" pokedValue="7" />
         <SavedAddress name="Offence" locked="false" dataType="UByte" optionList="" address="734EAA" pokedValue="131" />
         <SavedAddress name="Defense" locked="false" dataType="UByte" optionList="" address="734EAB" pokedValue="145" />
-        <SavedAddress name="Speed" locked="false" dataType="UByte" optionList="" address="734EAC" pokedValue="58" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" optionList="" address="734EAC" pokedValue="255" />
         <SavedAddress name="Guts" locked="false" dataType="UByte" optionList="" address="734EAD" pokedValue="255" />
         <SavedAddress name="Luck" locked="false" dataType="UByte" address="734EAE" pokedValue="58" />
         <SavedAddress name="Vitality" locked="false" dataType="UByte" address="734EAF" pokedValue="23" />
         <SavedAddress name="IQ" locked="false" dataType="UByte" address="734EB0" pokedValue="20" />
-        <SavedAddress name="Item" locked="false" dataType="UByte" optionList="Items" address="734EB8" pokedValue="0" />
-        <SavedAddress name="Item(2)" locked="false" dataType="UByte" optionList="Items" address="734EB9" pokedValue="103" />
+        <SavedAddress name="Item" locked="false" dataType="UByte" optionList="Items" address="734EB8" pokedValue="125" />
+        <SavedAddress name="Item(2)" locked="false" dataType="UByte" optionList="Items" address="734EB9" pokedValue="104" />
         <SavedAddress name="Item(3)" locked="false" dataType="UByte" optionList="Items" address="734EBA" pokedValue="103" />
         <SavedAddress name="Item(4)" locked="false" dataType="UByte" optionList="Items" address="734EBB" pokedValue="196" />
         <SavedAddress name="Item(5)" locked="false" dataType="UByte" optionList="Items" address="734EBC" pokedValue="177" />
-        <SavedAddress name="Item(6)" locked="false" dataType="UByte" optionList="Items" address="734EBD" pokedValue="228" />
+        <SavedAddress name="Item(6)" locked="false" dataType="UByte" optionList="Items" address="734EBD" pokedValue="185" />
         <SavedAddress name="Item(7)" locked="false" dataType="UByte" optionList="Items" address="734EBE" pokedValue="69" />
         <SavedAddress name="Item(8)" locked="false" dataType="UByte" optionList="Items" address="734EBF" pokedValue="0" />
         <SavedAddress name="Item(9)" locked="false" dataType="UByte" optionList="Items" address="734EC0" pokedValue="252" />
@@ -142,7 +142,7 @@
         <SavedAddress name="Status" locked="false" dataType="UInt32" optionList="" address="734F02" pokedValue="7" />
         <SavedAddress name="Offence" locked="false" dataType="UByte" optionList="" address="734F09" pokedValue="131" />
         <SavedAddress name="Defense" locked="false" dataType="UByte" optionList="" address="734F0A" pokedValue="145" />
-        <SavedAddress name="Speed" locked="false" dataType="UByte" optionList="" address="734F0B" pokedValue="58" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" optionList="" address="734F0B" pokedValue="255" />
         <SavedAddress name="Guts" locked="false" dataType="UByte" optionList="" address="734F0C" pokedValue="255" />
         <SavedAddress name="Luck" locked="false" dataType="UByte" address="734F0D" pokedValue="58" />
         <SavedAddress name="Vitality" locked="false" dataType="UByte" optionList="" address="734F0E" pokedValue="23" />
@@ -178,7 +178,7 @@
         <SavedAddress name="Status" locked="false" dataType="UInt32" optionList="" address="734F61" pokedValue="0" />
         <SavedAddress name="Offence" locked="false" dataType="UByte" optionList="" address="734F68" pokedValue="131" />
         <SavedAddress name="Defense" locked="false" dataType="UByte" optionList="" address="734F69" pokedValue="145" />
-        <SavedAddress name="Speed" locked="false" dataType="UByte" optionList="" address="734F6A" pokedValue="58" />
+        <SavedAddress name="Speed" locked="false" dataType="UByte" optionList="" address="734F6A" pokedValue="255" />
         <SavedAddress name="Guts" locked="false" dataType="UByte" optionList="" address="734F6B" pokedValue="255" />
         <SavedAddress name="Luck" locked="false" dataType="UByte" address="734F6C" pokedValue="58" />
         <SavedAddress name="Vitality" locked="false" dataType="UByte" optionList="" address="734F6D" pokedValue="23" />
@@ -194,7 +194,7 @@
         <SavedAddress name="Item(9)" locked="false" dataType="UByte" optionList="Items" address="734F7E" pokedValue="73" />
         <SavedAddress name="Item(10)" locked="false" dataType="UByte" optionList="Items" address="734F7F" pokedValue="73" />
         <SavedAddress name="Item(11)" locked="false" dataType="UByte" optionList="Items" address="734F80" pokedValue="100" />
-        <SavedAddress name="Item(12)" locked="false" dataType="UByte" optionList="Items" address="734F81" pokedValue="0" />
+        <SavedAddress name="Item(12)" locked="false" dataType="UByte" optionList="Items" address="734F81" pokedValue="35" />
         <SavedAddress name="Item(13)" locked="false" dataType="UByte" optionList="Items" address="734F82" pokedValue="0" />
         <SavedAddress name="Item(14)" locked="false" dataType="UByte" optionList="Items" address="734F83" pokedValue="0" />
         <SavedAddress name="HP" locked="false" dataType="UInt16" optionList="" address="734F9A" pokedValue="761" />
