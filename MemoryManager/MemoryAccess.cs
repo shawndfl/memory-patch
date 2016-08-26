@@ -11,14 +11,39 @@ namespace MemoryManager
     public class MemoryAccess
     {
         #region Dll Imports
+        /// <summary>
+        /// Used to read memory from a process
+        /// </summary>
+        /// <param name="hProcess"></param>
+        /// <param name="lpBaseAddress"></param>
+        /// <param name="buffer"></param>
+        /// <param name="size"></param>
+        /// <param name="lpNumberOfBytesRead"></param>
+        /// <returns></returns>
         [DllImport("kernel32.dll", EntryPoint = "ReadProcessMemory")]
         public static extern Int32 ReadProcessMemory(IntPtr hProcess, int lpBaseAddress,
             byte[] buffer, int size, out int lpNumberOfBytesRead);
 
+        /// <summary>
+        /// Writes memory to a process
+        /// </summary>
+        /// <param name="hProcess"></param>
+        /// <param name="lpBaseAddress"></param>
+        /// <param name="buffer"></param>
+        /// <param name="size"></param>
+        /// <param name="lpNumberOfBytesRead"></param>
+        /// <returns></returns>
         [DllImport("kernel32.dll", EntryPoint = "WriteProcessMemory")]
         public static extern Int32 WriteProcessMemory(IntPtr hProcess, int lpBaseAddress,
             byte[] buffer, int size, out int lpNumberOfBytesRead);
 
+        /// <summary>
+        /// Opens a process
+        /// </summary>
+        /// <param name="dwDesiredAccess"></param>
+        /// <param name="bInheritHandle"></param>
+        /// <param name="dbProcessId"></param>
+        /// <returns></returns>
         [DllImport("kernel32.dll", EntryPoint = "OpenProcess")]
         public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dbProcessId);
         #endregion

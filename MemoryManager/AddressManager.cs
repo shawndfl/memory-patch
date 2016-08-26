@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.ObjectModel;
 
 namespace MemoryManager
 {
@@ -313,6 +314,16 @@ namespace MemoryManager
         #endregion      
 
         #region GUI Helpers
+
+        /// <summary>
+        /// Gets the data for all saved addresses
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string, GroupAddress> GetGroups()
+        {
+            return _groups;
+        }
+
         public void FillInTree(TreeNode root)
         {
             root.Nodes.Clear();

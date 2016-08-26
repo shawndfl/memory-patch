@@ -61,13 +61,7 @@ namespace MemoryPatch.Editing_Memory
             foreach (string type in datatypes)
             {
                 cboDataType.Items.Add(type);
-            }
-
-            cboAssign.Items.Add("Equal");
-            cboAssign.Items.Add("Or In");
-            cboAssign.Items.Add("Or Out");
-            cboAssign.SelectedIndex = 0;
-
+            }           
         }
 
         /// <summary>
@@ -89,9 +83,7 @@ namespace MemoryPatch.Editing_Memory
 
         private void SetupPluginLoader()
         {
-            //setup plugin loader
-            PluginManager plugin = new PluginManager(_addressManager, _access);
-            pluginLoader1.Init(plugin, _addressManager);
+            
         }       
 
         #region Save and Open
@@ -478,11 +470,7 @@ namespace MemoryPatch.Editing_Memory
             _updating = true;       
      
             txtValue.Text = ((Option)cboValue.Items[i]).Value;
-            if (cboAssign.Text == "Equal")
-            {
-                ActiveAddress.StringValue = txtValue.Text;
-            }            
-                //ActiveAddress.Value |= txtValue.Text;
+            ActiveAddress.StringValue = txtValue.Text;                        
 
             _access.WriteValue(ActiveAddress.Address, ActiveAddress.Value);
             _updating = false;
@@ -517,8 +505,9 @@ namespace MemoryPatch.Editing_Memory
 
             _addressManager.FillInTree(_root);
 
-            RefeshOptionGroups();            
+            RefeshOptionGroups();
 
+            addressView1.LoadAddresses(_addressManager.GetGroups());
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -1031,6 +1020,6 @@ namespace MemoryPatch.Editing_Memory
             e.Node.Text = e.Label;
             tv.LabelEdit = false;
             ActiveAddress.Name = e.Label;
-        }            
+        }       
     }
 }

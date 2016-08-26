@@ -168,6 +168,7 @@ namespace MemoryManager
 
         #region Constructors
         private SavedAddress() { }   
+        
         public SavedAddress(bool locked, string name, int address, DataType dataType)
         {
             DataType = dataType;
@@ -502,6 +503,7 @@ namespace MemoryManager
             if (Name == null)
                 Name = "";
 
+            
             _builder.Append(Locked ? "(X)" : "   ");
             _builder.Append(Name.PadRight(30));
             _builder.Append(' ');

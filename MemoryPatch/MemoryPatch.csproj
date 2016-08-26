@@ -61,6 +61,16 @@
       <Link>Editing Memory\HexWindow.designer.cs</Link>
       <DependentUpon>HexWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddressContextMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AddressSorter.cs" />
+    <Compile Include="Editing Memory\AddressView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Editing Memory\AddressView.Designer.cs">
+      <DependentUpon>AddressView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editing Memory\MemoryPatchControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -85,12 +95,33 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBatchCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBatchCreate.Designer.cs">
+      <DependentUpon>frmBatchCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRename.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRename.Designer.cs">
+      <DependentUpon>frmRename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListViewAddress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ListViewAddress.Designer.cs">
+      <DependentUpon>ListViewAddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="..\HexViewer\HexViewer\HexWindow.resx">
       <Link>Editing Memory\HexWindow.resx</Link>
       <DependentUpon>HexWindow.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editing Memory\AddressView.resx">
+      <DependentUpon>AddressView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editing Memory\MemoryPatchControl.resx">
       <SubType>Designer</SubType>
@@ -106,6 +137,12 @@
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBatchCreate.resx">
+      <DependentUpon>frmBatchCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRename.resx">
+      <DependentUpon>frmRename.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

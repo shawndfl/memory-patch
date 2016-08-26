@@ -42,7 +42,7 @@ namespace MemoryManager
         }
         #endregion
 
-        internal List<SavedAddress> GetListOfAddresses()
+        public List<SavedAddress> GetListOfAddresses()
         {
             List<SavedAddress> addresses = new List<SavedAddress>();
             foreach (SavedAddress address in _addresses)

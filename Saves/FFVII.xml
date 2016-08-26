@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Groups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<Groups xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Groups>
     <SaveGroupData name="Default">
       <Notes />
@@ -252,7 +252,7 @@
       <Notes />
       <Addresses>
         <SavedAddress name="After battle EXP" locked="false" dataType="UInt32" optionList="" address="9E97F8" pokedValue="50000" />
-        <SavedAddress name="After battle AP" locked="false" dataType="UInt16" optionList="" address="9E97FC" pokedValue="5000" />
+        <SavedAddress name="After battle AP" locked="true" dataType="UInt16" optionList="" address="9E97FC" pokedValue="5000" />
         <SavedAddress name="Item" locked="false" dataType="UByte" optionList="EvenItems" address="9E9828" pokedValue="6" />
         <SavedAddress name="Item Count" locked="false" dataType="UByte" optionList="" address="9E982A" pokedValue="99" />
         <SavedAddress name="Even Or Odd (0 or 1)" locked="false" dataType="UByte" optionList="" address="9E9829" pokedValue="1" />
@@ -261,7 +261,7 @@
     <SaveGroupData name="Character1">
       <Notes />
       <Addresses>
-        <SavedAddress name="Current Hp" locked="false" dataType="UInt16" optionList="" address="9E987C" pokedValue="300" />
+        <SavedAddress name="Current Hp" locked="false" dataType="UInt16" optionList="" address="9E987C" pokedValue="1000" />
         <SavedAddress name="Strength" locked="false" dataType="UByte" optionList="" address="9E986E" pokedValue="255" />
         <SavedAddress name="Vitality" locked="false" dataType="UByte" optionList="" address="9E986F" pokedValue="255" />
         <SavedAddress name="Magic" locked="false" dataType="UByte" optionList="" address="9E9870" pokedValue="255" />
@@ -300,8 +300,8 @@
       <Addresses>
         <SavedAddress name="Gil" locked="false" dataType="UInt32" address="9E9280" pokedValue="5000" />
         <SavedAddress name="Activate All Menu Items" locked="true" dataType="UInt32" optionList="" address="9E92C4" pokedValue="65535" />
-        <SavedAddress name="Field Message speed" locked="false" dataType="UByte" optionList="" address="9E97F0" pokedValue="75" />
-        <SavedAddress name="Battle Message Speed" locked="false" dataType="UByte" address="9E97DD" pokedValue="0" />
+        <SavedAddress name="Field Message speed" locked="false" dataType="UByte" optionList="" address="9E97F0" pokedValue="0" />
+        <SavedAddress name="Battle Message Speed" locked="false" dataType="UByte" optionList="" address="9E97DD" pokedValue="0" />
         <SavedAddress name="Buttons" locked="false" dataType="UByte" optionList="" address="9E97E1" pokedValue="0" />
         <SavedAddress name="Buttons(15)" locked="false" dataType="UByte" optionList="" address="9E97EF" pokedValue="0" />
         <SavedAddress name="Buttons(14)" locked="false" dataType="UByte" optionList="" address="9E97EE" pokedValue="14" />
@@ -317,8 +317,8 @@
         <SavedAddress name="Buttons(4)" locked="false" dataType="UByte" optionList="" address="9E97E4" pokedValue="0" />
         <SavedAddress name="Buttons(3)" locked="false" dataType="UByte" optionList="" address="9E97E3" pokedValue="0" />
         <SavedAddress name="Buttons(2)" locked="false" dataType="UByte" optionList="" address="9E97E2" pokedValue="0" />
-        <SavedAddress name="EnemyAway" locked="false" dataType="UByte" optionList="" address="9AEF39" pokedValue="0" />
-        <SavedAddress name="Key Items For Walmart" locked="false" dataType="UInt16" address="9E92E8" pokedValue="65535" />
+        <SavedAddress name="EnemyAway" locked="true" dataType="UByte" optionList="" address="9AEF39" pokedValue="0" />
+        <SavedAddress name="Key Items For Walmart" locked="false" dataType="UInt16" optionList="" address="9E92E8" pokedValue="65535" />
         <SavedAddress name="Key Items For Midgar" locked="false" dataType="UByte" optionList="" address="9E92EC" pokedValue="255" />
         <SavedAddress name="Y Pos World" locked="false" dataType="UInt16" optionList="" address="A56589" pokedValue="580" />
         <SavedAddress name="X Pos World" locked="false" dataType="UByte" optionList="" address="A56581" pokedValue="70" />
@@ -327,7 +327,7 @@
     <SaveGroupData name="Material">
       <Notes />
       <Addresses>
-        <SavedAddress name="Slot" locked="false" dataType="UByte" optionList="Materia" address="9E8E80" pokedValue="8" />
+        <SavedAddress name="Slot" locked="false" dataType="UByte" optionList="Materia" address="9E8E80" pokedValue="70" />
         <SavedAddress name="Slot(2)" locked="false" dataType="UByte" optionList="Materia" address="9E8E84" pokedValue="5" />
         <SavedAddress name="Slot(3)" locked="false" dataType="UByte" optionList="Materia" address="9E8E88" pokedValue="91" />
         <SavedAddress name="Slot(4)" locked="false" dataType="UByte" optionList="Materia" address="9E8E8C" pokedValue="255" />
