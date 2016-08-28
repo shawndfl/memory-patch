@@ -48,11 +48,8 @@ namespace MemoryPatch
                     State = SorterState.Desend;
                     break;
                 case SorterState.Desend:
-                    State = SorterState.None;
-                    break;                
-                default:
                     State = SorterState.Assend;
-                    break;
+                    break;                                
             }
         }
 

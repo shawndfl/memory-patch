@@ -41,7 +41,7 @@ namespace MemoryPatch
             if (process != null && module != null)
             {
                 //save the process and module
-                _processAccess = new MemoryAccess(process, module);                
+                _processAccess = MemoryAccess.Create(process, module);                
 
                 //show what process is selected
                 lbActiveProcess.Text = _processAccess.ProcessName + " (" + _processAccess.ModuleName + ")";                

@@ -37,7 +37,8 @@ namespace MemoryPatch
 
             this.View = View.Details;
 
-            this.ListViewItemSorter = _sorter;            
+            this.ListViewItemSorter = _sorter;
+            this.LabelEdit = true;    
         }
 
         /// <summary>
@@ -75,10 +76,25 @@ namespace MemoryPatch
             newItem.SubItems.Add(address.Name);
             newItem.SubItems.Add(address.StringAddress);
             newItem.SubItems.Add(address.DataType.ToString());
-            newItem.SubItems.Add("0");
+            newItem.SubItems.Add(GetCurrentValue(address));
             newItem.SubItems.Add(address.StringValue);
+            newItem.Tag = address;
 
             this.Items.Add(newItem);
+        }
+
+        public void RefeshMemory()
+        {
+
+        }
+
+        private String GetCurrentValue(SavedAddress address)
+        {
+            if (MemoryAccess.Get.IsAlive())
+                return MemoryAccess.Get.ReadMemoryAsString(address.Address,
+                          address.DataType, address.DataLengthInBytes);
+            else
+                return "N/A";
         }
 
         protected override void OnColumnClick(ColumnClickEventArgs e)

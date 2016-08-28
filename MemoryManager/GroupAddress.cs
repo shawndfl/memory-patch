@@ -42,13 +42,13 @@ namespace MemoryManager
         }
         #endregion
 
+        /// <summary>
+        /// Gets a copy of addresses
+        /// </summary>
+        /// <returns></returns>
         public List<SavedAddress> GetListOfAddresses()
         {
-            List<SavedAddress> addresses = new List<SavedAddress>();
-            foreach (SavedAddress address in _addresses)
-            {
-                addresses.Add(address);
-            }
+            List<SavedAddress> addresses = new List<SavedAddress>(_addresses);
             return addresses;
         }
 
@@ -61,16 +61,27 @@ namespace MemoryManager
             _addresses.Add(address);
         }
 
+        /// <summary>
+        /// Removed and address. This needs to be the same object that is in the list.
+        /// </summary>
+        /// <param name="address"></param>
         public void RemoveAddress(SavedAddress address)
         {
             _addresses.Remove(address);
         }
 
+        /// <summary>
+        /// Clears the addresses
+        /// </summary>
         public void ClearAddress()
         {
             _addresses.Clear();
         }
 
+        /// <summary>
+        /// Gets the group name
+        /// </summary>
+        /// <param name="name"></param>
         public GroupAddress(string name)
         {
             Name = name;

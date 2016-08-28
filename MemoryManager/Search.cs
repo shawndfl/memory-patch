@@ -93,9 +93,9 @@ namespace MemoryManager
             {
                 SearchContext context = (SearchContext)obj;
 
-                IntPtr baseAddress = _access.Module.BaseAddress;
+                IntPtr baseAddress = _access.BaseAddress;
                 int start = baseAddress.ToInt32();
-                int len = _access.Module.ModuleMemorySize;
+                int len = _access.ModuleMemorySize;
                 int end = start + len;               
                 float lastPrecentDone = 0;
 
@@ -196,9 +196,9 @@ namespace MemoryManager
             {
                 SearchContext context = (SearchContext)obj;
 
-                IntPtr baseAddress = _access.Module.BaseAddress;
+                IntPtr baseAddress = _access.BaseAddress;
                 int start = baseAddress.ToInt32();
-                int len = _access.Module.ModuleMemorySize;
+                int len = _access.ModuleMemorySize;
                 int end = start + len;
                 float lastPrecentDone = 0;
 

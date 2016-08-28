@@ -10,91 +10,116 @@ namespace MemoryManager
 {
     public class MemoryAccess
     {
-        #region Dll Imports
-        /// <summary>
-        /// Used to read memory from a process
-        /// </summary>
-        /// <param name="hProcess"></param>
-        /// <param name="lpBaseAddress"></param>
-        /// <param name="buffer"></param>
-        /// <param name="size"></param>
-        /// <param name="lpNumberOfBytesRead"></param>
-        /// <returns></returns>
-        [DllImport("kernel32.dll", EntryPoint = "ReadProcessMemory")]
-        public static extern Int32 ReadProcessMemory(IntPtr hProcess, int lpBaseAddress,
-            byte[] buffer, int size, out int lpNumberOfBytesRead);
-
-        /// <summary>
-        /// Writes memory to a process
-        /// </summary>
-        /// <param name="hProcess"></param>
-        /// <param name="lpBaseAddress"></param>
-        /// <param name="buffer"></param>
-        /// <param name="size"></param>
-        /// <param name="lpNumberOfBytesRead"></param>
-        /// <returns></returns>
-        [DllImport("kernel32.dll", EntryPoint = "WriteProcessMemory")]
-        public static extern Int32 WriteProcessMemory(IntPtr hProcess, int lpBaseAddress,
-            byte[] buffer, int size, out int lpNumberOfBytesRead);
-
-        /// <summary>
-        /// Opens a process
-        /// </summary>
-        /// <param name="dwDesiredAccess"></param>
-        /// <param name="bInheritHandle"></param>
-        /// <param name="dbProcessId"></param>
-        /// <returns></returns>
-        [DllImport("kernel32.dll", EntryPoint = "OpenProcess")]
-        public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dbProcessId);
-        #endregion
-
-        #region Consts
-        public const int PROCESS_VM_READ = 0x0010;
-        public const int PROCESS_VM_WRITE = 0x0020;
-        #endregion
 
         #region Fields
+        private IProcessManager _processManager;
+
         private static object _freezeLock = new object();
         private Dictionary<int, AddressLock> _frezonAddresses =
             new Dictionary<int, AddressLock>();
 
         private Thread _frezzeThread;
-        #endregion
+
+        private static MemoryAccess _instance;
+        #endregion               
 
         /// <summary>
-        /// the process we are accessing
+        /// The name of the procss
         /// </summary>
-        public Process Process { get; private set; }
-
-        /// <summary>
-        /// the module in the process to access
-        /// </summary>
-        public ProcessModule Module { get; private set; }
-
         public string ProcessName
         {
-            get { return Process.ProcessName; }
+            get { return _processManager.ProcessName; }
         }
 
+        /// <summary>
+        /// The module of the process we are accessing
+        /// </summary>
         public string ModuleName
         {
-            get { return Module.ModuleName; }
+            get { return _processManager.ModuleName; }
         }
 
-        public MemoryAccess(Process process, ProcessModule module)
+        /// <summary>
+        /// Gets the base pointer to the module
+        /// </summary>
+        public IntPtr BaseAddress
         {
-            Process = process;
-            Module = module;
-            StartFreezeThread();
-        }        
-
-        public MemoryAccess(Process process)
-        {
-            Process = process;
-            Module = Process.MainModule;
-            StartFreezeThread();
+            get
+            {
+                return _processManager.BaseAddress;
+            }
         }
 
+        /// <summary>
+        /// Gets the size of the module in bytes
+        /// </summary>
+        public int ModuleMemorySize
+        {
+            get
+            {
+                return _processManager.ModuleMemorySize;
+            }
+        }
+
+        /// <summary>
+        /// Gets an instance to memory access. Make sure Create is called first.
+        /// </summary>
+        public static MemoryAccess Get
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = Create(null, null);
+                }
+
+                return _instance;
+
+            }
+        }
+
+        /// <summary>
+        /// Creates an instance of memory access.
+        /// </summary>
+        /// <param name="process"></param>
+        /// <param name="module"></param>
+        /// <returns></returns>
+        public static MemoryAccess Create(Process process, ProcessModule module)
+        {
+            if (_instance == null)
+            {
+                _instance = new MemoryAccess(new ProcessManagerImp(process, module));
+            }
+            else
+            {
+                _instance.SetProcessManager(new ProcessManagerImp(process, module));
+            }
+
+            return _instance;
+        }
+
+        public static MemoryAccess Create(Process process)
+        {
+            return Create(process, process.MainModule);
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>        
+        private MemoryAccess(IProcessManager manager)
+        {
+            SetProcessManager(manager);
+            StartFreezeThread();
+        }               
+
+        private void SetProcessManager(IProcessManager manager)
+        {
+            _processManager = manager;
+        }
+
+        /// <summary>
+        /// A thread that manages continuously changes a value in memory every 500 ms
+        /// </summary>
         private void StartFreezeThread()
         {
             _frezzeThread = new Thread(new ThreadStart(delegate()
@@ -115,12 +140,21 @@ namespace MemoryManager
             _frezzeThread.Start();
         }
 
+        /// <summary>
+        /// Kills the process
+        /// </summary>
         public void KillProcess()
         {
-            if (Process != null)
-                Process.Kill();
+            _processManager.KillProcess();
         }        
 
+        /// <summary>
+        /// Reads memory and stories the result in a string
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="dataType"></param>
+        /// <param name="lenInBytes"></param>
+        /// <returns></returns>
         public string ReadMemoryAsString(int address, DataType dataType, int lenInBytes)
         {
             byte[] buffer = ReadMemoryAsBytes(address, lenInBytes);
@@ -167,29 +201,22 @@ namespace MemoryManager
 
         }     
        
+        /// <summary>
+        /// Reads memory as a raw byte array
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public byte[] ReadMemoryAsBytes(int address, int length)
         {
-            byte[] buffer = new byte[length];
-            try
-            {
-                int lengthRead;
-                int baseAddress = Module.BaseAddress.ToInt32();
-                int len = Module.ModuleMemorySize;
-
-                IntPtr handle = Process.Handle;
-
-                if (address >= baseAddress && address + length <= baseAddress + len)
-                {
-                    ReadProcessMemory(handle, address, buffer, buffer.Length, out lengthRead);
-                }
-            }
-            catch (Exception ex)
-            {
-                buffer = null;
-            }
-            return buffer;
+            return _processManager.ReadMemoryAsBytes(address, length);
         }
 
+        /// <summary>
+        /// Adds an address to the frezon list
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="value"></param>
         public void FreezeMemory(int address, byte[] value)
         {
             lock (_freezeLock)
@@ -204,6 +231,10 @@ namespace MemoryManager
             }
         }
 
+        /// <summary>
+        /// Removes an address from the frezon list
+        /// </summary>
+        /// <param name="address"></param>
         public void UnfreezeMemory(int address)
         {
             lock (_freezeLock)
@@ -212,6 +243,9 @@ namespace MemoryManager
             }
         }
 
+        /// <summary>
+        /// Removes all from the frezon list
+        /// </summary>
         public void UnfrezzeAll()
         {
             lock (_freezeLock)
@@ -220,19 +254,24 @@ namespace MemoryManager
             }
         }
 
+        /// <summary>
+        /// Writes a value to memory.
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public int WriteValue(int address, byte[] value)
         {
-            int lengthWrite = 0;
-            try
-            {
-                IntPtr handle = Process.Handle;
-                WriteProcessMemory(handle, address, value, value.Length, out lengthWrite);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return lengthWrite;
-        }        
+            return _processManager.WriteValue(address, value);
+        }
+
+        /// <summary>
+        /// Is the process alive
+        /// </summary>
+        /// <returns></returns>
+        public bool IsAlive()
+        {
+            return _processManager.IsAlive();
+        }
     }   
 }
