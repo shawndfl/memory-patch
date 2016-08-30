@@ -881,6 +881,7 @@
             this.addressView1.Name = "addressView1";
             this.addressView1.Size = new System.Drawing.Size(641, 736);
             this.addressView1.TabIndex = 0;
+            this.addressView1.Visible = false;
             // 
             // MemoryPatchControl
             // 

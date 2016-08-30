@@ -83,9 +83,22 @@ namespace MemoryPatch
             this.Items.Add(newItem);
         }
 
+        /// <summary>
+        /// Refesh memory address
+        /// </summary>
         public void RefeshMemory()
         {
+            foreach (ListViewItem item in this.Items)
+            {
+                SavedAddress address = item.Tag as SavedAddress;
 
+                int index = (int)ColumnsNames.Value;
+                ListViewItem.ListViewSubItem valueItem = item.SubItems[index];
+                String newValue = GetCurrentValue(address);
+
+                if (newValue != valueItem.Text)
+                    valueItem.Text = newValue;
+            }
         }
 
         private String GetCurrentValue(SavedAddress address)

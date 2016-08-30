@@ -21,5 +21,17 @@ namespace MemoryManager
         /// </summary>
         /// <param name="message"></param>
         void ShowMessage(string message);
+
+        /// <summary>
+        /// Called when a value is found
+        /// </summary>        
+        /// <param name="e"></param>
+        void OnValueFound(AddressFoundEventArgs e);
+
+        /// <summary>
+        /// Updates progress.
+        /// </summary>
+        /// <param name="e"></param>
+        void OnProgressChange(SearchUpdateEventArgs e);
     }
 }

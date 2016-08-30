@@ -18,7 +18,7 @@
         <SavedAddress name="Max Mp" locked="false" dataType="UInt16" optionList="" address="A4442A" pokedValue="999" />
         <SavedAddress name="Current HP" locked="false" dataType="UInt16" optionList="" address="A4442C" pokedValue="9999" />
         <SavedAddress name="Status" locked="false" dataType="UByte" optionList="" address="A44400" pokedValue="8" />
-        <SavedAddress name="Time" locked="true" dataType="UByte" optionList="" address="A41BDD" pokedValue="255" />
+        <SavedAddress name="Time" locked="false" dataType="UByte" optionList="" address="A41BDD" pokedValue="250" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="In Battle Character 2">
@@ -253,9 +253,9 @@
       <Addresses>
         <SavedAddress name="After battle EXP" locked="false" dataType="UInt32" optionList="" address="9E97F8" pokedValue="50000" />
         <SavedAddress name="After battle AP" locked="true" dataType="UInt16" optionList="" address="9E97FC" pokedValue="5000" />
-        <SavedAddress name="Item" locked="false" dataType="UByte" optionList="EvenItems" address="9E9828" pokedValue="6" />
+        <SavedAddress name="Item" locked="true" dataType="UByte" optionList="EvenItems" address="9E9828" pokedValue="167" />
         <SavedAddress name="Item Count" locked="false" dataType="UByte" optionList="" address="9E982A" pokedValue="99" />
-        <SavedAddress name="Even Or Odd (0 or 1)" locked="false" dataType="UByte" optionList="" address="9E9829" pokedValue="1" />
+        <SavedAddress name="Even Or Odd (0 or 1)" locked="true" dataType="UByte" optionList="" address="9E9829" pokedValue="0" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Character1">
@@ -400,7 +400,7 @@
       <Addresses>
         <SavedAddress name="Current Hp" locked="false" dataType="UInt16" optionList="" address="A445CC" pokedValue="999" />
         <SavedAddress name="Max Hp" locked="false" dataType="UInt16" optionList="" address="A445D0" pokedValue="9999" />
-        <SavedAddress name="Time" locked="true" dataType="UByte" optionList="" address="A41CED" pokedValue="0" />
+        <SavedAddress name="Time" locked="false" dataType="UByte" optionList="" address="A41CED" pokedValue="0" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Enemy2">
@@ -413,7 +413,7 @@
       <Notes />
       <Addresses>
         <SavedAddress name="Current Hp" locked="false" dataType="UInt16" optionList="" address="A4469C" pokedValue="999" />
-        <SavedAddress name="Time" locked="true" dataType="UByte" optionList="" address="A41D75" pokedValue="0" />
+        <SavedAddress name="Time" locked="false" dataType="UByte" optionList="" address="A41D75" pokedValue="0" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="Enemy4">

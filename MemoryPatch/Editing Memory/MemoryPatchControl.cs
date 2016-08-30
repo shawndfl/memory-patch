@@ -519,6 +519,8 @@ namespace MemoryPatch.Editing_Memory
             {
                 RefeshAddressNode(groupNode);
             }
+
+            addressView1.RefeshMemory();
         }
 
         private void RefeshAddressNode(TreeNode groupNode)

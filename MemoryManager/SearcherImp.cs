@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 
 namespace MemoryManager
 {
-    public class SearchMemory
+    public class SearcherImp: ISearcher
     {     
         /// <summary>
         /// search thread
@@ -34,15 +34,9 @@ namespace MemoryManager
             {
                 return _addressCollection.SearchContext;
             }
-        }        
+        }       
 
-        /// <summary>
-        /// event handlers
-        /// </summary>        
-        public event EventHandler<AddressFoundEventArgs> OnValueFound;        
-        public event EventHandler<SearchUpdateEventArgs> OnProgressChange;
-
-        public SearchMemory(MemoryAccess access, IInvoke control)
+        public SearcherImp(MemoryAccess access, IInvoke control)
         {            
             _access = access;
             _control = control;
@@ -406,14 +400,11 @@ namespace MemoryManager
 
                 //invoke parent
                 _control.InvokeMethod(new ThreadStart(delegate()
-                {
-                    if (OnValueFound != null)
-                    {
+                {                                        
                         for (int x = 0; x < rest; x++)
                         {
-                            OnValueFound(this, new AddressFoundEventArgs(addresses[x]));
-                        }
-                    }
+                            _control.OnValueFound(new AddressFoundEventArgs(addresses[x]));
+                        }                 
                 }));
             }
             else if(!showRest)
@@ -432,21 +423,19 @@ namespace MemoryManager
                     }
 
                     //invoke parent
-                    _control.InvokeMethod(new ThreadStart(delegate()
+                    _control.InvokeMethod(new ThreadStart(delegate ()
                     {
-                        if (OnValueFound != null)
+                        for (int x = 0; x < offten; x++)
                         {
-                            for (int x = 0; x < offten; x++)
-                            {
-                                OnValueFound(this, new AddressFoundEventArgs(addresses[x]));
-                            }
+                            _control.OnValueFound(new AddressFoundEventArgs(addresses[x]));
                         }
+
                     }));
                 }
             }
         }
 
-        public CompareType Compare(byte[] value1, byte[] value2, DataType dataType, out double amoutOfChange)
+        private CompareType Compare(byte[] value1, byte[] value2, DataType dataType, out double amoutOfChange)
         {            
             switch (dataType)
             {
@@ -584,10 +573,8 @@ namespace MemoryManager
             {
                 _control.InvokeMethod(new ThreadStart(delegate()
                 {
-                    if (OnProgressChange != null)
-                    {
-                        OnProgressChange(this, new SearchUpdateEventArgs(start, end, currentAddress, addressFoundCount));
-                    }
+                    _control.OnProgressChange( new SearchUpdateEventArgs(start, end, currentAddress, addressFoundCount));                    
+
                 }));
                 lastPrecentDone = precentDone;
             }
@@ -625,27 +612,22 @@ namespace MemoryManager
                 stream = File.Open(file, FileMode.Open, FileAccess.Read);
 
                 XmlSerializer ser = new XmlSerializer(typeof(AddressCollection));
-                _addressCollection = (AddressCollection)ser.Deserialize(stream);                
+                _addressCollection = (AddressCollection)ser.Deserialize(stream);
 
                 //display the first few addresses
-                _control.InvokeMethod(new ThreadStart(delegate()                
+                _control.InvokeMethod(new ThreadStart(delegate ()
                 {
                     //show how many address are found
-                    if (OnProgressChange != null)
-                    {
-                        OnProgressChange(this, new SearchUpdateEventArgs(0, 1, 0,
-                            _addressCollection.CurrentList.Count));
-                    }
+                    _control.OnProgressChange(new SearchUpdateEventArgs(0, 1, 0,
+                                _addressCollection.CurrentList.Count));
 
                     //display the values found
-                    if (OnValueFound != null)
+                    int count = Math.Min(_addressCollection.CurrentList.Count, AddressDisplayCount);
+                    for (int x = 0; x < count; x++)
                     {
-                        int count = Math.Min(_addressCollection.CurrentList.Count, AddressDisplayCount);
-                        for (int x = 0; x < count; x++)
-                        {
-                            OnValueFound(this, new AddressFoundEventArgs(_addressCollection.CurrentList[x]));
-                        }
+                        _control.OnValueFound(new AddressFoundEventArgs(_addressCollection.CurrentList[x]));
                     }
+
                 }));
             }
             catch (Exception ex)
@@ -658,43 +640,5 @@ namespace MemoryManager
                     stream.Close();
             }
         }
-    }
-
-    public class AddressCollection
-    {
-        public const int AddressCount = 25000;
-        private List<AddressFound> _snapShot1 = new List<AddressFound>(AddressCount);
-        private List<AddressFound> _snapShot2 = new List<AddressFound>(AddressCount);
-
-        public SearchContext SearchContext;      
-        
-        public List<AddressFound> CurrentList
-        {
-            get { return SnapShotToggle ? _snapShot1 : _snapShot2; }           
-        }
-       
-        public List<AddressFound> LastList
-        {
-            get { return SnapShotToggle ? _snapShot2 : _snapShot1; }
-            set { _snapShot1 = value; }
-        }
-
-
-        [XmlIgnore]
-        public bool SnapShotToggle = true;
-
-        public void ResetSearch(SearchContext searchContext)
-        {
-            SearchContext = searchContext;
-            _snapShot1.Clear();
-            _snapShot2.Clear();
-            SnapShotToggle = true;
-        }
-
-        public void StartNextSearch()
-        {
-            SnapShotToggle = !SnapShotToggle;
-            CurrentList.Clear();            
-        }
-    }
+    }  
 }

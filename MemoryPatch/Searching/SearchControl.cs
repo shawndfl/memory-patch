@@ -16,7 +16,7 @@ namespace MemoryPatch
     public partial class SearchControl : UserControl, IInvoke
     {
         private MemoryAccess _access;
-        private SearchMemory _seracher;
+        private ISearcher _seracher;
         private SearchContext _currentSearchData;
 
         public event EventHandler<AddressFoundEventArgs> OnAddressSelected;
@@ -61,9 +61,7 @@ namespace MemoryPatch
             _access = access;
 
              //create a searcher
-            _seracher = new SearchMemory(_access, this);
-            _seracher.OnValueFound += new EventHandler<AddressFoundEventArgs>(Seracher_OnValueFound);
-            _seracher.OnProgressChange += new EventHandler<SearchUpdateEventArgs>(Seracher_OnProgressChange);
+            _seracher = new SearcherImp(_access, this);            
 
             groupFirstSearch.Enabled = true;
             groupFound.Enabled = true;
@@ -154,7 +152,7 @@ namespace MemoryPatch
         #endregion       
 
         #region Search Events
-        private void Seracher_OnProgressChange(object sender, SearchUpdateEventArgs e)
+        public void OnProgressChange(SearchUpdateEventArgs e)
         {
             pgSearching.Value = e.PrecentDone;
             lbFoundCount.Text = e.AddressFoundCount.ToString();
@@ -172,7 +170,7 @@ namespace MemoryPatch
 
         }
 
-        public void Seracher_OnValueFound(object sender, AddressFoundEventArgs e)
+        public void OnValueFound(AddressFoundEventArgs e)
         {
             DataGridViewRow row = new DataGridViewRow();            
             row.CreateCells(dataResults, string.Format("{0:X000000}", e.AddressFound.Address),

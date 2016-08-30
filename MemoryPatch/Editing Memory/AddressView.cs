@@ -33,6 +33,11 @@ namespace MemoryPatch
                     _listView.AddAddress(address, group.Name);
                 }                
             }
-        }               
+        }
+
+        public void RefeshMemory()
+        {
+            //_listView.RefeshMemory();
+        }
     }
 }
