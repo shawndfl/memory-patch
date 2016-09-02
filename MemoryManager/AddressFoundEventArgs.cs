@@ -137,10 +137,10 @@ namespace MemoryManager
         /// <param name="address"></param>
         /// <param name="currentValue"></param>
         /// <param name="data"></param>
-        public AddressFound(int address, byte[] currentValue, DataType data)
+        public AddressFound(long address, byte[] currentValue, DataType data)
         {
             _currentValue = (byte[])currentValue.Clone();                  
-            _address = address;
+            _address = (int)address;
             _dataType = data;            
         }
 

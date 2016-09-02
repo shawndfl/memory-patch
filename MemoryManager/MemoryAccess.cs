@@ -24,6 +24,17 @@ namespace MemoryManager
         #endregion               
 
         /// <summary>
+        /// Gets the process handle
+        /// </summary>
+        public IntPtr ProcessHandle
+        {
+            get
+            {
+                return _processManager.ProcessHandle;
+            }
+        }
+
+        /// <summary>
         /// The name of the procss
         /// </summary>
         public string ProcessName

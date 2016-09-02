@@ -50,7 +50,7 @@
             Gets the length of the data in bytes
             </summary>
         </member>
-        <member name="M:MemoryManager.AddressFound.#ctor(System.Int32,System.Byte[],MemoryManager.DataType)">
+        <member name="M:MemoryManager.AddressFound.#ctor(System.Int64,System.Byte[],MemoryManager.DataType)">
             <summary>
             
             </summary>
@@ -342,6 +342,11 @@
             Gets the size of the module in bytes
             </summary>
         </member>
+        <member name="P:MemoryManager.IProcessManager.ProcessHandle">
+            <summary>
+            Gets the process handle
+            </summary>
+        </member>
         <member name="T:MemoryManager.LockData">
             <summary>
             Data used to keep an address at a value
@@ -392,6 +397,12 @@
             <summary>
             Write const
             </summary>
+        </member>
+        <member name="P:MemoryManager.ProcessManagerImp.ProcessHandle">
+            <summary>
+            Gets the process handle
+            </summary>
+            <returns></returns>
         </member>
         <member name="P:MemoryManager.ProcessManagerImp.ProcessName">
             <summary>
@@ -445,6 +456,11 @@
         <member name="P:MemoryManager.ProcessManagerImp.ModuleMemorySize">
             <summary>
             Gets the size of the module in bytes
+            </summary>
+        </member>
+        <member name="P:MemoryManager.MemoryAccess.ProcessHandle">
+            <summary>
+            Gets the process handle
             </summary>
         </member>
         <member name="P:MemoryManager.MemoryAccess.ProcessName">
@@ -886,6 +902,11 @@
             <param name="dataType">The data type to convert the string to</param>
             <returns></returns>
         </member>
+        <member name="F:MemoryManager.SearcherImp2._searchThread">
+            <summary>
+            search thread
+            </summary>
+        </member>
         <member name="F:MemoryManager.SearcherImp._searchThread">
             <summary>
             search thread
@@ -953,7 +974,7 @@
             How many addresses found
             </summary>
         </member>
-        <member name="M:MemoryManager.SearchUpdateEventArgs.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:MemoryManager.SearchUpdateEventArgs.#ctor(System.Int64,System.Int64,System.Int64,System.Int64)">
             <summary>
             constructor
             </summary>

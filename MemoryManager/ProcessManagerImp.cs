@@ -62,6 +62,18 @@ namespace MemoryManager
         private ProcessModule _module;
 
         /// <summary>
+        /// Gets the process handle
+        /// </summary>
+        /// <returns></returns>
+        public IntPtr ProcessHandle
+        {
+            get
+            {
+                return _process.Handle;
+            }
+        }
+
+        /// <summary>
         /// The name of the procss
         /// </summary>
         public string ProcessName

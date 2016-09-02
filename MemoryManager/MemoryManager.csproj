@@ -71,6 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SavedData.cs" />
     <Compile Include="ISearcher.cs" />
+    <Compile Include="SearcherImp2.cs" />
     <Compile Include="SearcherImp.cs" />
     <Compile Include="SearchContext.cs" />
     <Compile Include="SearchUpdateEventArgs.cs" />

@@ -57,5 +57,10 @@ namespace MemoryManager
         /// Gets the size of the module in bytes
         /// </summary>
         int ModuleMemorySize { get; }
+
+        /// <summary>
+        /// Gets the process handle
+        /// </summary>
+        IntPtr ProcessHandle { get; }
     }
 }

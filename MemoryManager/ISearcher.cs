@@ -14,7 +14,6 @@ namespace MemoryManager
     {
         SearchContext SearchContext { get; }
 
-
         void CancelSearch();
 
         void NewSearch(SearchContext context);

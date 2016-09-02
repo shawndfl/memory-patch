@@ -61,7 +61,7 @@ namespace MemoryPatch
             _access = access;
 
              //create a searcher
-            _seracher = new SearcherImp(_access, this);            
+            _seracher = new SearcherImp2(_access, this);            
 
             groupFirstSearch.Enabled = true;
             groupFound.Enabled = true;
