@@ -8,13 +8,8 @@ using System.Xml.Serialization;
 namespace MemoryManager
 {
 
-    public struct SearchContext
-    {
-        /// <summary>
-        /// Is this the first search
-        /// </summary>
-        public bool FirstSearch { get; set; }
-
+    public class SearchContext2
+    {        
         /// <summary>
         /// The type of search we are using
         /// </summary>
@@ -35,46 +30,25 @@ namespace MemoryManager
         /// <summary>
         /// Data type used in this search
         /// </summary>
-        public DataType DataType { get; set; }
+        public DataType DataType { get; private set; }
 
         /// <summary>
         /// The byte length of the data type
         /// </summary>
-        public int DataLength { get; set; }
-
-        [XmlAttribute("value")]
-        public long LongValue
+        public int DataLength { get; private set; }       
+        
+        private List<AddressFound> _found = new List<AddressFound>();
+        public List<AddressFound> Found
         {
-            get
-            {
-                if (Value != null)
-                {
-                    byte[] data = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0 };
-                    for (int i = 0; i < Value.Length; i++)
-                    {
-                        data[i] = Value[i];
-                    }
-                    return BitConverter.ToInt64(data, 0);
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-            set
-            {
-                Value = BitConverter.GetBytes((long)value);
-            }
+            get { return _found; }            
         }
-       
+
         /// <summary>
         /// Used to create a new or next search
-        /// </summary>
-        /// <param name="firstSearch"> is this a new search</param>
+        /// </summary>        
         /// <param name="searchType"> type of search</param>
         /// <param name="dataType"> data type to search for</param>
-        /// <param name="value1">the value in the form of a string</param>
-        /// <param name="saveResultIndex">should the results be saved any where</param>
+        /// <param name="value1">the value in the form of a string</param>        
         /// <returns></returns>
         public static SearchContext CreateSearchData(SearchType searchType,
             DataType dataType, string value1)
@@ -185,7 +159,6 @@ namespace MemoryManager
                     DataLength = sizeof(double);
                     break;
             }
-        }      
-
-    }
+        }       
+    }    
 }

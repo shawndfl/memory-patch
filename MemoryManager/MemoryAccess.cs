@@ -5,6 +5,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Threading;
+using MemoryManager.util;
 
 namespace MemoryManager
 {
@@ -169,47 +170,10 @@ namespace MemoryManager
         public string ReadMemoryAsString(int address, DataType dataType, int lenInBytes)
         {
             byte[] buffer = ReadMemoryAsBytes(address, lenInBytes);
-
-            switch (dataType)
-            {
-                case DataType.Int32:
-                    return BitConverter.ToInt32(buffer, 0).ToString();
-                case DataType.Int16:
-                    return BitConverter.ToInt16(buffer, 0).ToString();
-                case DataType.Byte:
-                    return ((sbyte)buffer[0]).ToString();
-                case DataType.UInt32:
-                    return BitConverter.ToUInt32(buffer, 0).ToString();
-                case DataType.UInt16:
-                    return BitConverter.ToUInt16(buffer, 0).ToString();
-                case DataType.UByte:
-                    return ((byte)buffer[0]).ToString();
-                case DataType.StringChar:
-                    {
-                        ASCIIEncoding encoding = new ASCIIEncoding();
-                        return encoding.GetString(buffer);
-                    }
-                case DataType.StringByte:
-                    {                        
-                        char[] chars = new char[lenInBytes];                        
-                        for (int i = 0; i < lenInBytes; i++)
-                        {
-                            if (buffer[i] == '\0')
-                                chars[i] = ' ';
-                            else
-                                chars[i] = (char)buffer[i];                                                    
-                        }
-                        string temp = new string(chars);
-                        return temp;
-                    }
-                case DataType.Float:
-                    return BitConverter.ToSingle(buffer, 0).ToString();
-                case DataType.Double:
-                    return BitConverter.ToDouble(buffer, 0).ToString();
-                default:
-                    throw new Exception("Unknown DataType");
-            }
-
+            if(dataType == DataType.StringByte || dataType == DataType.StringChar)
+                return Parser.ParseBytesOfStrings(buffer, 0, lenInBytes, dataType);
+            else
+                return Parser.ParseBytes(buffer, 0, dataType);           
         }     
        
         /// <summary>

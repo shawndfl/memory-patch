@@ -214,7 +214,7 @@ namespace MemoryManager
             {
                 _control.InvokeMethod(new ThreadStart(delegate()
                 {
-                    _control.OnProgressChange( new SearchUpdateEventArgs(start, end, currentAddress, addressFoundCount));                    
+                    _control.OnProgressChange( new SearchUpdateEventArgs((int)start, (int)end, (int)currentAddress, (int)addressFoundCount));                    
 
                 }));
                 lastPrecentDone = precentDone;

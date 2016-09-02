@@ -63,6 +63,7 @@
     <Compile Include="IInvoke.cs" />
     <Compile Include="IProcessManager.cs" />
     <Compile Include="LockData.cs" />
+    <Compile Include="util\Parser.cs" />
     <Compile Include="ProcessManagerImp.cs" />
     <Compile Include="MemoryAccess.cs" />
     <Compile Include="Plugins\IPlugin.cs" />
@@ -71,11 +72,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SavedData.cs" />
     <Compile Include="ISearcher.cs" />
+    <Compile Include="SearchContext2.cs" />
+    <Compile Include="SearchEnums.cs" />
     <Compile Include="SearcherImp2.cs" />
     <Compile Include="SearcherImp.cs" />
     <Compile Include="SearchContext.cs" />
     <Compile Include="SearchUpdateEventArgs.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

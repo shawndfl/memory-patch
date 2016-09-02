@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Desktop
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryPatch", "MemoryPatch\MemoryPatch.csproj", "{DCE46179-14F1-4C99-8842-2E65FD086BEF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryManager", "MemoryManager\MemoryManager.csproj", "{B1DDB6FF-AE00-4ABD-8DBC-988EC732DC53}"
@@ -8,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X86Disassemble", "X86Disassemble\X86Disassemble.csproj", "{E9A4BD77-8A95-47F6-B248-675C6F7D291D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZsnesPlugins", "ZsnesPlugins\ZsnesPlugins.csproj", "{82C200DD-D087-414C-94D0-68DECE5571BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryPatchTests", "MemoryPatchTests\MemoryPatchTests.csproj", "{3DF60983-3F23-4E07-9E5A-DBA592716731}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,10 @@ Global
 		{82C200DD-D087-414C-94D0-68DECE5571BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82C200DD-D087-414C-94D0-68DECE5571BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82C200DD-D087-414C-94D0-68DECE5571BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DF60983-3F23-4E07-9E5A-DBA592716731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DF60983-3F23-4E07-9E5A-DBA592716731}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DF60983-3F23-4E07-9E5A-DBA592716731}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DF60983-3F23-4E07-9E5A-DBA592716731}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

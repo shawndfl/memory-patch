@@ -352,6 +352,46 @@
             Data used to keep an address at a value
             </summary>
         </member>
+        <member name="T:MemoryManager.util.Parser">
+            <summary>
+            Parses strings and data types
+            </summary>
+        </member>
+        <member name="M:MemoryManager.util.Parser.ToBytes(System.String,MemoryManager.DataType)">
+            <summary>
+            Parses a string value into a given data type
+            </summary>        
+            <param name="value"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.util.Parser.ParseBytesOfStrings(System.Byte[],System.Int32,System.Int32,MemoryManager.DataType)">
+            <summary>
+            Used to parse byte buffers that are strings
+            </summary>
+            <param name="buffer"></param>
+            <param name="startIndex"></param>
+            <param name="length"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.util.Parser.ParseBytes(System.Byte[],System.Int32,MemoryManager.DataType)">
+            <summary>
+            Parses a byte array into a string. If the data type is somekind of string use ParseBytesOfStrings()
+            </summary>
+            <param name="buffer"></param>      
+            <param name="startIndex"></param>
+            <param name="type">Any data type but a string</param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.util.Parser.GetByteLength(System.String,MemoryManager.DataType)">
+            <summary>
+            Gets how many bytes a value takes up
+            </summary>
+            <param name="value">This is only used if the type is some kind of a string</param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
         <member name="T:MemoryManager.ProcessManagerImp">
             <summary>
             The main implementation of of process manager
@@ -902,6 +942,41 @@
             <param name="dataType">The data type to convert the string to</param>
             <returns></returns>
         </member>
+        <member name="P:MemoryManager.SearchContext2.SearchType">
+            <summary>
+            The type of search we are using
+            </summary>
+        </member>
+        <member name="P:MemoryManager.SearchContext2.Value">
+            <summary>
+            Value in a byte array. In this form we can change it to
+            any other data type by using BitConverter
+            </summary>
+        </member>
+        <member name="P:MemoryManager.SearchContext2.Difference">
+            <summary>
+            Used when searching with decreased by and increased by
+            </summary>
+        </member>
+        <member name="P:MemoryManager.SearchContext2.DataType">
+            <summary>
+            Data type used in this search
+            </summary>
+        </member>
+        <member name="P:MemoryManager.SearchContext2.DataLength">
+            <summary>
+            The byte length of the data type
+            </summary>
+        </member>
+        <member name="M:MemoryManager.SearchContext2.CreateSearchData(MemoryManager.SearchType,MemoryManager.DataType,System.String)">
+            <summary>
+            Used to create a new or next search
+            </summary>        
+            <param name="searchType"> type of search</param>
+            <param name="dataType"> data type to search for</param>
+            <param name="value1">the value in the form of a string</param>        
+            <returns></returns>
+        </member>
         <member name="F:MemoryManager.SearcherImp2._searchThread">
             <summary>
             search thread
@@ -974,7 +1049,7 @@
             How many addresses found
             </summary>
         </member>
-        <member name="M:MemoryManager.SearchUpdateEventArgs.#ctor(System.Int64,System.Int64,System.Int64,System.Int64)">
+        <member name="M:MemoryManager.SearchUpdateEventArgs.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             constructor
             </summary>

@@ -75,10 +75,10 @@ namespace MemoryManager
 
             CancelSearch();
 
-            _searchThread = new Thread(new ParameterizedThreadStart(NextSearch));
-            _searchThread.Name = "SerachingThread";
+            //_searchThread = new Thread(new ParameterizedThreadStart(NextSearch));
+            //_searchThread.Name = "SerachingThread";
 
-            _searchThread.Start(_addressCollection.SearchContext);
+            //_searchThread.Start(_addressCollection.SearchContext);
         }
 
         private void FirstSearch(object obj)
