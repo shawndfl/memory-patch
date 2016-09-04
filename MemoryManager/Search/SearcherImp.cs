@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.IO;
-using System.Xml.Serialization;
+using System.Threading;
 
-namespace MemoryManager
+namespace MemoryManager.Search
 {
-    public class SearcherImp2: ISearcher
+    class SearcherImp: ISearcher
     {
+        #region Win32 API
         // REQUIRED CONSTS
         const int PROCESS_QUERY_INFORMATION = 0x0400;
         const int MEM_COMMIT = 0x00001000;
@@ -58,39 +53,59 @@ namespace MemoryManager
             public ushort processorRevision;
         }
 
+        #endregion
 
         /// <summary>
         /// search thread
         /// </summary>
-        private Thread _searchThread;
-        public int AddressDisplayCount = 200;
-
-        private MemoryAccess _access;
-        private IInvoke _control;
-            
-        private AddressCollection _addressCollection;
+        private Thread _searchThread;      
         private IntPtr _minAddress;
         private IntPtr _maxAddress;
+        private ISearchContext _context;
+        private ISearchListener _listener;
 
-        public SearchContext SearchContext
+        public ISearchContext SearchContext
         {
             get
             {
-                return _addressCollection.SearchContext;
+                return _context;
             }
-        }       
+        }
 
-        public SearcherImp2(MemoryAccess access, IInvoke control)
-        {            
-            _access = access;
-            _control = control;
-            _addressCollection = new AddressCollection();
-           
+        public void SetSearchListener(ISearchListener listener)
+        {
+            _listener = listener;
+        }
+
+        public SearcherImp()
+        {           
             SYSTEM_INFO sys_info = new SYSTEM_INFO();
             GetSystemInfo(out sys_info);
 
             _minAddress = sys_info.minimumApplicationAddress;
             _maxAddress = sys_info.maximumApplicationAddress;
+        }
+
+        public void Search(ISearchContext context)
+        {
+            _context = context;
+
+            CancelSearch();
+
+            _searchThread = new Thread(new ParameterizedThreadStart(SearchImp));
+            _searchThread.Name = "SerachingThread";
+
+            _searchThread.Start(_context);
+        }
+
+        public void SaveContext(string file)
+        {
+            
+        }
+
+        public void LoadContext(string file)
+        {
+            
         }
 
         public void CancelSearch()
@@ -105,82 +120,60 @@ namespace MemoryManager
             UpdateProgress(0, 1, 1, 1, 0);
         }
 
-        public void NewSearch(SearchContext context)
+        private void SearchImp(object obj)
         {
-            _addressCollection.SearchContext = context;
-            CancelSearch();
-            
-            _searchThread = new Thread(new ParameterizedThreadStart(FirstSearch));  
-            _searchThread.Name = "SerachingThread";            
+            ISearchContext context = (ISearchContext)obj;
+            MemoryAccess access = MemoryAccess.Get;
 
-            _searchThread.Start(context);
-        }
+            if (context.FoundAddresses.Count == 0)
+            {
+                InitialSearch(context, access);
+            }
 
-        public void NextSearch(SearchType type, string optValue)
-        {
-            _addressCollection.SearchContext.SearchType = type;
-            _addressCollection.SearchContext.SetValue(optValue);
+        }            
 
-            CancelSearch();
-
-            _searchThread = new Thread(new ParameterizedThreadStart(NextSearch));
-            _searchThread.Name = "SerachingThread";
-
-            _searchThread.Start(_addressCollection.SearchContext);
-        }
-
-        private void FirstSearch(object obj)
+        private void InitialSearch(ISearchContext context, MemoryAccess access)
         {
             try
-            {
-                SearchContext context = (SearchContext)obj;
-
-                IntPtr baseAddress = _access.BaseAddress;
+            {               
+                IntPtr baseAddress = access.BaseAddress;
                 long min = (long)_minAddress;// baseAddress.ToInt32();
                 long max = (long)_maxAddress;
                 long start = min;
                          
                 float lastPrecentDone = 0;
 
-                byte[] value1 = context.Value;
-                byte[] buffer;
-
-                //reset how the next search will work
-                _addressCollection.ResetSearch(context);                
+                byte[] target = context.TargetBytes;
+                byte[] buffer;                                             
               
                 // this will store any information we get from VirtualQueryEx()
                 MEMORY_BASIC_INFORMATION mem_basic_info = new MEMORY_BASIC_INFORMATION();
 
                 int bytesRead = 0;  // number of bytes read with ReadProcessMemory
-
-                //while (int Address = start; Address < end; Address++)
+                
                 while (min < max)
                 {
 
                     // 28 = sizeof(MEMORY_BASIC_INFORMATION)
-                    VirtualQueryEx(_access.ProcessHandle, _minAddress, out mem_basic_info, 28);
+                    VirtualQueryEx(access.ProcessHandle, _minAddress, out mem_basic_info, 28);
 
                     // if this memory chunk is accessible
                     if (mem_basic_info.Protect == PAGE_READWRITE && mem_basic_info.State == MEM_COMMIT)
                     {
-                        buffer = new byte[mem_basic_info.RegionSize];
-
                         // read everything in the buffer above
-                        ReadProcessMemory((int)_access.ProcessHandle, mem_basic_info.BaseAddress,
-                            buffer, mem_basic_info.RegionSize, ref bytesRead);
+                        buffer = access.ReadMemoryAsBytes(mem_basic_info.BaseAddress, mem_basic_info.RegionSize);                                                
 
-                        long address = mem_basic_info.BaseAddress;
-
-                        ProcessMemory(context, address, buffer);
-
-                        min += mem_basic_info.RegionSize;
-                        lastPrecentDone = UpdateProgress(start, max, lastPrecentDone, min, _addressCollection.CurrentList.Count);
-                    }                  
+                        
+                        
+                        lastPrecentDone = UpdateProgress(start, max, lastPrecentDone, min, context.FoundAddresses.Count);
+                    }
+                    min += mem_basic_info.RegionSize;
+                    break;
                 }
 
                 //final update
                 //FoundAddress(context, true);
-                UpdateProgress(start, max, lastPrecentDone, max, _addressCollection.CurrentList.Count);
+                UpdateProgress(start, max, lastPrecentDone, max, context.FoundAddresses.Count);
             }
             catch (ThreadAbortException)
             {
@@ -191,17 +184,7 @@ namespace MemoryManager
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
             }
-        }
-
-        private void ProcessMemory(SearchContext context, long address, byte[] data)
-        {
-           
-        }
-
-        private void NextSearch(object obj)
-        {
-           
-        }           
+        }        
 
         private float UpdateProgress(long start, long end, float lastPrecentDone, long currentAddress, long addressFoundCount)
         {
@@ -211,19 +194,19 @@ namespace MemoryManager
 
             //this must change by at least one precent or equal 100%
             if (precentDone - lastPrecentDone > .1f || end == currentAddress)
-            {
-                _control.InvokeMethod(new ThreadStart(delegate()
-                {
-                    _control.OnProgressChange( new SearchUpdateEventArgs((int)start, (int)end, (int)currentAddress, (int)addressFoundCount));                    
-
-                }));
+            {                
+                //_listener.InvokeMethod(new ThreadStart(delegate()
+                //{
+                //   _listener.OnProgressChange( new SearchUpdateEventArgs((int)start, (int)end, (int)currentAddress, (int)addressFoundCount));                    
+                //}));
                 lastPrecentDone = precentDone;
             }
             return lastPrecentDone;
         }
 
         public void SaveSnapShot(string file)
-        {          
+        {   
+            /*       
             Stream stream = null;
             try
             {
@@ -243,10 +226,12 @@ namespace MemoryManager
                 if (stream != null)
                     stream.Close();
             }
+            */
         }
 
         public void LoadSnapShot(string file)
         {
+            /*
             Stream stream = null;
             try
             {
@@ -280,6 +265,7 @@ namespace MemoryManager
                 if (stream != null)
                     stream.Close();
             }
+            */
         }
     }  
 }

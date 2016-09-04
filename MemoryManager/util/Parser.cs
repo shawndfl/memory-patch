@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MemoryManager.util
+namespace MemoryManager.Util
 {
     /// <summary>
     /// Parses strings and data types
@@ -155,6 +155,16 @@ namespace MemoryManager.util
         }
 
         /// <summary>
+        /// Getst the length for data that is not a string
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static int GetByteLength(DataType type)
+        {
+            return GetByteLength("", type);
+        }
+
+        /// <summary>
         /// Gets how many bytes a value takes up
         /// </summary>
         /// <param name="value">This is only used if the type is some kind of a string</param>
@@ -189,6 +199,159 @@ namespace MemoryManager.util
                     return sizeof(double);
             }
             return 0;
+        }
+
+        /// <summary>
+        /// Converts to a byte
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        public static byte ToByte(byte[] buffer, int startIndex)
+        {
+            try
+            {
+                return buffer[startIndex];
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error " + ex.Message);
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Converts to sbyte
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        public static sbyte ToSByte(byte[] buffer, int startIndex)
+        {
+            try
+            {
+                return (sbyte)buffer[startIndex];
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error " + ex.Message);
+                return 0;
+            }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        public static Int16 ToInt16(byte[] buffer, int startIndex)
+        {
+            try
+            {
+                return BitConverter.ToInt16(buffer, startIndex);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error " + ex.Message);
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        public static UInt16 ToUInt16(byte[] buffer, int startIndex)
+        {
+            try
+            {
+                return BitConverter.ToUInt16(buffer, startIndex);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error " + ex.Message);
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        public static int ToInt32(byte[] buffer, int startIndex)
+        {
+            try
+            {
+                return BitConverter.ToInt32(buffer, startIndex);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error " + ex.Message);
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        public static uint ToUInt32(byte[] buffer, int startIndex)
+        {
+            try
+            {
+                return BitConverter.ToUInt32(buffer, startIndex);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error " + ex.Message);
+                return 0;
+            }                      
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        public static float ToFloat(byte[] buffer, int startIndex)
+        {
+            try
+            {
+                return BitConverter.ToSingle(buffer, startIndex);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error " + ex.Message);
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        public static double ToDouble(byte[] buffer, int startIndex)
+        {
+            try
+            {
+                return BitConverter.ToDouble(buffer, startIndex);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error " + ex.Message);
+                return 0;
+            }
         }
     }
 }

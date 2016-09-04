@@ -7,7 +7,7 @@ namespace MemoryManager
     /// <summary>
     /// The main implementation of of process manager
     /// </summary>
-    public class ProcessManagerImp: IProcessManager
+    class ProcessManagerImp: IProcessManager
     {
         #region Dll Imports
         /// <summary>
@@ -60,6 +60,15 @@ namespace MemoryManager
 
         private Process _process;
         private ProcessModule _module;
+
+
+        public int ProcessId
+        {
+            get
+            {
+                return _process.Id;
+            }
+        }
 
         /// <summary>
         /// Gets the process handle

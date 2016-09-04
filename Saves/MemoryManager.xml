@@ -305,6 +305,11 @@
             The module of the process we are accessing
             </summary>
         </member>
+        <member name="P:MemoryManager.IProcessManager.ProcessId">
+            <summary>
+            Gets the process ID
+            </summary>
+        </member>
         <member name="M:MemoryManager.IProcessManager.ReadMemoryAsBytes(System.Int32,System.Int32)">
             <summary>
             Reads memory as a raw byte array
@@ -352,12 +357,194 @@
             Data used to keep an address at a value
             </summary>
         </member>
-        <member name="T:MemoryManager.util.Parser">
+        <member name="P:MemoryManager.Search.ISearchContext.SearchType">
+            <summary>
+            The type of search we are using
+            </summary>
+        </member>
+        <member name="P:MemoryManager.Search.ISearchContext.TargetBytes">
+            <summary>
+            The Bytes used to compare memory
+            </summary>
+        </member>
+        <member name="P:MemoryManager.Search.ISearchContext.DataLength">
+            <summary>
+            The byte length of the data type
+            </summary>
+        </member>
+        <member name="P:MemoryManager.Search.ISearchContext.DataType">
+            <summary>
+            Data type used in this search
+            </summary>
+        </member>
+        <member name="P:MemoryManager.Search.ISearchContext.Parameters">
+            <summary>
+            Custom parameters for searching
+            </summary>
+        </member>
+        <member name="P:MemoryManager.Search.ISearchContext.FoundAddresses">
+            <summary>
+            Addresses that are to be searched next
+            </summary>
+        </member>
+        <member name="M:MemoryManager.Search.ISearchContext.ConfigureNextSearch(System.Byte[],MemoryManager.Search.SearchType,MemoryManager.DataType,System.Collections.Generic.List{System.String})">
+            <summary>
+             Gets the context ready for the next search
+            </summary>
+            <param name="TargetBytes"></param>
+            <param name="searchType"></param>
+            <param name="dataType"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:MemoryManager.Search.ISearchContext.ResetFoundAddresses">
+            <summary>
+            Resets found addresses
+            </summary>
+        </member>
+        <member name="T:MemoryManager.Search.SearchContextImp">
+            <summary>
+            The search context for a search
+            </summary>
+        </member>
+        <member name="P:MemoryManager.Search.SearchContextImp.DataLength">
+            <summary>
+            Size of the data in bytes
+            </summary>
+        </member>
+        <member name="P:MemoryManager.Search.SearchContextImp.DataType">
+            <summary>
+            Type of data
+            </summary>
+        </member>
+        <member name="P:MemoryManager.Search.SearchContextImp.Parameters">
+            <summary>
+            String parametes use in the search
+            </summary>
+        </member>
+        <member name="P:MemoryManager.Search.SearchContextImp.SearchType">
+            <summary>
+            Type of search
+            </summary>
+        </member>
+        <member name="P:MemoryManager.Search.SearchContextImp.TargetBytes">
+            <summary>
+            Target Bytes used for comparing memory
+            </summary>
+        </member>
+        <member name="P:MemoryManager.Search.SearchContextImp.FoundAddresses">
+            <summary>
+            List of address to compare with
+            </summary>
+        </member>
+        <member name="M:MemoryManager.Search.SearchContextImp.ConfigureNextSearch(System.Byte[],MemoryManager.Search.SearchType,MemoryManager.DataType,System.Collections.Generic.List{System.String})">
+            <summary>
+            Used to setup next search
+            </summary>
+            <param name="targetBytes"></param>
+            <param name="searchType"></param>
+            <param name="dataType"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:MemoryManager.Search.SearchContextImp.ResetFoundAddresses">
+            <summary>
+            Reset addresses
+            </summary>
+        </member>
+        <member name="T:MemoryManager.Search.SearchManager">
+            <summary>
+            Manages the memory searches
+            </summary>
+        </member>
+        <member name="M:MemoryManager.Search.SearchManager.CreateSearcher">
+            <summary>
+            Creates a searcher
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.Search.SearchManager.CreateSearchContext">
+            <summary>
+            Creates a context
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MemoryManager.Search.SearchType">
+            <summary>
+            Type of search
+            </summary>
+        </member>
+        <member name="T:MemoryManager.Search.ISearcher">
+            <summary>
+            Used for searching memory
+            </summary>
+        </member>
+        <member name="P:MemoryManager.Search.ISearcher.SearchContext">
+            <summary>
+            Gets the context being used
+            </summary>
+        </member>
+        <member name="M:MemoryManager.Search.ISearcher.SetSearchListener(MemoryManager.ISearchListener)">
+            <summary>
+            Sets a listener for search events
+            </summary>
+            <param name="listener"></param>
+        </member>
+        <member name="M:MemoryManager.Search.ISearcher.CancelSearch">
+            <summary>
+            Cancels the search
+            </summary>
+        </member>
+        <member name="M:MemoryManager.Search.ISearcher.Search(MemoryManager.Search.ISearchContext)">
+            <summary>
+            Does the search
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:MemoryManager.Search.ISearcher.SaveContext(System.String)">
+            <summary>
+            Saves the search context to a file
+            </summary>
+            <param name="file"></param>
+        </member>
+        <member name="M:MemoryManager.Search.ISearcher.LoadContext(System.String)">
+            <summary>
+            Loads a search context
+            </summary>
+            <param name="file"></param>
+        </member>
+        <member name="F:MemoryManager.Search.SearcherImp._searchThread">
+            <summary>
+            search thread
+            </summary>
+        </member>
+        <member name="T:MemoryManager.ISearchListener">
+            <summary>
+            Interface into the main thead while searching
+            </summary>
+        </member>
+        <member name="M:MemoryManager.ISearchListener.ShowMessage(System.String)">
+            <summary>
+            Show a message to the user
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:MemoryManager.ISearchListener.OnValueFound(MemoryManager.AddressFoundEventArgs)">
+            <summary>
+            Called when a value is found
+            </summary>        
+            <param name="e"></param>
+        </member>
+        <member name="M:MemoryManager.ISearchListener.OnProgressChange(MemoryManager.SearchUpdateEventArgs)">
+            <summary>
+            Updates progress.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:MemoryManager.Util.Parser">
             <summary>
             Parses strings and data types
             </summary>
         </member>
-        <member name="M:MemoryManager.util.Parser.ToBytes(System.String,MemoryManager.DataType)">
+        <member name="M:MemoryManager.Util.Parser.ToBytes(System.String,MemoryManager.DataType)">
             <summary>
             Parses a string value into a given data type
             </summary>        
@@ -365,7 +552,7 @@
             <param name="type"></param>
             <returns></returns>
         </member>
-        <member name="M:MemoryManager.util.Parser.ParseBytesOfStrings(System.Byte[],System.Int32,System.Int32,MemoryManager.DataType)">
+        <member name="M:MemoryManager.Util.Parser.ParseBytesOfStrings(System.Byte[],System.Int32,System.Int32,MemoryManager.DataType)">
             <summary>
             Used to parse byte buffers that are strings
             </summary>
@@ -375,7 +562,7 @@
             <param name="type"></param>
             <returns></returns>
         </member>
-        <member name="M:MemoryManager.util.Parser.ParseBytes(System.Byte[],System.Int32,MemoryManager.DataType)">
+        <member name="M:MemoryManager.Util.Parser.ParseBytes(System.Byte[],System.Int32,MemoryManager.DataType)">
             <summary>
             Parses a byte array into a string. If the data type is somekind of string use ParseBytesOfStrings()
             </summary>
@@ -384,12 +571,83 @@
             <param name="type">Any data type but a string</param>
             <returns></returns>
         </member>
-        <member name="M:MemoryManager.util.Parser.GetByteLength(System.String,MemoryManager.DataType)">
+        <member name="M:MemoryManager.Util.Parser.GetByteLength(MemoryManager.DataType)">
+            <summary>
+            Getst the length for data that is not a string
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.Util.Parser.GetByteLength(System.String,MemoryManager.DataType)">
             <summary>
             Gets how many bytes a value takes up
             </summary>
             <param name="value">This is only used if the type is some kind of a string</param>
             <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.Util.Parser.ToByte(System.Byte[],System.Int32)">
+            <summary>
+            Converts to a byte
+            </summary>
+            <param name="buffer"></param>
+            <param name="startIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.Util.Parser.ToSByte(System.Byte[],System.Int32)">
+            <summary>
+            Converts to sbyte
+            </summary>
+            <param name="buffer"></param>
+            <param name="startIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.Util.Parser.ToInt16(System.Byte[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="buffer"></param>
+            <param name="startIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.Util.Parser.ToUInt16(System.Byte[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="buffer"></param>
+            <param name="startIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.Util.Parser.ToInt32(System.Byte[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="buffer"></param>
+            <param name="startIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.Util.Parser.ToUInt32(System.Byte[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="buffer"></param>
+            <param name="startIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.Util.Parser.ToFloat(System.Byte[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="buffer"></param>
+            <param name="startIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.Util.Parser.ToDouble(System.Byte[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="buffer"></param>
+            <param name="startIndex"></param>
             <returns></returns>
         </member>
         <member name="T:MemoryManager.ProcessManagerImp">
@@ -942,46 +1200,6 @@
             <param name="dataType">The data type to convert the string to</param>
             <returns></returns>
         </member>
-        <member name="P:MemoryManager.SearchContext2.SearchType">
-            <summary>
-            The type of search we are using
-            </summary>
-        </member>
-        <member name="P:MemoryManager.SearchContext2.Value">
-            <summary>
-            Value in a byte array. In this form we can change it to
-            any other data type by using BitConverter
-            </summary>
-        </member>
-        <member name="P:MemoryManager.SearchContext2.Difference">
-            <summary>
-            Used when searching with decreased by and increased by
-            </summary>
-        </member>
-        <member name="P:MemoryManager.SearchContext2.DataType">
-            <summary>
-            Data type used in this search
-            </summary>
-        </member>
-        <member name="P:MemoryManager.SearchContext2.DataLength">
-            <summary>
-            The byte length of the data type
-            </summary>
-        </member>
-        <member name="M:MemoryManager.SearchContext2.CreateSearchData(MemoryManager.SearchType,MemoryManager.DataType,System.String)">
-            <summary>
-            Used to create a new or next search
-            </summary>        
-            <param name="searchType"> type of search</param>
-            <param name="dataType"> data type to search for</param>
-            <param name="value1">the value in the form of a string</param>        
-            <returns></returns>
-        </member>
-        <member name="F:MemoryManager.SearcherImp2._searchThread">
-            <summary>
-            search thread
-            </summary>
-        </member>
         <member name="F:MemoryManager.SearcherImp._searchThread">
             <summary>
             search thread
@@ -1023,7 +1241,7 @@
             The byte length of the data type
             </summary>
         </member>
-        <member name="M:MemoryManager.SearchContext.CreateSearchData(MemoryManager.SearchType,MemoryManager.DataType,System.String)">
+        <member name="M:MemoryManager.SearchContext.CreateSearchData(MemoryManager.Search.SearchType,MemoryManager.DataType,System.String)">
             <summary>
             Used to create a new or next search
             </summary>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.Xml.Serialization;
+using MemoryManager.Search;
 
 namespace MemoryManager
 {

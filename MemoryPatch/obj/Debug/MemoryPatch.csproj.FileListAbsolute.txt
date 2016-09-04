@@ -104,3 +104,4 @@ C:\Users\shawn\projects\memory-patch\MemoryPatch\obj\Debug\MemoryPatch.pdb
 C:\Users\shawn\projects\memory-patch\MemoryPatch\obj\Debug\MemoryPatch.frmBatchCreate.resources
 C:\Users\shawn\projects\memory-patch\MemoryPatch\obj\Debug\MemoryPatch.frmRename.resources
 C:\Users\shawn\projects\memory-patch\MemoryPatch\obj\Debug\MemoryPatch.AddressView.resources
+C:\Users\shawn\projects\memory-patch\MemoryPatch\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll

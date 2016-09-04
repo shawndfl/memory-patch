@@ -22,6 +22,11 @@ namespace MemoryManager
         string ModuleName { get; }
 
         /// <summary>
+        /// Gets the process ID
+        /// </summary>
+        int ProcessId { get; }
+
+        /// <summary>
         /// Reads memory as a raw byte array
         /// </summary>
         /// <param name="address"></param>

@@ -5,12 +5,23 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Threading;
-using MemoryManager.util;
+using MemoryManager.Util;
 
 namespace MemoryManager
 {
     public class MemoryAccess
     {
+        #region Win32
+        // REQUIRED CONSTS
+        const int PROCESS_QUERY_INFORMATION = 0x0400;
+        const int MEM_COMMIT = 0x00001000;
+        const int PAGE_READWRITE = 0x04;
+        const int PROCESS_WM_READ = 0x0010;
+
+        // REQUIRED METHODS
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
+        #endregion 
 
         #region Fields
         private IProcessManager _processManager;
@@ -22,6 +33,7 @@ namespace MemoryManager
         private Thread _frezzeThread;
 
         private static MemoryAccess _instance;
+        private IntPtr _processHandle;
         #endregion               
 
         /// <summary>
@@ -31,7 +43,7 @@ namespace MemoryManager
         {
             get
             {
-                return _processManager.ProcessHandle;
+                return _processHandle;
             }
         }
 
@@ -84,9 +96,7 @@ namespace MemoryManager
                 {
                     _instance = Create(null, null);
                 }
-
                 return _instance;
-
             }
         }
 
@@ -127,6 +137,8 @@ namespace MemoryManager
         private void SetProcessManager(IProcessManager manager)
         {
             _processManager = manager;
+            // opening the process with desired access level
+            _processHandle = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_WM_READ, false, _processManager.ProcessId);
         }
 
         /// <summary>

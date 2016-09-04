@@ -30,12 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupFound = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lbFoundCount = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             this.dataResults = new System.Windows.Forms.DataGridView();
             this.colAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lbFoundCount = new System.Windows.Forms.Label();
             this.groupNextSearch = new System.Windows.Forms.GroupBox();
             this.cboNextSearch = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.pgSearching = new System.Windows.Forms.ProgressBar();
             this.btnCancle = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnClear = new System.Windows.Forms.Button();
             this.groupFound.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataResults)).BeginInit();
             this.groupNextSearch.SuspendLayout();
@@ -65,8 +65,8 @@
             // 
             // groupFound
             // 
-            this.groupFound.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupFound.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupFound.Controls.Add(this.btnClear);
             this.groupFound.Controls.Add(this.dataResults);
             this.groupFound.Controls.Add(this.label7);
@@ -79,29 +79,21 @@
             this.groupFound.TabStop = false;
             this.groupFound.Text = "Results";
             // 
-            // label7
+            // btnClear
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Address Found";
-            // 
-            // lbFoundCount
-            // 
-            this.lbFoundCount.AutoSize = true;
-            this.lbFoundCount.Location = new System.Drawing.Point(92, 16);
-            this.lbFoundCount.Name = "lbFoundCount";
-            this.lbFoundCount.Size = new System.Drawing.Size(33, 13);
-            this.lbFoundCount.TabIndex = 10;
-            this.lbFoundCount.Text = "None";
+            this.btnClear.Location = new System.Drawing.Point(313, 3);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(95, 23);
+            this.btnClear.TabIndex = 2;
+            this.btnClear.Text = "Clear Addresses";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // dataResults
             // 
-            this.dataResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colAddress,
@@ -133,6 +125,24 @@
             this.colType.HeaderText = "DataType";
             this.colType.Name = "colType";
             this.colType.Width = 79;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(78, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Address Found";
+            // 
+            // lbFoundCount
+            // 
+            this.lbFoundCount.AutoSize = true;
+            this.lbFoundCount.Location = new System.Drawing.Point(92, 16);
+            this.lbFoundCount.Name = "lbFoundCount";
+            this.lbFoundCount.Size = new System.Drawing.Size(33, 13);
+            this.lbFoundCount.TabIndex = 10;
+            this.lbFoundCount.Text = "None";
             // 
             // groupNextSearch
             // 
@@ -297,8 +307,8 @@
             // 
             // pgSearching
             // 
-            this.pgSearching.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pgSearching.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pgSearching.Location = new System.Drawing.Point(6, 19);
             this.pgSearching.Name = "pgSearching";
             this.pgSearching.Size = new System.Drawing.Size(325, 23);
@@ -318,16 +328,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(313, 3);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(95, 23);
-            this.btnClear.TabIndex = 2;
-            this.btnClear.Text = "Clear Addresses";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // SearchControl
             // 

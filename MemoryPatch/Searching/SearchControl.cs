@@ -9,11 +9,13 @@ using System.Windows.Forms;
 using System.IO;
 using System.Globalization;
 using MemoryManager;
+using MemoryManager.Search;
+using MemoryManager.Util;
 
 namespace MemoryPatch
 {
     [DefaultEvent("OnAddressSelected")]
-    public partial class SearchControl : UserControl, IInvoke
+    public partial class SearchControl : UserControl, ISearchListener
     {
         private MemoryAccess _access;
         private ISearcher _seracher;
@@ -26,9 +28,7 @@ namespace MemoryPatch
             InitializeComponent();
 
             cboSearch.Items.Add(SearchType.Excat.ToString());
-            cboSearch.Items.Add(SearchType.UnKnown.ToString());
-            cboSearch.Items.Add(SearchType.StoreSnapShot1.ToString());
-            cboSearch.Items.Add(SearchType.StoreSnapShot2.ToString());
+            cboSearch.Items.Add(SearchType.UnKnown.ToString());          
 
             cboNextSearch.Items.Add(SearchType.Excat.ToString());
             cboNextSearch.Items.Add(SearchType.HasChanged.ToString());
@@ -36,11 +36,7 @@ namespace MemoryPatch
             cboNextSearch.Items.Add(SearchType.HasIncreased.ToString());
             cboNextSearch.Items.Add(SearchType.HasDecreased.ToString());
             cboNextSearch.Items.Add(SearchType.HasDecreasedBy.ToString());
-            cboNextSearch.Items.Add(SearchType.HasIncreasedBy.ToString());
-            cboNextSearch.Items.Add(SearchType.StoreSnapShot1.ToString());
-            cboNextSearch.Items.Add(SearchType.StoreSnapShot2.ToString());
-            cboNextSearch.Items.Add(SearchType.CompareToSnapShot1.ToString());
-            cboNextSearch.Items.Add(SearchType.CompareToSnapShot2.ToString());
+            cboNextSearch.Items.Add(SearchType.HasIncreasedBy.ToString());           
 
             string[] datatypes = Enum.GetNames(typeof(DataType));
             foreach (string type in datatypes)
@@ -52,7 +48,7 @@ namespace MemoryPatch
             cboSearch.SelectedIndex = 0;
             cboNextSearch.SelectedIndex = 0;
         }
-
+        
         public void EnableSearch(MemoryAccess access)
         {
             if (access == null)
@@ -60,15 +56,17 @@ namespace MemoryPatch
 
             _access = access;
 
-             //create a searcher
-            _seracher = new SearcherImp2(_access, this);            
+            //create a searcher
+            //_seracher = new SearcherImp(_access, this);            
+            _seracher = SearchManager.CreateSearcher();
+            _seracher.SetSearchListener(this);
 
             groupFirstSearch.Enabled = true;
             groupFound.Enabled = true;
             groupNextSearch.Enabled = true;
             groupSearching.Enabled = true;
         }
-
+        
         #region Searching
         private void btnFirstSearch_Click(object sender, EventArgs e)
         {
@@ -85,11 +83,12 @@ namespace MemoryPatch
 
             ResetSearchData();
 
-            //create search context
-            _currentSearchData = SearchContext.CreateSearchData(searchType,
-                                 datatype, txtValue.Text);
+            //create search context            
+            ISearchContext context = SearchManager.CreateSearchContext();
+            context.ConfigureNextSearch(Parser.ToBytes(txtValue.Text, datatype), searchType, datatype, new List<string>());
+
             //search
-            _seracher.NewSearch(_currentSearchData);
+            _seracher.Search(context);
 
             //stop update timer
             timer1.Enabled = false;
@@ -113,10 +112,14 @@ namespace MemoryPatch
                 //get data type
                 DataType datatype = _currentSearchData.DataType;
 
-                ResetSearchData();                                
+                ResetSearchData();
+
+                //set context
+                ISearchContext context = _seracher.SearchContext;
+                context.ConfigureNextSearch(Parser.ToBytes(txtValue.Text, datatype), searchType, datatype, new List<string>());
 
                 //search
-                _seracher.NextSearch(searchType, txtNextVal1.Text);
+                _seracher.Search(context);
 
                 //stop update timer
                 timer1.Enabled = false;
@@ -206,8 +209,8 @@ namespace MemoryPatch
             }
             else
             {
-                _seracher.LoadSnapShot(file);
-                _currentSearchData = _seracher.SearchContext;
+                //_seracher.LoadSnapShot(file);
+                //_currentSearchData = _seracher.SearchContext;
             }
         }
 
@@ -219,7 +222,7 @@ namespace MemoryPatch
             }
             else
             {
-                _seracher.SaveSnapShot(file);
+                //_seracher.SaveSnapShot(file);
             }
         }
 

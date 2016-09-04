@@ -7,10 +7,11 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Xml.Serialization;
+using MemoryManager.Search;
 
 namespace MemoryManager
 {
-    public class SearcherImp: ISearcher
+    public class SearcherImp
     {     
         /// <summary>
         /// search thread
@@ -99,34 +100,14 @@ namespace MemoryManager
                 //reset how the next search will work
                 _addressCollection.ResetSearch(context);                
 
-                //clear snapshots if needed
-                if (context.SearchType == SearchType.StoreSnapShot1)
-                    _snapShot1.Clear();
-
-                if (context.SearchType == SearchType.StoreSnapShot2)
-                    _snapShot2.Clear();
+               
 
                 for (int Address = start; Address < end; Address++)
                 {                    
                     buffer = _access.ReadMemoryAsBytes(Address, context.DataLength);
 
                     lastPrecentDone = UpdateProgress(start, end, lastPrecentDone, Address, _addressCollection.CurrentList.Count);
-
-                    //store addresses
-                    if (context.SearchType == SearchType.StoreSnapShot1)
-                    {
-                        _snapShot1.Add(new AddressFound(
-                                    Address, buffer,
-                                    context.DataType));
-                        continue;
-                    }
-                    else if (context.SearchType == SearchType.StoreSnapShot2)
-                    {
-                        _snapShot2.Add(new AddressFound(
-                                    Address, buffer,
-                                    context.DataType));
-                        continue;
-                    }
+                   
 
                     if (context.DataType == DataType.Float)
                     {
