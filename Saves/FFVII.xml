@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Groups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<Groups xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Groups>
     <SaveGroupData name="Default">
       <Notes />
@@ -18,7 +18,7 @@
         <SavedAddress name="Max Mp" locked="false" dataType="UInt16" optionList="" address="A4442A" pokedValue="999" />
         <SavedAddress name="Current HP" locked="false" dataType="UInt16" optionList="" address="A4442C" pokedValue="9999" />
         <SavedAddress name="Status" locked="false" dataType="UByte" optionList="" address="A44400" pokedValue="8" />
-        <SavedAddress name="Time" locked="true" dataType="UByte" optionList="" address="A41BDD" pokedValue="255" />
+        <SavedAddress name="Time" locked="false" dataType="UByte" optionList="" address="A41BDD" pokedValue="255" />
       </Addresses>
     </SaveGroupData>
     <SaveGroupData name="In Battle Character 2">
@@ -153,8 +153,8 @@
         <SavedAddress name="Item(4)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C06" pokedValue="0" />
         <SavedAddress name="Item(5)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C08" pokedValue="0" />
         <SavedAddress name="Item(6)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C0A" pokedValue="143" />
-        <SavedAddress name="Item(7)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C0C" pokedValue="159" />
-        <SavedAddress name="Item(8)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C0E" pokedValue="0" />
+        <SavedAddress name="Item(7)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C0C" pokedValue="145" />
+        <SavedAddress name="Item(8)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C0E" pokedValue="255" />
         <SavedAddress name="Item(9)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C10" pokedValue="0" />
         <SavedAddress name="Item(10)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C12" pokedValue="0" />
         <SavedAddress name="Item(11)" locked="false" dataType="UByte" optionList="EvenItems" address="9E8C14" pokedValue="0" />
@@ -300,7 +300,7 @@
       <Addresses>
         <SavedAddress name="Gil" locked="false" dataType="UInt32" address="9E9280" pokedValue="5000" />
         <SavedAddress name="Activate All Menu Items" locked="true" dataType="UInt32" optionList="" address="9E92C4" pokedValue="65535" />
-        <SavedAddress name="Field Message speed" locked="false" dataType="UByte" optionList="" address="9E97F0" pokedValue="75" />
+        <SavedAddress name="Field Message speed" locked="false" dataType="UByte" optionList="" address="9E97F0" pokedValue="0" />
         <SavedAddress name="Battle Message Speed" locked="false" dataType="UByte" address="9E97DD" pokedValue="0" />
         <SavedAddress name="Buttons" locked="false" dataType="UByte" optionList="" address="9E97E1" pokedValue="0" />
         <SavedAddress name="Buttons(15)" locked="false" dataType="UByte" optionList="" address="9E97EF" pokedValue="0" />

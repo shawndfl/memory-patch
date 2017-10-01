@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Groups xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Groups>
+    <SaveGroupData name="Default">
+      <Addresses>
+        <SavedAddress name="Health" locked="true" dataType="UByte" address="9E611C" pokedValue="32" />
+        <SavedAddress name="Enemy Health" locked="false" dataType="UByte" address="9DE10C" pokedValue="15" />
+        <SavedAddress name="Enemies killed" locked="false" dataType="UByte" address="A1DCD4" pokedValue="50" />
+      </Addresses>
+    </SaveGroupData>
+  </Groups>
+  <Options />
+</Groups>
