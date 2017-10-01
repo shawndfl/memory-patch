@@ -99,6 +99,7 @@
             this.pluginLoader1 = new MemoryPatch.Editing_Memory.PluginLoader();
             this.tabControl2.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -177,12 +178,12 @@
             this.tv.Size = new System.Drawing.Size(641, 394);
             this.tv.TabIndex = 0;
             this.tv.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tv_AfterLabelEdit);
-            this.tv.DragDrop += new System.Windows.Forms.DragEventHandler(this.tv_DragDrop);
             this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_AfterSelect);
-            this.tv.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tv_MouseDown);
-            this.tv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tv_KeyUp);
-            this.tv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tv_KeyDown);
+            this.tv.DragDrop += new System.Windows.Forms.DragEventHandler(this.tv_DragDrop);
             this.tv.DragOver += new System.Windows.Forms.DragEventHandler(this.tv_DragOver);
+            this.tv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tv_KeyDown);
+            this.tv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tv_KeyUp);
+            this.tv.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tv_MouseDown);
             // 
             // tabControl1
             // 
@@ -284,8 +285,8 @@
             // 
             // cboAddressOptionGroup
             // 
-            this.cboAddressOptionGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboAddressOptionGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboAddressOptionGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboAddressOptionGroup.FormattingEnabled = true;
             this.cboAddressOptionGroup.Location = new System.Drawing.Point(93, 176);
@@ -303,11 +304,12 @@
             this.chkLocked.TabIndex = 3;
             this.chkLocked.Text = "Lock Value";
             this.chkLocked.UseVisualStyleBackColor = true;
+            this.chkLocked.CheckedChanged += new System.EventHandler(this.chkLocked_CheckedChanged);
             // 
             // cboValue
             // 
-            this.cboValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboValue.FormattingEnabled = true;
             this.cboValue.Location = new System.Drawing.Point(338, 139);
@@ -354,8 +356,8 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescription.Location = new System.Drawing.Point(93, 22);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(528, 20);
@@ -368,8 +370,8 @@
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(180, 20);
             this.txtValue.TabIndex = 4;
-            this.txtValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValue_KeyDown);
             this.txtValue.Enter += new System.EventHandler(this.txtValue_Enter);
+            this.txtValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValue_KeyDown);
             // 
             // label14
             // 
@@ -382,8 +384,8 @@
             // 
             // txtCurrentValue
             // 
-            this.txtCurrentValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCurrentValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCurrentValue.Location = new System.Drawing.Point(93, 110);
             this.txtCurrentValue.Name = "txtCurrentValue";
             this.txtCurrentValue.ReadOnly = true;
@@ -421,8 +423,8 @@
             this.txtNotes.Size = new System.Drawing.Size(613, 274);
             this.txtNotes.TabIndex = 7;
             this.txtNotes.Text = "";
-            this.txtNotes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNotes_KeyDown);
             this.txtNotes.TextChanged += new System.EventHandler(this.txtNotes_TextChanged);
+            this.txtNotes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNotes_KeyDown);
             // 
             // tabPage4
             // 
@@ -608,8 +610,8 @@
             // 
             // cboListOption
             // 
-            this.cboListOption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboListOption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboListOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboListOption.FormattingEnabled = true;
             this.cboListOption.Location = new System.Drawing.Point(77, 78);
@@ -777,8 +779,8 @@
             // 
             // lstOptions
             // 
-            this.lstOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lstOptions.FormattingEnabled = true;
             this.lstOptions.Location = new System.Drawing.Point(15, 109);
             this.lstOptions.Name = "lstOptions";
@@ -879,6 +881,7 @@
             this.tabPage1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);

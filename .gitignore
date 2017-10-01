@@ -2,4 +2,6 @@ bin
 obj
 *pdb
 *.suo
+*.dll
+*.sdf
 
