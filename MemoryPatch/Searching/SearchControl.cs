@@ -15,8 +15,8 @@ namespace MemoryPatch
     [DefaultEvent("OnAddressSelected")]
     public partial class SearchControl : UserControl, IInvoke
     {
-        private MemoryAccess _access;
-        private SearchMemory _seracher;
+        private IMemoryAccess _access;
+        private ISearchMemory _seracher;
         private SearchContext _currentSearchData;
 
         public event EventHandler<AddressFoundEventArgs> OnAddressSelected;
@@ -53,7 +53,7 @@ namespace MemoryPatch
             cboNextSearch.SelectedIndex = 0;
         }
 
-        public void EnableSearch(MemoryAccess access)
+        public void EnableSearch(IMemoryAccess access)
         {
             if (access == null)
                 throw new ArgumentNullException("access");

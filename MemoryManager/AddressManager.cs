@@ -23,7 +23,7 @@ namespace MemoryManager
         private Dictionary<string, GroupOptions> _options =
             new Dictionary<string, GroupOptions>();
 
-        private MemoryAccess _access;
+        private IMemoryAccess _access;
 
         /// <summary>
         /// Gets the plugin path.

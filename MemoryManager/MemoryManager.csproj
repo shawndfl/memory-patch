@@ -60,7 +60,10 @@
     <Compile Include="GroupAddress.cs" />
     <Compile Include="GroupOptions.cs" />
     <Compile Include="IInvoke.cs" />
+    <Compile Include="IMemoryAccess.cs" />
+    <Compile Include="ISearchMemory.cs" />
     <Compile Include="LockData.cs" />
+    <Compile Include="MemoryCollection.cs" />
     <Compile Include="MemoryAccess.cs" />
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Portable Executable\ByteConverter.cs" />

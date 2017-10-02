@@ -12,7 +12,7 @@ namespace MemoryPatch
     {
         #region Fields
         private SelectProcess frmSelect = new SelectProcess();        
-        private MemoryAccess _processAccess;
+        private IMemoryAccess _processAccess;
         
         private Dictionary<int, SavedAddress> _savedAddresses = 
             new Dictionary<int, SavedAddress>();

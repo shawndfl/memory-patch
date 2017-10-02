@@ -151,6 +151,9 @@ namespace MemoryPatch.Editing_Memory
 
         private void RefeshList(string directory)
         {
+            if (string.IsNullOrEmpty(directory))
+                return;
+
             if (!directory.EndsWith("\\"))
                 directory += "\\";
             _pluginPath = directory;

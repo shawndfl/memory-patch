@@ -17,7 +17,7 @@ namespace MemoryPatch
         private MemoryStream _stream;
 
         private int streamSz = 5000;
-        private MemoryAccess _access;
+        private IMemoryAccess _access;
         private int _baseOffset;
 
         public MemoryViewer()
@@ -37,7 +37,7 @@ namespace MemoryPatch
             _access.WriteValue(_baseOffset + (int)e.Offset, e.Value);                   
         }
 
-        public void StartAddress(int address, MemoryAccess access)
+        public void StartAddress(int address, IMemoryAccess access)
         {            
             if (_stream != null)
                 _stream.Close();

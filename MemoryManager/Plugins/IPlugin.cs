@@ -24,7 +24,7 @@ namespace MemoryManager
         /// </summary>
         private AddressManager _addressManager; 
 
-        private MemoryAccess _access;
+        private IMemoryAccess _access;
 
         public bool PokeValue(string groupName, string addressName, string value)
         {
@@ -60,7 +60,7 @@ namespace MemoryManager
 
         }
 
-        public PluginManager(AddressManager addressManager, MemoryAccess access)
+        public PluginManager(AddressManager addressManager, IMemoryAccess access)
         {
             _addressManager = addressManager;
             _access = access;

@@ -16,7 +16,7 @@ namespace MemoryPatch.Editing_Memory
     {
         #region Fields
         private AddressManager _addressManager;
-        private MemoryAccess _access;
+        private IMemoryAccess _access;
         private TreeNode _root;        
         private bool _updating = false;
 
@@ -74,7 +74,7 @@ namespace MemoryPatch.Editing_Memory
         /// Enables the memory access.
         /// </summary>
         /// <param name="access">The access.</param>
-        public void EnableMemoryAccess(MemoryAccess access)
+        public void EnableMemoryAccess(IMemoryAccess access)
         {
             if (access == null)
                 throw new ArgumentNullException("access");
