@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 
 namespace MemoryManager
 {
-    public class Search : ISearchMemory
+    public class SearchMemory : ISearchMemory
     {     
         /// <summary>
         /// search thread
@@ -42,7 +42,7 @@ namespace MemoryManager
         public event EventHandler<AddressFoundEventArgs> OnValueFound;        
         public event EventHandler<SearchUpdateEventArgs> OnProgressChange;
 
-        public Search(IMemoryAccess access, IInvoke control)
+        public SearchMemory(IMemoryAccess access, IInvoke control)
         {            
             _access = access;
             _control = control;
@@ -658,5 +658,5 @@ namespace MemoryManager
                     stream.Close();
             }
         }
-    }
+    }   
 }

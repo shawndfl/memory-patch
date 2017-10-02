@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressCollection.cs" />
     <Compile Include="AddressFoundEventArgs.cs" />
     <Compile Include="AddressLock.cs" />
     <Compile Include="AddressManager.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Portable Executable\PortableExe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SavedData.cs" />
+    <Compile Include="SearchMemory.cs" />
     <Compile Include="Search.cs" />
     <Compile Include="SearchData.cs" />
     <Compile Include="SearchUpdateEventArgs.cs" />
