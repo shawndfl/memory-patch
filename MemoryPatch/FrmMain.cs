@@ -41,10 +41,10 @@ namespace MemoryPatch
             if (process != null && module != null)
             {
                 //save the process and module
-                _processAccess = new MemoryAccess(process, module);                
+                _processAccess = new MemoryAccess(process);
 
                 //show what process is selected
-                lbActiveProcess.Text = _processAccess.ProcessName + " (" + _processAccess.ModuleName + ")";                
+                lbActiveProcess.Text = _processAccess.ProcessName;// + " (" + _processAccess.ModuleName + ")";                
                 searchControl1.EnableSearch(_processAccess);
                 memoryPatchControl1.EnableMemoryAccess(_processAccess);
             }

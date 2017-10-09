@@ -27,7 +27,7 @@ namespace MemoryManager
         /// <param name="endAddress">last address</param>
         /// <param name="currentAddress">the current address being processed</param>
         /// <param name="addressFoundCount">how many are found</param>
-        public SearchUpdateEventArgs(int startAddress, int endAddress, int currentAddress, int addressFoundCount)
+        public SearchUpdateEventArgs(long startAddress, long endAddress, long currentAddress, int addressFoundCount)
         {
             float dx = endAddress - startAddress;
             float dy = currentAddress - startAddress;

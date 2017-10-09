@@ -95,7 +95,7 @@ namespace MemoryManager
         [XmlIgnore]
         private int _stringLength = 1;
         [XmlIgnore]
-        public int Address;
+        public long Address;
         [XmlIgnore]
         public byte[] Value;
        
@@ -168,7 +168,7 @@ namespace MemoryManager
 
         #region Constructors
         private SavedAddress() { }   
-        public SavedAddress(bool locked, string name, int address, DataType dataType)
+        public SavedAddress(bool locked, string name, long address, DataType dataType)
         {
             DataType = dataType;
             Address = address;
@@ -179,7 +179,7 @@ namespace MemoryManager
             StringValue = null;
         }
 
-        public SavedAddress(bool locked, string name, int address, DataType dataType, int stringLength)
+        public SavedAddress(bool locked, string name, long address, DataType dataType, int stringLength)
         {
             DataType = dataType;
             Address = address;
@@ -191,7 +191,7 @@ namespace MemoryManager
             StringValue = null;
         }
 
-        public SavedAddress(bool locked, string name, int address, string value, DataType dataType)
+        public SavedAddress(bool locked, string name, long address, string value, DataType dataType)
         {
             DataType = dataType;
             Address = address;

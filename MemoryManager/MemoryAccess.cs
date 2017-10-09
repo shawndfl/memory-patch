@@ -12,61 +12,65 @@ namespace MemoryManager
     {
         #region Dll Imports
         [DllImport("kernel32.dll", EntryPoint = "ReadProcessMemory")]
-        public static extern Int32 ReadProcessMemory(IntPtr hProcess, int lpBaseAddress,
+        public static extern Int32 ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress,
             byte[] buffer, int size, out int lpNumberOfBytesRead);
 
         [DllImport("kernel32.dll", EntryPoint = "WriteProcessMemory")]
-        public static extern Int32 WriteProcessMemory(IntPtr hProcess, int lpBaseAddress,
+        public static extern Int32 WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress,
             byte[] buffer, int size, out int lpNumberOfBytesRead);
 
         [DllImport("kernel32.dll", EntryPoint = "OpenProcess")]
         public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dbProcessId);
+
+        [DllImport("kernel32.dll")]
+        static extern void GetSystemInfo(out SYSTEM_INFO lpSystemInfo);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern int VirtualQueryEx(IntPtr hProcess, IntPtr lpAddress, out MEMORY_BASIC_INFORMATION lpBuffer, uint dwLength);
+                
         #endregion
 
         #region Consts
-        public const int PROCESS_VM_READ = 0x0010;
-        public const int PROCESS_VM_WRITE = 0x0020;
+        // REQUIRED CONSTS
+        public const int PROCESS_QUERY_INFORMATION = 0x0400;
+        public const int MEM_COMMIT = 0x00001000;
+        public const int PAGE_READWRITE = 0x04;
+        public const int PROCESS_WM_READ = 0x0010;
+        public const int PROCESS_WM_WRITE = 0x0020;
         #endregion
 
         #region Fields
         private static object _freezeLock = new object();
-        private Dictionary<int, AddressLock> _frezonAddresses =
-            new Dictionary<int, AddressLock>();
+        private Dictionary<IntPtr, AddressLock> _frezonAddresses =
+            new Dictionary<IntPtr, AddressLock>();
 
-        private Thread _frezzeThread;
+        private Thread _frezzeThread;        
         #endregion
 
         /// <summary>
         /// the process we are accessing
         /// </summary>
-        public Process Process { get; private set; }
-
-        /// <summary>
-        /// the module in the process to access
-        /// </summary>
-        public ProcessModule Module { get; private set; }
+        public Process Process { get; private set; }      
 
         public string ProcessName
         {
             get { return Process.ProcessName; }
         }
-
-        public string ModuleName
-        {
-            get { return Module.ModuleName; }
-        }
-
-        public MemoryAccess(Process process, ProcessModule module)
-        {
-            Process = process;
-            Module = module;
-            StartFreezeThread();
-        }        
+      
+        public IntPtr MinAddress { get; private set; }
+        public IntPtr MaxAddress { get; private set; }
 
         public MemoryAccess(Process process)
         {
             Process = process;
-            Module = Process.MainModule;
+
+            //TODO get length of memory
+            SYSTEM_INFO sys_info = new SYSTEM_INFO();
+            GetSystemInfo(out sys_info);
+
+            MinAddress = sys_info.minimumApplicationAddress;
+            MaxAddress = sys_info.maximumApplicationAddress;
+
             StartFreezeThread();
         }
 
@@ -90,13 +94,23 @@ namespace MemoryManager
             _frezzeThread.Start();
         }
 
+        /// <summary>
+        /// Kills the process        
+        /// </summary>
         public void KillProcess()
         {
             if (Process != null)
                 Process.Kill();
-        }        
+        }
 
-        public string ReadMemoryAsString(int address, DataType dataType, int lenInBytes)
+        /// <summary>
+        /// USed to read memory as a string
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="dataType"></param>
+        /// <param name="lenInBytes"></param>
+        /// <returns></returns>
+        public string ReadMemoryAsString(IntPtr address, DataType dataType, int lenInBytes)
         {
             byte[] buffer = ReadMemoryAsBytes(address, lenInBytes);
 
@@ -120,14 +134,14 @@ namespace MemoryManager
                         return encoding.GetString(buffer);
                     }
                 case DataType.StringByte:
-                    {                        
-                        char[] chars = new char[lenInBytes];                        
+                    {
+                        char[] chars = new char[lenInBytes];
                         for (int i = 0; i < lenInBytes; i++)
                         {
                             if (buffer[i] == '\0')
                                 chars[i] = ' ';
                             else
-                                chars[i] = (char)buffer[i];                                                    
+                                chars[i] = (char)buffer[i];
                         }
                         string temp = new string(chars);
                         return temp;
@@ -140,23 +154,63 @@ namespace MemoryManager
                     throw new Exception("Unknown DataType");
             }
 
-        }     
-       
-        public byte[] ReadMemoryAsBytes(int address, int length)
+        }
+
+        /// <summary>
+        /// Gets the memory info around a given address        
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
+        public MEMORY_BASIC_INFORMATION VirtualQuery(IntPtr address)
         {
-            byte[] buffer = new byte[length];
+            //IntPtr handle = Process.Handle;
+            MEMORY_BASIC_INFORMATION mem_basic_info = new MEMORY_BASIC_INFORMATION();
+            
+            VirtualQueryEx(Process.Handle, address, out mem_basic_info, (uint)Marshal.SizeOf(typeof(MEMORY_BASIC_INFORMATION)));
+            return mem_basic_info;                    
+        }
+
+        /// <summary>
+        /// Reads memory of the process. Use this to read memory that is in sequence
+        /// </summary>
+        /// <param name="address">The address to start reading from</param>
+        /// <param name="buffer">The buffer to store memory in</param>
+        /// <returns></returns>                       
+        public int ReadMemoryAsBytes(IntPtr address, ref byte[] buffer)
+        {
+            int length = 0;
             try
             {
-                int lengthRead;
-                int baseAddress = Module.BaseAddress.ToInt32();
-                int len = Module.ModuleMemorySize;
-
-                IntPtr handle = Process.Handle;
-
-                if (address >= baseAddress && address + length <= baseAddress + len)
+                if (buffer != null && buffer.Length > 0)
                 {
-                    ReadProcessMemory(handle, address, buffer, buffer.Length, out lengthRead);
+                    IntPtr handle = Process.Handle;
+                    ReadProcessMemory(handle, address, buffer, buffer.Length, out length);
                 }
+
+            }
+            catch (Exception ex)
+            {
+                length = 0;
+            }
+            
+            return length;
+        }
+
+        /// <summary>
+        /// Reads memory.
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="dataLength"></param>
+        /// <returns></returns>
+        public byte[] ReadMemoryAsBytes(IntPtr address, int dataLength)
+        {
+            int length = 0;
+            byte[] buffer = new byte[dataLength];
+            try
+            {                
+                IntPtr handle = Process.Handle;
+                ReadProcessMemory(handle, address, buffer, buffer.Length, out length);
+
             }
             catch (Exception ex)
             {
@@ -165,7 +219,7 @@ namespace MemoryManager
             return buffer;
         }
 
-        public void FreezeMemory(int address, byte[] value)
+        public void FreezeMemory(IntPtr address, byte[] value)
         {
             lock (_freezeLock)
             {
@@ -179,7 +233,7 @@ namespace MemoryManager
             }
         }
 
-        public void UnfreezeMemory(int address)
+        public void UnfreezeMemory(IntPtr address)
         {
             lock (_freezeLock)
             {
@@ -195,7 +249,7 @@ namespace MemoryManager
             }
         }
 
-        public int WriteValue(int address, byte[] value)
+        public int WriteValue(IntPtr address, byte[] value)
         {
             int lengthWrite = 0;
             try

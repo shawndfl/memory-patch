@@ -4,4 +4,4 @@ obj
 *.suo
 *.dll
 *.sdf
-
+*.user

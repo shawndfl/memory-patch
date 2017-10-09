@@ -61,7 +61,7 @@ namespace MemoryPatch
             _access = access;
 
              //create a searcher
-            _seracher = new SearchMemory(_access, this);
+            _seracher = new Search(_access, this);
             _seracher.OnValueFound += new EventHandler<AddressFoundEventArgs>(Seracher_OnValueFound);
             _seracher.OnProgressChange += new EventHandler<SearchUpdateEventArgs>(Seracher_OnProgressChange);
 
@@ -156,7 +156,8 @@ namespace MemoryPatch
         #region Search Events
         private void Seracher_OnProgressChange(object sender, SearchUpdateEventArgs e)
         {
-            pgSearching.Value = e.PrecentDone;
+            int precent = e.PrecentDone > 100 ? 100 : e.PrecentDone;
+            pgSearching.Value = precent;
             lbFoundCount.Text = e.AddressFoundCount.ToString();
 
             if (e.PrecentDone == 100)
@@ -233,7 +234,7 @@ namespace MemoryPatch
                 if (ags == null)
                     continue;
 
-                row.Cells[1].Value = _access.ReadMemoryAsString(ags.AddressFound.Address, 
+                row.Cells[1].Value = _access.ReadMemoryAsString(new IntPtr(ags.AddressFound.Address), 
                     ags.AddressFound.DataType, ags.AddressFound.DataLengthInBytes);
             }
         }

@@ -34,7 +34,8 @@ namespace MemoryPatch
 
         private void HexWindow1_OnValueChange(object sender, HexViewer.OffsetArgs e)
         {
-            _access.WriteValue(_baseOffset + (int)e.Offset, e.Value);                   
+            //_access.WriteValue(_baseOffset + (int)e.Offset, e.Value);                   
+            throw new NotImplementedException("Need to use long instead of int");
         }
 
         public void StartAddress(int address, IMemoryAccess access)
@@ -45,7 +46,7 @@ namespace MemoryPatch
             _access = access;
 
             _baseOffset = address - streamSz / 2;
-            byte[] data = _access.ReadMemoryAsBytes(_baseOffset, streamSz); 
+            byte[] data = _access.ReadMemoryAsBytes(new IntPtr(_baseOffset), streamSz); 
             _stream = new MemoryStream(data);
             hexWindow1.SetStream(_stream);
 

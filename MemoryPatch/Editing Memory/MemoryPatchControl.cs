@@ -21,8 +21,8 @@ namespace MemoryPatch.Editing_Memory
         private bool _updating = false;
 
         private bool _selectFirstAddress = true;
-        private int _firstLastAddress = 0;
-        private int _secondLastAddress = 0;
+        private long _firstLastAddress = 0;
+        private long _secondLastAddress = 0;
 
         #endregion
 
@@ -192,7 +192,7 @@ namespace MemoryPatch.Editing_Memory
                 GroupAddress group = parent.Tag as GroupAddress;
 
                 //remove from freeze list
-                _access.UnfreezeMemory(address.Address);
+                _access.UnfreezeMemory(new IntPtr(address.Address));
 
                 group.RemoveAddress(address);
                 parent.Nodes.Remove(addressNode);
@@ -229,9 +229,10 @@ namespace MemoryPatch.Editing_Memory
 
                     if (ActiveAddress != null)
                     {
-                        MemoryViewer viewer = new MemoryViewer();
-                        viewer.StartAddress(ActiveAddress.Address, _access);
-                        viewer.Show();
+                        //MemoryViewer viewer = new MemoryViewer();
+                        //viewer.StartAddress(ActiveAddress.Address, _access);
+                        //viewer.Show();
+                        MessageBox.Show("Memory viewer not implemented.");
                     }
                 }
             }
@@ -356,7 +357,7 @@ namespace MemoryPatch.Editing_Memory
 
         private string GetValue(SavedAddress address)
         {           
-            return _access.ReadMemoryAsString(address.Address,
+            return _access.ReadMemoryAsString(new IntPtr(address.Address),
                           address.DataType, address.DataLengthInBytes);
         }
         #endregion
@@ -451,7 +452,7 @@ namespace MemoryPatch.Editing_Memory
         private void AcceptNewValue()
         {
             ActiveAddress.StringValue = txtValue.Text;            
-            _access.WriteValue(ActiveAddress.Address, ActiveAddress.Value);
+            _access.WriteValue(new IntPtr(ActiveAddress.Address), ActiveAddress.Value);
 
             //in case there was an error in the text get the latest value
             _updating = true;
@@ -484,7 +485,7 @@ namespace MemoryPatch.Editing_Memory
             }            
                 //ActiveAddress.Value |= txtValue.Text;
 
-            _access.WriteValue(ActiveAddress.Address, ActiveAddress.Value);
+            _access.WriteValue(new IntPtr(ActiveAddress.Address), ActiveAddress.Value);
             _updating = false;
         }
 
@@ -539,9 +540,9 @@ namespace MemoryPatch.Editing_Memory
                 SavedAddress address = (SavedAddress)addressNode.Tag;
 
                 if (address.Locked)
-                    _access.FreezeMemory(address.Address, address.Value);
+                    _access.FreezeMemory(new IntPtr(address.Address), address.Value);
                 else
-                    _access.UnfreezeMemory(address.Address);
+                    _access.UnfreezeMemory(new IntPtr(address.Address));
 
                 if (groupNode.IsExpanded)
                 {
@@ -702,7 +703,7 @@ namespace MemoryPatch.Editing_Memory
             strValue = value.ToString();    
 
             if (ActiveAddress != null)
-                _access.WriteValue(ActiveAddress.Address,
+                _access.WriteValue(new IntPtr(ActiveAddress.Address),
                     ActiveAddress.GetByteValue(strValue));
 
             txtOption.SelectAll();
@@ -924,7 +925,7 @@ namespace MemoryPatch.Editing_Memory
                 foreach (TreeNode addressNode in tv.SelectedNode.Nodes)
                 {
                     SavedAddress address = addressNode.Tag as SavedAddress;
-                    _access.WriteValue(address.Address, address.Value);                    
+                    _access.WriteValue(new IntPtr(address.Address), address.Value);                    
                 }
             }
         }  

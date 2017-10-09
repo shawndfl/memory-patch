@@ -32,7 +32,7 @@ namespace MemoryManager
             if (address != null)
             {
                 byte[] byteValue = SavedAddress.GetByteValue(value, address.DataType);
-                _access.WriteValue(address.Address, byteValue);
+                _access.WriteValue(new IntPtr(address.Address), byteValue);
                 return true;
             }
             else 
@@ -49,7 +49,7 @@ namespace MemoryManager
             SavedAddress address = _addressManager.FindAddress(groupName, addressName);
             if (address != null)
             {
-                return _access.ReadMemoryAsString(address.Address, address.DataType, address.DataLengthInBytes);
+                return _access.ReadMemoryAsString(new IntPtr(address.Address), address.DataType, address.DataLengthInBytes);
             }
             
             return string.Empty;

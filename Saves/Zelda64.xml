@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Groups xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Groups>
+    <SaveGroupData name="Default">
+      <Addresses>
+        <SavedAddress name="Rubies" locked="false" dataType="UInt16" address="3D2DA606" pokedValue="999" />
+      </Addresses>
+    </SaveGroupData>
+  </Groups>
+  <Options />
+</Groups>

@@ -7,10 +7,10 @@ namespace MemoryManager
 {
     internal struct AddressLock
     {
-        public int Address;
+        public IntPtr Address;
         public byte[] Data;
 
-        public AddressLock(int address, byte[] data)
+        public AddressLock(IntPtr address, byte[] data)
         {
             Address = address;
             Data = data;

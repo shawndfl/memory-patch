@@ -33,7 +33,7 @@ namespace MemoryManager
     public struct AddressFound
     {
         #region Fields
-        private int _address;        
+        private long _address;        
         private byte[] _currentValue;
         private DataType _dataType;        
         #endregion
@@ -43,7 +43,7 @@ namespace MemoryManager
         /// The address
         /// </summary>
         [XmlAttribute("address")]
-        public int Address
+        public long Address
         {
             get { return _address; }
             set { _address = value; }
@@ -137,7 +137,7 @@ namespace MemoryManager
         /// <param name="address"></param>
         /// <param name="currentValue"></param>
         /// <param name="data"></param>
-        public AddressFound(int address, byte[] currentValue, DataType data)
+        public AddressFound(long address, byte[] currentValue, DataType data)
         {
             _currentValue = (byte[])currentValue.Clone();                  
             _address = address;
