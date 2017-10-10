@@ -13,9 +13,7 @@ namespace MemoryPatch
     public partial class SelectProcess : Form
     {        
         private List<Process> _processes =
-            new List<Process>();
-        private List<ProcessModule> _modules = 
-            new List<ProcessModule>();
+            new List<Process>();        
         private Process _process;
       
         public ProcessEventArgs Args;
@@ -32,10 +30,8 @@ namespace MemoryPatch
 
         private void RefeshProcesses()
         {
-            lstProcess.Items.Clear();
-            lstModules.Items.Clear();
-            _processes.Clear();
-            _modules.Clear();
+            lstProcess.Items.Clear();            
+            _processes.Clear();            
             _process = null;
             Args = null;
 
@@ -63,14 +59,7 @@ namespace MemoryPatch
             {
                 try
                 {
-                    _process = _processes[i];
-                    lstModules.Items.Clear();
-                    _modules.Clear();
-                    for (int x = 0; x < _process.Modules.Count; x++)
-                    {                        
-                        int index = lstModules.Items.Add(_process.Modules[x].ModuleName);
-                        _modules.Insert(index, _process.Modules[x]);
-                    }
+                    _process = _processes[i];                   
                 }
                 catch (Exception ex)
                 {
@@ -85,12 +74,11 @@ namespace MemoryPatch
         }
 
         private void Accept()
-        {            
-            int i = lstModules.SelectedIndex;
-            if (i > -1 && _process != null)
+        {                        
+            if (_process != null)
             {
                 this.DialogResult = DialogResult.OK;
-                Args = new ProcessEventArgs(_process, _modules[i]);              
+                Args = new ProcessEventArgs(_process);              
 
                 this.Close();
             }
@@ -107,27 +95,20 @@ namespace MemoryPatch
             RefeshProcesses();
         }
       
-        private void lstModules_DoubleClick(object sender, EventArgs e)
+        private void lstProcess_DoubleClick(object sender, EventArgs e)
         {
-            if (lstModules.SelectedIndex != -1)
+            if (lstProcess.SelectedIndex != -1)
                 Accept();
-        }
-
-        private void lstModules_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        }       
     }
 
     public class ProcessEventArgs: EventArgs
     {
-        public Process Process {get; private set;}
-        public ProcessModule Module { get; private set; }
+        public Process Process {get; private set;}        
 
-        public ProcessEventArgs(Process process, ProcessModule module)
+        public ProcessEventArgs(Process process)
         {
-            Process = process;
-            Module = module;
+            Process = process;            
         }
     }
 

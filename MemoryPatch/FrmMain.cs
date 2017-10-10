@@ -30,15 +30,10 @@ namespace MemoryPatch
         
         public AddressManager _runTimeData;
         #endregion       
-
+        
         private void SetNewProcess(Process process)
-        {
-            SetNewProcess(process, process.MainModule);
-        }
-
-        private void SetNewProcess(Process process, ProcessModule module)
         {           
-            if (process != null && module != null)
+            if (process != null)
             {
                 //save the process and module
                 _processAccess = new MemoryAccess(process);
@@ -142,7 +137,7 @@ namespace MemoryPatch
         private void FrmSelect_OnProcessSelected(object sender, ProcessEventArgs e)
         {
             lbActiveProcess.Text = e.Process.ProcessName;
-            SetNewProcess(e.Process, e.Module);
+            SetNewProcess(e.Process);
         }
 
         private void btnSelectProcess_Click(object sender, EventArgs e)
@@ -157,9 +152,7 @@ namespace MemoryPatch
 
             if (frmSelect.ShowDialog(this) == DialogResult.OK)
             {
-                lbActiveProcess.Text = frmSelect.Args.Process.ProcessName;
-
-                SetNewProcess(frmSelect.Args.Process, frmSelect.Args.Module);
+                SetNewProcess(frmSelect.Args.Process);
             }
         }
 

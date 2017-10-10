@@ -149,7 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MemoryManager\MemoryManager.csproj">
-      <Project>{B1DDB6FF-AE00-4ABD-8DBC-988EC732DC53}</Project>
+      <Project>{b1ddb6ff-ae00-4abd-8dbc-988ec732dc53}</Project>
       <Name>MemoryManager</Name>
     </ProjectReference>
   </ItemGroup>

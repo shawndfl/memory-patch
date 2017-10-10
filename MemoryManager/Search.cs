@@ -20,8 +20,11 @@ namespace MemoryManager
 
         private IMemoryAccess _access;
         private IInvoke _control;
-        
-	    private AddressCollection _addressCollection;
+
+        private const int MAX_BUFFER = 0xFFFF;
+
+
+        private AddressCollection _addressCollection;
         public SearchContext SearchContext
         {
             get
@@ -86,8 +89,7 @@ namespace MemoryManager
                 SearchContext context = (SearchContext)obj;
                 
                 long start = (long)_access.MinAddress;
-                long end = (long)_access.MaxAddress;
-                long len = end - start;
+                long end = (long)_access.MaxAddress;                
                 float lastPrecentDone = 0;
 
                 byte[] value2 = context.Value;                              
@@ -108,8 +110,9 @@ namespace MemoryManager
                     //Is the memory address for the process I'm looking at?
                     if (info.Protect == AllocationProtectEnum.PAGE_READWRITE && info.State == StateEnum.MEM_COMMIT)
                     {
-                        byte[] buffer = new byte[(int)info.RegionSize];
-                        Console.WriteLine("Creating buffer: " + (int)info.RegionSize);
+                        int bufferSize = Math.Min((int)info.RegionSize, MAX_BUFFER);
+                        byte[] buffer = new byte[bufferSize];
+                        //Console.WriteLine("Creating buffer: " + (int)info.RegionSize);
 
                         // read the memory                 
                         int count = _access.ReadMemoryAsBytes(new IntPtr(Address), ref buffer);
@@ -119,7 +122,7 @@ namespace MemoryManager
 
                         if (count == 0)
                         {
-                            Console.WriteLine("Can't read from " + (long)Address);
+                            //Console.WriteLine("Can't read from " + (long)Address);
                             Address++;
                             continue;
                         }
@@ -127,7 +130,7 @@ namespace MemoryManager
                         // search through the block. Subtract the size of the data at the end.
                         for (int index = 0; index < adressStep; index++)
                         {
-                            lastPrecentDone = UpdateProgress(start, 0x0FFFFFFF, lastPrecentDone, Address,
+                            lastPrecentDone = UpdateProgress(start, end, lastPrecentDone, Address,
                                _addressCollection.CurrentList.Count);
 
                             if (context.DataType == DataType.Float)
