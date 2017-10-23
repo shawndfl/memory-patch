@@ -21,7 +21,7 @@ namespace MemoryManager
         private IMemoryAccess _access;
         private IInvoke _control;
 
-        private const int MAX_BUFFER = 0xFFFF;
+        private const int MAX_BUFFER = 0xFFFFFF;
 
 
         private AddressCollection _addressCollection;
@@ -38,6 +38,7 @@ namespace MemoryManager
         /// </summary>        
         public event EventHandler<AddressFoundEventArgs> OnValueFound;        
         public event EventHandler<SearchUpdateEventArgs> OnProgressChange;
+        public event EventHandler<UpdateArgs> OnUpdate;
 
         public Search(IMemoryAccess access, IInvoke control)
         {            
@@ -55,7 +56,7 @@ namespace MemoryManager
             }
 
             //final update
-            UpdateProgress(0, 1, 1.0f, 1, 0);
+            UpdateProgress(0, 1, 1, 0);
         }
 
         public void NewSearch(SearchContext context)
@@ -86,17 +87,18 @@ namespace MemoryManager
         {
             try
             {
+                Update("Starting First Search...");
                 SearchContext context = (SearchContext)obj;
-                
+                long addressesProcessed = 0;
                 long start = (long)_access.MinAddress;
                 long end = (long)_access.MaxAddress;                
-                float lastPrecentDone = 0;
 
                 byte[] value2 = context.Value;                              
                 
                 // search through each read block of memory 
                 for (long Address = start; Address < end; /*increment Address in the inner loop*/ )
-                {                   
+                {
+                    Update("Virtual Query");
                     MEMORY_BASIC_INFORMATION info = _access.VirtualQuery(new IntPtr(Address));
 
                     //There was an error with the virtual query
@@ -104,34 +106,43 @@ namespace MemoryManager
                     if ((long)info.RegionSize == 0)
                     {
                         Address++;
-                        continue;
+                        break;
                     }
                    
                     //Is the memory address for the process I'm looking at?
                     if (info.Protect == AllocationProtectEnum.PAGE_READWRITE && info.State == StateEnum.MEM_COMMIT)
-                    {
+                    {                        
                         int bufferSize = Math.Min((int)info.RegionSize, MAX_BUFFER);
                         byte[] buffer = new byte[bufferSize];
                         //Console.WriteLine("Creating buffer: " + (int)info.RegionSize);
+
+                        Update("Reading " + bufferSize +"...");
 
                         // read the memory                 
                         int count = _access.ReadMemoryAsBytes(new IntPtr(Address), ref buffer);
 
                         // we are only going to step what we read - the context data length
-                        int adressStep = count - context.DataLength;
+                        int addressStep = count - context.DataLength;
 
                         if (count == 0)
                         {
+                            Update("Nothing Read " + Address);
                             //Console.WriteLine("Can't read from " + (long)Address);
                             Address++;
                             continue;
                         }
 
+                        Update("Processing " + addressStep + " addresses...");
                         // search through the block. Subtract the size of the data at the end.
-                        for (int index = 0; index < adressStep; index++)
-                        {
-                            lastPrecentDone = UpdateProgress(start, end, lastPrecentDone, Address,
-                               _addressCollection.CurrentList.Count);
+                        for (int index = 0; index < addressStep; index++)
+                        {                           
+                           
+                            if(addressesProcessed > 1000)
+                            {
+                                UpdateProgress(start, end, Address, _addressCollection.CurrentList.Count);
+                                addressesProcessed = 0;
+                            }
+                            addressesProcessed++;
 
                             if (context.DataType == DataType.Float)
                             {
@@ -179,21 +190,25 @@ namespace MemoryManager
                     // This is not a region we care about just skip to the next one.
                     else
                     {
+                        Update("skipting " + (long)info.RegionSize);
                         Address += (long)info.RegionSize;
                     }
                     
                 }
 
+                Update("Done.");
                 //final update
                 FoundAddress(context, true);
-                UpdateProgress(start, end, lastPrecentDone, end, _addressCollection.CurrentList.Count);
+                UpdateProgress(start, end, end, _addressCollection.CurrentList.Count);
             }
             catch (ThreadAbortException)
             {
+                Update("Cancelled.");
                 //just exit
             }
             catch (Exception ex)
             {
+                Update("Error: " + ex.Message);
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
             }
@@ -203,9 +218,11 @@ namespace MemoryManager
         {
             try
             {
+                Update("Starting Next Search...");
+
                 SearchContext context = (SearchContext)obj;
-                              
-                float lastPrecentDone = 0;
+
+                int addressProcessed = 0;
 
                 byte[] value1 = context.Value;
                 byte[] buffer;
@@ -217,12 +234,16 @@ namespace MemoryManager
 
                 for (int i = 0; i < srcList.Count; i++)
                 {
+                    Update("Reading " + i + " of " + srcList.Count);
                     AddressFound currentAddress = srcList[i];
                     buffer = _access.ReadMemoryAsBytes(new IntPtr(currentAddress.Address), context.DataLength);
 
-                    lastPrecentDone = UpdateProgress(0, srcList.Count, lastPrecentDone,
-                       i, destList.Count);
-               
+                    if (addressProcessed > 1000)
+                    {
+                        UpdateProgress(0, srcList.Count, i, destList.Count);
+                        addressProcessed = 0;
+                    }
+                    addressProcessed++;
 
                     if (context.DataType == DataType.Float)
                     {
@@ -335,20 +356,25 @@ namespace MemoryManager
                     }
                     catch (Exception ex)
                     {
+                        Update("Error: " + ex.Message);
                         throw;
                     }                   
                 }
 
+                Update("Done.");
+
                 //final update
                 FoundAddress(context, true);
-                UpdateProgress(0, srcList.Count, lastPrecentDone, srcList.Count, destList.Count);
+                UpdateProgress(0, srcList.Count, srcList.Count, destList.Count);
             }
             catch (ThreadAbortException)
             {
+                Update("Cancelled.");
                 //just exit
             }
             catch (Exception ex)
             {
+                Update("Error: " + ex.Message);
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
             }
@@ -546,27 +572,33 @@ namespace MemoryManager
                 default:
                     throw new Exception("Unknown DataType");
             }
-        }                
+        }
 
-        private float UpdateProgress(long start, long end, float lastPrecentDone, long currentAddress, int addressFoundCount)
+        private void Update(String detials)
+        {
+            _control.InvokeMethod(new ThreadStart(delegate ()
+            {
+                if (OnUpdate != null)
+                {
+                    OnUpdate(this, new UpdateArgs(detials));
+                }
+            }));
+        }
+
+        private void UpdateProgress(long start, long end, long current, int addressFoundCount)
         {
             long dx = end - start;
-            long dy = currentAddress - start;
+            long dy = current - start;
             float precentDone = (float)((float)dy / (float)dx);
 
-            //this must change by at least one precent or equal 100%
-            if (precentDone - lastPrecentDone > .1f || end == currentAddress)
-            {              
-                _control.InvokeMethod(new ThreadStart(delegate()
+
+            _control.InvokeMethod(new ThreadStart(delegate ()
+            {
+                if (OnProgressChange != null)
                 {
-                    if (OnProgressChange != null)
-                    {
-                        OnProgressChange(this, new SearchUpdateEventArgs(start, end, currentAddress, addressFoundCount));
-                    }
-                }));
-                lastPrecentDone = precentDone;
-            }
-            return lastPrecentDone;
+                    OnProgressChange(this, new SearchUpdateEventArgs(start, end, current, addressFoundCount));
+                }
+            }));
         }
 
         public void SaveSnapShot(string file)

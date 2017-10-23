@@ -8,6 +8,7 @@ namespace MemoryManager
 
         event EventHandler<SearchUpdateEventArgs> OnProgressChange;
         event EventHandler<AddressFoundEventArgs> OnValueFound;
+        event EventHandler<UpdateArgs> OnUpdate;
 
         void CancelSearch();        
         void NewSearch(SearchContext context);

@@ -30,12 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupFound = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lbFoundCount = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             this.dataResults = new System.Windows.Forms.DataGridView();
             this.colAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lbFoundCount = new System.Windows.Forms.Label();
             this.groupNextSearch = new System.Windows.Forms.GroupBox();
             this.cboNextSearch = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -55,7 +56,7 @@
             this.pgSearching = new System.Windows.Forms.ProgressBar();
             this.btnCancle = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnClear = new System.Windows.Forms.Button();
+            this.lbStatus = new System.Windows.Forms.Label();
             this.groupFound.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataResults)).BeginInit();
             this.groupNextSearch.SuspendLayout();
@@ -65,43 +66,35 @@
             // 
             // groupFound
             // 
-            this.groupFound.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupFound.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupFound.Controls.Add(this.btnClear);
             this.groupFound.Controls.Add(this.dataResults);
             this.groupFound.Controls.Add(this.label7);
             this.groupFound.Controls.Add(this.lbFoundCount);
             this.groupFound.Enabled = false;
-            this.groupFound.Location = new System.Drawing.Point(1, 209);
+            this.groupFound.Location = new System.Drawing.Point(1, 237);
             this.groupFound.Name = "groupFound";
-            this.groupFound.Size = new System.Drawing.Size(420, 417);
+            this.groupFound.Size = new System.Drawing.Size(420, 389);
             this.groupFound.TabIndex = 12;
             this.groupFound.TabStop = false;
             this.groupFound.Text = "Results";
             // 
-            // label7
+            // btnClear
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Address Found";
-            // 
-            // lbFoundCount
-            // 
-            this.lbFoundCount.AutoSize = true;
-            this.lbFoundCount.Location = new System.Drawing.Point(92, 16);
-            this.lbFoundCount.Name = "lbFoundCount";
-            this.lbFoundCount.Size = new System.Drawing.Size(33, 13);
-            this.lbFoundCount.TabIndex = 10;
-            this.lbFoundCount.Text = "None";
+            this.btnClear.Location = new System.Drawing.Point(313, 3);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(95, 23);
+            this.btnClear.TabIndex = 2;
+            this.btnClear.Text = "Clear Addresses";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // dataResults
             // 
-            this.dataResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colAddress,
@@ -109,7 +102,7 @@
             this.colType});
             this.dataResults.Location = new System.Drawing.Point(2, 32);
             this.dataResults.Name = "dataResults";
-            this.dataResults.Size = new System.Drawing.Size(406, 371);
+            this.dataResults.Size = new System.Drawing.Size(406, 343);
             this.dataResults.TabIndex = 9;
             this.dataResults.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataResults_CellClick);
             // 
@@ -134,6 +127,24 @@
             this.colType.Name = "colType";
             this.colType.Width = 79;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(78, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Address Found";
+            // 
+            // lbFoundCount
+            // 
+            this.lbFoundCount.AutoSize = true;
+            this.lbFoundCount.Location = new System.Drawing.Point(92, 16);
+            this.lbFoundCount.Name = "lbFoundCount";
+            this.lbFoundCount.Size = new System.Drawing.Size(33, 13);
+            this.lbFoundCount.TabIndex = 10;
+            this.lbFoundCount.Text = "None";
+            // 
             // groupNextSearch
             // 
             this.groupNextSearch.Controls.Add(this.cboNextSearch);
@@ -143,7 +154,7 @@
             this.groupNextSearch.Controls.Add(this.btnNextSearch);
             this.groupNextSearch.Controls.Add(this.txtNextVal1);
             this.groupNextSearch.Enabled = false;
-            this.groupNextSearch.Location = new System.Drawing.Point(1, 141);
+            this.groupNextSearch.Location = new System.Drawing.Point(3, 169);
             this.groupNextSearch.Name = "groupNextSearch";
             this.groupNextSearch.Size = new System.Drawing.Size(420, 62);
             this.groupNextSearch.TabIndex = 11;
@@ -214,7 +225,7 @@
             this.groupFirstSearch.Controls.Add(this.btnFirstSearch);
             this.groupFirstSearch.Controls.Add(this.txtValue);
             this.groupFirstSearch.Enabled = false;
-            this.groupFirstSearch.Location = new System.Drawing.Point(0, 62);
+            this.groupFirstSearch.Location = new System.Drawing.Point(3, 90);
             this.groupFirstSearch.Name = "groupFirstSearch";
             this.groupFirstSearch.Size = new System.Drawing.Size(421, 73);
             this.groupFirstSearch.TabIndex = 10;
@@ -285,20 +296,21 @@
             // 
             // groupSearching
             // 
+            this.groupSearching.Controls.Add(this.lbStatus);
             this.groupSearching.Controls.Add(this.pgSearching);
             this.groupSearching.Controls.Add(this.btnCancle);
             this.groupSearching.Enabled = false;
             this.groupSearching.Location = new System.Drawing.Point(1, 3);
             this.groupSearching.Name = "groupSearching";
-            this.groupSearching.Size = new System.Drawing.Size(420, 53);
+            this.groupSearching.Size = new System.Drawing.Size(420, 81);
             this.groupSearching.TabIndex = 9;
             this.groupSearching.TabStop = false;
             this.groupSearching.Text = "Searching";
             // 
             // pgSearching
             // 
-            this.pgSearching.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pgSearching.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pgSearching.Location = new System.Drawing.Point(6, 19);
             this.pgSearching.Name = "pgSearching";
             this.pgSearching.Size = new System.Drawing.Size(325, 23);
@@ -319,15 +331,17 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // btnClear
+            // lbStatus
             // 
-            this.btnClear.Location = new System.Drawing.Point(313, 3);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(95, 23);
-            this.btnClear.TabIndex = 2;
-            this.btnClear.Text = "Clear Addresses";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.lbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbStatus.Location = new System.Drawing.Point(6, 45);
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Size = new System.Drawing.Size(402, 24);
+            this.lbStatus.TabIndex = 6;
+            this.lbStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // SearchControl
             // 
@@ -380,5 +394,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label lbStatus;
     }
 }

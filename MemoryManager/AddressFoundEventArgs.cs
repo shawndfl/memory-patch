@@ -27,6 +27,26 @@ namespace MemoryManager
     }
 
     /// <summary>
+    /// Event args used for status updates.
+    /// </summary>
+    public class UpdateArgs: EventArgs
+    {
+        /// <summary>
+        /// Update Detials.
+        /// </summary>
+        public string Detials { get; private set; }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="detials"></param>
+        public UpdateArgs(string detials)
+        {
+            Detials = detials;
+        }
+    }
+
+    /// <summary>
     /// A structor defining a memory address
     /// </summary>
     [Serializable]

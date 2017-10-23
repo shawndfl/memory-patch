@@ -64,11 +64,17 @@ namespace MemoryPatch
             _seracher = new Search(_access, this);
             _seracher.OnValueFound += new EventHandler<AddressFoundEventArgs>(Seracher_OnValueFound);
             _seracher.OnProgressChange += new EventHandler<SearchUpdateEventArgs>(Seracher_OnProgressChange);
+            _seracher.OnUpdate += new EventHandler<UpdateArgs>(Seracher_OnUpdate);
 
             groupFirstSearch.Enabled = true;
             groupFound.Enabled = true;
             groupNextSearch.Enabled = true;
             groupSearching.Enabled = true;
+        }
+
+        private void Seracher_OnUpdate(object sender, UpdateArgs e)
+        {
+            lbStatus.Text = e.Detials;
         }
 
         #region Searching
@@ -156,15 +162,16 @@ namespace MemoryPatch
         #region Search Events
         private void Seracher_OnProgressChange(object sender, SearchUpdateEventArgs e)
         {
-            int precent = e.PrecentDone > 100 ? 100 : e.PrecentDone;
-            pgSearching.Value = precent;
-            lbFoundCount.Text = e.AddressFoundCount.ToString();
+            pgSearching.Value = e.PrecentDone;
+
+            lbFoundCount.Text = e.AddressFoundCount.ToString() + "...";
 
             if (e.PrecentDone == 100)
             {
-                groupNextSearch.Enabled = true;
-                lbDataType.Text = _currentSearchData.DataType.ToString();
                 pgSearching.Value = 0;
+                groupNextSearch.Enabled = true;                
+                lbDataType.Text = _currentSearchData.DataType.ToString();
+                lbFoundCount.Text = e.AddressFoundCount.ToString();
 
                 //start timer to refesh addresses
                 timer1.Enabled = true;
@@ -191,14 +198,7 @@ namespace MemoryPatch
             {
                 if (OnAddressSelected != null && dataResults.Rows[e.RowIndex].Tag != null)
                     OnAddressSelected(this, dataResults.Rows[e.RowIndex].Tag as AddressFoundEventArgs);
-            }
-
-            //string address = dataResults.Rows[e.RowIndex].Cells[0].Value as string;
-            //int addressInt = Int32.Parse(address, NumberStyles.AllowHexSpecifier);
-
-            //DataType type = (DataType)dataResults.Rows[e.RowIndex].Cells[2].Value;
-
-            //SavedAddress savedAddress = new SavedAddress(false, "Default", addressInt, type);
+            }            
         }
 
         public void Open(string file)

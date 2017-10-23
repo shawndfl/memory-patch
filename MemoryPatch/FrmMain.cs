@@ -39,7 +39,7 @@ namespace MemoryPatch
                 _processAccess = new MemoryAccess(process);
 
                 //show what process is selected
-                lbActiveProcess.Text = _processAccess.ProcessName;// + " (" + _processAccess.ModuleName + ")";                
+                lbActiveProcess.Text = _processAccess.ProcessName;
                 searchControl1.EnableSearch(_processAccess);
                 memoryPatchControl1.EnableMemoryAccess(_processAccess);
             }
