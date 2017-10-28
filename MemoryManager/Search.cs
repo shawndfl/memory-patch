@@ -80,7 +80,7 @@ namespace MemoryManager
             if (_searchThread != null)
             {
                 _searchThread.Abort();
-                _searchThread.Join();
+                _searchThread.Join(5000);
             }
 
             //final update
