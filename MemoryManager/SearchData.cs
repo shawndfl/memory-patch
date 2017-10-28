@@ -42,6 +42,9 @@ namespace MemoryManager
         /// </summary>
         public int DataLength { get; set; }
 
+        /// <summary>
+        /// The value stored as a long
+        /// </summary>
         [XmlAttribute("value")]
         public long LongValue
         {
@@ -69,12 +72,10 @@ namespace MemoryManager
        
         /// <summary>
         /// Used to create a new or next search
-        /// </summary>
-        /// <param name="firstSearch"> is this a new search</param>
+        /// </summary>        
         /// <param name="searchType"> type of search</param>
         /// <param name="dataType"> data type to search for</param>
-        /// <param name="value1">the value in the form of a string</param>
-        /// <param name="saveResultIndex">should the results be saved any where</param>
+        /// <param name="value1">the value in the form of a string</param>        
         /// <returns></returns>
         public static SearchContext CreateSearchData(SearchType searchType,
             DataType dataType, string value1)
@@ -88,9 +89,13 @@ namespace MemoryManager
             return data;
         }
 
+        /// <summary>
+        /// Sets the value based on a string. This value will be used in comparing memory values.
+        /// </summary>
+        /// <param name="value"></param>
         public void SetValue(string value)
         {
-            bool oneVal = (SearchType == SearchType.Excat);
+            bool oneVal = (SearchType == SearchType.Excat || SearchType == SearchType.FirstExcat);
             if (SearchType == SearchType.HasIncreasedBy ||
                 SearchType == SearchType.HasDecreasedBy)
             {
@@ -205,6 +210,7 @@ namespace MemoryManager
 
     public enum SearchType
     {
+        FirstExcat,
         Excat,        
         UnKnown,
         HasIncreased,

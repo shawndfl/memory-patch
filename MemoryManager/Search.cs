@@ -10,36 +10,61 @@ using System.Xml.Serialization;
 
 namespace MemoryManager
 {
+    /// <summary>
+    /// Searches memory for a value controlled by the SearchContext
+    /// </summary>
     public class Search : ISearchMemory
     {     
         /// <summary>
         /// search thread
         /// </summary>
         private Thread _searchThread;
-        private  int AddressDisplayCount = 200;
+        private const int MAX_ADDRESS_DISPLAY = 200;
 
+        /// <summary>
+        /// Access memory for read, write, and virtual query
+        /// </summary>
         private IMemoryAccess _access;
+
+        /// <summary>
+        /// Used for updating the calling controller        
+        /// </summary>
         private IInvoke _control;
 
-        private const int MAX_BUFFER = 0xFFFFFF;
-
+        private const int MAX_BUFFER = 2000000;
+        private int _addressesFound = 0;
 
         private AddressCollection _addressCollection;
+
+        /// <summary>
+        /// The current search context
+        /// </summary>
         public SearchContext SearchContext
         {
             get
             {
-                return _addressCollection.SearchContext;
+                return _addressCollection.GetSearchContext();
             }
         }        
 
         /// <summary>
         /// event handlers
         /// </summary>        
-        public event EventHandler<AddressFoundEventArgs> OnValueFound;        
+        public event EventHandler<AddressFoundEventArgs> OnValueFound; 
+        /// <summary>
+        /// When the progress of the search changes
+        /// </summary>                       
         public event EventHandler<SearchUpdateEventArgs> OnProgressChange;
+        /// <summary>
+        /// Updates the status text
+        /// </summary>
         public event EventHandler<UpdateArgs> OnUpdate;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="access"></param>
+        /// <param name="control"></param>
         public Search(IMemoryAccess access, IInvoke control)
         {            
             _access = access;
@@ -47,6 +72,9 @@ namespace MemoryManager
             _addressCollection = new AddressCollection();           
         }
 
+        /// <summary>
+        /// Cancels the search thread.
+        /// </summary>
         public void CancelSearch()
         {
             if (_searchThread != null)
@@ -59,28 +87,36 @@ namespace MemoryManager
             UpdateProgress(0, 1, 1, 0);
         }
 
+        /// <summary>
+        /// Starts a new search thread. Call Cancel to stop it.
+        /// </summary>
+        /// <param name="context"></param>
         public void NewSearch(SearchContext context)
         {
-            _addressCollection.SearchContext = context;
+            _addressCollection.ResetSearch(context);
             CancelSearch();
             
             _searchThread = new Thread(new ParameterizedThreadStart(FirstSearch));  
-            _searchThread.Name = "SerachingThread";            
+            _searchThread.Name = "FirstSearchThread";            
 
             _searchThread.Start(context);
         }
 
+        /// <summary>
+        /// Starts the next search thread. This is only called after the new search is complete.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="optValue"></param>
         public void NextSearch(SearchType type, string optValue)
         {
-            _addressCollection.SearchContext.SearchType = type;
-            _addressCollection.SearchContext.SetValue(optValue);
+            _addressCollection.StartNextSearch(type, optValue);            
 
             CancelSearch();
 
             _searchThread = new Thread(new ParameterizedThreadStart(NextSearch));
-            _searchThread.Name = "SerachingThread";
+            _searchThread.Name = "NextSearchThread";
 
-            _searchThread.Start(_addressCollection.SearchContext);
+            _searchThread.Start(_addressCollection.GetSearchContext());
         }
 
         private void FirstSearch(object obj)
@@ -88,118 +124,71 @@ namespace MemoryManager
             try
             {
                 Update("Starting First Search...");
-                SearchContext context = (SearchContext)obj;
-                long addressesProcessed = 0;
-                long start = (long)_access.MinAddress;
-                long end = (long)_access.MaxAddress;                
 
-                byte[] value2 = context.Value;                              
-                
-                // search through each read block of memory 
-                for (long Address = start; Address < end; /*increment Address in the inner loop*/ )
-                {
-                    Update("Virtual Query");
-                    MEMORY_BASIC_INFORMATION info = _access.VirtualQuery(new IntPtr(Address));
+                SearchContext context = (SearchContext)obj;                
+                long start = (long)_access.MinAddress;
+                long end = (long)_access.MaxAddress;                                
+
+                // Reset addresses found
+                _addressesFound = 0;
+
+                // Search through each read block of memory 
+                for (long address = start; address < end; /*increment Address in the inner loop*/ )
+                {                    
+                    MEMORY_BASIC_INFORMATION info = _access.VirtualQuery(new IntPtr(address));
 
                     //There was an error with the virtual query
-                    //go to the next address
-                    if ((long)info.RegionSize == 0)
-                    {
-                        Address++;
+                    //Exit the loop.
+                    if ((long)info.RegionSize == 0)                                            
                         break;
-                    }
-                   
+
                     //Is the memory address for the process I'm looking at?
                     if (info.Protect == AllocationProtectEnum.PAGE_READWRITE && info.State == StateEnum.MEM_COMMIT)
-                    {                        
+                    {
+
                         int bufferSize = Math.Min((int)info.RegionSize, MAX_BUFFER);
-                        byte[] buffer = new byte[bufferSize];
-                        //Console.WriteLine("Creating buffer: " + (int)info.RegionSize);
+                        byte[] buffer = new byte[bufferSize];                                            
 
-                        Update("Reading " + bufferSize +"...");
-
-                        // read the memory                 
-                        int count = _access.ReadMemoryAsBytes(new IntPtr(Address), ref buffer);
-
-                        // we are only going to step what we read - the context data length
-                        int addressStep = count - context.DataLength;
+                        // Read the memory                 
+                        int count = _access.ReadMemoryAsBytes(new IntPtr(address), ref buffer);
+                        
+                        int addressCount = count;
 
                         if (count == 0)
                         {
-                            Update("Nothing Read " + Address);
-                            //Console.WriteLine("Can't read from " + (long)Address);
-                            Address++;
+                            Update("Nothing to Read " + address);                            
+                            address++;
                             continue;
                         }
 
-                        Update("Processing " + addressStep + " addresses...");
-                        // search through the block. Subtract the size of the data at the end.
-                        for (int index = 0; index < addressStep; index++)
-                        {                           
-                           
-                            if(addressesProcessed > 1000)
-                            {
-                                UpdateProgress(start, end, Address, _addressCollection.CurrentList.Count);
-                                addressesProcessed = 0;
-                            }
-                            addressesProcessed++;
+                        Update("Processing " + addressCount + " addresses...");
 
-                            if (context.DataType == DataType.Float)
-                            {
-                                float v1 = BitConverter.ToSingle(buffer, index);
-                                if (float.IsNaN(v1) || float.IsNegativeInfinity(v1))
-                                    continue;
-                            }
+                        // If searching for an unkown value just save all memory
+                        if (context.SearchType == SearchType.UnKnown)
+                        {
+                            _addressCollection.AddressWriter.WriteRegion(address, buffer, addressCount);
+                            address += addressCount;
 
-                            if (context.DataType == DataType.Double)
-                            {
-                                double v1 = BitConverter.ToDouble(buffer, index);
-                                if (double.IsNaN(v1) || double.IsNegativeInfinity(v1))
-                                    continue;
-                            }
-
-                            //check it the values match
-                            bool match = true;
-                            double difference;
-                            switch (context.SearchType)
-                            {
-                                case SearchType.Excat:
-                                    match = (Compare(buffer, index, value2, context.DataType, out difference) == CompareType.EqualTo);
-                                    break;
-                                case SearchType.UnKnown:
-                                    match = true;
-                                    break;
-                                default:
-                                    throw new Exception("Unknown DataType " + context.SearchType);
-                            }
-
-                            //test if this is want we are looking for
-                            if (match)
-                            {
-                                AddressFound addressFound = new AddressFound(Address, buffer,
-                                                                     context.DataType);
-
-                                _addressCollection.CurrentList.Add(addressFound);
-
-                                FoundAddress(context, false);
-                            }
-
-                            Address++;
-                        }                        
+                            // Every address is found!
+                            _addressesFound += addressCount;
+                        }
+                        else
+                        {
+                            SearchBlock(context, address, buffer, addressCount);
+                            address += addressCount;
+                        }
                     }
                     // This is not a region we care about just skip to the next one.
                     else
                     {
                         Update("skipting " + (long)info.RegionSize);
-                        Address += (long)info.RegionSize;
+                        address += (long)info.RegionSize;
                     }
                     
-                }
-
+                }                               
+                
+                UpdateProgress(start, end, end, _addressesFound);
                 Update("Done.");
-                //final update
-                FoundAddress(context, true);
-                UpdateProgress(start, end, end, _addressCollection.CurrentList.Count);
             }
             catch (ThreadAbortException)
             {
@@ -218,154 +207,25 @@ namespace MemoryManager
         {
             try
             {
-                Update("Starting Next Search...");
+                Update("Searching...");
 
                 SearchContext context = (SearchContext)obj;
 
-                int addressProcessed = 0;
+                // Reset addresses found
+                _addressesFound = 0;                
 
-                byte[] value1 = context.Value;
-                byte[] buffer;
+                AddressReader.Block block = _addressCollection.AddressReader.Next();
 
-                //this handles consective searches
-                List<AddressFound> srcList = _addressCollection.CurrentList;
-                List<AddressFound> destList = _addressCollection.LastList;
-                _addressCollection.StartNextSearch();            
-
-                for (int i = 0; i < srcList.Count; i++)
+                while (block != null)
                 {
-                    Update("Reading " + i + " of " + srcList.Count);
-                    AddressFound currentAddress = srcList[i];
-                    buffer = _access.ReadMemoryAsBytes(new IntPtr(currentAddress.Address), context.DataLength);
+                    SearchBlock(context, block.baseAddress, block.data, block.data.Length);
 
-                    if (addressProcessed > 1000)
-                    {
-                        UpdateProgress(0, srcList.Count, i, destList.Count);
-                        addressProcessed = 0;
-                    }
-                    addressProcessed++;
-
-                    if (context.DataType == DataType.Float)
-                    {
-                        float v1 = BitConverter.ToSingle(buffer, 0);
-                        if (float.IsNaN(v1) || float.IsNegativeInfinity(v1))
-                        {
-                            srcList.RemoveAt(i);
-                            i--;
-                            continue;
-                        }
-                    }
-
-                    if (context.DataType == DataType.Double)
-                    {
-                        double v1 = BitConverter.ToDouble(buffer, 0);
-                        if (double.IsNaN(v1) || double.IsNegativeInfinity(v1))
-                        {
-                            srcList.RemoveAt(i);
-                            i--;
-                            continue;
-                        }
-                    }
-
-                    try
-                    {
-                        double diff;
-                        bool match = true;
-                        switch (context.SearchType)
-                        {                            
-                            case SearchType.CompareToSnapShot1:
-                            case SearchType.CompareToSnapShot2:
-                                match = (Compare(buffer, currentAddress.CurrentValue, context.DataType, out diff) == CompareType.EqualTo);
-                                break;
-                            case SearchType.Excat:
-                                match = (Compare(buffer, value1, context.DataType, out diff) == CompareType.EqualTo);
-                                break;
-                            case SearchType.HasIncreased:
-                                match = (Compare(buffer, currentAddress.CurrentValue, context.DataType, out diff) == CompareType.GreaterThen);
-                                break;
-                            case SearchType.HasDecreased:
-                                match = (Compare(buffer, currentAddress.CurrentValue, context.DataType, out diff) == CompareType.LessThen);
-                                break;
-                            case SearchType.HasNotChanged:
-                                match = (Compare(buffer, currentAddress.CurrentValue, context.DataType, out diff) == CompareType.EqualTo);
-                                break;
-                            case SearchType.HasChanged:
-                                match = (Compare(buffer, currentAddress.CurrentValue, context.DataType, out diff) != CompareType.EqualTo);
-                                break;
-                            case SearchType.HasIncreasedBy:
-                                match = (Compare(buffer, currentAddress.CurrentValue, context.DataType, out diff) != CompareType.GreaterThen);
-                                switch (context.DataType)
-                                {
-                                    case DataType.UByte:
-                                    case DataType.UInt16:
-                                    case DataType.UInt32:
-                                        match = ((uint)diff == (uint)context.Difference);
-                                        break;
-                                    case DataType.Byte:
-                                    case DataType.Int16:
-                                    case DataType.Int32:
-                                        match = ((int)diff == (int)context.Difference);
-                                        break;
-                                    case DataType.StringByte:
-                                    case DataType.StringChar:
-                                        break;
-                                    case DataType.Float:
-                                    case DataType.Double:
-                                        match = (diff == context.Difference);
-                                        break;
-                                }
-                                break;
-                            case SearchType.HasDecreasedBy:
-                                match = (Compare(buffer, currentAddress.CurrentValue, context.DataType, out diff) != CompareType.LessThen);
-                                switch (context.DataType)
-                                {
-                                    case DataType.UByte:
-                                    case DataType.UInt16:
-                                    case DataType.UInt32:
-                                        match = ((uint)diff == (uint)context.Difference);
-                                        break;
-                                    case DataType.Byte:
-                                    case DataType.Int16:
-                                    case DataType.Int32:
-                                        match = ((int)diff == (int)context.Difference);
-                                        break;
-                                    case DataType.StringByte:
-                                    case DataType.StringChar:
-                                        break;
-                                    case DataType.Float:
-                                    case DataType.Double:
-                                        match = (diff == context.Difference);
-                                        break;
-                                }
-
-                                break;                         
-                            default:
-                                throw new Exception("Unknown DataType " + context.SearchType);
-                        }
-
-                        //test if this is want we are looking for
-                        if (match)
-                        {
-                            AddressFound foundAddress = new AddressFound(currentAddress.Address, buffer,
-                                                 context.DataType);
-
-                            destList.Add(foundAddress);
-
-                            FoundAddress(context, false);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Update("Error: " + ex.Message);
-                        throw;
-                    }                   
+                    block = _addressCollection.AddressReader.Next();
                 }
 
+                UpdateProgress(0, 100, 100, _addressesFound);
                 Update("Done.");
 
-                //final update
-                FoundAddress(context, true);
-                UpdateProgress(0, srcList.Count, srcList.Count, destList.Count);
             }
             catch (ThreadAbortException)
             {
@@ -380,72 +240,161 @@ namespace MemoryManager
             }
         }
 
-        //private void FoundAddress(SearchContext data, 
-        //    List<AddressFound> destList, bool showRest)
-        private void FoundAddress(SearchContext data, bool showRest)
-        {            
-            int count = _addressCollection.CurrentList.Count;
-            int offten = 5;
-            int rest = count % offten;
-            List<AddressFound> destList = _addressCollection.CurrentList;
+        /// <summary>
+        /// Used to search a memory block.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="address"></param>
+        /// <param name="buffer"></param>
+        /// <param name="bufferLength"></param>
+        private void SearchBlock(SearchContext context, long address, byte[] buffer, int bufferLength)
+        {
+            int updateCounter = 0;
+            const int MAX_COUNT_UPDATE = 10000;
+            bool match = true;  // Do we have a match. If true keep this value.
+            double difference;  // Different in before and after values
 
-            if (showRest && rest != 0)
+            byte[] value2compare = context.Value;
+
+            // search through the block. Subtract the size of the data at the end.
+            // this will also update three counters. One for the buffer index. One for that address in memory
+            // One for the update event firing.
+            for (int index = 0; index < bufferLength; index++, address++, updateCounter++)
             {
-                
-                //copy addresses to array
-                int index = 0;
-                AddressFound[] addresses = new AddressFound[offten];
-                for (int x = count - rest; x < count; x++)
+
+                // Can't read anymore just exit.
+                if (index + context.DataLength > bufferLength)
+                    break;
+
+                //update
+                if (updateCounter > MAX_COUNT_UPDATE)
                 {
-                    addresses[index++] = destList[x];
+                    UpdateProgress(0, bufferLength, index, _addressesFound);
+                    updateCounter = 0;
+                }                
+
+                if (context.DataType == DataType.Float)
+                {
+                    float v1 = BitConverter.ToSingle(buffer, index);
+                    if (float.IsNaN(v1) || float.IsNegativeInfinity(v1))
+                        continue;
                 }
 
+                if (context.DataType == DataType.Double)
+                {
+                    double v1 = BitConverter.ToDouble(buffer, index);
+                    if (double.IsNaN(v1) || double.IsNegativeInfinity(v1))
+                        continue;
+                }
+                                                
+                // If we are not searching for an excact value we need to compare to the 
+                // current value in memory.
+                if(context.SearchType != SearchType.FirstExcat)
+                    value2compare = _access.ReadMemoryAsBytes(new IntPtr(address), context.DataLength);
+
+                // Check it the values match
+                switch (context.SearchType)
+                {
+                    case SearchType.FirstExcat:
+                        match = (Compare(buffer, index, context.Value, context.DataType, out difference) == CompareType.EqualTo);
+                        break;
+                    case SearchType.Excat:
+                        match = (Compare(context.Value, 0, value2compare, context.DataType, out difference) == CompareType.EqualTo);
+                        break;
+                    case SearchType.HasIncreased:                        
+                        match = (Compare(buffer, index, value2compare, context.DataType, out difference) == CompareType.GreaterThen);
+                        break;
+                    case SearchType.HasDecreased:
+                        match = (Compare(buffer, index, value2compare, context.DataType, out difference) == CompareType.LessThen);
+                        break;
+                    case SearchType.HasNotChanged:
+                        match = (Compare(buffer, index, value2compare, context.DataType, out difference) == CompareType.EqualTo);
+                        break;
+                    case SearchType.HasChanged:
+                        match = (Compare(buffer, index, value2compare, context.DataType, out difference) != CompareType.EqualTo);
+                        break;
+                    case SearchType.HasIncreasedBy:
+                        match = (Compare(buffer, index, value2compare, context.DataType, out difference) != CompareType.GreaterThen);
+                        switch (context.DataType)
+                        {
+                            case DataType.UByte:
+                            case DataType.UInt16:
+                            case DataType.UInt32:
+                                match = ((uint)difference == (uint)context.Difference);
+                                break;
+                            case DataType.Byte:
+                            case DataType.Int16:
+                            case DataType.Int32:
+                                match = ((int)difference == (int)context.Difference);
+                                break;
+                            case DataType.StringByte:
+                            case DataType.StringChar:
+                                break;
+                            case DataType.Float:
+                            case DataType.Double:
+                                match = (difference == context.Difference);
+                                break;
+                        }
+                        break;
+                    case SearchType.HasDecreasedBy:
+                        match = (Compare(buffer, index, value2compare, context.DataType, out difference) != CompareType.LessThen);
+                        switch (context.DataType)
+                        {
+                            case DataType.UByte:
+                            case DataType.UInt16:
+                            case DataType.UInt32:
+                                match = ((uint)difference == (uint)context.Difference);
+                                break;
+                            case DataType.Byte:
+                            case DataType.Int16:
+                            case DataType.Int32:
+                                match = ((int)difference == (int)context.Difference);
+                                break;
+                            case DataType.StringByte:
+                            case DataType.StringChar:
+                                break;
+                            case DataType.Float:
+                            case DataType.Double:
+                                match = (difference == context.Difference);
+                                break;
+                        }
+
+                        break;
+                    default:
+                        throw new Exception("Unknown DataType " + context.SearchType);
+                }              
+
+                //test if this is want we are looking for
+                if (match)
+                {
+                    // Save this address and its value for the next search
+                    _addressCollection.AddressWriter.WriteRegion(address, value2compare, context.DataLength);                   
+
+                    // Let the control know we found something
+                    FoundAddress(address, value2compare, context.DataType);
+                }               
+            }
+
+            //UpdateProgress(0, 100, 100, _addressesFound);
+        }       
+
+        private void FoundAddress(long address, byte[] currentValue, DataType data)
+        {
+            if (_addressesFound < MAX_ADDRESS_DISPLAY)
+            {
                 //invoke parent
-                _control.InvokeMethod(new ThreadStart(delegate()
+                _control.InvokeMethod(new ThreadStart(delegate ()
                 {
                     if (OnValueFound != null)
                     {
-                        for (int x = 0; x < rest; x++)
-                        {
-                            OnValueFound(this, new AddressFoundEventArgs(addresses[x]));
-                        }
+                        OnValueFound(this, new AddressFoundEventArgs(new AddressFound(address, currentValue, data)));
                     }
                 }));
             }
-            else if(!showRest)
-            {
-                //only show the first AddressDisplayCount and show every 5th address
-                if (count < AddressDisplayCount &&
-                    count % offten == 0 &&
-                    count - offten >= 0)
-                {
-                    //copy addresses to array
-                    int index = 0;
-                    AddressFound[] addresses = new AddressFound[offten];
-                    for (int x = count - offten; x < count; x++)
-                    {
-                        addresses[index++] = destList[x];
-                    }
 
-                    //invoke parent
-                    _control.InvokeMethod(new ThreadStart(delegate()
-                    {
-                        if (OnValueFound != null)
-                        {
-                            for (int x = 0; x < offten; x++)
-                            {
-                                OnValueFound(this, new AddressFoundEventArgs(addresses[x]));
-                            }
-                        }
-                    }));
-                }
-            }
-        }
-
-        private CompareType Compare(byte[] buffer, byte[] value2, DataType dataType, out double amoutOfChange)
-        {
-            return Compare(buffer, 0, value2, dataType, out amoutOfChange);
-        }
+            // Count this one
+            _addressesFound++;
+        }          
 
         private CompareType Compare(byte[] buffer, int bufferIndex, byte[] value2, DataType dataType, out double amoutOfChange)
         {            
@@ -453,12 +402,12 @@ namespace MemoryManager
             {
                 case DataType.Int32:
                     {
-                        Int32 v1 = BitConverter.ToInt32(buffer, bufferIndex);
-                        Int32 v2 = BitConverter.ToInt32(value2, 0);
-                        amoutOfChange = Math.Abs(v1 - v2);
-                        if (v1 < v2)
+                        Int32 old = BitConverter.ToInt32(buffer, bufferIndex);
+                        Int32 curr = BitConverter.ToInt32(value2, 0);
+                        amoutOfChange = Math.Abs(old - curr);
+                        if (curr < old)
                             return CompareType.LessThen;
-                        else if (v1 > v2)
+                        else if (curr > old)
                             return CompareType.GreaterThen;
                         else
                             return CompareType.EqualTo;
@@ -466,60 +415,60 @@ namespace MemoryManager
                 case DataType.Int16:
                     {
 
-                        Int16 v1 = BitConverter.ToInt16(buffer, bufferIndex);
-                        Int16 v2 = BitConverter.ToInt16(value2, 0);
-                        amoutOfChange = Math.Abs(v1 - v2);
-                        if (v1 < v2)
+                        Int16 old = BitConverter.ToInt16(buffer, bufferIndex);
+                        Int16 curr = BitConverter.ToInt16(value2, 0);
+                        amoutOfChange = Math.Abs(old - curr);
+                        if (curr < old)
                             return CompareType.LessThen;
-                        else if (v1 > v2)
+                        else if (curr > old)
                             return CompareType.GreaterThen;
                         else
                             return CompareType.EqualTo;
                     }     
                 case DataType.Byte:
                     {
-                        sbyte v1 = (sbyte)buffer[bufferIndex];
-                        sbyte v2 = (sbyte)value2[0];
-                        amoutOfChange = Math.Abs(v1 - v2);
-                        if (v1 < v2)
+                        sbyte old = (sbyte)buffer[bufferIndex];
+                        sbyte curr = (sbyte)value2[0];
+                        amoutOfChange = Math.Abs(old - curr);
+                        if (curr < old)
                             return CompareType.LessThen;
-                        else if (v1 > v2)
+                        else if (curr > old)
                             return CompareType.GreaterThen;
                         else
                             return CompareType.EqualTo;
                     }     
                 case DataType.UInt32:
                     {
-                        UInt32 v1 = BitConverter.ToUInt32(buffer, bufferIndex);
-                        UInt32 v2 = BitConverter.ToUInt32(value2, 0);
-                        amoutOfChange = Math.Abs(v1 - v2);
-                        if (v1 < v2)
+                        UInt32 old = BitConverter.ToUInt32(buffer, bufferIndex);
+                        UInt32 curr = BitConverter.ToUInt32(value2, 0);
+                        amoutOfChange = Math.Abs(old - curr);
+                        if (curr < old)
                             return CompareType.LessThen;
-                        else if (v1 > v2)
+                        else if (curr > old)
                             return CompareType.GreaterThen;
                         else
                             return CompareType.EqualTo;
                     }     
                 case DataType.UInt16:
                     {
-                        UInt16 v1 = BitConverter.ToUInt16(buffer, bufferIndex);
-                        UInt16 v2 = BitConverter.ToUInt16(value2, 0);
-                        amoutOfChange = Math.Abs(v1 - v2);
-                        if (v1 < v2)
+                        UInt16 old = BitConverter.ToUInt16(buffer, bufferIndex);
+                        UInt16 curr = BitConverter.ToUInt16(value2, 0);
+                        amoutOfChange = Math.Abs(old - curr);
+                        if (curr < old)
                             return CompareType.LessThen;
-                        else if (v1 > v2)
+                        else if (curr > old)
                             return CompareType.GreaterThen;
                         else
                             return CompareType.EqualTo;
                     }     
                 case DataType.UByte:
                     {
-                        byte v1 = buffer[bufferIndex];
-                        byte v2 = value2[0];
-                        amoutOfChange = Math.Abs(v1 - v2);
-                        if (v1 < v2)
+                        byte old = buffer[bufferIndex];
+                        byte curr = value2[0];
+                        amoutOfChange = Math.Abs(old - curr);
+                        if (curr < old)
                             return CompareType.LessThen;
-                        else if (v1 > v2)
+                        else if (curr > old)
                             return CompareType.GreaterThen;
                         else
                             return CompareType.EqualTo;
@@ -547,24 +496,24 @@ namespace MemoryManager
                     }     
                 case DataType.Float:
                     {
-                        float v1 = BitConverter.ToSingle(buffer, bufferIndex);
-                        float v2 = BitConverter.ToSingle(value2, 0);
-                        amoutOfChange = Math.Abs(v1 - v2);
-                        if (v1 < v2 || float.IsNaN(v1) || float.IsNegativeInfinity(v1))
+                        float old = BitConverter.ToSingle(buffer, bufferIndex);
+                        float curr = BitConverter.ToSingle(value2, 0);
+                        amoutOfChange = Math.Abs(old - curr);
+                        if (curr < old || float.IsNaN(curr) || float.IsNegativeInfinity(curr))
                             return CompareType.LessThen;
-                        else if (v1 > v2 || float.IsPositiveInfinity(v1))
+                        else if (curr > old || float.IsPositiveInfinity(curr))
                             return CompareType.GreaterThen;
                         else
                             return CompareType.EqualTo;
                     } 
                 case DataType.Double:
                     {
-                        double v1 = BitConverter.ToDouble(buffer, bufferIndex);
-                        double v2 = BitConverter.ToDouble(value2, 0);
-                        amoutOfChange = Math.Abs(v1 - v2);
-                        if (v1 < v2 || double.IsNaN(v1) || double.IsNegativeInfinity(v1))
+                        double old = BitConverter.ToDouble(buffer, bufferIndex);
+                        double curr = BitConverter.ToDouble(value2, 0);
+                        amoutOfChange = Math.Abs(old - curr);
+                        if (curr < old || double.IsNaN(curr) || double.IsNegativeInfinity(curr))
                             return CompareType.LessThen;
-                        else if (v1 > v2 || double.IsPositiveInfinity(v1))
+                        else if (curr > old || double.IsPositiveInfinity(curr))
                             return CompareType.GreaterThen;
                         else
                             return CompareType.EqualTo;
@@ -626,44 +575,7 @@ namespace MemoryManager
 
         public void LoadSnapShot(string file)
         {
-            Stream stream = null;
-            try
-            {
-                stream = File.Open(file, FileMode.Open, FileAccess.Read);
-
-                XmlSerializer ser = new XmlSerializer(typeof(AddressCollection));
-                _addressCollection = (AddressCollection)ser.Deserialize(stream);                
-
-                //display the first few addresses
-                _control.InvokeMethod(new ThreadStart(delegate()                
-                {
-                    //show how many address are found
-                    if (OnProgressChange != null)
-                    {
-                        OnProgressChange(this, new SearchUpdateEventArgs(0, 1, 0,
-                            _addressCollection.CurrentList.Count));
-                    }
-
-                    //display the values found
-                    if (OnValueFound != null)
-                    {
-                        int count = Math.Min(_addressCollection.CurrentList.Count, AddressDisplayCount);
-                        for (int x = 0; x < count; x++)
-                        {
-                            OnValueFound(this, new AddressFoundEventArgs(_addressCollection.CurrentList[x]));
-                        }
-                    }
-                }));
-            }
-            catch (Exception ex)
-            {
-                _control.ShowMessage("Error Opening file " + file + "\n" + ex.Message);
-            }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-            }
+            throw new NotImplementedException("LoadSnapShot");
         }
     }
 }

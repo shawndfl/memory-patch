@@ -25,11 +25,9 @@ namespace MemoryPatch
         {
             InitializeComponent();
 
-            cboSearch.Items.Add(SearchType.Excat.ToString());
+            cboSearch.Items.Add(SearchType.FirstExcat.ToString());
             cboSearch.Items.Add(SearchType.UnKnown.ToString());
-            cboSearch.Items.Add(SearchType.StoreSnapShot1.ToString());
-            cboSearch.Items.Add(SearchType.StoreSnapShot2.ToString());
-
+                        
             cboNextSearch.Items.Add(SearchType.Excat.ToString());
             cboNextSearch.Items.Add(SearchType.HasChanged.ToString());
             cboNextSearch.Items.Add(SearchType.HasNotChanged.ToString());
@@ -39,9 +37,7 @@ namespace MemoryPatch
             cboNextSearch.Items.Add(SearchType.HasIncreasedBy.ToString());
             cboNextSearch.Items.Add(SearchType.StoreSnapShot1.ToString());
             cboNextSearch.Items.Add(SearchType.StoreSnapShot2.ToString());
-            cboNextSearch.Items.Add(SearchType.CompareToSnapShot1.ToString());
-            cboNextSearch.Items.Add(SearchType.CompareToSnapShot2.ToString());
-
+            
             string[] datatypes = Enum.GetNames(typeof(DataType));
             foreach (string type in datatypes)
             {
@@ -70,19 +66,14 @@ namespace MemoryPatch
             groupFound.Enabled = true;
             groupNextSearch.Enabled = true;
             groupSearching.Enabled = true;
-        }
-
-        private void Seracher_OnUpdate(object sender, UpdateArgs e)
-        {
-            lbStatus.Text = e.Detials;
-        }
+        }      
 
         #region Searching
         private void btnFirstSearch_Click(object sender, EventArgs e)
         {
             //get search type
             SearchType searchType = (SearchType)Enum.Parse(typeof(SearchType), cboSearch.Text);
-            if (searchType == SearchType.Excat && txtValue.Text == "")
+            if ((searchType == SearchType.Excat  || searchType == SearchType.FirstExcat ) && txtValue.Text == "")
             {
                 MessageBox.Show("Invalid input");
                 return;
@@ -157,27 +148,28 @@ namespace MemoryPatch
                 btnNextSearch_Click(sender, e);
             }
         }
-        #endregion       
+        #endregion
 
         #region Search Events
-        private void Seracher_OnProgressChange(object sender, SearchUpdateEventArgs e)
+        private void Seracher_OnUpdate(object sender, UpdateArgs e)
         {
-            pgSearching.Value = e.PrecentDone;
-
-            lbFoundCount.Text = e.AddressFoundCount.ToString() + "...";
-
-            if (e.PrecentDone == 100)
+            lbStatus.Text = e.Detials;
+            if(e.Detials == "Done.")
             {
                 pgSearching.Value = 0;
-                groupNextSearch.Enabled = true;                
-                lbDataType.Text = _currentSearchData.DataType.ToString();
-                lbFoundCount.Text = e.AddressFoundCount.ToString();
+                groupNextSearch.Enabled = true;
+                lbDataType.Text = _currentSearchData.DataType.ToString();               
 
                 //start timer to refesh addresses
                 timer1.Enabled = true;
                 timer1.Interval = 1000;
             }
+        }
 
+        private void Seracher_OnProgressChange(object sender, SearchUpdateEventArgs e)
+        {
+            pgSearching.Value = e.PrecentDone;
+            lbFoundCount.Text = e.AddressFoundCount.ToString();          
         }
 
         public void Seracher_OnValueFound(object sender, AddressFoundEventArgs e)
@@ -248,7 +240,8 @@ namespace MemoryPatch
 
         public void InvokeMethod(Delegate method)
         {
-            this.Invoke(method);
+            if (!this.IsDisposed)
+                this.Invoke(method);
         }
 
         public void ShowMessage(string message)

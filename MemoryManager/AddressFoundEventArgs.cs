@@ -159,9 +159,16 @@ namespace MemoryManager
         /// <param name="data"></param>
         public AddressFound(long address, byte[] currentValue, DataType data)
         {
-            _currentValue = (byte[])currentValue.Clone();                  
+            _currentValue = (byte[])currentValue.Clone();
             _address = address;
-            _dataType = data;            
+            _dataType = data;
+        }      
+
+        public void Set(long address, byte[] currentValue, DataType data)
+        {
+            _currentValue = (byte[])currentValue.Clone();
+            _address = address;
+            _dataType = data;
         }
 
         /// <summary>
