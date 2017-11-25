@@ -61,6 +61,12 @@
       <Link>Editing Memory\HexWindow.designer.cs</Link>
       <DependentUpon>HexWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editing Memory\FrmAddNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editing Memory\FrmAddNew.Designer.cs">
+      <DependentUpon>FrmAddNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editing Memory\MemoryPatchControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -91,6 +97,9 @@
       <Link>Editing Memory\HexWindow.resx</Link>
       <DependentUpon>HexWindow.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editing Memory\FrmAddNew.resx">
+      <DependentUpon>FrmAddNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editing Memory\MemoryPatchControl.resx">
       <SubType>Designer</SubType>

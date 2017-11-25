@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
@@ -40,16 +41,20 @@ namespace MemoryManager
                 AddAddress(address);
             }
         }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="name"></param>
+        public GroupAddress(string name)
+        {
+            Name = name;
+        }
         #endregion
 
-        internal List<SavedAddress> GetListOfAddresses()
-        {
-            List<SavedAddress> addresses = new List<SavedAddress>();
-            foreach (SavedAddress address in _addresses)
-            {
-                addresses.Add(address);
-            }
-            return addresses;
+        internal ReadOnlyCollection<SavedAddress> GetListOfAddresses()
+        {           
+            return _addresses.AsReadOnly();
         }
 
         /// <summary>
@@ -61,19 +66,26 @@ namespace MemoryManager
             _addresses.Add(address);
         }
 
+        /// <summary>
+        /// Removes an address from a group
+        /// </summary>
+        /// <param name="address"></param>
         public void RemoveAddress(SavedAddress address)
         {
             _addresses.Remove(address);
         }
 
+        /// <summary>
+        /// Removes all addresses from this group
+        /// </summary>
         public void ClearAddress()
         {
             _addresses.Clear();
         }
 
-        public GroupAddress(string name)
+        public override string ToString()
         {
-            Name = name;
+            return Name + "(" + _addresses.Count + ")";
         }
     }
 }

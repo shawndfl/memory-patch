@@ -69,6 +69,9 @@ namespace MemoryManager
         {            
             _access = access;
             _control = control;
+            if (_addressCollection != null)
+                _addressCollection.Dispose();
+
             _addressCollection = new AddressCollection();           
         }
 

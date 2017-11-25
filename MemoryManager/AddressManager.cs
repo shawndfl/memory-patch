@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.ObjectModel;
 
 namespace MemoryManager
 {
@@ -127,7 +128,7 @@ namespace MemoryManager
             GroupAddress group = GetGroup(groupName);
             if (group != null)
             {
-                List<SavedAddress> list = group.GetListOfAddresses();
+                ReadOnlyCollection<SavedAddress> list = group.GetListOfAddresses();
                 foreach (SavedAddress address in list)
                 {
                     if (address.Name == addressName)
@@ -324,7 +325,7 @@ namespace MemoryManager
                 root.Nodes.Add(groupNode);
 
                 //create all the addresses
-                List<SavedAddress> lst = group.GetListOfAddresses();
+                ReadOnlyCollection<SavedAddress> lst = group.GetListOfAddresses();
                 foreach (SavedAddress address in lst)
                 {
                     TreeNode addressNode = new TreeNode(address.ToString());
@@ -370,7 +371,7 @@ namespace MemoryManager
             foreach (GroupAddress group in _groups.Values)
             {
                 SaveGroupData saveGroup = new SaveGroupData();
-                saveGroup.Addresses = group.GetListOfAddresses();
+                saveGroup.Addresses = new List<SavedAddress>(group.GetListOfAddresses());
                 saveGroup.Name = group.Name;
                 saveGroup.Notes = group.Notes;
                 

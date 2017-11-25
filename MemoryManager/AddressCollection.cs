@@ -27,8 +27,7 @@ namespace MemoryManager
 
         public AddressReader(string filename)
         {
-            Filename = filename;
-            file = new BinaryReader(new StreamReader(Filename).BaseStream);
+            Filename = filename;            
         }
 
         /// <summary>
@@ -38,6 +37,9 @@ namespace MemoryManager
         /// stream this will return null otherwise return the block</returns>
         public Block Next()
         {
+            if(file == null)
+                file = new BinaryReader(new StreamReader(Filename).BaseStream);
+
             Block block = new Block();
             try
             {
@@ -153,9 +155,9 @@ namespace MemoryManager
         }
 
         public AddressCollection()
-        {            
-            _reader = new AddressReader(FILE2);
+        {
             _writer = new AddressWriter(FILE1);
+            _reader = new AddressReader(FILE2);
         }        
       
 
@@ -176,7 +178,6 @@ namespace MemoryManager
             //flip the reader and writer
             _writer = new AddressWriter(FILE1);
             _reader = new AddressReader(FILE2);
-
         }
 
         /// <summary>

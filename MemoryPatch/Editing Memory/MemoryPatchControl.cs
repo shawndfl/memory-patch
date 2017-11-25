@@ -23,6 +23,7 @@ namespace MemoryPatch.Editing_Memory
         private bool _selectFirstAddress = true;
         private long _firstLastAddress = 0;
         private long _secondLastAddress = 0;
+        private FrmAddNew _frmAddNew;
 
         #endregion
 
@@ -48,8 +49,8 @@ namespace MemoryPatch.Editing_Memory
                     return tv.SelectedNode.Tag as GroupAddress;
             }
         }       
-
-        #endregion        
+        
+        #endregion                
 
         public MemoryPatchControl()
         {
@@ -68,6 +69,27 @@ namespace MemoryPatch.Editing_Memory
             cboAssign.Items.Add("Or Out");
             cboAssign.SelectedIndex = 0;
 
+            MenuItem[] items = new MenuItem[]
+            {
+                new MenuItem("New Group", new EventHandler(OnNewGroup)),
+                new MenuItem("Add New...", new EventHandler(OnNewDialog))
+            };
+
+            ContextMenu = new ContextMenu(items);            
+        }
+        
+        private void OnNewDialog(object sender, EventArgs e)
+        {
+            if (_frmAddNew == null || _frmAddNew.IsDisposed)
+            {
+                _frmAddNew = new FrmAddNew();
+                _frmAddNew.Show();
+            }
+        }
+
+        private void OnNewGroup(object sender, EventArgs e)
+        {
+            tv.SelectedNode = CreateNewGroup();
         }
 
         /// <summary>
@@ -227,13 +249,17 @@ namespace MemoryPatch.Editing_Memory
                     tv.SelectedNode = node;
                     _updating = false;
 
-                    if (ActiveAddress != null)
-                    {
+                    ContextMenu.Show(tv, p);
+
+                    //if (ActiveAddress != null)
+                    //{
+                    //    ContextMenu.Show(tv, p);
+
                         //MemoryViewer viewer = new MemoryViewer();
                         //viewer.StartAddress(ActiveAddress.Address, _access);
                         //viewer.Show();
-                        MessageBox.Show("Memory viewer not implemented.");
-                    }
+                        //MessageBox.Show("Memory viewer not implemented.");
+                    //}
                 }
             }
 
@@ -312,8 +338,7 @@ namespace MemoryPatch.Editing_Memory
             {
                 groupAddressEdit.Visible = false;
                 groupEdit.Visible = true;
-
-                txtGroupName.Text = ActiveGroup.Name;
+                
                 txtNotes.Text = ActiveGroup.Notes;
                 numStructSize.Value = Math.Abs(_secondLastAddress - _firstLastAddress);
             }
@@ -727,40 +752,6 @@ namespace MemoryPatch.Editing_Memory
         private void btnCreateNewGroup_Click(object sender, EventArgs e)
         {
             tv.SelectedNode = CreateNewGroup();
-        }
-
-        /// <summary>
-        /// Handles the KeyDown event of the txtGroupName control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.Windows.Forms.KeyEventArgs"/> instance containing the event data.</param>
-        private void txtGroupName_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return && ActiveGroup != null)
-            {                
-                if (GetGroupNode(txtGroupName.Text) != null)
-                {
-                    MessageBox.Show("there is already a group named " + txtGroupName.Text);
-                    return;
-                }               
-                
-                GroupAddress newGroup = _addressManager.RenameGroup(ActiveGroup.Name, txtGroupName.Text);
-
-                TreeNode currentNode = tv.SelectedNode;
-                int index = currentNode.Index;
-                TreeNode[] nodes = new TreeNode[currentNode.Nodes.Count];
-                currentNode.Nodes.CopyTo(nodes, 0);
-
-                _updating = true;              
-
-                currentNode.Remove();
-                currentNode = new TreeNode(txtGroupName.Text);                
-                currentNode.Tag = newGroup;
-                currentNode.Nodes.AddRange(nodes);                
-
-                _root.Nodes.Insert(index, currentNode);
-                _updating = false;
-            }
         }        
 
         private void txtNotes_TextChanged(object sender, EventArgs e)
@@ -1029,9 +1020,18 @@ namespace MemoryPatch.Editing_Memory
 
         private void tv_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
-            e.Node.Text = e.Label;
-            tv.LabelEdit = false;
-            ActiveAddress.Name = e.Label;
+            string newText = e.Label;
+            e.Node.Text = newText;
+            tv.LabelEdit = false;           
+                 
+            if (ActiveGroup != null)
+            {               
+                _addressManager.RenameGroup(ActiveGroup.Name, newText);                
+            }
+            else
+            {
+                e.CancelEdit = true;
+            }
         }            
     }
 }
