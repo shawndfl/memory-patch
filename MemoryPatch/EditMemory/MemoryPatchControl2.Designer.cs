@@ -1,6 +1,6 @@
 ﻿namespace MemoryPatch.EditMemory
 {
-    partial class MemoryPatchControl
+    partial class MemoryPatchControl2
     {
         /// <summary> 
         /// Required designer variable.

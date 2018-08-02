@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace MemoryPatch.Editing_Memory
+namespace MemoryPatch.EditMemory
 {
     public partial class FrmAddNew : Form
     {

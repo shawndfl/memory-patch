@@ -1,4 +1,4 @@
-﻿namespace MemoryPatch.Editing_Memory
+﻿namespace MemoryPatch.EditMemory
 {
     partial class FrmAddNew
     {

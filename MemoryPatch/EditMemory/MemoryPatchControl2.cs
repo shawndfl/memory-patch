@@ -12,7 +12,7 @@ using MemoryManager;
 
 namespace MemoryPatch.EditMemory
 {
-    public partial class MemoryPatchControl : UserControl
+    public partial class MemoryPatchControl2 : UserControl
     {
         #region Fields
         private AddressManager _addressManager;
@@ -52,7 +52,7 @@ namespace MemoryPatch.EditMemory
         
         #endregion                
 
-        public MemoryPatchControl()
+        public MemoryPatchControl2()
         {
             InitializeComponent();
             _root = tv.Nodes.Add("Addresses");

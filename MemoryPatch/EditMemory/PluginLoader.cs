@@ -10,7 +10,7 @@ using System.IO;
 using System.Reflection;
 using MemoryManager;
 
-namespace MemoryPatch.Editing_Memory
+namespace MemoryPatch.EditMemory
 {
     public partial class PluginLoader : UserControl
     {
