@@ -55,8 +55,12 @@ namespace MemoryPatch
                 throw new ArgumentNullException("access");
 
             _access = access;
+            
+            //dispose and old searcher
+            if (_seracher != null)
+                _seracher.Dispose();
 
-             //create a searcher
+            //create a searcher
             _seracher = new Search(_access, this);
             _seracher.OnValueFound += new EventHandler<AddressFoundEventArgs>(Seracher_OnValueFound);
             _seracher.OnProgressChange += new EventHandler<SearchUpdateEventArgs>(Seracher_OnProgressChange);
@@ -66,7 +70,7 @@ namespace MemoryPatch
             groupFound.Enabled = true;
             groupNextSearch.Enabled = true;
             groupSearching.Enabled = true;
-        }      
+        }   
 
         #region Searching
         private void btnFirstSearch_Click(object sender, EventArgs e)

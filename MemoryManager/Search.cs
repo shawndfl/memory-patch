@@ -68,13 +68,10 @@ namespace MemoryManager
         public Search(IMemoryAccess access, IInvoke control)
         {            
             _access = access;
-            _control = control;
-            if (_addressCollection != null)
-                _addressCollection.Dispose();
-
+            _control = control;            
             _addressCollection = new AddressCollection();           
         }
-
+     
         /// <summary>
         /// Cancels the search thread.
         /// </summary>
@@ -87,7 +84,7 @@ namespace MemoryManager
             }
 
             //final update
-            UpdateProgress(0, 1, 1, 0);
+            UpdateProgress(0, 1, 0, _addressesFound);
         }
 
         /// <summary>
@@ -376,9 +373,7 @@ namespace MemoryManager
                     // Let the control know we found something
                     FoundAddress(address, value2compare, context.DataType);
                 }               
-            }
-
-            //UpdateProgress(0, 100, 100, _addressesFound);
+            }            
         }       
 
         private void FoundAddress(long address, byte[] currentValue, DataType data)
@@ -543,7 +538,6 @@ namespace MemoryManager
             long dy = current - start;
             float precentDone = (float)((float)dy / (float)dx);
 
-
             _control.InvokeMethod(new ThreadStart(delegate ()
             {
                 if (OnProgressChange != null)
@@ -579,6 +573,17 @@ namespace MemoryManager
         public void LoadSnapShot(string file)
         {
             throw new NotImplementedException("LoadSnapShot");
+        }
+
+        /// <summary>
+        /// Dispose the object. Cancel active searches and release files
+        /// </summary>
+        public void Dispose()
+        {
+            CancelSearch();
+
+            if (_addressCollection != null)
+                _addressCollection.Dispose();            
         }
     }
 }

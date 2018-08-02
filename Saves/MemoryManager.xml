@@ -832,6 +832,11 @@
             <param name="buffer"></param>
             <param name="bufferLength"></param>
         </member>
+        <member name="M:MemoryManager.Search.Dispose">
+            <summary>
+            Dispose the object. Cancel active searches and release files
+            </summary>
+        </member>
         <member name="P:MemoryManager.SearchContext.FirstSearch">
             <summary>
             Is this the first search

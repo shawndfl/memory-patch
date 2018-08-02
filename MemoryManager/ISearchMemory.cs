@@ -2,7 +2,7 @@
 
 namespace MemoryManager
 {
-    public interface ISearchMemory
+    public interface ISearchMemory: IDisposable
     {
         SearchContext SearchContext { get; }
 
