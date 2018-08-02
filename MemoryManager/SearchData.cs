@@ -8,6 +8,9 @@ using System.Xml.Serialization;
 namespace MemoryManager
 {
 
+    /// <summary>
+    /// This is the context the lets the search know how to perform a search
+    /// </summary>
     public struct SearchContext
     {
         /// <summary>

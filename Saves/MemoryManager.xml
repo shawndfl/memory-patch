@@ -325,10 +325,167 @@
             </summary>
             <param name="message"></param>
         </member>
+        <member name="T:MemoryManager.IMemoryAccess">
+            <summary>
+            The main interface to the outside world.
+            This interface will allow access to memory of a 
+            given process. 
+            </summary>
+        </member>
+        <member name="P:MemoryManager.IMemoryAccess.Process">
+            <summary>
+            The process who's memory we are trying to access        
+            </summary>
+        </member>
+        <member name="P:MemoryManager.IMemoryAccess.ProcessName">
+            <summary>
+            The human readable name of the process
+            </summary>
+        </member>
+        <member name="P:MemoryManager.IMemoryAccess.MinAddress">
+            <summary>
+            Min memory address
+            </summary>
+        </member>
+        <member name="P:MemoryManager.IMemoryAccess.MaxAddress">
+            <summary>
+            Last memory address
+            </summary>
+        </member>
+        <member name="M:MemoryManager.IMemoryAccess.VirtualQuery(System.IntPtr)">
+            <summary>
+            Used in searching for values in memory
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.IMemoryAccess.FreezeMemory(System.IntPtr,System.Byte[])">
+            <summary>
+            Frezzes a memory value.
+            </summary>
+            <param name="address"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:MemoryManager.IMemoryAccess.KillProcess">
+            <summary>
+            Kills the process
+            </summary>
+        </member>
+        <member name="M:MemoryManager.IMemoryAccess.ReadMemoryAsBytes(System.IntPtr,System.Byte[]@)">
+            <summary>
+            Reads memory as bytes
+            </summary>
+            <param name="address"></param>
+            <param name="buffer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.IMemoryAccess.ReadMemoryAsBytes(System.IntPtr,System.Int32)">
+            <summary>
+            Reads memory as bytes and returns an array
+            </summary>
+            <param name="address"></param>
+            <param name="dataLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.IMemoryAccess.ReadMemoryAsString(System.IntPtr,MemoryManager.DataType,System.Int32)">
+            <summary>
+            Reads memory as a string. This is used in forms to display memory values.
+            </summary>
+            <param name="address"></param>
+            <param name="dataLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MemoryManager.IMemoryAccess.UnfreezeMemory(System.IntPtr)">
+            <summary>
+            Removes memory from the frezze queue
+            </summary>
+            <param name="address"></param>
+        </member>
+        <member name="M:MemoryManager.IMemoryAccess.UnfrezzeAll">
+            <summary>
+            Removes all addresses from the frezze queue
+            </summary>
+        </member>
+        <member name="M:MemoryManager.IMemoryAccess.WriteValue(System.IntPtr,System.Byte[])">
+            <summary>
+            Writes a value to memory
+            </summary>
+            <param name="address"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MemoryManager.ISearchMemory">
+            <summary>
+            Used in searching
+            </summary>
+        </member>
+        <member name="P:MemoryManager.ISearchMemory.SearchContext">
+            <summary>
+            Search context. This lests the search know what we are searching for
+            </summary>
+        </member>
+        <member name="E:MemoryManager.ISearchMemory.OnProgressChange">
+            <summary>
+            When the progress of the search changes.
+            </summary>
+        </member>
+        <member name="E:MemoryManager.ISearchMemory.OnValueFound">
+            <summary>
+            When a value is found
+            </summary>
+        </member>
+        <member name="E:MemoryManager.ISearchMemory.OnUpdate">
+            <summary>
+            This can be use to check if the search is done.
+            TODO change this to done.
+            </summary>
+        </member>
+        <member name="M:MemoryManager.ISearchMemory.CancelSearch">
+            <summary>
+            Cancel the search
+            </summary>
+        </member>
+        <member name="M:MemoryManager.ISearchMemory.NewSearch(MemoryManager.SearchContext)">
+            <summary>
+            Start a new search
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:MemoryManager.ISearchMemory.NextSearch(MemoryManager.SearchType,System.String)">
+            <summary>
+            Run the next search
+            </summary>
+            <param name="type"></param>
+            <param name="optValue"></param>
+        </member>
+        <member name="M:MemoryManager.ISearchMemory.LoadSnapShot(System.String)">
+            <summary>
+            Loads a snapshot
+            </summary>
+            <param name="file"></param>
+        </member>
+        <member name="M:MemoryManager.ISearchMemory.SaveSnapShot(System.String)">
+            <summary>
+            Save a snapshot of the search
+            </summary>
+            <param name="file"></param>
+        </member>
         <member name="T:MemoryManager.LockData">
             <summary>
             Data used to keep an address at a value
             </summary>
+        </member>
+        <member name="T:MemoryManager.MemoryAccessFactory">
+            <summary>
+            This factory will create the IMemoryAccess object
+            </summary>
+        </member>
+        <member name="M:MemoryManager.MemoryAccessFactory.CreateMemoryAccess(System.Diagnostics.Process)">
+            <summary>
+            Creates memory access object
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
         </member>
         <member name="P:MemoryManager.MemoryCollection.Process">
             <summary>
@@ -835,6 +992,11 @@
         <member name="M:MemoryManager.Search.Dispose">
             <summary>
             Dispose the object. Cancel active searches and release files
+            </summary>
+        </member>
+        <member name="T:MemoryManager.SearchContext">
+            <summary>
+            This is the context the lets the search know how to perform a search
             </summary>
         </member>
         <member name="P:MemoryManager.SearchContext.FirstSearch">

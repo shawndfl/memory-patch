@@ -65,6 +65,7 @@
     <Compile Include="IMemoryAccess.cs" />
     <Compile Include="ISearchMemory.cs" />
     <Compile Include="LockData.cs" />
+    <Compile Include="MemoryAccessFactory.cs" />
     <Compile Include="MemoryCollection.cs" />
     <Compile Include="MemoryAccess.cs" />
     <Compile Include="Plugins\IPlugin.cs" />

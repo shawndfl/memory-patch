@@ -3,6 +3,95 @@ using System.Diagnostics;
 
 namespace MemoryManager
 {
+    /// <summary>
+    /// The main interface to the outside world.
+    /// This interface will allow access to memory of a 
+    /// given process. 
+    /// </summary>
+    public interface IMemoryAccess
+    {
+        /// <summary>
+        /// The process who's memory we are trying to access        
+        /// </summary>
+        Process Process { get; }
+
+        /// <summary>
+        /// The human readable name of the process
+        /// </summary>
+        string ProcessName { get; }
+
+        /// <summary>
+        /// Min memory address
+        /// </summary>
+        IntPtr MinAddress { get; }
+        /// <summary>
+        /// Last memory address
+        /// </summary>
+        IntPtr MaxAddress { get; }
+
+        /// <summary>
+        /// Used in searching for values in memory
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
+        MEMORY_BASIC_INFORMATION VirtualQuery(IntPtr address);
+
+        /// <summary>
+        /// Frezzes a memory value.
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="value"></param>
+        void FreezeMemory(IntPtr address, byte[] value);
+
+        /// <summary>
+        /// Kills the process
+        /// </summary>
+        void KillProcess();
+
+        /// <summary>
+        /// Reads memory as bytes
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
+        int ReadMemoryAsBytes(IntPtr address, ref byte[] buffer);
+
+        /// <summary>
+        /// Reads memory as bytes and returns an array
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="dataLength"></param>
+        /// <returns></returns>
+        byte[] ReadMemoryAsBytes(IntPtr address, int dataLength);
+
+        /// <summary>
+        /// Reads memory as a string. This is used in forms to display memory values.
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="dataLength"></param>
+        /// <returns></returns>
+        string ReadMemoryAsString(IntPtr address, DataType dataType, int lenInBytes);
+
+        /// <summary>
+        /// Removes memory from the frezze queue
+        /// </summary>
+        /// <param name="address"></param>
+        void UnfreezeMemory(IntPtr address);
+
+        /// <summary>
+        /// Removes all addresses from the frezze queue
+        /// </summary>
+        void UnfrezzeAll();
+
+        /// <summary>
+        /// Writes a value to memory
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        int WriteValue(IntPtr address, byte[] value);
+    }
+
     public struct MEMORY_BASIC_INFORMATION
     {
         public IntPtr BaseAddress;
@@ -57,23 +146,5 @@ namespace MemoryManager
         public ushort processorRevision;
     }
 
-    public interface IMemoryAccess
-    {              
-        Process Process { get; }
-        string ProcessName { get; }
-
-        IntPtr MinAddress { get;  }
-        IntPtr MaxAddress { get;  }
-
-        MEMORY_BASIC_INFORMATION VirtualQuery(IntPtr address);
-
-        void FreezeMemory(IntPtr address, byte[] value);
-        void KillProcess();
-        int ReadMemoryAsBytes(IntPtr address, ref byte[]  buffer);
-        byte[] ReadMemoryAsBytes(IntPtr address, int dataLength);
-        string ReadMemoryAsString(IntPtr address, DataType dataType, int lenInBytes);
-        void UnfreezeMemory(IntPtr address);
-        void UnfrezzeAll();
-        int WriteValue(IntPtr address, byte[] value);
-    }
+   
 }

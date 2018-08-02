@@ -54,35 +54,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\HexViewer\HexViewer\HexWindow.cs">
-      <Link>Editing Memory\HexWindow.cs</Link>
+      <Link>EditMemory\HexWindow.cs</Link>
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="..\HexViewer\HexViewer\HexWindow.designer.cs">
-      <Link>Editing Memory\HexWindow.designer.cs</Link>
+      <Link>EditMemory\HexWindow.designer.cs</Link>
       <DependentUpon>HexWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editing Memory\FrmAddNew.cs">
+    <Compile Include="EditMemory\FrmAddNew.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Editing Memory\FrmAddNew.Designer.cs">
+    <Compile Include="EditMemory\FrmAddNew.Designer.cs">
       <DependentUpon>FrmAddNew.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editing Memory\MemoryPatchControl.cs">
+    <Compile Include="EditMemory\MemoryPatchControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Editing Memory\MemoryPatchControl.Designer.cs">
+    <Compile Include="EditMemory\MemoryPatchControl.Designer.cs">
       <DependentUpon>MemoryPatchControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editing Memory\MemoryViewer.cs">
+    <Compile Include="EditMemory\MemoryViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Editing Memory\MemoryViewer.designer.cs">
+    <Compile Include="EditMemory\MemoryViewer.designer.cs">
       <DependentUpon>MemoryViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editing Memory\PluginLoader.cs">
+    <Compile Include="EditMemory\PluginLoader.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Editing Memory\PluginLoader.Designer.cs">
+    <Compile Include="EditMemory\PluginLoader.Designer.cs">
       <DependentUpon>PluginLoader.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
@@ -94,22 +94,22 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="..\HexViewer\HexViewer\HexWindow.resx">
-      <Link>Editing Memory\HexWindow.resx</Link>
+      <Link>EditMemory\HexWindow.resx</Link>
       <DependentUpon>HexWindow.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editing Memory\FrmAddNew.resx">
+    <EmbeddedResource Include="EditMemory\FrmAddNew.resx">
       <DependentUpon>FrmAddNew.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editing Memory\MemoryPatchControl.resx">
+    <EmbeddedResource Include="EditMemory\MemoryPatchControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MemoryPatchControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editing Memory\MemoryViewer.resx">
+    <EmbeddedResource Include="EditMemory\MemoryViewer.resx">
       <DependentUpon>MemoryViewer.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editing Memory\PluginLoader.resx">
+    <EmbeddedResource Include="EditMemory\PluginLoader.resx">
       <DependentUpon>PluginLoader.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">

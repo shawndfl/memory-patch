@@ -8,7 +8,8 @@ using System.Threading;
 
 namespace MemoryManager
 {
-    public class MemoryAccess : IMemoryAccess
+
+    internal class MemoryAccess : IMemoryAccess
     {
         #region Dll Imports
         [DllImport("kernel32.dll", EntryPoint = "ReadProcessMemory")]

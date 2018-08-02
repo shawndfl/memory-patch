@@ -55,7 +55,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchControl1 = new MemoryPatch.SearchControl();
-            this.memoryPatchControl1 = new MemoryPatch.Editing_Memory.MemoryPatchControl2();
+            this.memoryPatchControl1 = new MemoryPatch.Editing_Memory.MemoryPatchControl();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -232,7 +232,7 @@
         private System.Windows.Forms.Label lbActiveProcess;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnRun;
-        private MemoryPatch.Editing_Memory.MemoryPatchControl2 memoryPatchControl1;
+        private MemoryPatch.Editing_Memory.MemoryPatchControl memoryPatchControl1;
         private SearchControl searchControl1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
