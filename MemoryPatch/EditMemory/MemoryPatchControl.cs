@@ -12,7 +12,7 @@ using MemoryManager;
 
 namespace MemoryPatch.EditMemory
 {
-    public partial class MemoryPatchControl : UserControl
+    public partial class MemoryPatchControl : UserControl, IMemoryControl
     {
         #region Fields
         private AddressManager _addressManager;
@@ -133,11 +133,10 @@ namespace MemoryPatch.EditMemory
         #endregion
 
         #region Add and Remove Addresses
-        public TreeNode AddAddress(SavedAddress address)
+        public void AddAddress(SavedAddress address)
         {
             TreeNode defaultGroup = GetDefaultGroupNode();
-
-            return AddAddress(defaultGroup, address);
+            AddAddress(defaultGroup, address);
         }      
 
         public TreeNode AddAddress(TreeNode groupNode, SavedAddress address)

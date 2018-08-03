@@ -67,11 +67,12 @@
     <Compile Include="EditMemory\FrmAddNew.Designer.cs">
       <DependentUpon>FrmAddNew.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditMemory\MemoryPatchControl2.cs">
+    <Compile Include="EditMemory\IMemoryControl.cs" />
+    <Compile Include="EditMemory\MemoryEditorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditMemory\MemoryPatchControl2.Designer.cs">
-      <DependentUpon>MemoryPatchControl2.cs</DependentUpon>
+    <Compile Include="EditMemory\MemoryEditorControl.Designer.cs">
+      <DependentUpon>MemoryEditorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="EditMemory\MemoryPatchControl.cs">
       <SubType>UserControl</SubType>
@@ -107,9 +108,8 @@
     <EmbeddedResource Include="EditMemory\FrmAddNew.resx">
       <DependentUpon>FrmAddNew.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditMemory\MemoryPatchControl2.resx">
-      <DependentUpon>MemoryPatchControl2.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="EditMemory\MemoryEditorControl.resx">
+      <DependentUpon>MemoryEditorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditMemory\MemoryPatchControl.resx">
       <SubType>Designer</SubType>

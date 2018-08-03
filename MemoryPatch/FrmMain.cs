@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using MemoryManager;
+using MemoryPatch.EditMemory;
 
 namespace MemoryPatch
 {
@@ -30,6 +31,14 @@ namespace MemoryPatch
         
         public AddressManager _runTimeData;
         #endregion       
+
+        private IMemoryControl MemCtrl
+        {
+            get
+            {
+                return memoryPatchControl1;
+            }
+        }
         
         private void SetNewProcess(Process process)
         {           
@@ -41,7 +50,7 @@ namespace MemoryPatch
                 //show what process is selected
                 lbActiveProcess.Text = _processAccess.ProcessName;
                 searchControl1.EnableSearch(_processAccess);
-                memoryPatchControl1.EnableMemoryAccess(_processAccess);
+                MemCtrl.EnableMemoryAccess(_processAccess);
             }
             else
             {
@@ -217,7 +226,7 @@ namespace MemoryPatch
             SavedAddress savedAddress = new SavedAddress(false, "Default",
                 e.AddressFound.Address, e.AddressFound.DataType, e.AddressFound.DataLengthInBytes);
 
-            memoryPatchControl1.AddAddress(savedAddress);
+            MemCtrl.AddAddress(savedAddress);
 
         }
 
@@ -239,7 +248,7 @@ namespace MemoryPatch
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 _lastLoaded = dlg.FileName;
-                memoryPatchControl1.Save(dlg.FileName);
+                MemCtrl.Save(dlg.FileName);
                 Config.SavedFilesPath = Path.GetDirectoryName(dlg.FileName);
                 return true;
             }
@@ -264,7 +273,7 @@ namespace MemoryPatch
             {                
                 _lastLoaded = dlg.FileName;
                 Config.SavedFilesPath = Path.GetDirectoryName(_lastLoaded);
-                memoryPatchControl1.Open(dlg.FileName);
+                MemCtrl.Open(dlg.FileName);
             }
         }
 
@@ -296,7 +305,7 @@ namespace MemoryPatch
             dlg.Filter = "*.txt|*.txt";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                memoryPatchControl1.Import(dlg.FileName);
+                MemCtrl.Import(dlg.FileName);
             }
         }
 
